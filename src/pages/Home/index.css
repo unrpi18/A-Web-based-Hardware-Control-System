@@ -1,0 +1,51 @@
+.Welcome {
+   text-align: center;
+    height: 1000px;
+    line-height: 1000px;
+    overflow: hidden;
+    margin: 50px auto;
+    font-size: 500%;
+
+}
+
+#KIT_Green {
+    color : #009682;
+}
+
+
+.Register {
+    width: 100px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #FFFFFF;
+    border-style: solid;
+    border-color: #009682;
+}
+
+.Login {
+    width: 100px;
+    height: 60px;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #FFFFFF;
+    border-style: solid;
+    border-color: #009682;
+}
+
+.Logos {
+    position: absolute;
+    top: -20px;
+    left: 220px;
+
+}
+
+.Kit_Logo {
+    position: absolute;
+    width: 10%;
+    height: 10%;
+    top: 10px;
+    left: 10px;
+}
