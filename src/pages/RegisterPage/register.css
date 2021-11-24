@@ -1,0 +1,62 @@
+input {
+    width: 260px;
+    height: 50px;
+    border: 1px solid black;
+    outline: 0;
+    margin: 5px 0;
+    font-size: 25px;
+}
+
+input:focus {
+    border: 3px solid #009682;
+    outline: 0;
+
+}
+
+label {
+    display: inline-block;
+    width: 150px;
+}
+
+h1 {
+    padding-left: 2%;
+}
+
+h2 {
+    padding-left: 8%;
+
+}
+
+.Title_Set {
+    text-align: left;
+    position: relative;
+    top: 150px;
+    font-size: 400%;
+    overflow: hidden;
+}
+
+.TECO_LAB_TEXT {
+    text-align: left;
+    position: relative;
+    top: 130px;
+    font-size: 300%;
+}
+
+
+.spacing {
+    position: relative;
+    top: 200px;
+    left: 1030px;
+    font-size: 20px;
+    font-feature-settings: normal;
+
+}
+
+.verify {
+    position: relative;
+    left: 1%;
+    background: #FFFFFF;
+    width: 100px;
+    height: 30px;
+    border: 3px solid #009682;
+}
