@@ -15,7 +15,7 @@
 
 
 .Register {
-    width: 100px;
+    width: 4%;
     height: 60px;
     position: absolute;
     top: 0;
@@ -54,3 +54,6 @@
     left: 1%;
 }
 
+/*
+{a test}
+ */
