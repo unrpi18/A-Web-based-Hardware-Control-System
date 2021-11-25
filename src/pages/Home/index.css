@@ -1,20 +1,21 @@
 .Welcome {
-   text-align: center;
-    height: 1000px;
-    line-height: 1000px;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    width: 100%;
     overflow: hidden;
-    margin: 50px auto;
-    font-size: 500%;
+    font-size: 300%;
+
 
 }
 
 #KIT_Green {
-    color : #009682;
+    color: #009682;
 }
 
 
 .Register {
-    width: 100px;
+    width: 4%;
     height: 60px;
     position: absolute;
     top: 0;
@@ -35,21 +36,37 @@
     border-color: #009682;
 }
 
-.Logos {
-    position: absolute;
-    top: -20px;
-    left: 220px;
+.Teco_Logo {
+    width: 20%;
+    height: 10%;
 
 }
 
 .Kit_Logo {
-    position: absolute;
-    width: 10%;
-    height: 10%;
-    top: 10px;
-    left: 10px;
+    width: 7%;
+    height: 5%;
 }
-/* 
 
-this is change from siyan
-*/
+
+.div_position {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
+/*
+{a test}
+ */
+
+ /*
+a test from siyan
+ */
+
+/*
+a test from Hw
+ */
+
+/*
+second test
+ */
+>>>>>>> example-react
