@@ -22,7 +22,7 @@ const RegisterItem = () => {
 
         <div className="name">
             <label>Name</label>
-            <input type="type" placeholder="    enter your name"/>
+            <input type="type"/>
         </div>
 
         <button className="register_Button">Register</button>
