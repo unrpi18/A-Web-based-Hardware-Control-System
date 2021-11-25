@@ -4,7 +4,7 @@
     line-height: 1000px;
     overflow: hidden;
     margin: 50px auto;
-    font-size: 500%;
+    font-size: 300%;
 
 }
 
@@ -37,6 +37,8 @@
 
 .Logos {
     position: absolute;
+    width: 30%;
+    height: 10%;
     top: -20px;
     left: 220px;
 
