@@ -1,5 +1,5 @@
 import RegisterItem from "./components/registerItem";
-import Title from "./components/Title";
+import Title from "./components/title";
 
 
 const Register = () => {

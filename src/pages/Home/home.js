@@ -1,5 +1,5 @@
-import Item from "./components/Item";
-import './index.css'
+import Item from "./components/item";
+import './home.css'
 import Logo from "../logos/Logo";
 
 

@@ -15,8 +15,8 @@
 
 
 .Register {
-    width: 4%;
-    height: 60px;
+    width: 4.5%;
+    height: 5%;
     position: absolute;
     top: 0;
     right: 0;
@@ -26,10 +26,10 @@
 }
 
 .Login {
-    width: 100px;
-    height: 60px;
+    width: 4.5%;
+    height: 5%;
     position: absolute;
-    top: 60px;
+    top: 5%;
     right: 0;
     background: #FFFFFF;
     border-style: solid;
@@ -53,15 +53,3 @@
     top: 1%;
     left: 1%;
 }
-
-/*
-{a test}
- */
-
- /*
-a test from siyan
- */
-
-/*
-a test from Hw
- */
