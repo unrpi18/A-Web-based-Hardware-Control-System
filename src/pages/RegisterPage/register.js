@@ -1,11 +1,13 @@
 import RegisterItem from "./components/registerItem";
 import Title from "./components/title";
+import Logo from "../logos/Logo";
 
 
 const Register = () => {
-    return <div className="all">
+    return <div>
         <Title/>
         <RegisterItem/>
+        <Logo/>
     </div>
 }
 

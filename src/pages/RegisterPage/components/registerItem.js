@@ -6,6 +6,7 @@ const RegisterItem = () => {
         <div className="email">
             <label form="email">E-mail </label>
             <input type="email"/>
+
             <button className="verify">verify</button>
         </div>
 
@@ -22,8 +23,9 @@ const RegisterItem = () => {
         <div className="name">
             <label>Name</label>
             <input type="type" placeholder="    enter your name"/>
-
         </div>
+
+        <button className="register_Button">Register</button>
 
     </div>
 
