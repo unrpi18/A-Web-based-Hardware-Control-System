@@ -35,3 +35,22 @@
     border-style: solid;
     border-color: #009682;
 }
+
+.Teco_Logo {
+    width: 20%;
+    height: 10%;
+
+}
+
+.Kit_Logo {
+    width: 7%;
+    height: 5%;
+}
+
+
+.div_position {
+    position: absolute;
+    top: 1%;
+    left: 1%;
+}
+
