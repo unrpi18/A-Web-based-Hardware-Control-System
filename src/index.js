@@ -7,7 +7,8 @@ import Register from "./pages/RegisterPage/register";
 
 ReactDOM.render(
     <React.StrictMode>
-        <Register/>
+
+<Register/>
     </React.StrictMode>,
     document.getElementById('root')
 );

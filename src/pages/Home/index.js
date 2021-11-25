@@ -1,15 +1,12 @@
-import {useState} from "react";
 import Item from "./components/Item";
 import './index.css'
+import Logo from "../logos/Logo";
 
 
 const Home = () => {
-    const[data, setData] = useState([])
-
-
     return <div>
-
-        <Item itemData={data}/>
+        <Item />
+        <Logo />
     </div>
 }
 

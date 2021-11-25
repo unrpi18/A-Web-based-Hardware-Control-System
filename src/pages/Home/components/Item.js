@@ -1,4 +1,4 @@
-import Logo from '../../logos/Logo'
+
 const Item = () => {
 
     return <div>
@@ -7,11 +7,6 @@ const Item = () => {
 
         <button className="Register">Register</button>
         <button className="Login">Login</button>
-
-
-    }
-
-        <Logo />
     </div>
 
 }
