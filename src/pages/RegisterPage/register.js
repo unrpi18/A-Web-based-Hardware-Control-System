@@ -3,7 +3,7 @@ import Title from "./components/Title";
 
 
 const Register = () => {
-    return <div>
+    return <div className="all">
         <Title/>
         <RegisterItem/>
     </div>

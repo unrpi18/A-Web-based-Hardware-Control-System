@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './pages/Home'
+import Register from "./pages/RegisterPage/register";
 
 
 ReactDOM.render(
     <React.StrictMode>
-        <Home/>
+        <Register/>
     </React.StrictMode>,
     document.getElementById('root')
 );
