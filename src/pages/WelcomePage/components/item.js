@@ -1,6 +1,5 @@
-import React from "react";
 import {useNavigate} from "react-router";
-
+import Login from "../../LoginPage/login";
 
 const Item = () => {
     const navigate = useNavigate();
@@ -9,10 +8,8 @@ const Item = () => {
         <h1 className="Welcome">Welcome to
             <span id="KIT_Green"> TECO-LAB </span> management</h1>
 
-        <div>
-            <button type="button" className="Register" onClick={() => navigate('/register')}> Register</button>
-        </div>
-        <button type="button" className="Login">Login</button>
+        <button type="button" className="Register" onClick={() => navigate('/register')}> Register</button>
+        <button type="button" className="Login" onClick={() => navigate('/login')}> Login</button>
 
     </div>
 
