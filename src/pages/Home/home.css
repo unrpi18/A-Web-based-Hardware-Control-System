@@ -5,8 +5,6 @@
     width: 100%;
     overflow: hidden;
     font-size: 300%;
-
-
 }
 
 #KIT_Green {
@@ -14,42 +12,63 @@
 }
 
 
-.Register {
+#refresh {
+    background-color: #009682;
+    cursor: pointer;
+    transition: all 150ms ease-out;
+}
+
+.placeholder_box {
+    background-color: red;
+    display: block;
+    box-sizing: border-box;
+    min-height: 150px;
+    margin-top: 50px;
+    padding: 30px;
+}
+
+button {
+    display: block;
+    background: #FFFFFF;
+    border-style: solid;
+    border-color: #009682;
+    position: absolute;
     width: 4.5%;
     height: 5%;
+
+}
+
+button:focus {
+    border: 3px solid black;
+    outline: 0;
+}
+
+.Register {
     position: absolute;
     top: 0;
     right: 0;
-    background: #FFFFFF;
-    border-style: solid;
-    border-color: #009682;
 }
 
 .Login {
-    width: 4.5%;
-    height: 5%;
     position: absolute;
     top: 5%;
     right: 0;
-    background: #FFFFFF;
-    border-style: solid;
-    border-color: #009682;
 }
 
 .Teco_Logo {
-    width: 20%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 16%;
     height: 10%;
-
 }
 
 .Kit_Logo {
-    width: 7%;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 5%;
     height: 5%;
 }
 
 
-.div_position {
-    position: absolute;
-    top: 1%;
-    left: 1%;
-}

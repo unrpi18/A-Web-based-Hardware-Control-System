@@ -1,4 +1,3 @@
-
 const Title = () => {
     return <div className="Title_set_all">
         <h1 className="Title_Set">Create Your</h1>

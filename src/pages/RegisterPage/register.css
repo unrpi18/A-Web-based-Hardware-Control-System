@@ -15,23 +15,16 @@ input:focus {
 
 label {
     display: inline-block;
-    width: 10%;
-}
-
-h1 {
-    padding-left: 2%;
-}
-
-h2 {
-    padding-left: 8%;
-
+    width: 12%;
 }
 
 .Title_set_all {
+
     padding-left: 10%;
 }
 
 .Title_Set {
+    padding-left: 2%;
     position: absolute;
     top: 8%;
     font-size: 300%;
@@ -39,6 +32,7 @@ h2 {
 }
 
 .TECO_LAB_TEXT {
+    padding-left: 8%;
     position: absolute;
     top: 16%;
     font-size: 200%;
