@@ -8,13 +8,13 @@ import '../register.css'
 const RegisterItem = () => {
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [userPassword, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
-    const [name, setName] = useState('');
+    const [realName, setName] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const post = { email, password, passwordRepeat, name };
+        const post = { email, userPassword, passwordRepeat, realName};
 
         console.log(post);
 
@@ -53,7 +53,7 @@ const RegisterItem = () => {
                     <label form="password">Password</label>
                     <input type="password"
                         required
-                        value={password}
+                        value={userPassword}
                         onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
@@ -69,16 +69,16 @@ const RegisterItem = () => {
                     <label>Name</label>
                     <input type="type"
                         required
-                        value={name}
+                        value={realName}
                         onChange={(e) => setName(e.target.value)} />
                 </div>
 
 
                 <button className="register_Button">Register</button>
                 <p>{email}</p>
-                <p>{password}</p>
+                <p>{userPassword}</p>
                 <p>{passwordRepeat}</p>
-                <p>{name}</p>
+                <p>{realName}</p>
 
             </form>
         </div>
