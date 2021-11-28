@@ -1,71 +1,86 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useState } from 'react';
 import '../register.css'
 
-const baseUrl = "https://localhost:8086/users";
 
 
 
 const RegisterItem = () => {
 
-    const [post, setPost] = React.useState(null);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordRepeat, setPasswordRepeat] = useState('');
+    const [name, setName] = useState('');
 
-    React.useEffect(() => {
-        axios.get("http://localhost:8086/users/getTestUser").then((res) => {
-            console.log(res);
-            setPost(res.data.data);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const post = { email, password, passwordRepeat, name };
+
+        console.log(post);
+
+        fetch("http://localhost:8086/users/insertUserTest", {
+            method:'POST',
+            headers: {"Content-Type" : "application/json"},
+            body:JSON.stringify(post)
+        }).then(() => {
+            console.log('new blog added');
         })
-    }, [])
 
 
-    function createPost() {
-        axios.post("http://localhost:8086/users/insertUserTest", {
-            userId: post.userId,
-            userPassword: post.userPassword,
-            userRole: post.userRole,
-            verifyCode: post.verifyCode,
-            userName: post.userName,
-            email: post.email,
-            realName: post.realName
+       
 
-        })
-            .then((res) => {
-                console.log(res)
-                setPost(res.data.data);
-            });
     }
 
 
 
+
     return (
-         <div className="spacing">
+        <div className="spacing">
 
-            <div className="email">
-                <label form="email">E-mail </label>
-                <input type="email" />
+            <form onSubmit={handleSubmit}>
+                <div className="email">
 
-                <button className="verify">verify</button>
-            </div>
+                    <label form="email">E-mail </label>
+                    <input type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)} />
+                    <button className="verify">verify</button>
 
-            <div className="password">
-                <label form="password">Password</label>
-                <input type="password" />
-            </div>
+                </div>
 
-            <div className="password_repeat">
-                <label>Password repeat</label>
-                <input type="password" />
-            </div>
+                <div className="password">
+                    <label form="password">Password</label>
+                    <input type="password"
+                        required
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)} />
+                </div>
 
-            <div className="name">
-                <label>Name</label>
-                <input type="type" />
-            </div>
+                <div className="password_repeat">
+                    <label>Password repeat</label>
+                    <input type="password"
+                        required
+                        value={passwordRepeat}
+                        onChange={(e) => setPasswordRepeat(e.target.value)} />
+                </div>
+
+                <div className="name">
+                    <label>Name</label>
+                    <input type="type"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)} />
+                </div>
 
 
-            <h1>hello world! </h1>
-            <button className="register_Button" onClick={createPost}>Register</button>
+                <button className="register_Button">Register</button>
+                <p>{email}</p>
+                <p>{password}</p>
+                <p>{passwordRepeat}</p>
+                <p>{name}</p>
 
+            </form>
         </div>
 
     )

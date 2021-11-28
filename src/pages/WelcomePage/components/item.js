@@ -1,5 +1,4 @@
 import {useNavigate} from "react-router";
-import Login from "../../LoginPage/login";
 
 const Item = () => {
     const navigate = useNavigate();

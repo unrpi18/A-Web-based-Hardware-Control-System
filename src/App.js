@@ -3,8 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/WelcomePage/home";
 import Register from "./pages/RegisterPage/register";
 import Login from "./pages/LoginPage/login";
-import React, { useState, useEffect } from 'react';
-
+import React from 'react';
 
 
 function App() {
