@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from "./App";
+import RouterWeb from "./RouterWeb";
 import {
     BrowserRouter,
 } from "react-router-dom";
@@ -10,7 +9,7 @@ import {
 const rootElement = document.getElementById("root");
 ReactDOM.render(
     <BrowserRouter>
-        <App/>
+        <RouterWeb/>
     </BrowserRouter>,
 rootElement
 )

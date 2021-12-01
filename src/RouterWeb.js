@@ -1,4 +1,4 @@
-import './App'
+import './RouterWeb'
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/WelcomePage/home";
 import Register from "./pages/RegisterPage/register";
@@ -6,7 +6,7 @@ import Login from "./pages/LoginPage/login";
 import React from 'react';
 
 
-function App() {
+function RouterWeb() {
     return (
 
         <Routes>
@@ -18,4 +18,4 @@ function App() {
     );
 }
 
-export default App
+export default RouterWeb

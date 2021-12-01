@@ -16,6 +16,7 @@ const RegisterItem = () => {
     const navigate = useNavigate();
 
 
+<<<<<<< HEAD
     const handleSubmit = (e) => {
         e.preventDefault();
         if(password !== passwordRepeat) {
@@ -24,6 +25,11 @@ const RegisterItem = () => {
         }
 
         let userPassword= CryptoJs.SHA1(password).toString
+=======
+    const navigate = useNavigate();
+    const handleSubmit = (event) => {
+        event.preventDefault();
+>>>>>>> refs/remotes/origin/example-react
         const post = { email, userPassword, passwordRepeat, realName};
 
         console.log(post);
@@ -36,9 +42,6 @@ const RegisterItem = () => {
             navigate('/login');
             console.log('new blog added');
         })
-
-
-       
 
     }
 
@@ -81,8 +84,13 @@ const RegisterItem = () => {
                         onChange={(e) => setName(e.target.value)} />
                 </div>
 
+<<<<<<< HEAD
                 
             <button className='register_Button' type='button' onClick={handleSubmit} >Register</button>
+=======
+
+                <button className="register_Button">Register</button>
+>>>>>>> refs/remotes/origin/example-react
             </form>
 
             <button className="verify">verify</button>
