@@ -1,6 +1,8 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import '../register.css'
+import CryptoJs from 'crypto-js'
+import {useAlert} from 'react-alert';
 
 
 
@@ -8,12 +10,20 @@ import '../register.css'
 const RegisterItem = () => {
 
     const [email, setEmail] = useState('');
-    const [userPassword, setPassword] = useState('');
+    const [password, setPassword] = useState('');
     const [passwordRepeat, setPasswordRepeat] = useState('');
     const [realName, setName] = useState('');
+    const navigate = useNavigate();
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if(password !== passwordRepeat) {
+            alert("The passwords don't match.");
+            return
+        }
+
+        let userPassword= CryptoJs.SHA1(password).toString
         const post = { email, userPassword, passwordRepeat, realName};
 
         console.log(post);
@@ -23,6 +33,7 @@ const RegisterItem = () => {
             headers: {"Content-Type" : "application/json"},
             body:JSON.stringify(post)
         }).then(() => {
+            navigate('/login');
             console.log('new blog added');
         })
 
@@ -31,13 +42,10 @@ const RegisterItem = () => {
 
     }
 
-
-
-
-    return (
+  return (
         <div className="spacing">
 
-            <form onSubmit={handleSubmit}>
+            <form>
                 <div className="email">
 
                     <label form="email">E-mail </label>
@@ -45,7 +53,7 @@ const RegisterItem = () => {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)} />
-                    <button className="verify">verify</button>
+                   
 
                 </div>
 
@@ -53,7 +61,7 @@ const RegisterItem = () => {
                     <label form="password">Password</label>
                     <input type="password"
                         required
-                        value={userPassword}
+                        value={password}
                         onChange={(e) => setPassword(e.target.value)} />
                 </div>
 
@@ -73,14 +81,11 @@ const RegisterItem = () => {
                         onChange={(e) => setName(e.target.value)} />
                 </div>
 
-
-                <button className="register_Button">Register</button>
-                <p>{email}</p>
-                <p>{userPassword}</p>
-                <p>{passwordRepeat}</p>
-                <p>{realName}</p>
-
+                
+            <button className='register_Button' type='button' onClick={handleSubmit} >Register</button>
             </form>
+
+            <button className="verify">verify</button>
         </div>
 
     )
