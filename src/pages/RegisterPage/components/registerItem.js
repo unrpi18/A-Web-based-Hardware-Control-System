@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
 import '../register.css'
 
 
@@ -12,8 +12,9 @@ const RegisterItem = () => {
     const [passwordRepeat, setPasswordRepeat] = useState('');
     const [realName, setName] = useState('');
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const navigate = useNavigate();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         const post = { email, userPassword, passwordRepeat, realName};
 
         console.log(post);
@@ -25,9 +26,6 @@ const RegisterItem = () => {
         }).then(() => {
             console.log('new blog added');
         })
-
-
-       
 
     }
 
@@ -75,11 +73,6 @@ const RegisterItem = () => {
 
 
                 <button className="register_Button">Register</button>
-                <p>{email}</p>
-                <p>{userPassword}</p>
-                <p>{passwordRepeat}</p>
-                <p>{realName}</p>
-
             </form>
         </div>
 
