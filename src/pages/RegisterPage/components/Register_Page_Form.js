@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import '../Register_Page.css'
+import '../Register_Page_Style.css'
 import CryptoJs from 'crypto-js'
 
 

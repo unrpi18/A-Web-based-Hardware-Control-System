@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import '../Login_Page.css'
+import '../Login_Page_Style.css'
 import CryptoJs from 'crypto-js'
 
 
