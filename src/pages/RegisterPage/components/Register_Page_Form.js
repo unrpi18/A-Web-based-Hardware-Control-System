@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import '../register.css'
+import '../Register_Page.css'
 import CryptoJs from 'crypto-js'
-import {useAlert} from 'react-alert';
 
 
 
 
-const RegisterItem = () => {
+
+const REGISTER_PAGE_FORM = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -88,4 +88,4 @@ const RegisterItem = () => {
     )
 }
 
-export default RegisterItem
+export default REGISTER_PAGE_FORM

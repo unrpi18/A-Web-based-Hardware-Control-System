@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import '../login.css'
+import '../Login_Page.css'
 import CryptoJs from 'crypto-js'
 
 
 
 
 
-const LoginItem = () => {
+const LOGIN_PAGE_FORM = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -63,4 +63,4 @@ const LoginItem = () => {
     )
 }
 
-export default LoginItem
+export default LOGIN_PAGE_FORM
