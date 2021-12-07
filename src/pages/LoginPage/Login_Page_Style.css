@@ -1,10 +1,9 @@
 input {
-    width: 17%;
-    height: 50%;
+   height: 20px;
     border: 1px solid black;
     outline: 0;
     margin: 0.3% 0;
-    font-size: 20px;
+    font-size: 1vw;
 }
 
 input:focus {
@@ -15,7 +14,38 @@ input:focus {
 
 label {
     display: inline-block;
-    width: 12%;
+    width: 5vw;
+}
+
+
+.email {
+    position: absolute;
+    top: 20px;
+    width: 70vw;
+    left: 40px;
+    font-size: 1vw;
+    font-weight: bold;
+}
+.password {
+    position: absolute;
+    top: 50px;
+    width: 70vw;
+    left: 40px;
+    font-size: 1vw;
+    font-weight: bold;
+}
+
+.User_Login_Button {
+    position: absolute;
+    top: 120px;
+    left: 60px;
+
+}
+.Admin_Login_Button{
+    position: absolute;
+    top: 120px;
+    left: 320px;
+
 }
 
 .Title_set_all {
@@ -26,47 +56,29 @@ label {
 .Title_Set {
     padding-left: 2%;
     position: absolute;
-    top: 8%;
-    font-size: 300%;
+    top: 3vw;
+    font-size: 3vw;
     overflow: hidden;
 }
 
 .TECO_LAB_TEXT {
     padding-left: 8%;
     position: absolute;
-    top: 16%;
-    font-size: 200%;
+    top: 7vw;
+    font-size: 2vw;
 }
 
 
 .spacing {
     position: absolute;
-    top: 40%;
-    width: 80%;
-    left: 40%;
+    top: 20vw;
+    width: 80vw;
     font-size: 20px;
 
 }
 
 
-.User_Login_Button {
-    position: absolute;
-    width: 6%;
-    height: 30%;
-    top: 120%;
-    left: 25%;
-    background: #FFFFFF;
-    border: 2px solid #009682;
-}
-.Admin_Login_Button{
-    position: absolute;
-    width: 6%;
-    height: 30%;
-    top: 180%;
-    left: 25%;
-    background: #FFFFFF;
-    border: 2px solid #009682;
-}
+
 .Forget_Password_Button{
     position: absolute;
     width: 10%;

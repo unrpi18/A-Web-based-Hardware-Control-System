@@ -1,5 +1,5 @@
 import logo from "./Teco.jpg";
-import Kit_logo from "./WechatIMG3096.png";
+import Kit_logo from "./Teco_logo.png";
 
 const LOGO = () => {
     return <div className="div_position">

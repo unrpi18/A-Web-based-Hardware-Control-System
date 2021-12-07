@@ -1,10 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
 import CryptoJs from 'crypto-js'
-
-
-
 
 
 const LOGIN_PAGE_FORM = () => {
@@ -17,12 +14,18 @@ const LOGIN_PAGE_FORM = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let userPassword= CryptoJs.SHA1(password).toString
-        const post = { email, userPassword};
+        let userPassword = CryptoJs.SHA1(password).toString
+        const post = {email, userPassword};
 
         console.log(post);
+        fetch("http://localhost:8086/users/insertUserTest", {
+            method:'POST',
+            headers: {"Content-Type" : "application/json"},
+            body:JSON.stringify(post)
+        }).then(() => {
+            navigate('/user');
+        })
     }
-
 
     return (
         <div className="spacing">
@@ -34,7 +37,7 @@ const LOGIN_PAGE_FORM = () => {
                     <input type="email"
                            required
                            value={email}
-                           onChange={(e) => setEmail(e.target.value)} />
+                           onChange={(e) => setEmail(e.target.value)}/>
 
 
                 </div>
@@ -44,7 +47,7 @@ const LOGIN_PAGE_FORM = () => {
                     <input type="password"
                            required
                            value={password}
-                           onChange={(e) => setPassword(e.target.value)} />
+                           onChange={(e) => setPassword(e.target.value)}/>
                 </div>
 
 
@@ -52,10 +55,8 @@ const LOGIN_PAGE_FORM = () => {
                 handle submit need to be overwritten to handleUserLogin and handleAdminLogin.
                 Redirection of ForgetPassword need to be implemented.
                 */}
-                <button className='User_Login_Button' type='button' onClick={handleSubmit} >User Login</button>
-                <button className='Admin_Login_Button' type='button' onClick={handleSubmit} >Admin Login</button>
-                <button className='Goto_Register_Page_Button' type='button' onClick={() => navigate('/register')}>Register Page </button>
-                <button className='Forget_Password_Button' type='button' onClick={handleSubmit} >Forget Password </button>
+                <button id='button1' className='User_Login_Button' type='button' onClick={handleSubmit}>User Login</button>
+                <button id='button1' className='Admin_Login_Button' type='button' onClick={handleSubmit}>Admin Login</button>
             </form>
 
         </div>

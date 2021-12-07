@@ -1,0 +1,124 @@
+Index: src/pages/WelcomePage/home.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Item from \"./components/item\";\nimport './home.css'\nimport Logo from \"../logos/Logo\";\n\n\nconst Home = () => {\n    return <div>\n        <Item />\n        <Logo />\n\n    </div>\n}\n\nexport default Home
+===================================================================
+diff --git a/src/pages/WelcomePage/home.js b/src/pages/WelcomePage/home.js
+--- a/src/pages/WelcomePage/home.js	
++++ b/src/pages/WelcomePage/home.js	
+@@ -1,14 +1,21 @@
+-import Item from "./components/item";
+ import './home.css'
+ import Logo from "../logos/Logo";
++import {useNavigate} from "react-router";
+ 
+ 
+ const Home = () => {
++    const navigate = useNavigate();
++
+     return <div>
+-        <Item />
+-        <Logo />
++            <h1 className="Welcome">Welcome to
++                <span id="KIT_Green"> TECO-LAB </span> management</h1>
++
++
++            <button type="button" className="Register" onClick={() => navigate('/register')}> Register</button>
++            <button type="button" className="Login" onClick={() => navigate('/login')}> Login</button>
++            <Logo />
+ 
+-    </div>
++        </div>
+ }
+ 
+ export default Home
+\ No newline at end of file
+Index: src/pages/WelcomePage/home.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>.Welcome {\n    text-align: center;\n    position: absolute;\n    top: 50%;\n    width: 100%;\n    overflow: hidden;\n    font-size: 300%;\n}\n\n#KIT_Green {\n    color: #009682;\n}\n\n\n#refresh {\n    background-color: #009682;\n    cursor: pointer;\n    transition: all 150ms ease-out;\n}\n\n.placeholder_box {\n    background-color: red;\n    display: block;\n    box-sizing: border-box;\n    min-height: 150px;\n    margin-top: 50px;\n    padding: 30px;\n}\n\nbutton {\n    display: block;\n    background: #FFFFFF;\n    border-style: solid;\n    border-color: #009682;\n    position: absolute;\n    width: 4.5%;\n    height: 5%;\n\n}\n\nbutton:focus {\n    border: 3px solid black;\n    outline: 0;\n}\n\n.Register {\n    position: absolute;\n    top: 0;\n    right: 0;\n}\n\n.Login {\n    position: absolute;\n    top: 5%;\n    right: 0;\n}\n\n.Teco_Logo {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 16%;\n    height: 10%;\n}\n\n.Kit_Logo {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 5%;\n    height: 5%;\n}\n\n\n
+===================================================================
+diff --git a/src/pages/WelcomePage/home.css b/src/pages/WelcomePage/home.css
+--- a/src/pages/WelcomePage/home.css	
++++ b/src/pages/WelcomePage/home.css	
+@@ -4,7 +4,7 @@
+     top: 50%;
+     width: 100%;
+     overflow: hidden;
+-    font-size: 300%;
++    font-size: 3vw;
+ }
+ 
+ #KIT_Green {
+@@ -26,15 +26,29 @@
+     margin-top: 50px;
+     padding: 30px;
+ }
+-
++button1 {
++    display: block;
++    background: #FFFFFF;
++    border-style: solid;
++    border-color: #009682;
++    position: absolute;
++    padding-right: 2px;
++    width: 6vw;
++    height: 5vw;
++}
++.test {
++    position: absolute;
++    top: 100px;
++}
+ button {
+     display: block;
+     background: #FFFFFF;
+     border-style: solid;
+     border-color: #009682;
+     position: absolute;
+-    width: 4.5%;
+-    height: 5%;
++    padding-right: 2px;
++    width: 60px;
++    height: 50px;
+ 
+ }
+ 
+@@ -51,7 +65,7 @@
+ 
+ .Login {
+     position: absolute;
+-    top: 5%;
++    top: 50px;
+     right: 0;
+ }
+ 
+@@ -71,4 +85,3 @@
+     height: 5%;
+ }
+ 
+-
+Index: src/pages/RegisterPage/components/registerItem.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useState } from 'react';\nimport { useNavigate } from 'react-router';\nimport '../register.css'\nimport CryptoJs from 'crypto-js'\nimport {useAlert} from 'react-alert';\n\n\n\n\nconst RegisterItem = () => {\n\n    const [email, setEmail] = useState('');\n    const [password, setPassword] = useState('');\n    const [passwordRepeat, setPasswordRepeat] = useState('');\n    const [realName, setName] = useState('');\n    const navigate = useNavigate();\n\n\n    const handleSubmit = (e) => {\n        e.preventDefault();\n        if(password !== passwordRepeat) {\n            alert(\"The passwords don't match.\");\n            return\n        }\n\n        let userPassword= CryptoJs.SHA1(password).toString\n        const post = { email, userPassword, passwordRepeat, realName};\n\n        console.log(post);\n\n        fetch(\"http://localhost:8086/users/insertUserTest\", {\n            method:'POST',\n            headers: {\"Content-Type\" : \"application/json\"},\n            body:JSON.stringify(post)\n        }).then(() => {\n            navigate('/login');\n            console.log('new blog added');\n        })\n\n    }\n\n  return (\n        <div className=\"spacing\">\n\n            <form>\n                <div className=\"email\">\n\n                    <label form=\"email\">E-mail </label>\n                    <input type=\"email\"\n                        required\n                        value={email}\n                        onChange={(e) => setEmail(e.target.value)} />\n                   \n\n                </div>\n\n                <div className=\"password\">\n                    <label form=\"password\">Password</label>\n                    <input type=\"password\"\n                        required\n                        value={password}\n                        onChange={(e) => setPassword(e.target.value)} />\n                </div>\n\n                <div className=\"password_repeat\">\n                    <label>Password repeat</label>\n                    <input type=\"password\"\n                        required\n                        value={passwordRepeat}\n                        onChange={(e) => setPasswordRepeat(e.target.value)} />\n                </div>\n\n                <div className=\"name\">\n                    <label>Name</label>\n                    <input type=\"type\"\n                        required\n                        value={realName}\n                        onChange={(e) => setName(e.target.value)} />\n                </div>\n\n                \n            <button className='register_Button' type='button' onClick={handleSubmit} >Register</button>\n            </form>\n\n            <button className=\"verify\">verify</button>\n        </div>\n\n    )\n}\n\nexport default RegisterItem
+===================================================================
+diff --git a/src/pages/RegisterPage/components/registerItem.js b/src/pages/RegisterPage/components/registerItem.js
+--- a/src/pages/RegisterPage/components/registerItem.js	
++++ b/src/pages/RegisterPage/components/registerItem.js	
+@@ -2,7 +2,6 @@
+ import { useNavigate } from 'react-router';
+ import '../register.css'
+ import CryptoJs from 'crypto-js'
+-import {useAlert} from 'react-alert';
+ 
+ 
+ 
+@@ -23,7 +22,7 @@
+             return
+         }
+ 
+-        let userPassword= CryptoJs.SHA1(password).toString
++        let userPassword= CryptoJs.SHA1(password).toString;
+         const post = { email, userPassword, passwordRepeat, realName};
+ 
+         console.log(post);
