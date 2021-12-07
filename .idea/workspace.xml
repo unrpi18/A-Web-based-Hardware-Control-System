@@ -4,26 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab16e96-ff46-4c33-a70f-920acb256734" name="Changes" comment="&quot;test&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home/index.css" beforeDir="false" />
+    <list default="true" id="fab16e96-ff46-4c33-a70f-920acb256734" name="Changes" comment="&quot;version 2.1&quot; Adjusting the page">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/components/Login_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/components/Welcome_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/components/Welcome_Page_Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/logos/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/logos/Teco.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Teco.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/logos/Teco.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Teco.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/logos/WechatIMG3096.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Teco_logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/logos/kitlogo_en_rgb.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/kitlogo_en_rgb.pdf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,7 +96,7 @@
       <workItem from="1638742100513" duration="194000" />
       <workItem from="1638742512540" duration="952000" />
       <workItem from="1638905226181" duration="3348000" />
-      <workItem from="1638908652033" duration="6809000" />
+      <workItem from="1638908652033" duration="7567000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;test&quot;">
       <created>1638740774523</created>
@@ -120,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638740774523</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="&quot;version 2.1&quot; Adjusting the page">
+      <created>1638915753010</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1638915753010</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +131,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;test&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;test&quot;" />
+    <MESSAGE value="&quot;version 2.1&quot; Adjusting the page" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;version 2.1&quot; Adjusting the page" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

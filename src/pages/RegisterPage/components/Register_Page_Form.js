@@ -1,14 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router';
-import '../Register_Page_Style.css'
 import CryptoJs from 'crypto-js'
-
-
-let flag = Boolean(false);
+import '../Register_Page_Style.css'
 
 
 function isBlank(str) {
-    flag = str.replace(/(^s*)|(s*$)/g, "").length !== 0;
+    return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
 }
 
 const REGISTER_PAGE_FORM = () => {
@@ -21,11 +18,9 @@ const REGISTER_PAGE_FORM = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        isBlank(email);
-        isBlank(password);
-        isBlank(passwordRepeat);
-        isBlank(realName);
-        if (flag) {
+        let nullCheck = isBlank(email) && isBlank(password) && isBlank(passwordRepeat) && isBlank(realName);
+
+        if (nullCheck) {
             if (password !== passwordRepeat) {
                 alert("The passwords don't match.");
                 return
@@ -48,7 +43,7 @@ const REGISTER_PAGE_FORM = () => {
             })
 
         } else {
-            alert("Please fill the fields first!");
+            alert("Please fill the field(s) first!");
         }
 
 
