@@ -2,44 +2,68 @@
     color: #009682;
 }
 
-
-#button {
+button {
     display: block;
     background: #FFFFFF;
     border-style: solid;
     border-color: #009682;
+    text-align: center;
+}
+
+button:focus {
+    border: 3px solid black;
+    outline: 0;
+}
+
+
+#button_big {
     position: absolute;
-    width: 60px;
+    width: 100px;
     height: 50px;
 
 }
 
-#button:focus {
-    border: 3px solid black;
-    outline: 0;
-}
 
-
-
-
-#button1 {
-    display: block;
-    background: #FFFFFF;
-    border-style: solid;
-    border-color: #009682;
+#button_medium {
     position: absolute;
-    width: 120px;
+    width: 70px;
     height: 25px;
-    text-align: center;
 
 
 }
 
-#button1:focus {
-    border: 3px solid black;
+#button_small {
+    position: absolute;
+}
+
+
+#input1 {
+    height: 20px;
+    width: 280px;
+    border: 1px solid black;
     outline: 0;
+    margin: 0.3% 0;
+    font-size: 20px;
+    font-weight: bold;
 }
 
+#input1:focus {
+    border: 3px solid #009682;
+    outline: 0;
+
+}
+
+label {
+    display: inline-block;
+}
+
+#label_big {
+    width: 150px;
+}
+
+#label_medium {
+    width: 100px;
+}
 
 .Teco_Logo {
     position: relative;
@@ -57,16 +81,4 @@
     height: 5%;
 }
 
-input {
-    height: 20px;
-    border: 1px solid black;
-    outline: 0;
-    margin: 0.3% 0;
-    font-size: 1vw;
-}
 
-input:focus {
-    border: 3px solid #009682;
-    outline: 0;
-
-}
