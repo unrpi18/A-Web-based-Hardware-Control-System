@@ -1,37 +1,18 @@
-input {
-   height: 20px;
-    border: 1px solid black;
-    outline: 0;
-    margin: 0.3% 0;
-    font-size: 1vw;
-}
-
-input:focus {
-    border: 3px solid #009682;
-    outline: 0;
-
-}
-
-label {
-    display: inline-block;
-    width: 5vw;
-}
-
-
-.email {
+.email_Login_Page {
     position: absolute;
-    top: 20px;
-    width: 70vw;
-    left: 40px;
-    font-size: 1vw;
+    top: 0;
+    width: 100%;
+    left: 0;
+    font-size: 15px;
     font-weight: bold;
 }
-.password {
+
+.password_Login_Page {
     position: absolute;
-    top: 50px;
-    width: 70vw;
-    left: 40px;
-    font-size: 1vw;
+    top: 40px;
+    width: 100%;
+    left: 0;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -41,7 +22,8 @@ label {
     left: 60px;
 
 }
-.Admin_Login_Button{
+
+.Admin_Login_Button {
     position: absolute;
     top: 120px;
     left: 320px;
@@ -69,17 +51,17 @@ label {
 }
 
 
-.spacing {
+.spacing_login_page {
     position: absolute;
     top: 20vw;
-    width: 80vw;
+    width: 100%;
+    left: 45%;
     font-size: 20px;
 
 }
 
 
-
-.Forget_Password_Button{
+.Forget_Password_Button {
     position: absolute;
     width: 10%;
     height: 30%;
@@ -88,13 +70,14 @@ label {
     background: #FFFFFF;
     border: 2px solid #009682;
 }
-.Goto_Register_Page_Button{
+
+.Goto_Register_Page_Button {
     position: absolute;
     width: 10%;
     height: 30%;
     top: 100px;
     left: 50px;
-    flex : 2;
+    flex: 2;
     background: #FFFFFF;
     border: 2px solid #009682;
 }

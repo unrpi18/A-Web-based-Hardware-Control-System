@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fab16e96-ff46-4c33-a70f-920acb256734" name="Changes" comment="&quot;version 2.1&quot; Adjusting the page">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21,_22_36_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21,_22_36_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21__22_36__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21__22_36__Changes_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/Login_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/LoginPage/components/Login_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/Register_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/UserLoginPage/User_Login_Page.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/Welcome_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/WelcomePage/components/Welcome_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/WelcomePage/components/Welcome_Page_Button.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +67,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -96,7 +107,29 @@
       <workItem from="1638742100513" duration="194000" />
       <workItem from="1638742512540" duration="952000" />
       <workItem from="1638905226181" duration="3348000" />
-      <workItem from="1638908652033" duration="7567000" />
+      <workItem from="1638908652033" duration="7604000" />
+      <workItem from="1638954137202" duration="960000" />
+      <workItem from="1638955135951" duration="2757000" />
+      <workItem from="1638959477361" duration="2037000" />
+      <workItem from="1639163687459" duration="44000" />
+      <workItem from="1639163746737" duration="90000" />
+      <workItem from="1639403666868" duration="2118000" />
+      <workItem from="1639422199374" duration="16000" />
+      <workItem from="1639422236895" duration="160000" />
+      <workItem from="1639423028516" duration="100000" />
+      <workItem from="1639438294760" duration="977000" />
+      <workItem from="1639486182597" duration="29000" />
+      <workItem from="1639486524761" duration="269000" />
+      <workItem from="1639509227512" duration="22000" />
+      <workItem from="1639509780057" duration="87000" />
+      <workItem from="1639510172097" duration="116000" />
+      <workItem from="1639510344853" duration="19000" />
+      <workItem from="1640031778875" duration="16000" />
+      <workItem from="1640117037143" duration="304000" />
+      <workItem from="1641818524309" duration="20000" />
+      <workItem from="1642072257313" duration="598000" />
+      <workItem from="1642078180948" duration="78000" />
+      <workItem from="1642247870700" duration="6649000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;test&quot;">
       <created>1638740774523</created>
@@ -112,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1638915753010</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="&quot;version 2.1&quot; Adjusting the page">
+      <created>1638916317675</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1638916317675</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -19,47 +19,48 @@ const LOGIN_PAGE_FORM = () => {
 
         console.log(post);
         fetch("http://localhost:8086/users/insertUserTest", {
-            method:'POST',
-            headers: {"Content-Type" : "application/json"},
-            body:JSON.stringify(post)
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
         }).then(() => {
             navigate('/user');
         })
     }
 
     return (
-        <div className="spacing">
-
-            <form>
-                <div className="email">
-
-                    <label form="email">E-mail </label>
-                    <input type="email"
-                           required
-                           value={email}
-                           onChange={(e) => setEmail(e.target.value)}/>
 
 
-                </div>
+        <form className="spacing_login_page">
 
-                <div className="password">
-                    <label form="password">Password</label>
-                    <input type="password"
-                           required
-                           value={password}
-                           onChange={(e) => setPassword(e.target.value)}/>
-                </div>
+            <div className="email_Login_Page">
+
+                <label id='label_medium' form="email">E-mail </label>
+                <input id='input1' type="email"
+                       required
+                       value={email}
+                       onChange={(e) => setEmail(e.target.value)}/>
 
 
-                {/*
+            </div>
+
+            <div className="password_Login_Page">
+                <label id='label_medium' form="password">Password</label>
+                <input id='input1' type="password"
+                       required
+                       value={password}
+                       onChange={(e) => setPassword(e.target.value)}/>
+            </div>
+
+
+            {/*
                 handle submit need to be overwritten to handleUserLogin and handleAdminLogin.
                 Redirection of ForgetPassword need to be implemented.
                 */}
-                <button id='button1' className='User_Login_Button' type='button' onClick={handleSubmit}>User Login</button>
-                <button id='button1' className='Admin_Login_Button' type='button' onClick={handleSubmit}>Admin Login</button>
-            </form>
+            <button id='button_big' className='User_Login_Button' type='button' onClick={handleSubmit}>User Login</button>
+            <button id='button_big' className='Admin_Login_Button' type='button' onClick={handleSubmit}>Admin Login
+            </button>
+        </form>
 
-        </div>
 
     )
 }
