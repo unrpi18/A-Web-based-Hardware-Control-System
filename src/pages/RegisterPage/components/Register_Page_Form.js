@@ -34,7 +34,7 @@ const REGISTER_PAGE_FORM = () => {
 
             const userPassword = sha256(password.toString()).toString();
 
-            const post = {email, userPassword, passwordRepeat, firstName, lastName};
+            const post = {email, userPassword, passwordRepeat, firstName, lastName, verifyCode};
 
 
             console.log(post);
@@ -43,9 +43,20 @@ const REGISTER_PAGE_FORM = () => {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
-            }).then(() => {
-                navigate('/login');
+            }).then(response => response.json()).then(responseJson => {
+                console.log(responseJson);
+
+                let message = responseJson.message;
+                console.log(message);
+
+                if (message === "SUCCESS") {
+                    navigate('/login');
+                } else {
+                    alert("the verification code is incorrect.");
+                }
+
             })
+
 
         } else {
             alert("Please fill the field(s) first!");
@@ -108,14 +119,14 @@ const REGISTER_PAGE_FORM = () => {
             </div>
 
             <div className="firstname_register_page">
-                <label id='label_big'>firstname</label>
+                <label id='label_big'>Firstname</label>
                 <input id='input1' type="type"
                        required
                        value={firstName}
                        onChange={(e) => setFirstName(e.target.value)}/>
             </div>
             <div className="lastname_register_page">
-                <label id='label_big'>lastname</label>
+                <label id='label_big'>Lastname</label>
                 <input id='input1' type="type"
                        required
                        value={lastName}
@@ -123,7 +134,7 @@ const REGISTER_PAGE_FORM = () => {
             </div>
 
             <div className="verifyCode_register_page">
-                <label id='label_big'>verification Code</label>
+                <label id='label_big'>Verification Code</label>
                 <input id='input1' type="type"
                        required
                        value={verifyCode}
