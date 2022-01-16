@@ -8,6 +8,7 @@ import WELCOME_PAGE from "./pages/Mixed_Page/WelcomePage/Welcome_Page";
 import REGISTER_PAGE from "./pages/Mixed_Page/RegisterPage/Register_Page";
 import LOGIN_PAGE from "./pages/Mixed_Page/LoginPage/Login_Page";
 import USER_LOGIN_PAGE from './pages/Mixed_Page/UserLoginPage/User_Login_Page';
+import User_Main_Page from "./pages/User_Page/UserMainPage/User_Main_Page";
 
 
 function Router_Web() {
@@ -17,7 +18,7 @@ function Router_Web() {
             <Route exact path="/" element={<WELCOME_PAGE />} />
             <Route path="register" element={<REGISTER_PAGE />} />
             <Route path="login" element={<LOGIN_PAGE />} />
-            <Route path='user' element={<USER_LOGIN_PAGE />} />
+            <Route path='user' element={<User_Main_Page />} />
         </Routes>
 
     );
