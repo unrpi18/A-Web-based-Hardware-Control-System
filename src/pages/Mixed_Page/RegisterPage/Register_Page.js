@@ -1,6 +1,6 @@
 import REGISTER_PAGE_FORM from "./components/Register_Page_Form";
 import REGISTER_PAGE_TEXT from "./components/Register_Page_Text";
-import LOGO from "../../components/logos/Logo";
+import LOGO from "../../../components/logos/Logo";
 
 
 const REGISTER_PAGE = () => {

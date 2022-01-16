@@ -39,7 +39,7 @@ const REGISTER_PAGE_FORM = () => {
 
             console.log(post);
 
-            fetch("http://localhost:8086/users/insertUserTest", {
+            fetch("https://6418-2a02-3038-40b-be18-fc78-f50c-7293-d119.ngrok.io/users/register", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -71,7 +71,7 @@ const REGISTER_PAGE_FORM = () => {
         if (nullCheck) {
             let message = "send";
             const post2 = {email};
-            fetch("https://a9d7-2a00-1398-300-307-00-11a6.ngrok.io/users/sendVerificationCode", {
+            fetch("https://6418-2a02-3038-40b-be18-fc78-f50c-7293-d119.ngrok.io/users/sendVerificationCode", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post2)

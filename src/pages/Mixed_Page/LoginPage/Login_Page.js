@@ -1,7 +1,7 @@
 import LOGIN_PAGE_FORM from "./components/Login_Page_Form";
-import '../LoginPage/Login_Page_Style.css'
+import './_Style.css'
 import LOGIN_PAGE_TEXT from "./components/Login_Page_Text";
-import LOGO from "../../components/logos/Logo";
+import LOGO from "../../../components/logos/Logo";
 
 const LOGIN_PAGE = () => {
     return <div>
