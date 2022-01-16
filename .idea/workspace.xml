@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/example-react.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21,_22_36_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21__22_36__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Text.js" afterDir="false" />
-    </list>
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="button css changed" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -71,11 +55,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1642258259046</updated>
-      <workItem from="1642258261623" duration="4326000" />
+      <workItem from="1642258261623" duration="4684000" />
     </task>
+    <task id="LOCAL-00001" summary="button css changed">
+      <created>1642349557816</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1642349557816</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="button css changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="button css changed" />
   </component>
 </project>
