@@ -6,9 +6,11 @@ import LOGO from "../../../components/logos/Logo";
 
 const WELCOME_PAGE = () => {
     return <div>
-        <WELCOME_PAGE_BUTTON />
-        <WELCOME_PAGE_TEXT />
-        <LOGO />
+           <WELCOME_PAGE_BUTTON />
+            <WELCOME_PAGE_TEXT />
+            <LOGO />
+
+
 
     </div>
 }

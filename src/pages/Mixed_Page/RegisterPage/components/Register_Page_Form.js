@@ -69,7 +69,6 @@ const REGISTER_PAGE_FORM = () => {
         e.preventDefault();
         let nullCheck = isBlank(email)
         if (nullCheck) {
-            let message = "send";
             const post2 = {email};
             fetch("https://6418-2a02-3038-40b-be18-fc78-f50c-7293-d119.ngrok.io/users/sendVerificationCode", {
                 method: 'POST',
