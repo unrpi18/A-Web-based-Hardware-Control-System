@@ -48,12 +48,16 @@ button:active {
 
 #button_medium {
     position: absolute;
-    width: 70px;
-    height: 25px;
-
-
+    height : 1vw;
+    width: 3vw;
+    font-size: 0.6vw;
+    border-radius: 0.4vw;
+    box-shadow: 0 0.2vw #999;
 }
-
+#button_medium:active {
+    box-shadow: 0 0.05vw #666;
+    transform: translateY(0.15vw);
+}
 #button_small {
     position: absolute;
 }
