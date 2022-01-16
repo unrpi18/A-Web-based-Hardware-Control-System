@@ -4,41 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fab16e96-ff46-4c33-a70f-920acb256734" name="Changes" comment="&quot;version 2.2&quot; Adjusting the page">
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/example-react.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21,_22_36_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_12_21__22_36__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Main_Page/Admin_Main_Page_Text.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JavaScript File" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="github/master" />
-  </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Keyi &lt;likkey1@gmail.com&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="21hMpevohWmsdPh2kCxQi9Jwwkh" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="23jrIiIPvVA06O8BAaebSfhALWU" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -47,145 +39,43 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="javascript.nodejs.core.library.configured.version" value="16.13.1" />
-    <property name="javascript.nodejs.core.library.typings.version" value="16.11.11" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/components" />
-    </key>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fab16e96-ff46-4c33-a70f-920acb256734" name="Changes" comment="" />
-      <created>1638389051097</created>
+      <changelist id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="" />
+      <created>1642258259046</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1638389051097</updated>
-      <workItem from="1638389054206" duration="83000" />
-      <workItem from="1638389572472" duration="68000" />
-      <workItem from="1638392602153" duration="8000" />
-      <workItem from="1638404009675" duration="905000" />
-      <workItem from="1638407271038" duration="104000" />
-      <workItem from="1638407383485" duration="13000" />
-      <workItem from="1638407493880" duration="174000" />
-      <workItem from="1638456420011" duration="74000" />
-      <workItem from="1638456495876" duration="109000" />
-      <workItem from="1638456718647" duration="239000" />
-      <workItem from="1638535689310" duration="39000" />
-      <workItem from="1638544050618" duration="5000" />
-      <workItem from="1638644886169" duration="91000" />
-      <workItem from="1638649287430" duration="221000" />
-      <workItem from="1638649633520" duration="79000" />
-      <workItem from="1638728763170" duration="2264000" />
-      <workItem from="1638731920401" duration="3428000" />
-      <workItem from="1638735585733" duration="248000" />
-      <workItem from="1638735871090" duration="1143000" />
-      <workItem from="1638737180617" duration="3640000" />
-      <workItem from="1638741740403" duration="27000" />
-      <workItem from="1638742100513" duration="194000" />
-      <workItem from="1638742512540" duration="952000" />
-      <workItem from="1638905226181" duration="3348000" />
-      <workItem from="1638908652033" duration="7604000" />
-      <workItem from="1638954137202" duration="960000" />
-      <workItem from="1638955135951" duration="2757000" />
-      <workItem from="1638959477361" duration="2037000" />
-      <workItem from="1639163687459" duration="44000" />
-      <workItem from="1639163746737" duration="90000" />
-      <workItem from="1639403666868" duration="2118000" />
-      <workItem from="1639422199374" duration="16000" />
-      <workItem from="1639422236895" duration="160000" />
-      <workItem from="1639423028516" duration="100000" />
-      <workItem from="1639438294760" duration="977000" />
-      <workItem from="1639486182597" duration="29000" />
-      <workItem from="1639486524761" duration="269000" />
-      <workItem from="1639509227512" duration="22000" />
-      <workItem from="1639509780057" duration="87000" />
-      <workItem from="1639510172097" duration="116000" />
-      <workItem from="1639510344853" duration="19000" />
-      <workItem from="1640031778875" duration="16000" />
-      <workItem from="1640117037143" duration="304000" />
-      <workItem from="1641818524309" duration="20000" />
-      <workItem from="1642072257313" duration="598000" />
-      <workItem from="1642078180948" duration="78000" />
-      <workItem from="1642247870700" duration="7462000" />
-      <workItem from="1642255961952" duration="1392000" />
+      <updated>1642258259046</updated>
+      <workItem from="1642258261623" duration="4326000" />
     </task>
-    <task id="LOCAL-00001" summary="&quot;test&quot;">
-      <created>1638740774523</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1638740774523</updated>
-    </task>
-    <task id="LOCAL-00002" summary="&quot;version 2.1&quot; Adjusting the page">
-      <created>1638915753010</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1638915753010</updated>
-    </task>
-    <task id="LOCAL-00003" summary="&quot;version 2.1&quot; Adjusting the page">
-      <created>1638916317675</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1638916317675</updated>
-    </task>
-    <task id="LOCAL-00004" summary="&quot;version 2.2&quot; Adjusting the page">
-      <created>1642255104872</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1642255104872</updated>
-    </task>
-    <task id="LOCAL-00005" summary="&quot;version 2.2&quot; Adjusting the page">
-      <created>1642255115653</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1642255115653</updated>
-    </task>
-    <task id="LOCAL-00006" summary="&quot;version 2.2&quot; Adjusting the page">
-      <created>1642255166181</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1642255166181</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="&quot;test&quot;" />
-    <MESSAGE value="&quot;version 2.1&quot; Adjusting the page" />
-    <MESSAGE value="&quot;version 2.2&quot; Adjusting the page" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;version 2.2&quot; Adjusting the page" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>
