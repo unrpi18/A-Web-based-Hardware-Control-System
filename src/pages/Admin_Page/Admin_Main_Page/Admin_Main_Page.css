@@ -7,7 +7,11 @@
     font-size: 3vw;
 }
 
-
+.LOGOUT_ADMIN_MAIN_PAGE{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 #refresh {
     background-color: #009682;
@@ -25,11 +29,7 @@
 }
 
 
-.LOGOUT_ADMIN_MAIN_PAGE {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
+
 .APPOINTMENT_ADMIN_MAIN_PAGE{
     position: absolute;
     top: 13vw;

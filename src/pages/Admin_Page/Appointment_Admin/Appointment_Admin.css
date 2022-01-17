@@ -1,0 +1,33 @@
+.ALL_APPOINTMENT_ADMIN{
+    position: absolute;
+    top: 5vw;
+    right: 0;
+}
+.SET_TIME_SLOTS_STATUS_ADMIN{
+    position: absolute;
+    top: 8vw;
+    right: 0;
+}
+.BOOK_APPOINTMENT_ADMIN{
+    position: absolute;
+    top: 11vw;
+    right: 0;
+}
+.APPOINTMENT_ADMIN_VIEW{
+    position : absolute;
+    top : 50%;
+    right: 30%;
+    width : 60vw;
+    height : 40vh
+}
+.LOGOUT_APPOINTMENT_ADMIN{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+#refresh {
+    background-color: #009682;
+    cursor: pointer;
+    transition: all 150ms ease-out;
+}
+

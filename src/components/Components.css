@@ -61,6 +61,12 @@ button:active {
 #button_small {
     position: absolute;
 }
+#button_appointment_available {
+    position : absolute;
+    height : 4vh;
+    width : 5vw;
+    font-size: 2vh;
+}
 
 
 #input1 {
@@ -106,5 +112,6 @@ label {
     width: 5%;
     height: 5%;
 }
+
 
 

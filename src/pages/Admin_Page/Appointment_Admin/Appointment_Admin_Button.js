@@ -1,26 +1,28 @@
 import {useNavigate} from "react-router";
 
 const APPOINTMENT_ADMIN_BUTTON = () => {
-    const navigate = useNavigate();
+    function navigate(String){
+        fetch("url",{
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify('session_state')
+        }).then(() => { console.log("success")});
+    }
+
     return <div>
-        <button id = 'button_big' type = "button" className = "LOGOUT"
+        <button id = 'button_big' type = "button" className = "LOGOUT_APPOINTMENT_ADMIN"
                 onClick={()=> navigate('/')} > Logout
         </button>
-        <button id = 'button_super' type = "button" className = "APPOINTMENT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Appointment
+        <button id = 'button_super' type = "button" className = "ALL_APPOINTMENT_ADMIN"
+                onClick={()=> navigate('/')} > All Appointments
         </button>
-        <button id = 'button_super' type = "button" className = "STOCK_AND_ORDER_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Stock & Order
+        <button id = 'button_super' type = "button" className = "SET_TIME_SLOTS_STATUS_ADMIN"
+                onClick={()=> navigate('/')} > Set Time Slots
         </button>
-        <button id = 'button_super' type = "button" className = "WEBCAM_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Webcam
+        <button id = 'button_super' type = "button" className = "BOOK_APPOINTMENT_ADMIN"
+                onClick={()=> navigate('/')} > Book Appointment
         </button>
-        <button id = 'button_super' type = "button" className = "USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > User Group Management
-        </button>
-        <button id = 'button_super' type = "button" className = "T_AND_C_UPDATE_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > T & C Update
-        </button>
+
     </div>
 }
 
