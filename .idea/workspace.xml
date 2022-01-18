@@ -7,6 +7,10 @@
     <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="2.5 version">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +82,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="dcc2709f-3e54-4c62-92af-e2e9f4afedb3" name="Changes" comment="" />
+      <changelist id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="2.5 version" />
       <created>1642344478416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -90,6 +94,7 @@
       <workItem from="1642519174821" duration="43000" />
       <workItem from="1642519289555" duration="32000" />
       <workItem from="1642519589845" duration="7721000" />
+      <workItem from="1642545501246" duration="64000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -133,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642521316041</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="2.5 version">
+      <created>1642542722916</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642542722916</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,6 +167,7 @@
     <MESSAGE value="calender" />
     <MESSAGE value="version 2.4 adjust the program structure." />
     <MESSAGE value="book appointment w bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="book appointment w bug" />
+    <MESSAGE value="2.5 version" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.5 version" />
   </component>
 </project>

@@ -11,8 +11,9 @@ const LOGIN_PAGE_FORM = () => {
 
     const [email, setEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-    const [loginStatus, setLoginStatus] = useState(false);
-    const {value,setValue} = useContext(UserContext);
+
+    const {loginUser, setLoginUser} = useContext(UserContext);
+
     const navigate = useNavigate();
 
     const handleAdminLogin = (e) =>{
@@ -20,7 +21,7 @@ const LOGIN_PAGE_FORM = () => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
             alert("null pointer");
-            return
+     
         } else {
             let password = sha256(userPassword.toString()).toString();
             const post = {email, password};
@@ -44,7 +45,7 @@ const LOGIN_PAGE_FORM = () => {
 
                 } else {
                     alert(error);
-                    setLoginStatus(false);
+
                 }
 
             })
@@ -69,19 +70,16 @@ const LOGIN_PAGE_FORM = () => {
                 console.log(responseJson);
 
                 let resultCode = responseJson.resultCode;
-                let token = responseJson.token;
                 let errorMessage = responseJson.message;
-                console.log(errorMessage);
-                console.log(token)
-                console.log(responseJson.firstName);
+
 
                 if (resultCode === 200) {
-                    setValue(errorMessage);
+                    setLoginUser(prev => ({...prev, firstName:responseJson.firstName}))
+                    setLoginUser(prev => ({...prev,token:responseJson.token}))
                     navigate('/user_main_page');
-                    setValue(token);
                 } else {
                     alert(errorMessage);
-                    setLoginStatus(false);
+
                 }
 
             })

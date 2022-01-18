@@ -3,7 +3,7 @@ import './components/Components.css'
 import {Route, Routes} from "react-router-dom";
 
 
-import React, {useContext, useState} from 'react';
+import React, {useState} from 'react';
 import WELCOME_PAGE from "./pages/Mixed_Page/WelcomePage/Welcome_Page";
 import REGISTER_PAGE from "./pages/Mixed_Page/RegisterPage/Register_Page";
 import LOGIN_PAGE from "./pages/Mixed_Page/LoginPage/Login_Page";
@@ -15,9 +15,11 @@ import {UserContext} from "./contexts/RegisterContext";
 
 
 function Router_Web() {
-    const [value, setValue] = useState('');
+    const initialLoginUser = {token: '', firstName: ''};
+    const [loginUser, setLoginUser] = useState(initialLoginUser);
+
     return (
-        <UserContext.Provider value={{value, setValue}}>
+        <UserContext.Provider value={{loginUser,setLoginUser}}>
 
 
             <Routes>
