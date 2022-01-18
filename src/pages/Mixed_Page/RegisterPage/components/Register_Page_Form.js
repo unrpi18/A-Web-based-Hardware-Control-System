@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigate} from 'react-router';
 import sha256 from 'crypto-js/sha256'
 import '../Register_Page_Style.css'
+import {UserContext} from "../../../../contexts/RegisterContext";
 
 
 function isBlank(str) {
@@ -16,6 +17,7 @@ const REGISTER_PAGE_FORM = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [verifyCode, setVerifyCode] = useState('');
+
     const navigate = useNavigate();
 
 
@@ -65,6 +67,7 @@ const REGISTER_PAGE_FORM = () => {
     }
 
     const handleVerificationCode = (e) => {
+
         e.preventDefault();
         let nullCheck = isBlank(email)
         if (nullCheck) {
@@ -79,7 +82,9 @@ const REGISTER_PAGE_FORM = () => {
 
                 let message = responseJson.message;
                 let resultCode = responseJson.resultCode;
+
                 console.log(message);
+
                 if (resultCode !== 200) {
                     alert(message);
                 }

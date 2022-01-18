@@ -1,12 +1,11 @@
-import WELCOME_PAGE_BUTTON from "../../Mixed_Page/WelcomePage/components/Welcome_Page_Button";
-import WELCOME_PAGE_TEXT from "../../Mixed_Page/WelcomePage/components/Welcome_Page_Text";
+
 import LOGO from "../../../components/logos/Logo";
 import User_Main_Page_Form from "./components/User_Main_Page_Form";
+import USER_MAIN_PAGE_TEXT from "./components/User_Main_Page_Text";
 
 const USER_MAIN_PAGE = () => {
     return <div>
-
-
+        <USER_MAIN_PAGE_TEXT/>
        <User_Main_Page_Form />
         <LOGO />
 
