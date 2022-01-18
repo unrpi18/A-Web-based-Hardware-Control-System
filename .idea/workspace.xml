@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="Appointment_Admin">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Calender.js" afterDir="false" />
-    </list>
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="admin appointment finished" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,14 +98,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642345784484</updated>
     </task>
-    <task id="LOCAL-00003" summary="Appointment_Admin">
-      <created>1642400679226</created>
+    <task id="LOCAL-00003" summary="admin appointment finished">
+      <created>1642519821722</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1642400679226</updated>
+      <updated>1642519821722</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +188,7 @@
     <MESSAGE value="checkbox" />
     <MESSAGE value="Admin Main Page" />
     <MESSAGE value="Appointment_Admin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Appointment_Admin" />
+    <MESSAGE value="admin appointment finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin appointment finished" />
   </component>
 </project>

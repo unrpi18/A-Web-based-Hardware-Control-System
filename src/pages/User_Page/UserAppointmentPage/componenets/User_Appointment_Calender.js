@@ -27,7 +27,7 @@ const USER_APPOINTMENT_CALENDER = () => {
     const [value, setValue] = useState(new Date());
     const classes = useStyles();
     const [disableDate, setDisableDate] = useState(new Date());
-    const [££disableTime, setDisableTime] = useState('');
+    const [disableTime, setDisableTime] = useState('');
     const [disableYear, setDisableYear] = useState('2020');
     return (
 
