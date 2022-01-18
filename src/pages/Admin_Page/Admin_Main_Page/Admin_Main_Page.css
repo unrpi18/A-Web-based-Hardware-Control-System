@@ -7,7 +7,11 @@
     font-size: 3vw;
 }
 
-
+.LOGOUT_ADMIN_MAIN_PAGE{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
 
 #refresh {
     background-color: #009682;
@@ -25,11 +29,7 @@
 }
 
 
-.LOGOUT_ADMIN_MAIN_PAGE {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
+
 .APPOINTMENT_ADMIN_MAIN_PAGE{
     position: absolute;
     top: 13vw;
@@ -54,6 +54,24 @@
     position: absolute;
     top: 33vw;
     right: 40%;
+}
+.NOTIFICATION_CHECKBOX{
+    position: absolute;
+    top : 38.5vw;
+    right : 50%;
+    font-size: 1vw;
+    display : block;
+    cursor : pointer;
+    user-select: none;
+    transform : scale(1.2);
+
+
+}
+.SAVE_ADMIN_MAIN_PAGE{
+    position: absolute;
+    top : 38vw;
+    right: 40%
+
 }
 
 
