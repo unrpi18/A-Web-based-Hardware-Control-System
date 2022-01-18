@@ -5,7 +5,6 @@ import {
     BrowserRouter,
 } from "react-router-dom";
 
-const jwt = require('jsonwebtoken')
 const rootElement = document.getElementById("root");
 ReactDOM.render(
     <BrowserRouter>

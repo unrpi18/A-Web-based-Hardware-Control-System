@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
-import CryptoJs from 'crypto-js'
 import sha256 from "crypto-js/sha256";
 
 function isBlank(str) {
@@ -14,7 +13,41 @@ const LOGIN_PAGE_FORM = () => {
     const [loginStatus, setLoginStatus] = useState(false);
     const navigate = useNavigate();
 
+    const handleAdminLogin = (e) =>{
+        e.preventDefault();
+        let nullCheck = isBlank(email) && isBlank(userPassword);
+        if (!nullCheck) {
+            alert("null pointer");
+            return
+        } else {
+            let password = sha256(userPassword.toString()).toString();
+            const post = {email, password};
 
+            console.log(post);
+            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/adminLogin", {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(post)
+            }).then(response => response.json()).then(responseJson => {
+                console.log(responseJson);
+
+                let message = responseJson.resultCode;
+                let error = responseJson.message;
+                console.log(message);
+
+                if (message === 200) {
+                    console.log("go")
+                    navigate('/admin_main_page');
+                    setLoginStatus(true);
+                } else {
+                    alert(error);
+                    setLoginStatus(false);
+                }
+
+            })
+        }
+
+    }
     const handleSubmit = (e) => {
         e.preventDefault();
         let nullCheck = isBlank(email) && isBlank(userPassword);
@@ -81,7 +114,7 @@ const LOGIN_PAGE_FORM = () => {
                 Redirection of ForgetPassword need to be implemented.
                 */}
             <button id='button_big' className='User_Login_Button' type='button' onClick={handleSubmit}>User Login</button>
-            <button id='button_big' className='Admin_Login_Button' type='button' onClick={handleSubmit}>Admin Login
+            <button id='button_big' className='Admin_Login_Button' type='button' onClick={handleAdminLogin}>Admin Login
             </button>
         </form>
 

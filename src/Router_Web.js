@@ -14,7 +14,7 @@ import USER_MAIN_PAGE from "./pages/User_Page/UserMainPage/User_Main_Page";
 
 
 function Router_Web() {
-    const value = useMemo(() => ({user, setUser}), [user,setUser]);
+
     return (
 
         <Routes>
