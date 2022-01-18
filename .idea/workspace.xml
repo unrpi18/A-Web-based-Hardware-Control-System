@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="Admin Main Page">
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="Appointment_Admin">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Text.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642368807205</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Appointment_Admin">
+      <created>1642400679226</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1642400679226</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,6 +174,7 @@
     <MESSAGE value="button css changed" />
     <MESSAGE value="checkbox" />
     <MESSAGE value="Admin Main Page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Admin Main Page" />
+    <MESSAGE value="Appointment_Admin" />
+    <option name="LAST_COMMIT_MESSAGE" value="Appointment_Admin" />
   </component>
 </project>

@@ -1,29 +1,31 @@
 .ALL_APPOINTMENT_ADMIN{
     position: absolute;
-    top: 5vw;
-    right: 0;
+    top: 20vh;
+    left: 0;
 }
 .SET_TIME_SLOTS_STATUS_ADMIN{
     position: absolute;
-    top: 8vw;
-    right: 0;
+    top: 25vh;
+    left: 0;
 }
 .BOOK_APPOINTMENT_ADMIN{
     position: absolute;
-    top: 11vw;
-    right: 0;
-}
-.APPOINTMENT_ADMIN_VIEW{
-    position : absolute;
-    top : 50%;
-    right: 30%;
-    width : 60vw;
-    height : 40vh
+    top: 30vh;
+    left: 0;
 }
 .LOGOUT_APPOINTMENT_ADMIN{
     position: absolute;
     top: 0;
     right: 0;
+}
+.DATE_PICKER_FORM{
+    position: absolute;
+    top: 34vh;
+    right: 35vw;
+}
+.CONFIRM_APPOINTMENT_ADMIN{
+    width : 5vw;
+    height : 3vh;
 }
 #refresh {
     background-color: #009682;

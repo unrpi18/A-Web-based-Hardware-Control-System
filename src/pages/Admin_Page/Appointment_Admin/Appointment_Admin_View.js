@@ -1,59 +1,89 @@
-
+import React, {useState} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
-function createData(timeslot, mon, tue, wed, thu, fri, sat, sun) {
-    return {timeslot, mon, tue, wed, thu, fri, sat, sun};
+
+function isDateLegal(str) {
+    const reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    const regExp = new RegExp(reg);
+    return regExp.test(str);
 }
 
 const APPOINTMENT_ADMIN_VIEW = () => {
-    const row = [
-        createData('08:00-10:00','Booked','Booked','occupied','Booked','Free','Booked','Free'),
-        createData('10:00-12:00','Booked','Booked','occupied','Booked','Free','Booked','Free'),
-        createData('12:00-14:00','N/A','Booked','Booked','occupied','Booked','Free','Free'),
-        createData('14:00-16:00','Booked','Booked','occupied','Booked','Free','Booked','Free'),
-        createData('16:00-18:00','Booked','Booked','occupied','Booked','Free','Booked','Free'),
+    const [date, setDate] = useState('')
+    const handleConfirm = (e) => {
+        e.preventDefault();
+        let nullCheck = isDateLegal(date)
+        if (nullCheck) {
+            const post = {date};
+            fetch("url", {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(post)
+            }).then(() => {
+                console.log("success");
+            })
+        } else {
+            alert("please enter an valid date in yyyy-mm-dd");
+        }
+    }
+    function createData(ts, av, ) {
+        return { ts, av};
+    }
+
+    const rows = [
+        createData('08:00-10:00', 'Booked'),
+        createData('10:00-12:00', 'N/A'),
+        createData('12:00-14:00', 'N/A'),
+        createData('14:00-16:00', 'Free'),
+        createData('16:00-18:00', 'Free')
     ];
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 600, maxWidth : 1000, border : 2}} aria-label="simple table">
-                <TableHead>
-                    <TableRow>
-                        <TableCell align="center">Time/Day</TableCell>
-                        <TableCell align="center">Monday</TableCell>
-                        <TableCell align="center">Tuesday</TableCell>
-                        <TableCell align="center">Wednesday</TableCell>
-                        <TableCell align="center">Thursday</TableCell>
-                        <TableCell align="center">Friday</TableCell>
-                        <TableCell align="center">Saturday</TableCell>
-                        <TableCell align="center">Sunday</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {row.map((row) => (
+        <div>
+            <form className="DATE_PICKER_FORM">
+                <div className='DATE_PICKER'>
+                    <label id='label-big'> Enter A Date</label>
+                    <input id='input1' type="date"
+                           required
+                           value={date}
+                           onChange={(e) => setDate(e.target.value)}/>
+                    <button id='button_medium' className="CONFIRM_APPOINTMENT_ADMIN"
+                            onClick={handleConfirm}>Confirm
+                    </button>
+                </div>
+            </form>
+            <TableContainer >
+                <Table sx={{maxWidth : '35vw' , ml:'35vw', mt : '25vh' }} aria-label="simple table">
+                    <TableHead>
                         <TableRow
-                            key={row.timeslot}
-                        >
-                            <TableCell align="center" component="th" scope="row">
-                                {row.timeslot}
-                            </TableCell>
-                            <TableCell align="center">{row.mon}</TableCell>
-                            <TableCell align="center">{row.tue}</TableCell>
-                            <TableCell align="center">{row.wed}</TableCell>
-                            <TableCell align="center">{row.thu}</TableCell>
-                            <TableCell align="center">{row.fri}</TableCell>
-                            <TableCell align="center">{row.sat}</TableCell>
-                            <TableCell align="center">{row.sun}</TableCell>
+                            sx={{  border: 2 }}>
+                            <TableCell align="center">Time Slot</TableCell>
+                            <TableCell align="center">Availability</TableCell>
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <TableRow
+                                key={row.ts}
+                                sx={{  border: 2 }}
+                            >
+                                <TableCell align="center" component="th" scope="row">
+                                    {row.ts}
+                                </TableCell>
+                                <TableCell align="center">{row.av}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </div>
+
+    )
+
+
 }
 export default APPOINTMENT_ADMIN_VIEW;
