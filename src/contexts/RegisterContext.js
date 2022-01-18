@@ -1,6 +1,4 @@
-import {useReducer} from "react";
+import {createContext} from "react";
 
 
-const RegisterContext = (props) => {
-    const[registers, dispatch] = useReducer(bookReducer,)
-}
+export const UserContext = createContext(null);

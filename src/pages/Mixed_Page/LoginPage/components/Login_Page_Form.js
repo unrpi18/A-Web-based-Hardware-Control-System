@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
 import sha256 from "crypto-js/sha256";
+import {UserContext} from "../../../../contexts/RegisterContext";
 
 function isBlank(str) {
     return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
@@ -11,6 +12,7 @@ const LOGIN_PAGE_FORM = () => {
     const [email, setEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const [loginStatus, setLoginStatus] = useState(false);
+    const {value,setValue} = useContext(UserContext);
     const navigate = useNavigate();
 
     const handleAdminLogin = (e) =>{
@@ -32,13 +34,14 @@ const LOGIN_PAGE_FORM = () => {
                 console.log(responseJson);
 
                 let message = responseJson.resultCode;
+
                 let error = responseJson.message;
                 console.log(message);
 
                 if (message === 200) {
                     console.log("go")
                     navigate('/admin_main_page');
-                    setLoginStatus(true);
+
                 } else {
                     alert(error);
                     setLoginStatus(false);
@@ -53,7 +56,6 @@ const LOGIN_PAGE_FORM = () => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
             alert("null pointer");
-            return
         } else {
             let password = sha256(userPassword.toString()).toString();
             const post = {email, password};
@@ -66,16 +68,19 @@ const LOGIN_PAGE_FORM = () => {
             }).then(response => response.json()).then(responseJson => {
                 console.log(responseJson);
 
-                let message = responseJson.resultCode;
-                let error = responseJson.message;
-                console.log(message);
+                let resultCode = responseJson.resultCode;
+                let token = responseJson.token;
+                let errorMessage = responseJson.message;
+                console.log(errorMessage);
+                console.log(token)
+                console.log(responseJson.firstName);
 
-                if (message === 200) {
-                    console.log("go")
+                if (resultCode === 200) {
+                    setValue(errorMessage);
                     navigate('/user_main_page');
-                    setLoginStatus(true);
+                    setValue(token);
                 } else {
-                    alert(error);
+                    alert(errorMessage);
                     setLoginStatus(false);
                 }
 

@@ -1,8 +1,10 @@
-const USER_APPOINTMENT_TEXT = () => {
-    return <div>
-        <h1 className="Welcome">Welcome to
-            <span id="KIT_Green"> TECO-LAB </span> management</h1>
+import {useContext} from "react";
+import {UserContext} from "../../../../contexts/RegisterContext";
 
+const USER_APPOINTMENT_TEXT = () => {
+    const {value, setValue} = useContext(UserContext);
+    return <div>
+           <h2>{value}</h2>
     </div>
 }
 
