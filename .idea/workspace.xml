@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dcc2709f-3e54-4c62-92af-e2e9f4afedb3" name="Changes" comment="version 2.3 adjust the program structure.">
+    <list default="true" id="dcc2709f-3e54-4c62-92af-e2e9f4afedb3" name="Changes" comment="version 2.4 adjust the program structure.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/UserLoginPage/User_Login_Page.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Calender.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Calender.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Form.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +86,9 @@
       <workItem from="1642378830341" duration="3669000" />
       <workItem from="1642450857909" duration="1476000" />
       <workItem from="1642515763162" duration="987000" />
-      <workItem from="1642519174821" duration="13000" />
+      <workItem from="1642519174821" duration="43000" />
+      <workItem from="1642519289555" duration="32000" />
+      <workItem from="1642519589845" duration="226000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -119,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642378011809</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="version 2.4 adjust the program structure.">
+      <created>1642519211056</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1642519211056</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +138,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="version 2.3 adjust the program structure." />
     <MESSAGE value="calender" />
-    <option name="LAST_COMMIT_MESSAGE" value="calender" />
+    <MESSAGE value="version 2.4 adjust the program structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="version 2.4 adjust the program structure." />
   </component>
 </project>
