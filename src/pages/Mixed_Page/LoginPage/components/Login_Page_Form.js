@@ -21,7 +21,7 @@ const LOGIN_PAGE_FORM = () => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
             alert("null pointer");
-     
+
         } else {
             let password = sha256(userPassword.toString()).toString();
             const post = {email, password};
