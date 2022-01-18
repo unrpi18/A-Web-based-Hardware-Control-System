@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router';
-import CryptoJs from 'crypto-js'
 import sha256 from 'crypto-js/sha256'
 import '../Register_Page_Style.css'
 
@@ -39,7 +38,7 @@ const REGISTER_PAGE_FORM = () => {
 
             console.log(post);
 
-            fetch("https://8bcb-2a02-3038-407-6953-4869-9e4d-efe4-e93a.ngrok.io/users/register", {
+            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/register", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -70,12 +69,20 @@ const REGISTER_PAGE_FORM = () => {
         let nullCheck = isBlank(email)
         if (nullCheck) {
             const post2 = {email};
-            fetch("https://8bcb-2a02-3038-407-6953-4869-9e4d-efe4-e93a.ngrok.io/sendVerificationCode", {
+            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/sendVerificationCode", {
+
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post2)
-            }).then(() => {
-                console.log("success");
+            }).then(response => response.json()).then(responseJson => {
+                console.log(responseJson);
+
+                let message = responseJson.message;
+                let resultCode = responseJson.resultCode;
+                console.log(message);
+                if (resultCode !== 200) {
+                    alert(message);
+                }
             })
         } else {
             alert("enter the email first!");

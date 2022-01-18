@@ -2,29 +2,53 @@ import React, {useState} from 'react';
 import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
 import CryptoJs from 'crypto-js'
+import sha256 from "crypto-js/sha256";
 
-
+function isBlank(str) {
+    return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
+}
 const LOGIN_PAGE_FORM = () => {
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+    const [loginStatus, setLoginStatus] = useState(false);
     const navigate = useNavigate();
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        let nullCheck = isBlank(email) && isBlank(userPassword);
+        if (!nullCheck) {
+            alert("null pointer");
+            return
+        } else {
+            let password = sha256(userPassword.toString()).toString();
+            const post = {email, password};
 
-        let userPassword = CryptoJs.SHA1(password).toString
-        const post = {email, userPassword};
+            console.log(post);
+            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/visitorLogin", {
+                method: 'POST',
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(post)
+            }).then(response => response.json()).then(responseJson => {
+                console.log(responseJson);
 
-        console.log(post);
-        fetch("http://localhost:8086/users/insertUserTest", {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        }).then(() => {
-            navigate('/user');
-        })
+                let message = responseJson.resultCode;
+                let error = responseJson.message;
+                console.log(message);
+
+                if (message === 200) {
+                    console.log("go")
+                    navigate('/user_main_page');
+                    setLoginStatus(true);
+                } else {
+                    alert(error);
+                    setLoginStatus(false);
+                }
+
+            })
+        }
+
     }
 
     return (
@@ -47,8 +71,8 @@ const LOGIN_PAGE_FORM = () => {
                 <label id='label_medium' form="password">Password</label>
                 <input id='input1' type="password"
                        required
-                       value={password}
-                       onChange={(e) => setPassword(e.target.value)}/>
+                       value={userPassword}
+                       onChange={(e) => setUserPassword(e.target.value)}/>
             </div>
 
 

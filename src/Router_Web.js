@@ -3,7 +3,7 @@ import './components/Components.css'
 import { Route, Routes } from "react-router-dom";
 
 
-import React from 'react';
+import React, {useMemo} from 'react';
 import WELCOME_PAGE from "./pages/Mixed_Page/WelcomePage/Welcome_Page";
 import REGISTER_PAGE from "./pages/Mixed_Page/RegisterPage/Register_Page";
 import LOGIN_PAGE from "./pages/Mixed_Page/LoginPage/Login_Page";
@@ -14,6 +14,7 @@ import USER_MAIN_PAGE from "./pages/User_Page/UserMainPage/User_Main_Page";
 
 
 function Router_Web() {
+    const value = useMemo(() => ({user, setUser}), [user,setUser]);
     return (
 
         <Routes>
@@ -25,6 +26,7 @@ function Router_Web() {
             <Route path='admin_main_page' element = {<ADMIN_MAIN_PAGE />} />
             <Route path='appointment_admin' element = {<APPOINTMENT_ADMIN />}/>
         </Routes>
+   
 
     );
 }
