@@ -8,14 +8,13 @@ import PropTypes from "prop-types";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import {useState} from "react";
-import Select from "react-select/base";
+import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import DialogContentText from '@mui/material/DialogContentText';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Box from '@mui/material/Box';
-import {FormHelperText} from "@mui/material";
 
 const BootstrapDialogTitle = (props) => {
     const {children, onClose, ...other} = props;
@@ -51,28 +50,31 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
     const [time_slot_id, setTime_slot_id] =useState('')
     const [date, setDate] = useState('')
     const [rpt_wks, setRpt_wks] = useState('')
-    const handleChange = (event) => {
+
+    const timeSlotOnchange = (event) => {
         setTime_slot_id(event.target.value);
     };
+    const redirect = useNavigate();
     function navigate(String){
         fetch("url",{
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify('session_state')
-        }).then(() => { console.log("success")});
+        }).then(() =>  redirect(String) );
     }
     const handleClose = () => {
         setOpen(false);
     };
     const handleOpen = () =>{
-        setOpen(true)
-    }
-    const handleConfirm =(e)=>{
-        let pack = {email, date, rpt_wks};
-        console.log(pack);
         setEmail('');
         setRpt_wks('');
         setDate('');
+        setTime_slot_id('');
+        setOpen(true);
+    }
+    const handleConfirm =()=>{
+        let pack = {email, date, rpt_wks,time_slot_id};
+        console.log(pack);
         handleClose();
     }
     const emailOnchange =(event)=>{
@@ -121,12 +123,13 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
                         variant="standard"
                         value ={email}
                         onChange ={emailOnchange}
+                        placeholder="john.doe@example.com"
                     />
                     <TextField
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        autoFocus
+
                         margin="dense"
                         id="date"
                         label="date"
@@ -140,7 +143,7 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
                         InputLabelProps={{
                             shrink: true,
                         }}
-                        autoFocus
+
                         margin="dense"
                         id="rpt"
                         label="number of rpt"
@@ -149,7 +152,28 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
                         variant="standard"
                         value ={rpt_wks}
                         onChange={rpt_wksOnchange}
+                        defaultValue={1}
                     />
+                    <Box sx={{ mt : '2vh' ,minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="time_slot_book_label">Time Slot*</InputLabel>
+                            <Select
+                                labelId="time_slot_book_select_label"
+                                id="select_time_slot"
+                                value={time_slot_id}
+                                label="Time_Slot"
+                                onChange={timeSlotOnchange}
+                                defaultValue={1}
+                            >
+                                <MenuItem value={1}>08:00-10:00</MenuItem>
+                                <MenuItem value={2}>10:00-12:00</MenuItem>
+                                <MenuItem value={3}>12:00-14:00</MenuItem>
+                                <MenuItem value={4}>14:00-16:00</MenuItem>
+                                <MenuItem value={5}>16:00-18:00</MenuItem>
+                                <MenuItem value={6}>18:00-20:00</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
 
                 </DialogContent>
                 <DialogActions>
