@@ -8,7 +8,6 @@
 }
 
 
-
 #refresh {
     background-color: #009682;
     cursor: pointer;
@@ -35,6 +34,19 @@
     position: absolute;
     top: 50px;
     right: 0;
+}
+
+.About_Us_button_welcome_page {
+    border-color: #FFFFFF;
+    position: absolute;
+    font-size: 20px;
+    bottom: 0;
+    left: 0;
+}
+
+.About_Us_button_welcome_page:focus {
+    border: #FFFFFF;
+    outline: 0;
 }
 
 
