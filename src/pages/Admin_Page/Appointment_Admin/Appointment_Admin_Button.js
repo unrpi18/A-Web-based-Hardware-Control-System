@@ -50,6 +50,10 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
     const [email, setEmail] = useState('');
     const [time_slot_id, setTime_slot_id] =useState('')
     const [date, setDate] = useState('')
+    const [rpt_wks, setRpt_wks] = useState('')
+    const handleChange = (event) => {
+        setTime_slot_id(event.target.value);
+    };
     function navigate(String){
         fetch("url",{
             method: 'POST',
@@ -63,6 +67,23 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
     const handleOpen = () =>{
         setOpen(true)
     }
+    const handleConfirm =(e)=>{
+        let pack = {email, date, rpt_wks};
+        console.log(pack);
+        setEmail('');
+        setRpt_wks('');
+        setDate('');
+        handleClose();
+    }
+    const emailOnchange =(event)=>{
+        setEmail(event.target.value);
+    }
+    const dateOnchange =(event)=>{
+        setDate(event.target.value);
+    }
+    const rpt_wksOnchange =(event)=>{
+        setRpt_wks(event.target.value);
+    }
     return <div>
         <button id = 'button_big' type = "button" className = "LOGOUT_APPOINTMENT_ADMIN"
                 onClick={()=> navigate('/')} > Logout
@@ -72,7 +93,7 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
         </button>
         <div>
             <button id = 'button_super' type = "button" className = "SET_TIME_SLOTS_STATUS_ADMIN"
-                    onClick={()=> handleOpen} > Set Time Slots
+                    onClick={()=> handleOpen()} > Set Time Slots
             </button>
 
         </div>
@@ -84,63 +105,56 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Book Appointment</DialogTitle>
                 <DialogContent>
-                    <div>
-                        <DialogContentText>
-                            Please enter the following information to book appointments for other u
-                        </DialogContentText>
-                    </div>
-                    <div>
-                        <TextField
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            required
-                            autoFocus
-                            margin="dense"
-                            id="name"
-                            label="Email Address"
-                            placeholder ="john.doe@example.com"
-                            type="email"
-                            value ={email}
-                            fullWidth
-                            variant="standard"
-                        />
-                        <TextField
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                            required
-                            margin="dense"
-                            id="date"
-                            label="date"
-                            type="date"
-                            value = {date}
-                            fullWidth
-                            variant="standard"
-                        />
-                    </div>
-                    <div>
-                        <FormControl  fullWidth>
-                            <InputLabel id="demo-simple-select-required-label">Age</InputLabel>
-                            <Select
-                                value={time_slot_id}
-                                label="Time Slot *"
-                            >
-                                <MenuItem value="1">08:00-10:00</MenuItem>
-                                <MenuItem value="2">10:00-12:00</MenuItem>
-                                <MenuItem value="3">12:00-14:00</MenuItem>
-                                <MenuItem value="4">14:00-16:00</MenuItem>
-                                <MenuItem value="5">16:00-18:00</MenuItem>
-                                <MenuItem value="6">18:00-20:00</MenuItem>
-                            </Select>
-                            <FormHelperText>Required</FormHelperText>
-                        </FormControl>
-                    </div>
+                    <DialogContentText>
+                        Please provide the following information to book an appointment
+                    </DialogContentText>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email Address"
+                        type="email"
+                        fullWidth
+                        variant="standard"
+                        value ={email}
+                        onChange ={emailOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="date"
+                        label="date"
+                        type="date"
+                        fullWidth
+                        variant="standard"
+                        value ={date}
+                        onChange={dateOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="rpt"
+                        label="number of rpt"
+                        type="number"
+                        fullWidth
+                        variant="standard"
+                        value ={rpt_wks}
+                        onChange={rpt_wksOnchange}
+                    />
 
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handleClose}>Confirm</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleConfirm}>Confirm</Button>
                 </DialogActions>
             </Dialog>
         </div>
