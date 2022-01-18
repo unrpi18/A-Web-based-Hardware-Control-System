@@ -2,17 +2,6 @@
     color: #009682;
 }
 
-button {
-    display: inline-block;
-    color : white;
-    text-align: center;
-    font-weight: bold;
-    background-color: #009682;
-    border: none;
-    border-radius: 1vw;
-    box-shadow: 0 0.5vw #999;
-    cursor: pointer;
-}
 
 button:hover {background-color: #006356}
 
@@ -23,16 +12,34 @@ button:active {
 }
 
 #button_super{
+    display: inline-block;
+    color : white;
+    text-align: center;
+    font-weight: bold;
+    background-color: #009682;
+    border: none;
+    border-radius: 1vw;
+    box-shadow: 0 0.5vw #999;
+    cursor: pointer;
     position: absolute;
     width: 20vw;
     height: 2vw;
     font-size: 1vw;
-    font-weight: bold;
+
     text-decoration: none;
 }
 
 
 #button_big {
+    display: inline-block;
+    color : white;
+    text-align: center;
+
+    background-color: #009682;
+    border: none;
+
+
+    cursor: pointer;
     position: absolute;
     width: 6vw;
     height: 2vw;
@@ -47,6 +54,15 @@ button:active {
 }
 
 #button_medium {
+    display: inline-block;
+    color : white;
+    text-align: center;
+    font-weight: bold;
+    background-color: #009682;
+    border: none;
+    border-radius: 1vw;
+    box-shadow: 0 0.5vw #999;
+    cursor: pointer;
     position: absolute;
     width: 70px;
     height: 25px;
