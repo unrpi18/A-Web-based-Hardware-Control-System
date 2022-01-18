@@ -1,5 +1,5 @@
-
-.localTest  {
-    position: center;
-    top: 300px;
+.calendar_position {
+    position: absolute;
+    top:0;
+    left: 300px;
 }

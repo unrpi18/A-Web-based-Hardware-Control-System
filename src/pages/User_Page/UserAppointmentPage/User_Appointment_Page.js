@@ -6,7 +6,6 @@ import LOGO from "../../../components/logos/Logo";
 const USER_APPOINTMENT_PAGE = () => {
   return <div>
     <LOGO/>
-    <USER_APPOINTMENT_CALENDER/>
 
   </div>
 
