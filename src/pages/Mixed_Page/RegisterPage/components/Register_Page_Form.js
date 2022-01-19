@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import {useNavigate} from 'react-router';
 import sha256 from 'crypto-js/sha256'
 import '../Register_Page_Style.css'
-import {UserContext} from "../../../../contexts/RegisterContext";
+import {baseUrl, UserContext} from "../../../../contexts/RegisterContext";
 
 
 function isBlank(str) {
@@ -21,7 +21,7 @@ const REGISTER_PAGE_FORM = () => {
     const navigate = useNavigate();
 
 
-    const handleSubmit = (e) => {
+    const handleRegister = (e) => {
         e.preventDefault();
         let nullCheck = isBlank(email) && isBlank(password) && isBlank(passwordRepeat)
             && isBlank(firstName) && isBlank(lastName) && isBlank(verifyCode);
@@ -35,12 +35,12 @@ const REGISTER_PAGE_FORM = () => {
 
             const userPassword = sha256(password.toString()).toString();
 
-            const post = {email, userPassword, passwordRepeat, firstName, lastName, verifyCode};
+            const post = {email, userPassword, firstName, lastName, verifyCode};
 
 
             console.log(post);
 
-            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/register", {
+            fetch(baseUrl + "/users/register", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -72,7 +72,7 @@ const REGISTER_PAGE_FORM = () => {
         let nullCheck = isBlank(email)
         if (nullCheck) {
             const post2 = {email};
-            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/sendVerificationCode", {
+            fetch(baseUrl + "/users/sendVerificationCode", {
 
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
@@ -153,7 +153,7 @@ const REGISTER_PAGE_FORM = () => {
             </div>
 
             <button id='button_big' className='registerButton_register_page' type='button'
-                    onClick={handleSubmit}>Register
+                    onClick={handleRegister}>Register
             </button>
         </form>
 
