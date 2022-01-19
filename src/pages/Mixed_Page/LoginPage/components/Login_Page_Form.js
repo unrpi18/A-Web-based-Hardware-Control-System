@@ -3,20 +3,21 @@ import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
 import sha256 from "crypto-js/sha256";
 import {UserContext} from "../../../../contexts/RegisterContext";
+import {baseUrl} from "../../../../contexts/RegisterContext"
 
 function isBlank(str) {
     return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
 }
+
 const LOGIN_PAGE_FORM = () => {
 
     const [email, setEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
 
     const {loginUser, setLoginUser} = useContext(UserContext);
-
     const navigate = useNavigate();
 
-    const handleAdminLogin = (e) =>{
+    const handleAdminLogin = (e) => {
         e.preventDefault();
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
@@ -26,8 +27,10 @@ const LOGIN_PAGE_FORM = () => {
             let password = sha256(userPassword.toString()).toString();
             const post = {email, password};
 
+
             console.log(post);
-            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/adminLogin", {
+
+            fetch(baseUrl + "/users/adminLogin", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -35,12 +38,11 @@ const LOGIN_PAGE_FORM = () => {
                 console.log(responseJson);
 
                 let message = responseJson.resultCode;
-
                 let error = responseJson.message;
                 console.log(message);
 
                 if (message === 200) {
-                    console.log("go")
+
                     navigate('/admin_main_page');
 
                 } else {
@@ -52,7 +54,7 @@ const LOGIN_PAGE_FORM = () => {
         }
 
     }
-    const handleSubmit = (e) => {
+    const handleUserLogin = (e) => {
         e.preventDefault();
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
@@ -62,7 +64,7 @@ const LOGIN_PAGE_FORM = () => {
             const post = {email, password};
 
             console.log(post);
-            fetch("http://b907-2a02-3038-401-43d3-4057-4b24-9a91-f82.ngrok.io/users/visitorLogin", {
+            fetch(baseUrl + "/users/visitorLogin", {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -74,8 +76,8 @@ const LOGIN_PAGE_FORM = () => {
 
 
                 if (resultCode === 200) {
-                    setLoginUser(prev => ({...prev, firstName:responseJson.firstName}))
-                    setLoginUser(prev => ({...prev,token:responseJson.token}))
+                    setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
+                    setLoginUser(prev => ({...prev, token: responseJson.token}))
                     navigate('/user_main_page');
                 } else {
                     alert(errorMessage);
@@ -116,7 +118,8 @@ const LOGIN_PAGE_FORM = () => {
                 handle submit need to be overwritten to handleUserLogin and handleAdminLogin.
                 Redirection of ForgetPassword need to be implemented.
                 */}
-            <button id='button_big' className='User_Login_Button' type='button' onClick={handleSubmit}>User Login</button>
+            <button id='button_big' className='User_Login_Button' type='button' onClick={handleUserLogin}>User Login
+            </button>
             <button id='button_big' className='Admin_Login_Button' type='button' onClick={handleAdminLogin}>Admin Login
             </button>
         </form>
