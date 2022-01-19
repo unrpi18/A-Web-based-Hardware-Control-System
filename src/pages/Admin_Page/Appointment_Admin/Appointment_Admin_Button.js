@@ -50,7 +50,7 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
     const [time_slot_id, setTime_slot_id] =useState('')
     const [date, setDate] = useState('')
     const [rpt_wks, setRpt_wks] = useState('')
-
+    const [status, setStatus] = useState('');
     const timeSlotOnchange = (event) => {
         setTime_slot_id(event.target.value);
     };
@@ -77,15 +77,17 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
         console.log(pack);
         handleClose();
     }
-    const emailOnchange =(event)=>{
-        setEmail(event.target.value);
-    }
+
     const dateOnchange =(event)=>{
         setDate(event.target.value);
     }
     const rpt_wksOnchange =(event)=>{
         setRpt_wks(event.target.value);
     }
+    const statusOnchange =(event)=>{
+        setStatus(event.target.value);
+    }
+
     return <div>
         <button id = 'button_big' type = "button" className = "LOGOUT_APPOINTMENT_ADMIN"
                 onClick={()=> navigate('/')} > Logout
@@ -93,38 +95,18 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
         <button id = 'button_super' type = "button" className = "ALL_APPOINTMENT_ADMIN"
                 onClick={()=> navigate('/')} > All Appointments
         </button>
+
         <div>
             <button id = 'button_super' type = "button" className = "SET_TIME_SLOTS_STATUS_ADMIN"
                     onClick={()=> handleOpen()} > Set Time Slots
             </button>
 
-        </div>
-        <div>
-            <button id = 'button_super' type = "button" className = "BOOK_APPOINTMENT_ADMIN"
-                    onClick={()=> handleOpen()} > Book Appointment
-            </button>
-
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Book Appointment</DialogTitle>
+                <DialogTitle>Set Time Slots</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        Please provide the following information to book an appointment
+                        Please provide the following information to set the status of the time slot
                     </DialogContentText>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        autoFocus
-                        margin="dense"
-                        id="email"
-                        label="Email Address"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        value ={email}
-                        onChange ={emailOnchange}
-                        placeholder="john.doe@example.com"
-                    />
                     <TextField
                         InputLabelProps={{
                             shrink: true,
@@ -146,7 +128,7 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
 
                         margin="dense"
                         id="rpt"
-                        label="number of rpt"
+                        label="Repeating weeks"
                         type="number"
                         fullWidth
                         variant="standard"
@@ -163,14 +145,30 @@ const APPOINTMENT_ADMIN_BUTTON = () => {
                                 value={time_slot_id}
                                 label="Time_Slot"
                                 onChange={timeSlotOnchange}
-                                defaultValue={1}
+                                defaultValue={0}
                             >
-                                <MenuItem value={1}>08:00-10:00</MenuItem>
-                                <MenuItem value={2}>10:00-12:00</MenuItem>
-                                <MenuItem value={3}>12:00-14:00</MenuItem>
-                                <MenuItem value={4}>14:00-16:00</MenuItem>
-                                <MenuItem value={5}>16:00-18:00</MenuItem>
-                                <MenuItem value={6}>18:00-20:00</MenuItem>
+                                <MenuItem value={0}>08:00-10:00</MenuItem>
+                                <MenuItem value={1}>10:00-12:00</MenuItem>
+                                <MenuItem value={2}>12:00-14:00</MenuItem>
+                                <MenuItem value={3}>14:00-16:00</MenuItem>
+                                <MenuItem value={4}>16:00-18:00</MenuItem>
+                                <MenuItem value={5}>18:00-20:00</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
+                    <Box sx={{ mt : '2vh' ,minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="new_status_label">New status of the time slot*</InputLabel>
+                            <Select
+                                labelId="new_status_select_label"
+                                id="select_status"
+                                value={status}
+                                label="status"
+                                onChange={statusOnchange}
+                                defaultValue={0}
+                            >
+                                <MenuItem value={true}>available</MenuItem>
+                                <MenuItem value={false}>unavailable</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
