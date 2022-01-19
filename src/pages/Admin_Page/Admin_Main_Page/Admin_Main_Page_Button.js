@@ -4,7 +4,7 @@ const ADMIN_MAIN_PAGE_BUTTON = () => {
     const navigate = useNavigate();
     return <div>
         <button id = 'button_big' type = "button" className = "LOGOUT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Logout
+                onClick={()=> navigate('/appointment_admin')} > Logout
         </button>
         <button id = 'button_super' type = "button" className = "APPOINTMENT_ADMIN_MAIN_PAGE"
                 onClick={()=> navigate('/')} > Appointment

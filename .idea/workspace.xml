@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="book appointment w bug fix1">
+    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="appointment_admin_book_appointment_finished">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +95,7 @@
       <workItem from="1642519289555" duration="32000" />
       <workItem from="1642519589845" duration="7721000" />
       <workItem from="1642545501246" duration="64000" />
+      <workItem from="1642617560759" duration="8303000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -141,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642542722916</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="appointment_admin_book_appointment_finished">
+      <created>1642548439479</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642548439479</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +177,7 @@
     <MESSAGE value="version 2.4 adjust the program structure." />
     <MESSAGE value="book appointment w bug" />
     <MESSAGE value="2.5 version" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.5 version" />
+    <MESSAGE value="appointment_admin_book_appointment_finished" />
+    <option name="LAST_COMMIT_MESSAGE" value="appointment_admin_book_appointment_finished" />
   </component>
 </project>
