@@ -16,8 +16,8 @@ const LOGIN_PAGE_FORM = () => {
     const [userPassword, setUserPassword] = useState('');
     const {loginUser, setLoginUser} = useContext(UserContext);
     const navigate = useNavigate();
-    const adminLoginApi = '/users/adminLogin';
-    const userLoginApi = '/users/visitorLogin';
+    const adminLoginApi = "/users/adminLogin";
+    const userLoginApi = "/users/visitorLogin";
 
 
     const handleLogin = (url, navigatePage) => {
