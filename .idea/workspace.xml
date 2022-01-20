@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="button css changed">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
-    </list>
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="changed structure see RegisterContext.js, added baseUrl" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,7 +90,7 @@
       <workItem from="1642545501246" duration="64000" />
       <workItem from="1642582672377" duration="473000" />
       <workItem from="1642586464751" duration="469000" />
-      <workItem from="1642587032986" duration="4035000" />
+      <workItem from="1642587032986" duration="4201000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -148,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642542722916</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="changed structure see RegisterContext.js, added baseUrl">
+      <created>1642591634733</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642591634733</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,6 +171,7 @@
     <MESSAGE value="version 2.4 adjust the program structure." />
     <MESSAGE value="book appointment w bug" />
     <MESSAGE value="2.5 version" />
-    <option name="LAST_COMMIT_MESSAGE" value="2.5 version" />
+    <MESSAGE value="changed structure see RegisterContext.js, added baseUrl" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed structure see RegisterContext.js, added baseUrl" />
   </component>
 </project>
