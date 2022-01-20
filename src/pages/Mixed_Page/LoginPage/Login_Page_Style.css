@@ -19,14 +19,14 @@
 .User_Login_Button {
     position: absolute;
     top: 120px;
-    left: 60px;
+    left: 30px;
 
 }
 
 .Admin_Login_Button {
     position: absolute;
     top: 120px;
-    left: 320px;
+    left: 280px;
 
 }
 
@@ -80,4 +80,28 @@
     flex: 2;
     background: #FFFFFF;
     border: 2px solid #009682;
+}
+
+.linkStyle_login_page {
+    color: #009682;
+    text-decoration: inherit;
+}
+
+.linkFontSize_login_page {
+    font-size: 13px;
+}
+
+.registerPosition_login_page {
+    color: #009682;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+.addUserIcon_login_page {
+    position: relative;
+
+    width: 25px;
+    height: 25px;
 }

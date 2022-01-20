@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="appointment_admin_book_appointment_finished" />
-    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="button css changed">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
-    </list>
+    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -162,7 +149,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642548439479</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE">
+      <created>1642701259252</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701259252</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,6 +180,7 @@
     <MESSAGE value="book appointment w bug" />
     <MESSAGE value="2.5 version" />
     <MESSAGE value="appointment_admin_book_appointment_finished" />
-    <option name="LAST_COMMIT_MESSAGE" value="appointment_admin_book_appointment_finished" />
+    <MESSAGE value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
   </component>
 </project>

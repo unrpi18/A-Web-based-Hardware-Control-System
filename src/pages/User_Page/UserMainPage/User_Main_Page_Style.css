@@ -3,28 +3,34 @@
     top: 0;
     right: 0;
 }
-.APPOINTMENT_ADMIN_MAIN_PAGE{
+
+.APPOINTMENT_ADMIN_MAIN_PAGE {
     position: absolute;
     top: 13vw;
     right: 40%;
 }
-.STOCK_AND_ORDER_ADMIN_MAIN_PAGE{
+
+.STOCK_AND_ORDER_ADMIN_MAIN_PAGE {
     position: absolute;
     top: 18vw;
     right: 40%;
 }
-.WEBCAM_ADMIN_MAIN_PAGE{
+
+.WEBCAM_ADMIN_MAIN_PAGE {
     position: absolute;
     top: 23vw;
     right: 40%;
 }
-.USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE{
+
+.USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE {
     position: absolute;
     top: 28vw;
     right: 40%;
 }
-.T_AND_C_UPDATE_ADMIN_MAIN_PAGE{
+
+.T_AND_C_UPDATE_ADMIN_MAIN_PAGE {
     position: absolute;
     top: 33vw;
     right: 40%;
 }
+
