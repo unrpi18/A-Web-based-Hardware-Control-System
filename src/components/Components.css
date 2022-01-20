@@ -30,7 +30,7 @@
 
 #button_big {
     position: absolute;
-    width: 6vw;
+    width: 7vw;
     height: 4vh;
     font-size: 2vh;
     font-weight: bolder;
@@ -44,7 +44,7 @@
 
 #button_medium {
     position: absolute;
-    height : 2vh;
+    height : 3vh;
     width: 5vw;
     font-size: 1vw;
     border-radius: 0.4vw;
@@ -80,6 +80,8 @@
     outline: 0;
 
 }
+
+
 
 label {
     display: inline-block;

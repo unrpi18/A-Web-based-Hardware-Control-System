@@ -1,0 +1,54 @@
+.form_account_information_page {
+    position: absolute;
+    top: 20vw;
+    width: 100%;
+    left: 40%;
+    font-size: 20px;
+}
+
+.email_account_information_page {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.firstname_account_information_page {
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    left: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.lastname_account_information_page {
+    position: absolute;
+    top: 80px;
+    width: 100%;
+    left: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.input_style_account_information_page {
+    opacity: 40%;
+}
+
+#input_account_information_page {
+    height: 20px;
+    width: 280px;
+    border: 1px solid black;
+    outline: 0;
+    margin: 0.3% 0;
+    font-size: 20px;
+    font-weight: bold;
+
+
+
+}
+#input_account_information_page {
+
+}

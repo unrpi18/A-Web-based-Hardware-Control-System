@@ -4,8 +4,8 @@ import {UserContext} from "../../../../contexts/RegisterContext";
 const USER_APPOINTMENT_TEXT = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
 
-    return <div>
-           <h2>test</h2>
+    return <div className="Title_set_all">
+        <h1>WELCOME TO APPOINTMENT MANAGEMENT SYSTEM, {loginUser.firstName} </h1>
     </div>
 }
 
