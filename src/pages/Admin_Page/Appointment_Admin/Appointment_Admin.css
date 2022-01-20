@@ -2,17 +2,16 @@
     position: absolute;
     top: 20vh;
     left: 0;
+    width : 6vw;
+
 }
 .SET_TIME_SLOTS_STATUS_ADMIN{
     position: absolute;
     top: 25vh;
     left: 0;
+    width : 6vw
 }
-.BOOK_APPOINTMENT_ADMIN{
-    position: absolute;
-    top: 30vh;
-    left: 0;
-}
+
 .LOGOUT_APPOINTMENT_ADMIN{
     position: absolute;
     top: 0;

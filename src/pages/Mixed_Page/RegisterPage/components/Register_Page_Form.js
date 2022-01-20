@@ -3,11 +3,9 @@ import {useNavigate} from 'react-router';
 import sha256 from 'crypto-js/sha256'
 import '../Register_Page_Style.css'
 import {baseUrl, UserContext} from "../../../../contexts/RegisterContext";
+import {isBlank} from "../../../User_Page/checkMethod/checkInputFieldsIsBlank";
+import {handleVerificationCode} from "../../../User_Page/checkMethod/handleVerificationCode";
 
-
-function isBlank(str) {
-    return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
-}
 
 const REGISTER_PAGE_FORM = () => {
 
@@ -63,36 +61,6 @@ const REGISTER_PAGE_FORM = () => {
             alert("Please fill the field(s) first!");
         }
 
-
-    }
-
-    const handleVerificationCode = (e) => {
-
-        e.preventDefault();
-        let nullCheck = isBlank(email)
-        if (nullCheck) {
-            const post2 = {email};
-            fetch(baseUrl + "/users/sendVerificationCode", {
-
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(post2)
-            }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson);
-
-                let message = responseJson.message;
-                let resultCode = responseJson.resultCode;
-
-                console.log(message);
-
-                if (resultCode !== 200) {
-                    alert(message);
-                }
-            })
-        } else {
-            alert("enter the email first!");
-        }
-
     }
 
 
@@ -108,7 +76,7 @@ const REGISTER_PAGE_FORM = () => {
                        value={email}
                        onChange={(e) => setEmail(e.target.value)}/>
                 <button id='button_medium' className="verifyButton_register_page"
-                        onClick={handleVerificationCode}>verify
+                        onClick={() => handleVerificationCode(email)}>verify
                 </button>
             </div>
 
@@ -155,6 +123,8 @@ const REGISTER_PAGE_FORM = () => {
             <button id='button_big' className='registerButton_register_page' type='button'
                     onClick={handleRegister}>Register
             </button>
+
+
         </form>
 
 

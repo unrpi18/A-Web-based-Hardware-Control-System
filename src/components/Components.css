@@ -2,7 +2,15 @@
     color: #009682;
 }
 
-button {
+#button_super:hover {background-color: #006356}
+
+#button_super:active {
+    background-color: #006356;
+    box-shadow: 0 0.3vh #666;
+    transform: translateY(0.4vh);
+}
+
+#button_super{
     display: inline-block;
     color : white;
     text-align: center;
@@ -12,29 +20,17 @@ button {
     border-radius: 1vw;
     box-shadow: 0 0.5vh #999;
     cursor: pointer;
-}
-
-button:hover {background-color: #006356}
-
-button:active {
-    background-color: #006356;
-    box-shadow: 0 0.3vh #666;
-    transform: translateY(0.4vh);
-}
-
-#button_super{
     position: absolute;
     width: 20vw;
     height: 4vh;
     font-size: 2vh;
-    font-weight: bold;
     text-decoration: none;
 }
 
 
 #button_big {
     position: absolute;
-    width: 6vw;
+    width: 7vw;
     height: 4vh;
     font-size: 2vh;
     font-weight: bolder;
@@ -48,7 +44,7 @@ button:active {
 
 #button_medium {
     position: absolute;
-    height : 2vh;
+    height : 3vh;
     width: 5vw;
     font-size: 1vw;
     border-radius: 0.4vw;
@@ -84,6 +80,8 @@ button:active {
     outline: 0;
 
 }
+
+
 
 label {
     display: inline-block;
