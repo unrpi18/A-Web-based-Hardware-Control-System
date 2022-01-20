@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+import React from "react";
 
 const WELCOME_PAGE_TEXT = () => {
     return <div>

@@ -1,70 +1,35 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router';
 import '../Login_Page_Style.css'
 import sha256 from "crypto-js/sha256";
 import {UserContext} from "../../../../contexts/RegisterContext";
 import {baseUrl} from "../../../../contexts/RegisterContext"
+import {Link} from "react-router-dom";
+
 
 function isBlank(str) {
     return str.replace(/(^s*)|(s*$)/g, "").length !== 0;
 }
 
 const LOGIN_PAGE_FORM = () => {
-
     const [email, setEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
-
     const {loginUser, setLoginUser} = useContext(UserContext);
     const navigate = useNavigate();
+    const adminLoginApi = "/users/adminLogin";
+    const userLoginApi = "/users/visitorLogin";
 
-    const handleAdminLogin = (e) => {
-        e.preventDefault();
+
+    const handleLogin = (url, navigatePage) => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
-            alert("null pointer");
-
-        } else {
-            let password = sha256(userPassword.toString()).toString();
-            const post = {email, password};
-
-
-            console.log(post);
-
-            fetch(baseUrl + "/users/adminLogin", {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson);
-
-                let message = responseJson.resultCode;
-                let error = responseJson.message;
-                console.log(message);
-
-                if (message === 200) {
-
-                    navigate('/admin_main_page');
-
-                } else {
-                    alert(error);
-
-                }
-
-            })
-        }
-
-    }
-    const handleUserLogin = (e) => {
-        e.preventDefault();
-        let nullCheck = isBlank(email) && isBlank(userPassword);
-        if (!nullCheck) {
-            alert("null pointer");
+            alert("Please fill the field(s) first!");
         } else {
             let password = sha256(userPassword.toString()).toString();
             const post = {email, password};
 
             console.log(post);
-            fetch(baseUrl + "/users/visitorLogin", {
+            fetch(baseUrl + url, {
                 method: 'POST',
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(post)
@@ -78,7 +43,8 @@ const LOGIN_PAGE_FORM = () => {
                 if (resultCode === 200) {
                     setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
                     setLoginUser(prev => ({...prev, token: responseJson.token}))
-                    navigate('/user_main_page');
+
+                    navigate(navigatePage);
                 } else {
                     alert(errorMessage);
 
@@ -88,6 +54,11 @@ const LOGIN_PAGE_FORM = () => {
         }
 
     }
+
+    useEffect(() => {
+        localStorage.setItem("user", JSON.stringify(loginUser))
+    });
+
 
     return (
 
@@ -111,6 +82,9 @@ const LOGIN_PAGE_FORM = () => {
                        required
                        value={userPassword}
                        onChange={(e) => setUserPassword(e.target.value)}/>
+                <Link className='linkStyle_login_page' to="/forget_password">
+                    <p className='linkFontSize_login_page'>Forget your Password?</p>
+                </Link>
             </div>
 
 
@@ -118,10 +92,14 @@ const LOGIN_PAGE_FORM = () => {
                 handle submit need to be overwritten to handleUserLogin and handleAdminLogin.
                 Redirection of ForgetPassword need to be implemented.
                 */}
-            <button id='button_big' className='User_Login_Button' type='button' onClick={handleUserLogin}>User Login
+            <button id='button_big' className='User_Login_Button' type='button'
+                    onClick={() => handleLogin(userLoginApi, '/user_main_page')}>User Login
             </button>
-            <button id='button_big' className='Admin_Login_Button' type='button' onClick={handleAdminLogin}>Admin Login
+            <button id='button_big' className='Admin_Login_Button' type='button'
+                    onClick={() => handleLogin(adminLoginApi, '/admin_main_page')}>Admin Login
             </button>
+
+
         </form>
 
 
