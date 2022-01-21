@@ -7,9 +7,9 @@ import ADMIN_MAIN_PAGE_SELECTION from "./Admin_Main_Page_Selection";
 
 const ADMIN_MAIN_PAGE = () => {
     return <div>
-        <ADMIN_MAIN_PAGE_BUTTON />
-        <ADMIN_MAIN_PAGE_TEXT />
         <LOGO />
+        <ADMIN_MAIN_PAGE_TEXT />
+        <ADMIN_MAIN_PAGE_BUTTON />
         <ADMIN_MAIN_PAGE_SELECTION />
 
     </div>

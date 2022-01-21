@@ -4,9 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE">
+    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="appoinment almost finished, awaiting fe be test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Main_Page/Admin_Main_Page_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +191,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="version 2.3 adjust the program structure." />

@@ -1,7 +1,7 @@
 import {isBlank} from "./checkInputFieldsIsBlank";
 import {baseUrl} from "../../../contexts/RegisterContext";
 
-export const handleVerificationCode = (email): void => {
+export const handleVerificationCode = (email) => {
 
     let nullCheck = isBlank(email)
     if (nullCheck) {

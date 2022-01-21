@@ -30,12 +30,9 @@ function Router_Web() {
                 <Route path='user_main_page' element={<USER_MAIN_PAGE/>}/>
                 <Route path='user_appointment_page' element={<USER_APPOINTMENT_PAGE/>}/>
                 <Route path='user_account_info' element={<USER_ACCOUNT_PAGE/>}/>
-
-
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
             </Routes>
-
         </UserContext.Provider>
     );
 }

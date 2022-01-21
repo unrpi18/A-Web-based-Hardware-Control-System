@@ -1,26 +1,23 @@
 import {useNavigate} from "react-router";
+import {ButtonGroup} from "@mui/material";
+import Button from "@mui/material/Button";
 
 const ADMIN_MAIN_PAGE_BUTTON = () => {
     const navigate = useNavigate();
     return <div>
-        <button id = 'button_big' type = "button" className = "LOGOUT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/appointment_admin')} > Logout
-        </button>
-        <button id = 'button_super' type = "button" className = "APPOINTMENT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Appointment
-        </button>
-        <button id = 'button_super' type = "button" className = "STOCK_AND_ORDER_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Stock & Order
-        </button>
-        <button id = 'button_super' type = "button" className = "WEBCAM_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > Webcam
-        </button>
-        <button id = 'button_super' type = "button" className = "USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > User Group Management
-        </button>
-        <button id = 'button_super' type = "button" className = "T_AND_C_UPDATE_ADMIN_MAIN_PAGE"
-                onClick={()=> navigate('/')} > T & C Update
-        </button>
+        <ButtonGroup
+            orientation="vertical"
+            variant="contained"
+            aria-label="vertical outlined button group"
+            sx ={{my : "30vh", ml : 0, height : "10vh"}}
+        >
+            <Button key = "appointment_admin" >Appointment Management</Button>
+            <Button key = "stock_admin" >Stocks & Orders</Button>
+            <Button key = "webcam_admin" >Webcam</Button>
+            <Button key = "User Group Management">User Group Management</Button>
+            <Button key = "t_and_c_update" >T&C Update</Button>
+        </ButtonGroup>
+
     </div>
 }
 
