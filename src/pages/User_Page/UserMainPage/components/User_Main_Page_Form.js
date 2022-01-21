@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router";
 
 
-
 const USER_MAIN_PAGE_FORM = () => {
     const navigate = useNavigate();
 
@@ -23,9 +22,6 @@ const USER_MAIN_PAGE_FORM = () => {
         </button>
         <button id='button_super' type="button" className="WEBCAM_ADMIN_MAIN_PAGE"
                 onClick={() => navigate('/')}> Webcam
-        </button>
-        <button id='button_super' type="button" className="USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE"
-                onClick={() => navigate('/')}> Settings
         </button>
     </div>
 }

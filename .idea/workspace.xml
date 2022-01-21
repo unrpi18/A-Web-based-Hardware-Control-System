@@ -5,6 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="appoinment almost finished, awaiting fe be test">
+    <list default="true" id="8376a3ca-3364-429e-852e-23bd33a40361" name="Changes" comment="button css changed">
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Passwod_Page_Form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_Text.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/icons8-forget password.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/icons8-addUser-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Profile_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Account_Form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Account_Text.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/checkInputFieldsIsBlank.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/storeDataPersistance.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -15,6 +32,23 @@
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_Button.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Components.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Components.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +225,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="version 2.3 adjust the program structure." />
