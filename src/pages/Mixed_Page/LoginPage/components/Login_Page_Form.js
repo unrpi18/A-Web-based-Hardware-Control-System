@@ -43,7 +43,7 @@ const LOGIN_PAGE_FORM = () => {
                 if (resultCode === 200) {
                     setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
                     setLoginUser(prev => ({...prev, token: responseJson.token}))
-
+                    setLoginUser(prev => ({...prev, isLogged:true}))
                     navigate(navigatePage);
                 } else {
                     alert(errorMessage);

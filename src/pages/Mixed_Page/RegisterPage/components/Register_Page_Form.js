@@ -76,7 +76,7 @@ const REGISTER_PAGE_FORM = () => {
                        value={email}
                        onChange={(e) => setEmail(e.target.value)}/>
                 <button id='button_medium' className="verifyButton_register_page"
-                        onClick={() => handleVerificationCode(email)}>verify
+                        onClick={() => handleVerificationCode(email,"register")}>verify
                 </button>
             </div>
 
