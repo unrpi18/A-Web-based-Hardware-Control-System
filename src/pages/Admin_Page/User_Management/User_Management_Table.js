@@ -110,7 +110,7 @@ function createData(id, first_name, last_name, email, access) {
 }
 
 
-export default function USER_GROUP_MANAGEMENT_TABLE() {
+export default function USER_MANAGEMENT_TABLE() {
     const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);

@@ -58,7 +58,7 @@ export default function ADMIN_NAVI_PANEL() {
                     </ListItemIcon>
                     <ListItemText primary='Webcam' />
                 </ListItem>
-                <ListItem button onClick={()=>navigate("/user_management")}>
+                <ListItem button onClick={()=>navigate("/user_group_navi_page")}>
                     <ListItemIcon>
                         <GroupsIcon />
                     </ListItemIcon>
@@ -78,7 +78,7 @@ export default function ADMIN_NAVI_PANEL() {
         <div>
             {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                    <IconButton aria-label="view" onClick={toggleDrawer(anchor, true)}>
+                    <IconButton aria-label="view" size = "large" onClick={toggleDrawer(anchor, true)}>
                         <FormatListBulletedIcon />
                     </IconButton>
                     <Drawer
