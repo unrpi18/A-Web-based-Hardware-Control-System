@@ -15,6 +15,7 @@ import USER_ACCOUNT_PAGE from "./pages/User_Page/UserAccountPage/User_Account_Pa
 import New_User_Management from "./pages/Admin_Page/New_User_Management/New_User_Management";
 import User_Group_Management from "./pages/Admin_Page/User_Group_Management/User_Group_Management";
 import ADMINISTRATOR_MANAGEMENT from "./pages/Admin_Page/Administrator_Management/Administrator_Management";
+import ALL_APPOINTMENT_ADMIN from "./pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin";
 
 
 function Router_Web() {
@@ -36,6 +37,7 @@ function Router_Web() {
                 <Route path='new_user_management' element = {<New_User_Management/>}/>
                 <Route path='user_group_management' element ={<User_Group_Management/>}/>
                 <Route path='admin_management' element = {<ADMINISTRATOR_MANAGEMENT/>}/>
+                <Route path='all_appointment_admin' element = {<ALL_APPOINTMENT_ADMIN/>}/>
             </Routes>
         </UserContext.Provider>
     );
