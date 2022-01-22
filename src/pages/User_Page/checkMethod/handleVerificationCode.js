@@ -1,11 +1,11 @@
 import {isBlank} from "./checkInputFieldsIsBlank";
 import {baseUrl} from "../../../contexts/RegisterContext";
 
-export const handleVerificationCode = (email) => {
+export const handleVerificationCode = (email,info) => {
 
     let nullCheck = isBlank(email)
     if (nullCheck) {
-        const post2 = {email};
+        const post2 = {email,info};
         fetch(baseUrl + "/users/sendVerificationCode", {
 
             method: 'POST',
