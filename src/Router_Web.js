@@ -1,8 +1,6 @@
 import './Router_Web'
 import './components/Components.css'
 import {Route, Routes} from "react-router-dom";
-
-
 import React, {useState} from 'react';
 import WELCOME_PAGE from "./pages/Mixed_Page/WelcomePage/Welcome_Page";
 import REGISTER_PAGE from "./pages/Mixed_Page/RegisterPage/Register_Page";
@@ -15,6 +13,8 @@ import {UserContext} from "./contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "./pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
 import USER_ACCOUNT_PAGE from "./pages/User_Page/UserAccountPage/User_Account_Page";
 import New_User_Management from "./pages/Admin_Page/New_User_Management/New_User_Management";
+import User_Group_Management from "./pages/Admin_Page/User_Group_Management/User_Group_Management";
+import ADMINISTRATOR_MANAGEMENT from "./pages/Admin_Page/Administrator_Management/Administrator_Management";
 
 
 function Router_Web() {
@@ -34,6 +34,8 @@ function Router_Web() {
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
                 <Route path='new_user_management' element = {<New_User_Management/>}/>
+                <Route path='user_group_management' element ={<User_Group_Management/>}/>
+                <Route path='admin_management' element = {<ADMINISTRATOR_MANAGEMENT/>}/>
             </Routes>
         </UserContext.Provider>
     );

@@ -18,27 +18,29 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
-import {Dialog} from "@mui/material";
+import {Dialog, TextField} from "@mui/material";
 import {useContext, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-
 import DialogActions from "@mui/material/DialogActions";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Stack from "@mui/material/Stack";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 const fake_data = [
-    createData(0,'Haotian1','Wu1','test1@example.com'),
-    createData(1,'Haotian2','Wu2','test2@example.com'),
-    createData(2,'Haotian3','Wu3','test3@example.com'),
-    createData(3,'Haotian4','Wu4','test4@example.com'),
-    createData(4,'Haotian5','Wu5','test5@example.com'),
-    createData(5,'Haotian6','Wu6','test6@example.com'),
-    createData(6,'Haotian7','Wu7','test7@example.com'),
-    createData(7,'Haotian8','Wu8','test8@example.com'),
+    createData(0,'Haotian1','Wu1','test1@example.com', 'active'),
+    createData(1,'Haotian2','Wu2','test2@example.com', 'active'),
+    createData(2,'Haotian3','Wu3','test3@example.com', 'active'),
+    createData(3,'Haotian4','Wu4','test4@example.com', 'inactive'),
+    createData(4,'Haotian5','Wu5','test5@example.com', 'active'),
+    createData(5,'Haotian6','Wu6','test6@example.com', 'inactive'),
+    createData(6,'Haotian7','Wu7','test7@example.com', 'active'),
+    createData(7,'Haotian8','Wu8','test8@example.com', 'inactive'),
 ]
 
 
@@ -103,22 +105,32 @@ TablePaginationActions.propTypes = {
     rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(id, first_name, last_name, email) {
-    return {id, first_name, last_name, email };
+function createData(id, first_name, last_name, email, access) {
+    return {id, first_name, last_name, email, access };
 }
 
 
-export default function NEW_USER_MANAGEMENT_TABLE() {
+export default function USER_GROUP_MANAGEMENT_TABLE() {
     const {loginUser, setLoginUser} = useContext(UserContext)
-    const [page, setPage] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [open, setOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
+    const [access, setAccess] = useState('');
 
     const rows = refreshPage();
 
+    const first_nameOnchange =(e)=>{
+        setFirst_name(e.target.value);
+    }
+    const last_nameOnchange =(e)=>{
+        setLast_name(e.target.value);
+    }
+    const accessOnchange =(e)=>{
+        setAccess(e.target.value);
+    }
     function refreshPage(){
 
         const post = loginUser.token;
@@ -141,10 +153,11 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         return fake_data;
     }
 
-    function handleOpen(first_name, last_name, email){
+    function handleOpen(first_name, last_name, email, access){
         setFirst_name(first_name);
         setLast_name(last_name);
         setEmail(email);
+        setAccess(access)
         setOpen(true);
     }
     const handleClose =()=>{
@@ -153,35 +166,24 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setLast_name('');
         setEmail('');
     }
-    function handleAccept(){
-        const post = {email};
-        console.log(post);
-        fetch('192.168.1.1', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-        })
-        refreshPage();
-    }
-    function handleReject(){
-        const post = {email};
-        console.log(post);
-        fetch('192.168.1.1', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-        })
-        refreshPage();
-    }
 
+    const handleSave =() =>{
+        const post = loginUser.token + {email, last_name, first_name, access};
+        console.log(post);
+        fetch('192.168.1.1', {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            //TODO
+        })
+        refreshPage();
+        handleClose();
+
+    }
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -193,8 +195,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const display_msg = 'Do you want to approve or reject the registration request of ' + first_name + ' ' + last_name + '[' + email + '] ?'
-    const table_title = 'All Registration Requests'
+    const table_title = 'All Users'
     return (
         <div>
             <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
@@ -227,7 +228,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                                     {row.email}
                                 </TableCell>
                                 <TableCell style={{ width: 160 }} align="center">
-                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
+                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
                                         <VisibilityIcon />
                                     </IconButton>
                                 </TableCell>
@@ -265,18 +266,69 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             </Stack>
 
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Registration Request</DialogTitle>
+                <DialogTitle>User Profile</DialogTitle>
                 <DialogContent>
-                    <DialogContentText>
-                        <Typography variant="body" display="block" gutterBottom>
-                            {display_msg}
-                        </Typography>
-                    </DialogContentText>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="ln"
+                        label="Last Name"
+                        fullWidth
+                        variant="standard"
+                        value ={last_name}
+                        defaultValue={last_name}
+                        onChange={last_nameOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="fn"
+                        label="First Name"
+                        fullWidth
+                        variant="standard"
+                        value ={first_name}
+                        defaultValue={first_name}
+                        onChange={first_nameOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        autoFocus
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        fullWidth
+                        variant="standard"
+                        disabled
+                        defaultValue={email}
+                    />
+                    <Box sx={{ mt : '2vh' ,minWidth: 120 }}>
+                        <FormControl fullWidth>
+                            <InputLabel id="time_slot_book_label">Access</InputLabel>
+                            <Select
+                                labelId="time_slot_book_select_label"
+                                id="select_time_slot"
+                                value={access}
+                                label="Status"
+                                onChange={accessOnchange}
+                                defaultValue={access}
+                            >
+                                <MenuItem value={'active'}>Active</MenuItem>
+                                <MenuItem value={'inactive'}>Inactive</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </Box>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}> Close</Button>
-                    <Button onClick={handleReject}>Reject</Button>
-                    <Button onClick={handleAccept}>Approve</Button>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
         </div>

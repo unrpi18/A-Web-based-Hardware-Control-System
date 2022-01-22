@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -18,18 +18,17 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
-import {Dialog} from "@mui/material";
-import {useContext, useState} from "react";
+import {Dialog, TextField} from "@mui/material";
+import React, {useContext, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-
 import DialogActions from "@mui/material/DialogActions";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import Stack from "@mui/material/Stack";
-
+import DialogContentText from "@mui/material/DialogContentText";
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 const fake_data = [
     createData(0,'Haotian1','Wu1','test1@example.com'),
     createData(1,'Haotian2','Wu2','test2@example.com'),
@@ -108,7 +107,7 @@ function createData(id, first_name, last_name, email) {
 }
 
 
-export default function NEW_USER_MANAGEMENT_TABLE() {
+export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -116,9 +115,24 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
+    const [add_open, setAdd_open] = useState(false);
 
     const rows = refreshPage();
-
+    function handleAddOpen(){
+        setAdd_open(true);
+    }
+    function handleAddClose(){
+        setAdd_open(false);
+    }
+    const emailOnchange =(e)=>{
+        setEmail(e.target.value);
+    }
+    const first_nameOnchange =(e)=>{
+        setFirst_name(e.target.value);
+    }
+    const last_nameOnchange =(e)=>{
+        setLast_name(e.target.value);
+    }
     function refreshPage(){
 
         const post = loginUser.token;
@@ -132,7 +146,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
 
-           //TODO
+            //TODO
 
             return [ /* TODO*/ ];
 
@@ -153,8 +167,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setLast_name('');
         setEmail('');
     }
-    function handleAccept(){
-        const post = {email};
+    function handleAdd(){
+        const post = loginUser.token + {email};
         console.log(post);
         fetch('192.168.1.1', {
             method: 'POST',
@@ -164,11 +178,13 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            //TODO
         })
         refreshPage();
+        handleClose();
     }
-    function handleReject(){
-        const post = {email};
+    const handleConfirm =() =>{
+        const post = loginUser.token + {email};
         console.log(post);
         fetch('192.168.1.1', {
             method: 'POST',
@@ -178,10 +194,12 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            //TODO
         })
         refreshPage();
-    }
+        handleClose();
 
+    }
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -193,8 +211,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const display_msg = 'Do you want to approve or reject the registration request of ' + first_name + ' ' + last_name + '[' + email + '] ?'
-    const table_title = 'All Registration Requests'
+    const display_msg = 'Do you want to remove the administrator access of ' + first_name + ' ' + last_name + '[' + email + '] ?'
+    const table_title = 'All Administrators'
     return (
         <div>
             <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
@@ -202,81 +220,105 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                     {table_title}
                 </Typography>
                 <TableContainer component={Paper}>
-                <Table sx={{ minWidth: '40vw', maxWidth : '40vw', minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Last Name</TableCell>
-                            <TableCell align="center">First Name</TableCell>
-                            <TableCell align="center">Email</TableCell>
-                            <TableCell align="center">Options</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {(rowsPerPage > 0
-                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : rows
-                        ).map((row) => (
-                            <TableRow  key={row.id}>
-                                <TableCell align="center" component="th" scope="row">
-                                    {row.first_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.last_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.email}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
-                                        <VisibilityIcon />
-                                    </IconButton>
-                                </TableCell>
+                    <Table sx={{ minWidth: '40vw', maxWidth : '40vw', minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align="center">Last Name</TableCell>
+                                <TableCell align="center">First Name</TableCell>
+                                <TableCell align="center">Email</TableCell>
+                                <TableCell align="center">Options</TableCell>
                             </TableRow>
-                        ))}
+                        </TableHead>
+                        <TableBody>
+                            {(rowsPerPage > 0
+                                    ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                    : rows
+                            ).map((row) => (
+                                <TableRow  key={row.id}>
+                                    <TableCell align="center" component="th" scope="row">
+                                        {row.first_name}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center">
+                                        {row.last_name}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center">
+                                        {row.email}
+                                    </TableCell>
+                                    <TableCell style={{ width: 160 }} align="center">
+                                        <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
+                                            <PersonRemoveIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
 
-                        {emptyRows > 0 && (
-                            <TableRow style={{ height: 53 * emptyRows }}>
-                                <TableCell colSpan={6} />
+                            {emptyRows > 0 && (
+                                <TableRow style={{ height: 53 * emptyRows }}>
+                                    <TableCell colSpan={6} />
+                                </TableRow>
+                            )}
+                        </TableBody>
+                        <TableFooter>
+                            <TableRow >
+                                <IconButton aria-label="view" size="large" onClick={handleAddOpen}>
+                                    <PersonAddIcon />
+                                </IconButton>
+                                <TablePagination
+                                    rowsPerPageOptions={5}
+                                    colSpan={3}
+                                    count={rows.length}
+                                    rowsPerPage={rowsPerPage}
+                                    page={page}
+                                    SelectProps={{
+                                        inputProps: {
+                                            'aria-label': 'rows per page',
+                                        },
+                                        native: true,
+                                    }}
+                                    onPageChange={handleChangePage}
+                                    onRowsPerPageChange={handleChangeRowsPerPage}
+                                    ActionsComponent={tablePaginationActions}
+                                />
                             </TableRow>
-                        )}
-                    </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination
-                                rowsPerPageOptions={5}
-                                colSpan={3}
-                                count={rows.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                SelectProps={{
-                                    inputProps: {
-                                        'aria-label': 'rows per page',
-                                    },
-                                    native: true,
-                                }}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                ActionsComponent={tablePaginationActions}
-                            />
-                        </TableRow>
-                    </TableFooter>
-                </Table>
-            </TableContainer>
+                        </TableFooter>
+                    </Table>
+                </TableContainer>
             </Stack>
 
             <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Registration Request</DialogTitle>
+                <DialogTitle>Remove Administrator</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
-                        <Typography variant="body" display="block" gutterBottom>
-                            {display_msg}
-                        </Typography>
+                        {display_msg}
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}> Close</Button>
-                    <Button onClick={handleReject}>Reject</Button>
-                    <Button onClick={handleAccept}>Approve</Button>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={handleConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
+                <DialogTitle>Add Administrator</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="email"
+                        label="Email"
+                        type="email"
+                        fullWidth
+                        variant="standard"
+                        value ={email}
+                        onChange={emailOnchange}
+                        placeholder={'john.doe@example.com'}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAddClose}>Close</Button>
+                    <Button onClick={handleAdd}>Confirm</Button>
                 </DialogActions>
             </Dialog>
         </div>
