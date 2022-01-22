@@ -14,6 +14,7 @@ import USER_MAIN_PAGE from "./pages/User_Page/UserMainPage/User_Main_Page";
 import {UserContext} from "./contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "./pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
 import USER_ACCOUNT_PAGE from "./pages/User_Page/UserAccountPage/User_Account_Page";
+import New_User_Management from "./pages/Admin_Page/New_User_Management/New_User_Management";
 
 
 function Router_Web() {
@@ -32,6 +33,7 @@ function Router_Web() {
                 <Route path='user_account_info' element={<USER_ACCOUNT_PAGE/>}/>
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
+                <Route path='new_user_management' element = {<New_User_Management/>}/>
             </Routes>
         </UserContext.Provider>
     );

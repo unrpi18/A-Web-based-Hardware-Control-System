@@ -82,7 +82,11 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             let slot_3_data = slot_3_data_string.split(',');
             let slot_4_data = slot_4_data_string.split(',');
             let slot_5_data = slot_5_data_string.split(',');
-
+        /*
+        8 10 12 14 16 18
+        0
+        (200,null,"0,Booked,Booked,Booked,Booked,Booked,Booked,Booked")
+         */
             return [
                 createData(0, slot_0_data[0], slot_0_data[1], slot_0_data[2], slot_0_data[3], slot_0_data[4], slot_0_data[5], slot_0_data[6]),
                 createData(1, slot_1_data[0], slot_1_data[1], slot_1_data[2], slot_1_data[3], slot_1_data[4], slot_1_data[5], slot_1_data[6]),
@@ -107,8 +111,8 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     /*
     function for handle booking and canceling appointments in calendar view
      */
-    function handleClick(av,day ,ts_id){
-        if(av === "Booked"){
+    function handleClick(av ,day ,ts_id){
+        if(av === 'Free'){
             handleBook(day, ts_id);
         }
         else {
@@ -254,7 +258,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     data for rendering the page
      */
     const rows = refreshPage('2022-01-17' ,'2022-01-13');
-
+    let today_date = 'Today is ' + moment().format('YYYY-MM-DD') + ', ' + moment().format('dddd');
 
 
     return (
@@ -455,7 +459,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                     <Button key = "User Group Management">User Group Management</Button>
                     <Button key = "t_and_c_update" >T&C Update</Button>
                 </ButtonGroup>
-                <Stack direction="column-reverse" spacing={1} justifyContent="flex-end" sx ={{mt : '15vh'}}>
+                <Stack direction="column-reverse" spacing={3}  alignItems="center" sx ={{mx : 'auto'}}>
                     <TableContainer>
                         <Table sx={{ maxWidth: '40vw', maxHeight : '25vh', border : 3, mx :'auto'}} aria-label="simple table">
                             <TableHead>
@@ -566,6 +570,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                         </Typography>
                         <Button variant="contained" onClick={nextWeek}> Next Week </Button>
                     </Stack>
+                    <Typography variant="h4" display="block" gutterBottom>
+                        {today_date}
+                    </Typography>
                 </Stack>
 
                 <ButtonGroup

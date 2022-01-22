@@ -1,14 +1,13 @@
 import './Appointment_Admin.css'
-import LOGO from "../../../components/logos/Logo";
+import Admin_Profile from "../Admin_Icon/Admin_Profile";
 
-import APPOINTMENT_ADMIN_TEXT from "./Appointment_Admin_Text";
+
 import APPOINTMENT_ADMIN_VIEW from "./Appointment_Admin_View";
 
 
 const APPOINTMENT_ADMIN = () => {
     return <div>
-        <LOGO />
-        <APPOINTMENT_ADMIN_TEXT/>
+        <Admin_Profile/>
         <APPOINTMENT_ADMIN_VIEW/>
     </div>
 }
