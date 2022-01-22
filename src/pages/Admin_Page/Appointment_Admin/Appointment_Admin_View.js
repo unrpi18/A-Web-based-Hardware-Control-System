@@ -5,7 +5,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import {ButtonGroup} from "@mui/material";
+
 import Button from "@mui/material/Button";
 import Stack from '@mui/material/Stack';
 import DialogTitle from "@mui/material/DialogTitle";
@@ -21,6 +21,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
+
+const fakeData = [
+    createData(0, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A'),
+    createData(1, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A'),
+    createData(2, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A'),
+    createData(3, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A'),
+    createData(4, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A'),
+    createData(5, 'N/A', 'N/A', 'N/A', 'N/A','N/A', 'N/A', 'N/A')]
 
 
 function isDateLegal(str) {
@@ -42,70 +50,74 @@ function convertIdToTs(id){
 function createData(ts_id, Mon, Tue, Wed, Thu, Fri, Sat, Sun) {
     return {ts_id, Mon, Tue, Wed, Thu, Fri, Sat, Sun };
 }
+function lastMonday(){
+    const day = moment().isoWeekday();
+    return moment().subtract( 6+day, 'days').format("YYYY-MM-DD");
+}
+function dataStandardisation(data){
+    for(let i=0; i < 6; i++){
+        for(let j = 0; j < 7; j++){
+            switch(data[i][j]){
+                case 'N/A' : data[i][j] = 'N/A'; break;
+                case 'AVAILABLE' : data[i][j] = 'Free'; break;
+                default :  data[i][j] = 'Booked'; break;
+            }
+        }
+    }
+    return data;
+}
 
 const APPOINTMENT_ADMIN_VIEW = () => {
     const [book_open, setBook_open] = useState(false)
     const [cxl_open, setCxl_open] = useState(false)
     const [ts_open,setTs_open] = useState(false)
-    const [current_view_start_date, setCurrent_view_start_date] = useState(moment().startOf("isoWeek").format('YYYY-MM-DD'))
+    const [current_view_start_date, setCurrent_view_start_date] = useState(lastMonday)
     const [date, setDate] = useState('')
     const [slot, setSlot] = useState('')
     const [email, setEmail] = useState('')
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
+    const [fetchedData, setFetchedData] = useState(fakeData);
+
+
+
+
     /**
      * Key function for fetching data about time slot availability of the week
      * @param start_date the monday date of the week
      * @param end_date the sunday date of the week
-     * @returns {{Thu, ts_id, Tue, Wed, Sat, Fri, Mon, Sun}[]} the data for rendering the page
      */
+
     function refreshPage(start_date, end_date){
         const post = {start_date, end_date};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://267f-2a02-8071-2bf0-7b00-6969-6af7-17a3-6dff.ngrok.io/timeslots/getWeekTimes/', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
-            let resultCode = responseJson.resultCode;
+            let result_code =responseJson.resultCode;
+            let data = responseJson.data;
             let errorMessage = responseJson.message;
-            let slot_0_data_string = responseJson.ts_0;
-            let slot_1_data_string = responseJson.ts_1;
-            let slot_2_data_string = responseJson.ts_2;
-            let slot_3_data_string = responseJson.ts_3;
-            let slot_4_data_string = responseJson.ts_4;
-            let slot_5_data_string = responseJson.ts_5;
-            let slot_0_data = slot_0_data_string.split(',');
-            let slot_1_data = slot_1_data_string.split(',');
-            let slot_2_data = slot_2_data_string.split(',');
-            let slot_3_data = slot_3_data_string.split(',');
-            let slot_4_data = slot_4_data_string.split(',');
-            let slot_5_data = slot_5_data_string.split(',');
-        /*
-        8 10 12 14 16 18
-        0
-        (200,null,"0,Booked,Booked,Booked,Booked,Booked,Booked,Booked")
-         */
-            return [
-                createData(0, slot_0_data[0], slot_0_data[1], slot_0_data[2], slot_0_data[3], slot_0_data[4], slot_0_data[5], slot_0_data[6]),
-                createData(1, slot_1_data[0], slot_1_data[1], slot_1_data[2], slot_1_data[3], slot_1_data[4], slot_1_data[5], slot_1_data[6]),
-                createData(2, slot_2_data[0], slot_2_data[1], slot_2_data[2], slot_2_data[3], slot_2_data[4], slot_2_data[5], slot_2_data[6]),
-                createData(3, slot_3_data[0], slot_3_data[1], slot_3_data[2], slot_3_data[3], slot_3_data[4], slot_3_data[5], slot_3_data[6]),
-                createData(4, slot_4_data[0], slot_4_data[1], slot_4_data[2], slot_4_data[3], slot_4_data[4], slot_4_data[5], slot_4_data[6]),
-                createData(5, slot_5_data[0], slot_5_data[1], slot_5_data[2], slot_5_data[3], slot_5_data[4], slot_5_data[5], slot_5_data[6]),
-            ];
+            let standardisedData = dataStandardisation(data);
+            if(result_code === 200){
+                setFetchedData([
+                    createData(0,standardisedData[0][0],standardisedData[0][1],standardisedData[0][2],standardisedData[0][3],standardisedData[0][4],standardisedData[0][5],standardisedData[0][6]),
+                    createData(1,standardisedData[1][0],standardisedData[1][1],standardisedData[1][2],standardisedData[1][3],standardisedData[1][4],standardisedData[1][5],standardisedData[1][6]),
+                    createData(2,standardisedData[2][0],standardisedData[2][1],standardisedData[2][2],standardisedData[2][3],standardisedData[2][4],standardisedData[2][5],standardisedData[2][6]),
+                    createData(3,standardisedData[3][0],standardisedData[3][1],standardisedData[3][2],standardisedData[3][3],standardisedData[3][4],standardisedData[3][5],standardisedData[3][6]),
+                    createData(4,standardisedData[4][0],standardisedData[4][1],standardisedData[4][2],standardisedData[4][3],standardisedData[4][4],standardisedData[4][5],standardisedData[4][6]),
+                    createData(5,standardisedData[5][0],standardisedData[5][1],standardisedData[5][2],standardisedData[5][3],standardisedData[5][4],standardisedData[5][5],standardisedData[5][6]),
+                ]);
+
+            }
+            else{
+                alert(errorMessage);
+            }
 
         })
 
-        return [
-            createData(0, 'Booked', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-            createData(1, 'Booked', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-            createData(2, 'Booked', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-            createData(3, 'Free', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-            createData(4, 'Booked', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-            createData(5, 'Booked', 'Free', 'Booked', 'Free','N/A', 'N/A', 'N/A'),
-        ];
     }
 
     /*
@@ -257,9 +269,10 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     /*
     data for rendering the page
      */
-    const rows = refreshPage('2022-01-17' ,'2022-01-13');
-    let today_date = 'Today is ' + moment().format('YYYY-MM-DD') + ', ' + moment().format('dddd');
+    const rows = fetchedData;
 
+    let today_date = 'Today is ' + moment().format('YYYY-MM-DD') + ', ' + moment().format('dddd');
+    let display = 'nothing';
 
     return (
         <div>
@@ -446,22 +459,10 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                     <Button onClick={handleConfirmCxl}>Confirm</Button>
                 </DialogActions>
             </Dialog>
-            <Stack direction="row" spacing={2} justifyContent="space-between" alignItems="center" >
-                <ButtonGroup
-                    orientation="vertical"
-                    variant="contained"
-                    aria-label="vertical outlined button group"
-                    sx ={{my : "30vh", ml : 0, height : "10vh"}}
-                >
-                    <Button key = "appointment_admin" >Appointment Management</Button>
-                    <Button key = "stock_admin" >Stocks & Orders</Button>
-                    <Button key = "webcam_admin" >Webcam</Button>
-                    <Button key = "User Group Management">User Group Management</Button>
-                    <Button key = "t_and_c_update" >T&C Update</Button>
-                </ButtonGroup>
                 <Stack direction="column-reverse" spacing={3}  alignItems="center" sx ={{mx : 'auto'}}>
+                    <Button variant="contained" onClick={handleTimeSlotOpen} >Set Time Slots Status</Button>
                     <TableContainer>
-                        <Table sx={{ maxWidth: '40vw', maxHeight : '25vh', border : 3, mx :'auto'}} aria-label="simple table">
+                        <Table sx={{ minWidth : '60vw', maxWidth: '60vw', maxHeight : '25vh', minHeight : '40vh', border : 3, mx :'auto'}} aria-label="simple table">
                             <TableHead>
                                 <TableRow>
                                     <TableCell align="center">Time Slot/Day</TableCell>
@@ -482,13 +483,15 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                         <TableCell component="th" scope="row" align="center" sx ={{minWidth : '5vw'}}>
                                             {convertIdToTs(row.ts_id)}
                                         </TableCell>
-                                        <TableCell align="center" sx ={{maxWidth : '6vw', bgcolor : rows[row.ts_id].Mon=== 'Free' ? 'green': 'red'}} >
+                                        <TableCell align="center" sx ={{maxWidth : '6vw',minHeight :'4vh', maxHeight : '4vh', bgcolor : rows[row.ts_id].Mon=== 'Free' ? 'green': 'red'}} >
                                             <Stack>
                                                 {row.Mon}
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Mon  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Mon,0, row.ts_id)} > {
-                                                    (rows[row.ts_id].Mon  === 'Free') ? "Book ": ((rows[row.ts_id].Mon  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Mon  === 'Free') ? "Book ": ((rows[row.ts_id].Mon  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
 
                                             </Stack>
@@ -500,7 +503,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Tue  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Tue,1, row.ts_id)} > {
-                                                    (rows[row.ts_id].Tue  === 'Free') ? "Book ": ((rows[row.ts_id].Tue  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Tue  === 'Free') ? "Book ": ((rows[row.ts_id].Tue  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
 
                                             </Stack>
@@ -512,7 +517,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Wed  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Wed, 2, row.ts_id)} > {
-                                                    (rows[row.ts_id].Wed  === 'Free') ? "Book ": ((rows[row.ts_id].Wed  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Wed  === 'Free') ? "Book ": ((rows[row.ts_id].Wed  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
                                             </Stack>
 
@@ -523,7 +530,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Thu  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Thu,3, row.ts_id)} > {
-                                                    (rows[row.ts_id].Thu  === 'Free') ? "Book ": ((rows[row.ts_id].Thu  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Thu  === 'Free') ? "Book ": ((rows[row.ts_id].Thu  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
                                             </Stack>
 
@@ -534,7 +543,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Fri  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Fri,4, row.ts_id)} > {
-                                                    (rows[row.ts_id].Fri  === 'Free') ? "Book ": ((rows[row.ts_id].Fri  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Fri  === 'Free') ? "Book ": ((rows[row.ts_id].Fri  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
                                             </Stack>
                                         </TableCell>
@@ -544,7 +555,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Sat  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Sat,5, row.ts_id)} > {
-                                                    (rows[row.ts_id].Sat  === 'Free') ? "Book ": ((rows[row.ts_id].Sat  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Sat  === 'Free') ? "Book ": ((rows[row.ts_id].Sat  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
                                             </Stack>
                                         </TableCell>
@@ -554,7 +567,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                                 <Button size = "small" sx ={{bgcolor : 'transparent',color : 'white'}}
                                                         disabled ={rows[row.ts_id].Sun  === 'N/A' }
                                                         onClick = {() => handleClick(rows[row.ts_id].Sun, 6, row.ts_id)} > {
-                                                    (rows[row.ts_id].Sun  === 'Free') ? "Book ": ((rows[row.ts_id].Sun  === 'Booked')?"CXL":"") }
+                                                    (rows[row.ts_id].Sun  === 'Free') ? "Book ": ((rows[row.ts_id].Sun  === 'Booked')?"CANCEL":<Typography variant="caption" display="block" color='transparent' gutterBottom>
+                                                        {display}
+                                                    </Typography>) }
                                                 </Button>
                                             </Stack>
                                         </TableCell>
@@ -569,22 +584,16 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                             {display_date}
                         </Typography>
                         <Button variant="contained" onClick={nextWeek}> Next Week </Button>
+
                     </Stack>
                     <Typography variant="h4" display="block" gutterBottom>
                         {today_date}
                     </Typography>
                 </Stack>
 
-                <ButtonGroup
-                    orientation="vertical"
-                    variant="contained"
-                    aria-label="vertical outlined button group"
-                    sx ={{my : "30vh", mr : 0, height : "6vh"}}
-                >
-                    <Button key = "all_appointment_admin" >All Appointments Management</Button>
-                    <Button key = "time_slot_status" onClick={handleTimeSlotOpen} >Set Time Slots Status</Button>
-                </ButtonGroup>
-            </Stack>
+
+
+
         </div>
 
     )
