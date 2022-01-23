@@ -8,46 +8,19 @@
 }
 
 
-#refresh {
-    background-color: #009682;
-    cursor: pointer;
-    transition: all 150ms ease-out;
-}
-
-.placeholder_box {
-    background-color: red;
-    display: block;
-    box-sizing: border-box;
-    min-height: 150px;
-    margin-top: 50px;
-    padding: 30px;
-}
-
-
 .Register_button_welcome_page {
     position: absolute;
     top: 0;
     right: 0;
 }
 
-.Login_button_welcome_page {
-    position: absolute;
-    top: 50px;
-    right: 0;
-}
 
 .About_Us_button_welcome_page {
-    border-color: #FFFFFF;
     position: absolute;
-    font-size: 20px;
     bottom: 0;
     left: 0;
 }
 
-.About_Us_button_welcome_page:focus {
-    border: #FFFFFF;
-    outline: 0;
-}
 
 
 

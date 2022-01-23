@@ -7,9 +7,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import DialogActions from '@mui/material/DialogActions';
 import Button from "@mui/material/Button";
 import IconButton from '@mui/material/IconButton';
-
+import '../Welcome_Page_Style.css'
 import Typography from '@mui/material/Typography';
 import PropTypes from "prop-types";
+
+import {ButtonGroup} from "@mui/material";
+import Box from "@mui/material/Box";
 
 
 const BootstrapDialogTitle = (props) => {
@@ -54,20 +57,38 @@ const WELCOME_PAGE_BUTTON = () => {
         setOpen(false);
     };
 
+    const buttons = [
+        <Button key="one" onClick={() => navigate('/register')}>Register</Button>,
+        <Button key="two" onClick={() => navigate('/login')}>Login</Button>,
+
+    ];
+
+
     return <div>
+        <Box
+            sx={{
+                display: 'flex',
+                '& > *': {
+                    m: 2,
+                },
+            }}
+        >
+            <ButtonGroup
+                orientation="vertical"
+                aria-label="vertical outlined button group"
+                className='Register_button_welcome_page'
+                color='text'
+                variant="contained"
+            >
+                {buttons}
+            </ButtonGroup>
 
-        <button id='button_big' type="button" className="Register_button_welcome_page"
-                onClick={() => navigate('/register')}> Register
-        </button>
-        <button id='button_big' type="button" className="Login_button_welcome_page"
-                onClick={() => navigate('/login')}> Login
-        </button>
+        </Box>
 
-        <div>
+        <div className='About_Us_button_welcome_page'>
 
-            <button id='button_big' type="button" className='About_Us_button_welcome_page'
-                    onClick={handleOpenAboutUs}>About us
-            </button>
+            <Button onClick={handleOpenAboutUs}>About us
+            </Button>
             <Dialog
                 onClose={handleClose}
                 open={open}>
@@ -87,14 +108,10 @@ const WELCOME_PAGE_BUTTON = () => {
                         To solve those problems, a management system designed exclusively for TECO would be designed.
 
                     </Typography>
-
-                    <Typography align="left" color='red'>
-
-                        Contact Email: tecolabsystem@outlook.com</Typography>
                 </DialogContent>
+                <Typography align="left" color='red' marginLeft='5mm'> Contact E-mail:
+                    tecolabsystem@outlook.com</Typography>
                 <DialogActions>
-
-
                     <Button autoFocus onClick={handleClose}>
                         OK
                     </Button>
@@ -104,6 +121,7 @@ const WELCOME_PAGE_BUTTON = () => {
             </Dialog>
         </div>
     </div>
+
 
 }
 

@@ -1,6 +1,4 @@
 
-
-
 .TECO_LAB_TEXT {
     padding-left: 8%;
     position: absolute;
@@ -9,80 +7,27 @@
 }
 
 
-
-.form_register_page {
+.spacing_register_page {
     position: absolute;
     top: 20vw;
     width: 100%;
-    left: 40%;
+    left: 45%;
     font-size: 20px;
+
 }
 
 .verifyButton_register_page {
     position: absolute;
-    left: 460px;
-    top: 5px
+    height: 30px;
+    left: -140px;
+    top: 25px;
+
 }
 
 .registerButton_register_page {
     text-align: center;
     position: absolute;
-    top: 260px;
-    left: 320px;
+    top: 20px;
+    left: 380px;
 }
 
-.email_register_page {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.password_register_page {
-    position: absolute;
-    top: 40px;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.passwordRepeat_register_page {
-    position: absolute;
-    top: 80px;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-
-}
-
-.firstname_register_page {
-    position: absolute;
-    top: 120px;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-
-.lastname_register_page {
-    position: absolute;
-    top: 160px;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.verifyCode_register_page {
-    position: absolute;
-    top: 200px;
-    width: 100%;
-    left: 0;
-    font-size: 15px;
-    font-weight: bold;
-}
