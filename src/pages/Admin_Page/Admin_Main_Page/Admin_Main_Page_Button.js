@@ -8,12 +8,6 @@ const ADMIN_MAIN_PAGE_BUTTON = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
     const navigate = useNavigate();
 
-    const tokenTest = (url) => {
-        if (checkToken(loginUser.token)) {
-            navigate(url)
-        }
-    }
-
     return <div>
         <ButtonGroup
             orientation="vertical"
