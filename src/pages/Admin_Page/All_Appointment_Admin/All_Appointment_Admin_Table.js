@@ -120,11 +120,10 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
 
     const rows = refreshPage();
 
-    function refreshPage(){
+    function refreshPage(post){
 
-        const post = loginUser.token;
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://6ef0-2a02-8071-2bf0-7b00-148a-362d-bb4f-6639.ngrok.io/appointments/getAllAppointments', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
@@ -132,10 +131,8 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-
-            //TODO
-
-            return [ /* TODO*/ ];
+            //last name, first name, email, date, timeslot
+            //Wu, Haotian, 111@126.com, 2022-01-26,0
 
         })
 
@@ -158,7 +155,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     }
 
     const handleConfirm =() =>{
-        const post = loginUser.token + {email};
+        const post = {email,date,time_slot};
         console.log(post);
         fetch('192.168.1.1', {
             method: 'POST',
@@ -170,7 +167,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             let errorMessage = responseJson.message;
             //TODO
         })
-        refreshPage();
+        refreshPage(null);
         handleClose();
 
     }
@@ -194,11 +191,11 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                     {table_title}
                 </Typography>
                 <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: '40vw', maxWidth : '40vw', minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
+                    <Table sx={{ minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
                         <TableHead>
                             <TableRow>
-                                <TableCell align="center">Last Name</TableCell>
                                 <TableCell align="center">First Name</TableCell>
+                                <TableCell align="center">Last Name</TableCell>
                                 <TableCell align="center">Email</TableCell>
                                 <TableCell align="center">Date</TableCell>
                                 <TableCell align="center">Time Slot</TableCell>
@@ -211,7 +208,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                                     : rows
                             ).map((row) => (
                                 <TableRow  key={row.id}>
-                                    <TableCell align="center" component="th" scope="row">
+                                    <TableCell style={{ width: 160 }} align="center" component="th" scope="row">
                                         {row.first_name}
                                     </TableCell>
                                     <TableCell style={{ width: 160 }} align="center">
@@ -220,13 +217,13 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                                     <TableCell style={{ width: 160 }} align="center">
                                         {row.email}
                                     </TableCell>
-                                    <TableCell style={{ width: 160 }} align="center">
+                                    <TableCell style={{ width: 100 }} align="center">
                                         {row.date}
                                     </TableCell>
-                                    <TableCell style={{ width: 160 }} align="center">
+                                    <TableCell style={{ width: 100 }} align="center">
                                         {row.timeslot}
                                     </TableCell>
-                                    <TableCell style={{ width: 160 }} align="center">
+                                    <TableCell style={{ width: 40 }} align="center">
                                         <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
                                             <DeleteIcon />
                                         </IconButton>

@@ -5,7 +5,6 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import Button from "@mui/material/Button";
 import Stack from '@mui/material/Stack';
 import DialogTitle from "@mui/material/DialogTitle";
@@ -73,7 +72,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const [ts_open,setTs_open] = useState(false)
     const [current_view_start_date, setCurrent_view_start_date] = useState(lastMonday)
     const [date, setDate] = useState('')
-    const [slot, setSlot] = useState('')
+    const [time_slot, setTimeSlot] = useState('')
     const [email, setEmail] = useState('')
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
@@ -85,13 +84,14 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     /**
      * Key function for fetching data about time slot availability of the week
      * @param start_date the monday date of the week
-     * @param end_date the sunday date of the week
      */
+    //2022-01-25
+    function refreshPage(start_date){
+        const startDate = start_date;
 
-    function refreshPage(start_date, end_date){
-        const post = {start_date, end_date};
+        const post = {startDate};
         console.log(post);
-        fetch('http://267f-2a02-8071-2bf0-7b00-6969-6af7-17a3-6dff.ngrok.io/timeslots/getWeekTimes/', {
+        fetch('http://b8f0-2a02-3038-408-d070-753f-7593-c64c-fa04.ngrok.io/timeslots/timeSlotCalender', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
@@ -102,14 +102,15 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             let errorMessage = responseJson.message;
             let standardisedData = dataStandardisation(data);
             if(result_code === 200){
-                setFetchedData([
+                setFetchedData(fakeData);
+                /* setFetchedData([
                     createData(0,standardisedData[0][0],standardisedData[0][1],standardisedData[0][2],standardisedData[0][3],standardisedData[0][4],standardisedData[0][5],standardisedData[0][6]),
                     createData(1,standardisedData[1][0],standardisedData[1][1],standardisedData[1][2],standardisedData[1][3],standardisedData[1][4],standardisedData[1][5],standardisedData[1][6]),
                     createData(2,standardisedData[2][0],standardisedData[2][1],standardisedData[2][2],standardisedData[2][3],standardisedData[2][4],standardisedData[2][5],standardisedData[2][6]),
                     createData(3,standardisedData[3][0],standardisedData[3][1],standardisedData[3][2],standardisedData[3][3],standardisedData[3][4],standardisedData[3][5],standardisedData[3][6]),
                     createData(4,standardisedData[4][0],standardisedData[4][1],standardisedData[4][2],standardisedData[4][3],standardisedData[4][4],standardisedData[4][5],standardisedData[4][6]),
                     createData(5,standardisedData[5][0],standardisedData[5][1],standardisedData[5][2],standardisedData[5][3],standardisedData[5][4],standardisedData[5][5],standardisedData[5][6]),
-                ]);
+                ]);*/
 
             }
             else{
@@ -133,13 +134,13 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     }
     function handleBook(day,ts_id){
         setDate(calculateEndDate(day));
-        setSlot(ts_id);
+        setTimeSlot(ts_id);
         handleBookOpen();
 
     }
     function handleCxl(day,ts_id){
         setDate(calculateEndDate(day));
-        setSlot(ts_id);
+        setTimeSlot(ts_id);
         handleCxlOpen();
     }
 
@@ -163,7 +164,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     }
     const handleTimeSlotOpen =()=>{
         setDate('');
-        setSlot('');
+        setTimeSlot('');
         setTs_status('');
         setTs_open(true);
     }
@@ -186,7 +187,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setDate(e.target.value);
     }
     const timeSlotOnchange =(e)=>{
-        setSlot(e.target.value);
+        setTimeSlot(e.target.value);
     }
     const tsStatusOnchange =(e)=>{
         setTs_status(e.target.value);
@@ -199,13 +200,15 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         e.preventDefault();
         let nullCheck = isDateLegal(date);
         if (nullCheck) {
-            const post = {date, slot};
-            fetch("url", {
+            //11@126.com, 2022-01-26,0
+            const post = {email, date, time_slot};
+            console.log(post);
+            fetch("http://6ef0-2a02-8071-2bf0-7b00-148a-362d-bb4f-6639.ngrok.io/appointments/addAppointment", {
                 method: 'POST',
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(post)
-            }).then(() => {
-                console.log('success');
+            }).then(response => response.json()).then(responseJson => {
+                console.log(responseJson);
                 refreshPage(start_date, end_date);
                 handleBookClose()
             })
@@ -218,7 +221,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         e.preventDefault();
         let nullCheck = isDateLegal(date);
         if (nullCheck) {
-            const post = {date, slot};
+            const post = {date, time_slot};
             fetch("url", {
                 method: 'POST',
                 headers: {"Content-type": "application/json"},
@@ -236,8 +239,10 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const handleConfirmTSChange = (e)=>{
         e.preventDefault();
         let nullCheck = isDateLegal(date);
+
         if (nullCheck) {
-            const post = {date, slot, rpt_wks, ts_status};
+            // 2022-01-26, 0, 5, Free
+            const post = {date, time_slot, rpt_wks, ts_status};
             fetch("url", {
                 method: 'POST',
                 headers: {"Content-type": "application/json"},
@@ -317,7 +322,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                             <Select
                                 labelId="time_slot_book_select_label"
                                 id="select_time_slot"
-                                value={slot}
+                                value={time_slot}
                                 label="Time_Slot"
                                 onChange={timeSlotOnchange}
                                 defaultValue={0}
@@ -397,7 +402,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                 id="select_time_slot"
                                 label="Time_Slot"
                                 disabled
-                                defaultValue={slot}
+                                defaultValue={time_slot}
                             >
                                 <MenuItem value={0}>08:00-10:00</MenuItem>
                                 <MenuItem value={1}>10:00-12:00</MenuItem>
@@ -442,7 +447,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                                 id="select_time_slot"
                                 label="Time_Slot"
                                 disabled
-                                defaultValue={slot}
+                                defaultValue={time_slot}
                             >
                                 <MenuItem value={0}>08:00-10:00</MenuItem>
                                 <MenuItem value={1}>10:00-12:00</MenuItem>

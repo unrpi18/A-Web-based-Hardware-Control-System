@@ -19,6 +19,10 @@ import ALL_APPOINTMENT_ADMIN from "../pages/Admin_Page/All_Appointment_Admin/All
 
 import NotFound from "./NotFound";
 import USER_GROUP_NAVI_PAGE from "../pages/Admin_Page/User_Group_Navi_Page/User_Group_Navi_Page";
+import TERMS_AND_CONDITIONS_UPDATE from "../pages/Admin_Page/Terms_And_Conditions_Update/Terms_And_Conditions_Update";
+import STOCK_ADMIN from "../pages/Admin_Page/Stock_Admin/Stock_Admin";
+
+import STOCK_ORDER_NAVI_PAGE from "../pages/Admin_Page/Stock_Order_Navi_Page_Admin/Stock_Order_Navi_Page";
 
 
 function Router_Web() {
@@ -44,6 +48,9 @@ function Router_Web() {
                 <Route path='admin_management' element={<ADMINISTRATOR_MANAGEMENT/>}/>
                 <Route path='all_appointment_admin' element={<ALL_APPOINTMENT_ADMIN/>}/>
                 <Route path='user_group_navi_page' element ={<USER_GROUP_NAVI_PAGE/>}/>
+                <Route path='t_and_c_update' element ={<TERMS_AND_CONDITIONS_UPDATE/>}/>
+                <Route path='stock_admin' element ={<STOCK_ADMIN/>}/>
+                <Route path='stock_and_order_admin_navi' element ={<STOCK_ORDER_NAVI_PAGE/>}/>
             </Routes>
 
         </UserContext.Provider>
