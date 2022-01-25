@@ -1,10 +1,12 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import PropTypes from "prop-types";
+import {UserContext} from "../../../../contexts/RegisterContext";
+
 
 const BootstrapDialogTitle = (props) => {
     const {children, onClose, ...other} = props;
@@ -35,7 +37,7 @@ BootstrapDialogTitle.propTypes = {
 };
 
 
-const USER_APPOINTMENT_BUTTON = () => {
+export function USER_APPOINTMENT_BUTTON() {
     const [open, setOpen] = useState(false);
     const [email, setEmail] = useState('');
     const [time_slot_id, setTime_slot_id] = useState('')
@@ -45,15 +47,14 @@ const USER_APPOINTMENT_BUTTON = () => {
     const timeSlotOnchange = (event) => {
         setTime_slot_id(event.target.value);
     };
-    const redirect = useNavigate();
 
-    function navigate(String) {
-        fetch("url", {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify('session_state')
-        }).then(() => redirect(String));
-    }
+    const navigate = useNavigate();
+
+
+    const {loginUser, setLoginUser} = useContext(UserContext)
+    const initialRows = [{slot: '', timeSlotDate: ''}];
+
+    const [rows, setRows] = useState([]);
 
     const handleClose = () => {
         setOpen(false);
@@ -81,11 +82,11 @@ const USER_APPOINTMENT_BUTTON = () => {
         setStatus(event.target.value);
     }
 
+
     return <div>
         <button id='button_super' type="button" className="ALL_APPOINTMENT_ADMIN"
                 onClick={() => navigate('/my_appointment')}> My Appointment
         </button>
-
 
     </div>
 }
