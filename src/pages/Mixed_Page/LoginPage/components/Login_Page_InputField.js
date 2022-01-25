@@ -44,8 +44,14 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
 
 
                 if (resultCode === 200) {
+                    setLoginUser(responseJson);
+                    /*
                     setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
+                    setLoginUser(prev => ({...prev, lastName: responseJson.lastName}))
+                    setLoginUser(prev => ({...prev, email: responseJson.email}))
                     setLoginUser(prev => ({...prev, token: responseJson.token}))
+
+                     */
                     setLoginUser(prev => ({...prev, isLogged: true}))
                     navigate(navigatePage);
                 } else {
@@ -60,7 +66,7 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
 
     const buttons = [
         <Button key="one" onClick={() => handleLogin(userLoginApi, '/user_main_page')}>User Login</Button>,
-        <Button key="two" onClick={() => handleLogin(adminLoginApi,'/admin_main_page' )}>Admin Login</Button>,
+        <Button key="two" onClick={() => handleLogin(adminLoginApi, '/admin_main_page')}>Admin Login</Button>,
 
     ];
 

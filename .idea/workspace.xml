@@ -5,26 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="mixed page web version 3.0">
-      <change afterPath="$PROJECT_DIR$/src/components/ButtonGroup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_Page_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/backpic.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel_Stytle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Passwod_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/Welcome_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/Welcome_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/User_Main_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +82,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components" />
       <recent name="$PROJECT_DIR$/src/pages/User_Page/User_Main_Page" />
       <recent name="$PROJECT_DIR$/src/pages/Admin_Page" />
       <recent name="$PROJECT_DIR$/src/pages/MixedPage" />
@@ -126,7 +127,10 @@
       <workItem from="1642701900598" duration="2000" />
       <workItem from="1642702081477" duration="1000" />
       <workItem from="1642779847527" duration="14000" />
-      <workItem from="1642981874959" duration="338000" />
+      <workItem from="1642981874959" duration="351000" />
+      <workItem from="1642982280170" duration="15000" />
+      <workItem from="1642982508074" duration="217000" />
+      <workItem from="1643061533155" duration="12246000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -205,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642701892189</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="mixed page web version 3.0">
+      <created>1642982220161</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642982220161</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

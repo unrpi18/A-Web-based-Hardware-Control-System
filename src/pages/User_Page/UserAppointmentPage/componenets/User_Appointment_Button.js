@@ -83,7 +83,7 @@ const USER_APPOINTMENT_BUTTON = () => {
 
     return <div>
         <button id='button_super' type="button" className="ALL_APPOINTMENT_ADMIN"
-                onClick={() => navigate('/')}> My Appointment
+                onClick={() => navigate('/my_appointment')}> My Appointment
         </button>
 
 

@@ -22,23 +22,17 @@
     right: 40%;
 }
 
-.USER_GROUP_MANAGEMENT_ADMIN_MAIN_PAGE {
-    position: absolute;
-    top: 28vw;
-    right: 40%;
-}
-
-.T_AND_C_UPDATE_ADMIN_MAIN_PAGE {
-    position: absolute;
-    top: 33vw;
-    right: 40%;
-}
 
 .Title_Set_Center_User_Main_Page {
     text-align: center;
     position: absolute;
-    top: 40%;
+    top: 30%;
     width: 100%;
     overflow: hidden;
     font-size: 3vw;
+}
+
+.backpic_User_Main_Page {
+    width: 70%;
+    height: 50%;
 }
