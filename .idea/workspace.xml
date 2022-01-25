@@ -4,27 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="mixed page web version 3.0">
-      <change afterPath="$PROJECT_DIR$/src/components/ButtonGroup.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
+    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="Finished with orders except for page assembling">
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Logo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Logo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/kitlogo_en_rgb.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Passwod_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_Form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/Welcome_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/Welcome_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/WelcomePage/components/Welcome_Page_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +68,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -81,6 +80,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/User_Page/User_Main_Page" />
       <recent name="$PROJECT_DIR$/src/pages/Admin_Page" />
@@ -101,6 +103,10 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -211,6 +217,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -232,6 +248,7 @@
     <MESSAGE value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
     <MESSAGE value="fixed bug" />
     <MESSAGE value="mixed page web version 3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="mixed page web version 3.0" />
+    <MESSAGE value="Finished with orders except for page assembling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished with orders except for page assembling" />
   </component>
 </project>

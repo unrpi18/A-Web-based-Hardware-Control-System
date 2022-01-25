@@ -19,7 +19,7 @@ import TablePaginationActions from "@mui/material/TablePagination/TablePaginatio
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog, TextField} from "@mui/material";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -32,16 +32,7 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const fake_data = [
-    createData(0,'Haotian1','Wu1','test1@example.com', 'active'),
-    createData(1,'Haotian2','Wu2','test2@example.com', 'active'),
-    createData(2,'Haotian3','Wu3','test3@example.com', 'active'),
-    createData(3,'Haotian4','Wu4','test4@example.com', 'inactive'),
-    createData(4,'Haotian5','Wu5','test5@example.com', 'active'),
-    createData(5,'Haotian6','Wu6','test6@example.com', 'inactive'),
-    createData(6,'Haotian7','Wu7','test7@example.com', 'active'),
-    createData(7,'Haotian8','Wu8','test8@example.com', 'inactive'),
-]
+const loading= [createData(0,'loading', 'loading', 'loading', 'loading')];
 
 
 function tablePaginationActions(props){
@@ -119,8 +110,9 @@ export default function USER_MANAGEMENT_TABLE() {
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
     const [access, setAccess] = useState('');
+    const [display_data, setDisplay_data] = useState(null);
 
-    const rows = refreshPage();
+    let rows = display_data;
 
     const first_nameOnchange =(e)=>{
         setFirst_name(e.target.value);
@@ -131,26 +123,44 @@ export default function USER_MANAGEMENT_TABLE() {
     const accessOnchange =(e)=>{
         setAccess(e.target.value);
     }
+    useEffect(() => {
+        refreshPage();
+    }, [])
+
     function refreshPage(){
 
-        const post = loginUser.token;
+        const email = "SiyannLi@outlook.com";
+        const post = {email};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/getAllUsers', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
+            mode : 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+            body : JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
+
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email, data[i].userAccountStatus);
+                }
+                setDisplay_data(standardisedData);
+            }
+            else{
+                alert(errorMessage);
+            }
 
-           //TODO
 
-            return [ /* TODO*/ ];
 
         })
-
-        return fake_data;
     }
 
     function handleOpen(first_name, last_name, email, access){
@@ -168,11 +178,18 @@ export default function USER_MANAGEMENT_TABLE() {
     }
 
     const handleSave =() =>{
-        const post = loginUser.token + {email, last_name, first_name, access};
+        const lastName = last_name;
+        const firstName = first_name;
+        const userStatus = access;
+        const post = {email, lastName,firstName,userStatus};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/resetUserInfo', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -184,9 +201,89 @@ export default function USER_MANAGEMENT_TABLE() {
         handleClose();
 
     }
+
+    function table(){
+        if(display_data === null) {
+            rows = loading;
+        }
+        return (
+        <TableContainer component={Paper} style={{height : "60vh", width : "40vw"}}>
+            <Table  aria-label="custom pagination table" style={{height : "60vh", width : "40vw"}}>
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="center">Last Name</TableCell>
+                        <TableCell align="center">First Name</TableCell>
+                        <TableCell align="center">Email</TableCell>
+                        <TableCell align="center">Options</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {(rowsPerPage > 0
+                            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            : rows
+                    ).map((row) => (
+                        <TableRow  key={row.id}>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center" component="th" scope="row">
+                                {row.first_name}
+                            </TableCell>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center">
+                                {row.last_name}
+                            </TableCell>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center">
+                                {row.email}
+                            </TableCell>
+                            <TableCell style={{ width: "1vw", height : 53 }} align="center">
+                                <IconButton aria-label="view"
+                                            disabled={rows[row.id].first_name === 'loading'}
+                                            onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
+                                    <VisibilityIcon />
+                                </IconButton>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={4} />
+                        </TableRow>
+                    )}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={5}
+                            colSpan={3}
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                                inputProps: {
+                                    'aria-label': 'rows per page',
+                                },
+                                native: true,
+                            }}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            ActionsComponent={tablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </TableContainer>
+        )
+    }
     // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    function emptyRows(){
+        if(rows.length < rowsPerPage){
+            return rowsPerPage-rows.length;
+        }
+        else if((1 + page) * rowsPerPage - rows.length > 0){
+            return (1 + page) * rowsPerPage - rows.length > 0
+        }
+        else {
+            return 0;
+        }
+    }
+
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -202,67 +299,7 @@ export default function USER_MANAGEMENT_TABLE() {
                 <Typography variant="h4" display="block" gutterBottom>
                     {table_title}
                 </Typography>
-                <TableContainer component={Paper}>
-                <Table sx={{ minWidth: '40vw', maxWidth : '40vw', minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Last Name</TableCell>
-                            <TableCell align="center">First Name</TableCell>
-                            <TableCell align="center">Email</TableCell>
-                            <TableCell align="center">Options</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {(rowsPerPage > 0
-                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : rows
-                        ).map((row) => (
-                            <TableRow  key={row.id}>
-                                <TableCell align="center" component="th" scope="row">
-                                    {row.first_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.last_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.email}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
-                                        <VisibilityIcon />
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-
-                        {emptyRows > 0 && (
-                            <TableRow style={{ height: 53 * emptyRows }}>
-                                <TableCell colSpan={6} />
-                            </TableRow>
-                        )}
-                    </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination
-                                rowsPerPageOptions={5}
-                                colSpan={3}
-                                count={rows.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                SelectProps={{
-                                    inputProps: {
-                                        'aria-label': 'rows per page',
-                                    },
-                                    native: true,
-                                }}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                ActionsComponent={tablePaginationActions}
-                            />
-                        </TableRow>
-                    </TableFooter>
-                </Table>
-            </TableContainer>
+                {table()}
             </Stack>
 
             <Dialog open={open} onClose={handleClose}>
@@ -318,7 +355,7 @@ export default function USER_MANAGEMENT_TABLE() {
                                 value={access}
                                 label="Status"
                                 onChange={accessOnchange}
-                                defaultValue={access}
+                                placeholder={access}
                             >
                                 <MenuItem value={'active'}>Active</MenuItem>
                                 <MenuItem value={'inactive'}>Inactive</MenuItem>

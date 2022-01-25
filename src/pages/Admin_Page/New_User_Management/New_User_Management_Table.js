@@ -19,7 +19,7 @@ import TablePaginationActions from "@mui/material/TablePagination/TablePaginatio
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog} from "@mui/material";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -30,16 +30,8 @@ import Typography from "@mui/material/Typography";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Stack from "@mui/material/Stack";
 
-const fake_data = [
-    createData(0,'Haotian1','Wu1','test1@example.com'),
-    createData(1,'Haotian2','Wu2','test2@example.com'),
-    createData(2,'Haotian3','Wu3','test3@example.com'),
-    createData(3,'Haotian4','Wu4','test4@example.com'),
-    createData(4,'Haotian5','Wu5','test5@example.com'),
-    createData(5,'Haotian6','Wu6','test6@example.com'),
-    createData(6,'Haotian7','Wu7','test7@example.com'),
-    createData(7,'Haotian8','Wu8','test8@example.com'),
-]
+const loading= [createData(0,'loading', 'loading', 'loading')];
+
 
 
 function tablePaginationActions(props){
@@ -116,40 +108,47 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
+    const [display_data, setDisplay_data] = useState(null);
 
-    const rows = refreshPage();
+    let rows = display_data;
+
+    useEffect(() => {
+        refreshPage();
+    }, [])
 
     function refreshPage(){
         const token = "001122";
         const email = "SiyannLi@outlook.com";
-        const post = {token, email};
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        headers.append('Access-Control-Allow-Origin', '*');
-        headers.append('Access-Control-Allow-Credentials', 'true');
-        headers.append('GET', 'POST', 'OPTIONS');
-
-
+        const post = {email};
         console.log(post);
-        fetch('http://883a-2a02-8071-22d4-5c00-b97d-b156-b3d8-cad5.ngrok.io/users/getAllAccountToBeConfirmed', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/getAllAccountToBeConfirmed', {
             mode : 'cors',
-            credentials : 'include',
             method: 'POST',
-            headers: {headers},
-            body: JSON.stringify(post)
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+            body : JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
 
-           //TODO
+                }
 
-            return [ /* TODO*/ ];
+                setDisplay_data(standardisedData);
+            }
+            else{
+                alert(errorMessage);
+            }
 
         })
-
-        return fake_data;
     }
 
     function handleOpen(first_name, last_name, email){
@@ -165,38 +164,130 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setEmail('');
     }
     function handleAccept(){
-        const post = {email};
+        const operatorEmail = "SiyannLi@outlook.com";
+        const post = {operatorEmail, email};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/confirmUserRegistration', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            refreshPage();
         })
-        refreshPage();
+
+        handleClose();
     }
     function handleReject(){
-        const post = {email};
+        const operatorEmail = "SiyannLi@outlook.com";
+        const post = {operatorEmail, email};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/rejectUserRegistration', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            refreshPage();
         })
-        refreshPage();
+
+        handleClose();
     }
 
     // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    function emptyRows(){
+        if(rows.length < rowsPerPage){
+            return rowsPerPage-rows.length;
+        }
+        else if((1 + page) * rowsPerPage - rows.length > 0){
+            return (1 + page) * rowsPerPage - rows.length > 0
+        }
+        else {
+            return 0;
+        }
+    }
+    function table(){
+        if(display_data === null) {
+            rows = loading;
+        }
+        return(
+        <TableContainer component={Paper} style={{height : "60vh", width : "40vw"}}>
+            <Table style={{height : "60vh", width : "40vw"}} aria-label="custom pagination table">
+                <TableHead>
+                    <TableRow>
+                        <TableCell align="center">Last Name</TableCell>
+                        <TableCell align="center">First Name</TableCell>
+                        <TableCell align="center">Email</TableCell>
+                        <TableCell align="center">Options</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {(rowsPerPage > 0
+                            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            : rows
+                    ).map((row) => (
+                        <TableRow  key={row.id}>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center" component="th" scope="row">
+                                {row.first_name}
+                            </TableCell>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center">
+                                {row.last_name}
+                            </TableCell>
+                            <TableCell style={{ width: "5vw" , height : 53}} align="center">
+                                {row.email}
+                            </TableCell>
+                            <TableCell style={{ width: "1vw" , height : 53}} align="center">
+                                <IconButton aria-label="view"
+                                            disabled={rows[row.id].first_name === 'loading'}
+                                            onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
+                                    <VisibilityIcon />
+                                </IconButton>
+                            </TableCell>
+                        </TableRow>
+                    ))}
 
+                    {emptyRows > 0 && (
+                        <TableRow style={{ height: 53 * emptyRows }}>
+                            <TableCell colSpan={6} />
+                        </TableRow>
+                    )}
+                </TableBody>
+                <TableFooter>
+                    <TableRow>
+                        <TablePagination
+                            rowsPerPageOptions={5}
+                            colSpan={3}
+                            count={rows.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            SelectProps={{
+                                inputProps: {
+                                    'aria-label': 'rows per page',
+                                },
+                                native: true,
+                            }}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                            ActionsComponent={tablePaginationActions}
+                        />
+                    </TableRow>
+                </TableFooter>
+            </Table>
+        </TableContainer>
+        )
+    }
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -212,67 +303,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 <Typography variant="h4" display="block" gutterBottom>
                     {table_title}
                 </Typography>
-                <TableContainer component={Paper}>
-                <Table sx={{ minWidth: '40vw', maxWidth : '40vw', minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell align="center">Last Name</TableCell>
-                            <TableCell align="center">First Name</TableCell>
-                            <TableCell align="center">Email</TableCell>
-                            <TableCell align="center">Options</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {(rowsPerPage > 0
-                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                : rows
-                        ).map((row) => (
-                            <TableRow  key={row.id}>
-                                <TableCell align="center" component="th" scope="row">
-                                    {row.first_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.last_name}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    {row.email}
-                                </TableCell>
-                                <TableCell style={{ width: 160 }} align="center">
-                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
-                                        <VisibilityIcon />
-                                    </IconButton>
-                                </TableCell>
-                            </TableRow>
-                        ))}
-
-                        {emptyRows > 0 && (
-                            <TableRow style={{ height: 53 * emptyRows }}>
-                                <TableCell colSpan={6} />
-                            </TableRow>
-                        )}
-                    </TableBody>
-                    <TableFooter>
-                        <TableRow>
-                            <TablePagination
-                                rowsPerPageOptions={5}
-                                colSpan={3}
-                                count={rows.length}
-                                rowsPerPage={rowsPerPage}
-                                page={page}
-                                SelectProps={{
-                                    inputProps: {
-                                        'aria-label': 'rows per page',
-                                    },
-                                    native: true,
-                                }}
-                                onPageChange={handleChangePage}
-                                onRowsPerPageChange={handleChangeRowsPerPage}
-                                ActionsComponent={tablePaginationActions}
-                            />
-                        </TableRow>
-                    </TableFooter>
-                </Table>
-            </TableContainer>
+                {table()}
             </Stack>
 
             <Dialog open={open} onClose={handleClose}>

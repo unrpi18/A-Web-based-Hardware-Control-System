@@ -19,7 +19,7 @@ import TablePaginationActions from "@mui/material/TablePagination/TablePaginatio
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog} from "@mui/material";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -28,16 +28,20 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
 import DeleteIcon from '@mui/icons-material/Delete';
-const fake_data = [
-    createData(0,'Haotian1','Wu1','test1@example.com','2022-01-22','08:00-10:00'),
-    createData(1,'Haotian2','Wu2','test2@example.com','2022-01-22','10:00-12:00'),
-    createData(2,'Haotian3','Wu3','test3@example.com','2022-01-22','12:00-14:00'),
-    createData(3,'Haotian4','Wu4','test4@example.com','2022-01-22','14:00-16:00'),
-    createData(4,'Haotian5','Wu5','test5@example.com','2022-01-22','16:00-18:00'),
-    createData(5,'Haotian6','Wu6','test6@example.com','2022-01-22','18:00-20:00'),
-    createData(6,'Haotian7','Wu7','test7@example.com','2022-01-23','08:00-10:00'),
-    createData(7,'Haotian8','Wu8','test8@example.com','2022-01-23','10:00-12:00'),
+const loading = [
+    createData(0,'loading','loading','loading','loading',-999)
 ]
+function convertIDtoSlot(id){
+    switch (id){
+        case 0 : return '08:00-10:00';
+        case 1 : return '10:00-12:00';
+        case 2 : return '12:00-14:00';
+        case 3 : return '14:00-16:00';
+        case 4 : return '16:00-18:00';
+        default : return '18:00-20:00';
+    }
+}
+
 
 
 function tablePaginationActions(props){
@@ -116,27 +120,40 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
     const [date, setDate] = useState('');
-    const [time_slot, setTime_slot] = useState('');
+    const [time_slot, setTime_slot] = useState();
+    const [display_data, setDisplay_data] = useState(loading);
 
-    const rows = refreshPage();
+    let rows = display_data;
 
-    function refreshPage(post){
+    useEffect(() => {
+        refreshPage();
+    }, [])
 
-        console.log(post);
-        fetch('http://6ef0-2a02-8071-2bf0-7b00-148a-362d-bb4f-6639.ngrok.io/appointments/getAllAppointments', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
+    function refreshPage(){
+
+
+
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/timeslots/getBookedTimeSlot', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            //last name, first name, email, date, timeslot
-            //Wu, Haotian, 111@126.com, 2022-01-26,0
+            let data = responseJson.data;
+            let standarisedData = [];
+            if(resultCode === 200){
+                for(let i = 0; i < data.length; i++){
+                    standarisedData[i] = createData(i, data[i].user.firstName,  data[i].user.lastName, data[i].user.email, data[i].timeSlotDate, data[i].slot)
+                }
+                setDisplay_data(standarisedData);
+            }
 
         })
-
-        return fake_data;
     }
 
     function handleOpen(first_name, last_name, email, date, time_slot){
@@ -155,9 +172,10 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     }
 
     const handleConfirm =() =>{
-        const post = {email,date,time_slot};
+        const slot = time_slot;
+        const post = {date,slot};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/appointments/deleteAppointment', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
@@ -166,8 +184,9 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             //TODO
+            refreshPage();
         })
-        refreshPage(null);
+
         handleClose();
 
     }
@@ -182,7 +201,82 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const display_msg = 'Do you want to cancel the appointment of ' + first_name + ' ' + last_name + '[' + email + '] on ' + date +' during '+ time_slot +'  ?';
+
+    function table(){
+
+        return(
+            <TableContainer component={Paper}>
+                <Table sx={{ minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">First Name</TableCell>
+                            <TableCell align="center">Last Name</TableCell>
+                            <TableCell align="center">Email</TableCell>
+                            <TableCell align="center">Date</TableCell>
+                            <TableCell align="center">Time Slot</TableCell>
+                            <TableCell align="center">Options</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {(rowsPerPage > 0
+                                ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                                : rows
+                        ).map((row) => (
+                            <TableRow  key={row.id}>
+                                <TableCell style={{ width: 160 }} align="center" component="th" scope="row">
+                                    {row.first_name}
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center">
+                                    {row.last_name}
+                                </TableCell>
+                                <TableCell style={{ width: 160 }} align="center">
+                                    {row.email}
+                                </TableCell>
+                                <TableCell style={{ width: 100 }} align="center">
+                                    {row.date}
+                                </TableCell>
+                                <TableCell style={{ width: 100 }} align="center">
+                                    {convertIDtoSlot(row.timeslot)}
+                                </TableCell>
+                                <TableCell style={{ width: 40 }} align="center">
+                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+
+                        {emptyRows > 0 && (
+                            <TableRow style={{ height: 53 * emptyRows }}>
+                                <TableCell colSpan={6} />
+                            </TableRow>
+                        )}
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow >
+                            <TablePagination
+                                rowsPerPageOptions={5}
+                                colSpan={3}
+                                count={rows.length}
+                                rowsPerPage={rowsPerPage}
+                                page={page}
+                                SelectProps={{
+                                    inputProps: {
+                                        'aria-label': 'rows per page',
+                                    },
+                                    native: true,
+                                }}
+                                onPageChange={handleChangePage}
+                                onRowsPerPageChange={handleChangeRowsPerPage}
+                                ActionsComponent={tablePaginationActions}
+                            />
+                        </TableRow>
+                    </TableFooter>
+                </Table>
+            </TableContainer>
+        )
+    }
+    const display_msg = 'Do you want to cancel the appointment of ' + first_name + ' ' + last_name + '[' + email + '] on ' + date +' during '+ convertIDtoSlot(time_slot) +'  ?';
     const table_title = 'All Appointments'
     return (
         <div>
@@ -190,75 +284,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 <Typography variant="h4" display="block" gutterBottom>
                     {table_title}
                 </Typography>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center">First Name</TableCell>
-                                <TableCell align="center">Last Name</TableCell>
-                                <TableCell align="center">Email</TableCell>
-                                <TableCell align="center">Date</TableCell>
-                                <TableCell align="center">Time Slot</TableCell>
-                                <TableCell align="center">Options</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {(rowsPerPage > 0
-                                    ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    : rows
-                            ).map((row) => (
-                                <TableRow  key={row.id}>
-                                    <TableCell style={{ width: 160 }} align="center" component="th" scope="row">
-                                        {row.first_name}
-                                    </TableCell>
-                                    <TableCell style={{ width: 160 }} align="center">
-                                        {row.last_name}
-                                    </TableCell>
-                                    <TableCell style={{ width: 160 }} align="center">
-                                        {row.email}
-                                    </TableCell>
-                                    <TableCell style={{ width: 100 }} align="center">
-                                        {row.date}
-                                    </TableCell>
-                                    <TableCell style={{ width: 100 }} align="center">
-                                        {row.timeslot}
-                                    </TableCell>
-                                    <TableCell style={{ width: 40 }} align="center">
-                                        <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </TableCell>
-                                </TableRow>
-                            ))}
-
-                            {emptyRows > 0 && (
-                                <TableRow style={{ height: 53 * emptyRows }}>
-                                    <TableCell colSpan={6} />
-                                </TableRow>
-                            )}
-                        </TableBody>
-                        <TableFooter>
-                            <TableRow >
-                                <TablePagination
-                                    rowsPerPageOptions={5}
-                                    colSpan={3}
-                                    count={rows.length}
-                                    rowsPerPage={rowsPerPage}
-                                    page={page}
-                                    SelectProps={{
-                                        inputProps: {
-                                            'aria-label': 'rows per page',
-                                        },
-                                        native: true,
-                                    }}
-                                    onPageChange={handleChangePage}
-                                    onRowsPerPageChange={handleChangeRowsPerPage}
-                                    ActionsComponent={tablePaginationActions}
-                                />
-                            </TableRow>
-                        </TableFooter>
-                    </Table>
-                </TableContainer>
+                {table()}
             </Stack>
 
             <Dialog open={open} onClose={handleClose}>

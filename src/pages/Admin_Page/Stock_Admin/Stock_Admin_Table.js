@@ -33,36 +33,10 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 
-const fake_data = [
-    createData(0,'Haotian1','Wu1','test1@example.com'),
-    createData(1,'Haotian2','Wu2','test2@example.com'),
-    createData(2,'Haotian3','Wu3','test3@example.com'),
-    createData(3,'Haotian4','Wu4','test4@example.com'),
-    createData(4,'Haotian5','Wu5','test5@example.com'),
-    createData(5,'Haotian6','Wu6','test6@example.com'),
-    createData(6,'Haotian7','Wu7','test7@example.com'),
-    createData(7,'Haotian8','Wu8','test8@example.com'),
-]
-function refreshPage(post, url) {
-    console.log(post);
-    fetch('192.168.1.1', {
-        method: 'POST',
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(post)
-    }).then(response => response.json()).then(responseJson => {
-        console.log(responseJson);
-        let resultCode = responseJson.resultCode;
-        let errorMessage = responseJson.message;
-
-        // TODO
-
-        return [ /* TODO*/];
+const loading = [
+    createData(0,'NA','NA','NA')]
 
 
-    })
-
-    return fake_data;
-}
 
 function tablePaginationActions(props){
     const theme = useTheme;
@@ -142,9 +116,9 @@ export default function STOCK_ADMIN_TABLE() {
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
     const [link, setLink] = useState('');
-    const [data, setData] = useState(null);
+    const [displayData, setDisplayData] = useState(null);
 
-    const rows = fake_data;
+    let rows = displayData;
 
     function handleEditOpen(item, amount) {
         setItem(item);
@@ -195,47 +169,93 @@ export default function STOCK_ADMIN_TABLE() {
     }
 
     useEffect(()=>{
-        refreshPage({}, "test")
+        refreshPage();
     })
 
+    function refreshPage() {
+
+        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/getAllItems', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+        }).then(response => response.json()).then(responseJson => {
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createData(i, data[i].itemName, data[i].amount, data[i].link);
+                }
+                setDisplayData(standardisedData);
+            }
+            else{
+                alert(errorMessage);
+            }
+
+
+        })
+
+
+    }
 
     const handleEditConfirm = ()=>{
-        const post = {item, amount, link};
+        const itemName = item;
+        const post = {itemName, amount};
         console.log(post);
-        fetch ('192.168.1.1',{
+        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/changeItemAmount',{
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
         })
-        // TODO refresh page
+        refreshPage();
         handleEditClose();
     }
     const handleRemoveConfirm = () => {
-        const post = {item, link};
+        const itemName = item;
+        const post = {itemName};
         console.log(post);
-        fetch ('192.168.1.1',{
+        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/deleteItem',{
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
         })
-        // TODO refresh page
+        refreshPage();
         handleRemoveClose();
     }
     const handleAddConfirm = () => {
-        const post = {item, amount, link};
+
+        const itemName = item;
+        const description = 'aaa';
+        const post = {itemName, amount, link,description};
         console.log(post);
-        fetch ('192.168.1.1',{
+        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/addItem',{
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
         })
-        // TODO refresh page
+        refreshPage();
         handleAddClose();
     }
 
@@ -254,6 +274,9 @@ export default function STOCK_ADMIN_TABLE() {
 
     const table_title = 'All Items in Stock'
     const stock_table = ()=>{
+        if(displayData === null){
+            rows = loading;
+        }
         return (
             <TableContainer component={Paper} sx ={{minWidth: '50vw', maxWidth: '50vw', minHeight: '60vh', maxHeight: '60vh'}} >
                 <Table sx={{minWidth: '50vw', maxWidth: '50vw', minHeight: '50vh', maxHeight: '50vh'}}

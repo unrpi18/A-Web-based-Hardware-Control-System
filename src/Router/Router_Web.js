@@ -23,6 +23,7 @@ import TERMS_AND_CONDITIONS_UPDATE from "../pages/Admin_Page/Terms_And_Condition
 import STOCK_ADMIN from "../pages/Admin_Page/Stock_Admin/Stock_Admin";
 
 import STOCK_ORDER_NAVI_PAGE from "../pages/Admin_Page/Stock_Order_Navi_Page_Admin/Stock_Order_Navi_Page";
+import ACTIVE_ORDER_ADMIN from "../pages/Admin_Page/Order_Admin/Active_Order_Admin";
 
 
 function Router_Web() {
@@ -51,6 +52,7 @@ function Router_Web() {
                 <Route path='t_and_c_update' element ={<TERMS_AND_CONDITIONS_UPDATE/>}/>
                 <Route path='stock_admin' element ={<STOCK_ADMIN/>}/>
                 <Route path='stock_and_order_admin_navi' element ={<STOCK_ORDER_NAVI_PAGE/>}/>
+                <Route path='active_order_admin' element = {<ACTIVE_ORDER_ADMIN/>}/>
             </Routes>
 
         </UserContext.Provider>
