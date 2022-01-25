@@ -12,6 +12,8 @@
       <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco_logo.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/kitlogo_en_rgb.pdf" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin.js" afterDir="false" />
+    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="mixed page web version 3.0">
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.css" afterDir="false" />
@@ -23,6 +25,12 @@
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +92,8 @@
       <recent name="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page" />
+      <recent name="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components" />
       <recent name="$PROJECT_DIR$/src/pages/User_Page/User_Main_Page" />
       <recent name="$PROJECT_DIR$/src/pages/Admin_Page" />
       <recent name="$PROJECT_DIR$/src/pages/MixedPage" />
@@ -132,7 +142,12 @@
       <workItem from="1642701900598" duration="2000" />
       <workItem from="1642702081477" duration="1000" />
       <workItem from="1642779847527" duration="14000" />
-      <workItem from="1642981874959" duration="338000" />
+      <workItem from="1642981874959" duration="351000" />
+      <workItem from="1642982280170" duration="15000" />
+      <workItem from="1642982508074" duration="217000" />
+      <workItem from="1643061533155" duration="12246000" />
+      <workItem from="1643075010077" duration="120000" />
+      <workItem from="1643112438478" duration="8588000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -211,7 +226,21 @@
       <option name="project" value="LOCAL" />
       <updated>1642701892189</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="mixed page web version 3.0">
+      <created>1642982220161</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1642982220161</updated>
+    </task>
+    <task id="LOCAL-00013" summary="mixed page web version 3.0">
+      <created>1643075080042</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643075080043</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

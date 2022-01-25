@@ -19,6 +19,7 @@ import ALL_APPOINTMENT_ADMIN from "../pages/Admin_Page/All_Appointment_Admin/All
 
 import NotFound from "./NotFound";
 import USER_GROUP_NAVI_PAGE from "../pages/Admin_Page/User_Group_Navi_Page/User_Group_Navi_Page";
+import MY_APPOINTMENT_PAGE from "../pages/User_Page/My_Appointment_Page/My_Appointment_Page";
 import TERMS_AND_CONDITIONS_UPDATE from "../pages/Admin_Page/Terms_And_Conditions_Update/Terms_And_Conditions_Update";
 import STOCK_ADMIN from "../pages/Admin_Page/Stock_Admin/Stock_Admin";
 
@@ -39,9 +40,11 @@ function Router_Web() {
                 <Route path="register" element={<REGISTER_PAGE/>}/>
                 <Route path="login" element={<LOGIN_PAGE/>}/>
                 <Route path="forget_password" element={<FORGET_PASSWORD_PAGE/>}/>
-                <Route path='user_main_page' element={loginUser.isLogged ? <USER_MAIN_PAGE/> : <NotFound/>}/>
+                <Route path='user_main_page' element={<USER_MAIN_PAGE/>}/>
                 <Route path='user_appointment_page' element={<USER_APPOINTMENT_PAGE/>}/>
                 <Route path='user_account_info' element={<USER_ACCOUNT_PAGE/>}/>
+                <Route path='my_appointment' element={<MY_APPOINTMENT_PAGE/>}/>
+
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
                 <Route path='new_user_management' element={<New_User_Management/>}/>
@@ -53,6 +56,7 @@ function Router_Web() {
                 <Route path='stock_admin' element ={<STOCK_ADMIN/>}/>
                 <Route path='stock_and_order_admin_navi' element ={<STOCK_ORDER_NAVI_PAGE/>}/>
                 <Route path='active_order_admin' element = {<ACTIVE_ORDER_ADMIN/>}/>
+                <Route path='user_group_navi_page' element={<USER_GROUP_NAVI_PAGE/>}/>
             </Routes>
 
         </UserContext.Provider>

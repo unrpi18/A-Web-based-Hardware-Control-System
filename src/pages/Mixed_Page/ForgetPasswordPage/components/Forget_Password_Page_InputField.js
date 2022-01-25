@@ -38,7 +38,7 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
 
             const userPassword = sha256(data.password.toString()).toString();
 
-            const post = data.email + userPassword + data.verifyCode
+            const post = {email: data.email, userPassword, verifyCode: data.verifyCode};
 
 
             console.log(post);
@@ -54,7 +54,7 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
                 if (message === "SUCCESS") {
                     navigate('/login');
                 } else {
-                    alert("the verification code is incorrect.");
+                    alert(message);
                 }
 
             })

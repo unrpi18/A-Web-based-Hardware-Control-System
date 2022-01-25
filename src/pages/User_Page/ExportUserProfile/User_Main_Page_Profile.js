@@ -12,6 +12,8 @@ import {useNavigate} from "react-router";
 import '../ExportUserProfile/User_Profile_Style.css'
 import {useContext} from "react";
 import {UserContext} from "../../../contexts/RegisterContext";
+import {green} from "@material-ui/core/colors";
+import {useRefreshControlGet, useRefreshControlSet} from "../checkMethod/storeDataPersistance";
 
 const USER_MAIN_PAGE_PROFILE = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -28,6 +30,8 @@ const USER_MAIN_PAGE_PROFILE = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+
     return (<form className='IconPosition_User_main_page'>
         <React.Fragment>
             <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>
@@ -40,7 +44,12 @@ const USER_MAIN_PAGE_PROFILE = () => {
                         aria-haspopup="true"
                         aria-expanded={open ? 'true' : undefined}
                     >
-                        <Avatar sx={{width: 70, height: 70}}>{loginUser.firstName}</Avatar>
+                        <Avatar sx={{
+                            width: 70,
+                            height: 70,
+                            color: 'black',
+                            backgroundColor: '#009682'
+                        }}>{loginUser.firstName}</Avatar>
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -77,7 +86,7 @@ const USER_MAIN_PAGE_PROFILE = () => {
             >
 
                 <MenuItem onClick={() => handleProfileNavigate('/user_account_info')}>
-                    <Avatar/> My account
+                    <Avatar sx={{bgcolor: green[500]}}/> My account
                 </MenuItem>
                 <Divider/>
 
