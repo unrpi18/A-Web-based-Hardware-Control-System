@@ -65,7 +65,7 @@ export default function ADMIN_NAVI_PANEL() {
                     </ListItemIcon>
                     <ListItemText primary = 'User Group' />
                 </ListItem>
-                <ListItem button >
+                <ListItem button onClick={()=>navigate("/t_and_c_update")}>
                     <ListItemIcon>
                         <ArticleIcon />
                     </ListItemIcon>

@@ -120,12 +120,23 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     const rows = refreshPage();
 
     function refreshPage(){
+        const token = "001122";
+        const email = "SiyannLi@outlook.com";
+        const post = {token, email};
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('Access-Control-Allow-Origin', '*');
+        headers.append('Access-Control-Allow-Credentials', 'true');
+        headers.append('GET', 'POST', 'OPTIONS');
 
-        const post = loginUser.token;
+
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch('http://883a-2a02-8071-22d4-5c00-b97d-b156-b3d8-cad5.ngrok.io/users/getAllAccountToBeConfirmed', {
+            mode : 'cors',
+            credentials : 'include',
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {headers},
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
