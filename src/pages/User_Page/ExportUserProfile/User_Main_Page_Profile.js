@@ -12,7 +12,7 @@ import {useNavigate} from "react-router";
 import '../ExportUserProfile/User_Profile_Style.css'
 import {useContext} from "react";
 import {UserContext} from "../../../contexts/RegisterContext";
-import {green} from "@material-ui/core/colors";
+import {green, purple} from "@material-ui/core/colors";
 import {useRefreshControlGet, useRefreshControlSet} from "../checkMethod/storeDataPersistance";
 
 const USER_MAIN_PAGE_PROFILE = () => {
@@ -87,6 +87,10 @@ const USER_MAIN_PAGE_PROFILE = () => {
 
                 <MenuItem onClick={() => handleProfileNavigate('/user_account_info')}>
                     <Avatar sx={{bgcolor: green[500]}}/> My account
+                </MenuItem>
+
+                <MenuItem onClick={() => handleProfileNavigate('/my_appointment')}>
+                    <Avatar sx={{bgcolor: purple[500]}}/> My Appointment
                 </MenuItem>
                 <Divider/>
 

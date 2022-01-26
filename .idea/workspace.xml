@@ -4,33 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="Finished with orders except for page assembling">
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Logo.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Logo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/Teco_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/logos/kitlogo_en_rgb.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin.js" afterDir="false" />
-    <list default="true" id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="mixed page web version 3.0">
-      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" afterDir="false" />
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="mixed page web version 3.0">
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/User_Stock_Page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/User_Stock_Page_Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/logos/Logo.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/logos/Logo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/My_Appointment_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/My_Appointment_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/My_Appointment_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/User_Account_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/User_Account_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/User_Account_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Account_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Account_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/User_Appointment_Page.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/User_Appointment_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/User_Appointment_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Button.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_Text.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +81,6 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -88,9 +92,6 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/pages/User_Page/My_Appointment_Page" />
       <recent name="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components" />
@@ -113,15 +114,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="JavaScript Debug.Debug Application" />
-      <item itemvalue="npm.npm start" />
-    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
+      <changelist id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="" />
       <created>1642344478416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -148,6 +145,8 @@
       <workItem from="1643061533155" duration="12246000" />
       <workItem from="1643075010077" duration="120000" />
       <workItem from="1643112438478" duration="8588000" />
+      <workItem from="1643162572379" duration="159000" />
+      <workItem from="1643163594300" duration="22000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -246,16 +245,6 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="Vcs.Log.History.Properties">
-    <option name="COLUMN_ID_ORDER">
-      <list>
-        <option value="Default.Root" />
-        <option value="Default.Author" />
-        <option value="Default.Date" />
-        <option value="Default.Subject" />
-      </list>
-    </option>
-  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -277,7 +266,6 @@
     <MESSAGE value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
     <MESSAGE value="fixed bug" />
     <MESSAGE value="mixed page web version 3.0" />
-    <MESSAGE value="Finished with orders except for page assembling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished with orders except for page assembling" />
+    <option name="LAST_COMMIT_MESSAGE" value="mixed page web version 3.0" />
   </component>
 </project>
