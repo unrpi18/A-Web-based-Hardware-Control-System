@@ -31,7 +31,7 @@ const useFetch = () => {
 }
 
 export function USER_STOCK_VIEW() {
-    const columns: GridColDef[] = [{
+    const columns = [{
         field: 'itemName',
         headerName: 'Article',
         width: 70,

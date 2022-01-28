@@ -46,10 +46,6 @@ const useFetchData = () => {
 
                 setRows(rows => ({...rows, data: responseJson.data}))
                 console.log(responseJson.data.length)
-                for (let i = 0; i < responseJson.data.length; i++) {
-                 
-                }
-
 
             } else {
                 alert(message);
@@ -64,7 +60,8 @@ const useFetchData = () => {
 
 
 const MY_APPOINTMENT_VIEW = () => {
-    const columns: GridColDef[] = [{
+
+    const columns = [{
         field: 'timeSlotId',
         headerName: 'slot id',
         width: 70,
