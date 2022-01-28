@@ -22,6 +22,7 @@ import MY_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/My_Appointment_P
 import USER_STOCK_PAGE from "../pages/User_Page/StocksAndOrders/User_Stock_Page/User_Stock_Page";
 import USER_SUBMIT_PAGE from "../pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page";
 import USER_ACTIVE_ORDER from "../pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order";
+import USER_PAST_ORDER from "../pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order";
 
 
 function Router_Web() {
@@ -45,6 +46,7 @@ function Router_Web() {
                 <Route path='stock_view' element={<USER_STOCK_PAGE/>}/>
                 <Route path='submit_order' element={<USER_SUBMIT_PAGE/>}/>
                 <Route path='active_order' element={<USER_ACTIVE_ORDER/>}/>
+                <Route path='past_order' element={<USER_PAST_ORDER/>}/>
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
                 <Route path='new_user_management' element={<New_User_Management/>}/>

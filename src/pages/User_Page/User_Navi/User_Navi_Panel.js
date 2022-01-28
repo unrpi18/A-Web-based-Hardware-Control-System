@@ -90,7 +90,7 @@ const USER_NAVI_PANEL = () => {
                                 },
                                 {
                                     "text": 'Past Order',
-                                    "url": '/stock_view',
+                                    "url": '/past_order',
                                 },
                                 {
                                     "text": 'Submit Order',

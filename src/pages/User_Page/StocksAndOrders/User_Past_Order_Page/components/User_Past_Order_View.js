@@ -1,14 +1,13 @@
-import {DataGrid} from "@mui/x-data-grid";
-import React, {useContext, useEffect, useState} from "react";
-import Typography from "@mui/material/Typography";
-import {useNavigate} from "react-router";
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
+import {Link} from "@material-ui/core";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import '../User_Active_Order_Style.css'
-import {Link} from "@material-ui/core";
+import React, {useContext, useEffect, useState} from "react";
+import Typography from "@mui/material/Typography";
+import {DataGrid} from "@mui/x-data-grid";
+import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
+import {useNavigate} from "react-router";
 
-const USER_ACTIVE_ORDER_VIEW = () => {
+const USER_PAST_ORDER_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
 
 
@@ -21,7 +20,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
 
         console.log(post)
         useEffect(() => {
-            fetch(baseUrl + "/orders/getUserActiveOrders", {
+            fetch(baseUrl + "/orders/getUserPastOrders", {
                 method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
                 console.log(responseJson.data)
@@ -57,61 +56,14 @@ const USER_ACTIVE_ORDER_VIEW = () => {
                     </Link>
                 </>),
         },
-        {field: 'orderStatus', headerName: 'Status', width: 130, headerAlign: 'center'},
-        {
-            field: 'action', headerName: 'Action', sortable: false, renderCell: (param) => (<>
-                <IconButton aria-label="view" sx={{
-                    color: handleCancelButtonColor(param) ? 'black' : 'grey'
-                }} onClick={() => handleCancel(param)}>
-                    <DeleteIcon/>
-                </IconButton>
-            </>),
-        },
+        {field: 'orderStatus', headerName: 'Status', width: 300, headerAlign: 'center'},
 
     ];
-    const handleCancel = (user) => {
-        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === user.id))
-        let orderId = waitedCancelData[0].orderId
-
-        const post = {orderId};
-        if (handleCancelButtonColor(user)) {
-            fetch(baseUrl + "/orders/deleteOrder", {
-                method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-
-                let message = responseJson.message;
-
-                if (message === "SUCCESS") {
-                    let newData = (rows.data.filter((rowData) => rowData.orderId !== user.id))
-                    setRows(rows => ({...rows, data: newData}))
-
-
-                } else {
-                    alert(message);
-
-                }
-
-            })
-        } else {
-            alert("you can not delete the confirmed order")
-        }
-
-
-    }
-
-    const handleCancelButtonColor = (user) => {
-        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === user.id))
-        let status = waitedCancelData[0].orderStatus
-        console.log(status)
-        return status === 'PENDING';
-
-    }
 
     const handleLink = (user) => {
         let waitedData = (rows.data.filter((rowData) => rowData.orderId === user.id))
         return waitedData[0].itemLink;
     }
-
     console.log(rows)
 
     return (
@@ -121,7 +73,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
             <Typography variant="h4" display="block" align='center' sx={{
                 color: '#009682'
             }} gutterBottom>
-                Below is a view of active orders for you.
+                Below is a view of past orders for you.
             </Typography>
             <DataGrid rows={rows.data} columns={columns} pageSize={5} rowHeight={150}
                       id='orderId'
@@ -151,4 +103,4 @@ const USER_ACTIVE_ORDER_VIEW = () => {
     );
 }
 
-export default USER_ACTIVE_ORDER_VIEW
+export default USER_PAST_ORDER_VIEW

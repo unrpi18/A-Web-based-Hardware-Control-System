@@ -21,11 +21,11 @@ const USER_SUBMIT_PAGE_FORM = () => {
         let email = loginUser.email;
         let itemName = data.itemName;
         let amount = data.amount;
-        let link = data.link;
-        let contact = data.contact;
+        let itemLink = data.link;
+        let contactEmail = data.contact;
         let description = data.description;
         if (nullCheck) {
-            const post = {itemName, amount, link, contact, description, email}
+            const post = {itemName, amount, itemLink, contactEmail, description, email}
 
 
             console.log(post);
@@ -112,6 +112,7 @@ const USER_SUBMIT_PAGE_FORM = () => {
                             name={input.text.replace(input.text[0], input.text[0].toLowerCase())}
                             type={input.type}
                             value={input.value}
+                            key={input.text}
                             id="outlined-required"
                             label={input.text}
                             inputProps={{
