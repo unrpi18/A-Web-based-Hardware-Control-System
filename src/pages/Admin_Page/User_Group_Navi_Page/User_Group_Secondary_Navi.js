@@ -18,7 +18,7 @@ export default function USER_GROUP_SECONDARY_NAVI(){
     return (
             <ButtonGroup orientation="vertical">
                 <Button variant = "contained" onClick= {()=>navigate('/new_user_management')}>Registration Requests Management</Button>
-                <Button variant = "contained" onClick= {()=>tokenTest('/user_management')}>Users Management</Button>
+                <Button variant = "contained" onClick= {()=>navigate('/user_management')}>Users Management</Button>
                 <Button variant = "contained" disabled = {false} onClick= {()=>navigate('/admin_management')}>Administrators Management</Button>
             </ButtonGroup>
     )

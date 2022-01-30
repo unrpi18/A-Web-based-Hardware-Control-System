@@ -1,7 +1,3 @@
-
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,11 +7,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog, TextField} from "@mui/material";
@@ -29,78 +20,39 @@ import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import {url} from "../Navi_base"
+import {Autocomplete} from "@mui/lab";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import tablePaginationActions from "../Component/Table_Control";
 
-const loading= [createData(0,'loading', 'loading', 'loading')];
+// default data by loading / no admins
+const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
+const user_no_data = [createUserData(0, 'N/A')]
 
-
-
-function tablePaginationActions(props){
-    const theme = useTheme;
-    const { count, page, rowsPerPage, onPageChange } = props;
-
-    const handleFirstPageButtonClick = (event) => {
-        onPageChange(event, 0);
-    };
-
-    const handleBackButtonClick = (event) => {
-        onPageChange(event, page - 1);
-    };
-
-    const handleNextButtonClick = (event) => {
-        onPageChange(event, page + 1);
-    };
-
-    const handleLastPageButtonClick = (event) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
-
-    return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
-    );
-}
-
-TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-};
-
+/**
+ * generate a datum which contains the profile of an administrator
+ * @param id automatic generated ID
+ * @param first_name first name of the admin
+ * @param last_name last name of the admin
+ * @param email email of the admin
+ * @returns {{last_name, id, first_name, email}} datum which contains the profile of an admin
+ */
 function createData(id, first_name, last_name, email) {
     return {id, first_name, last_name, email };
 }
 
+/**
+ * method for converting fetched user data into options in autocomplete when adding new admin
+ * @param id automatic generated ID
+ * @param entry email of a user
+ * @returns {{entry, id}} options containing the email of a user
+ */
+function createUserData(id, entry){
+    return {id, entry};
+}
 
 export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
+    //state var
     const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -109,35 +61,55 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
     const [add_open, setAdd_open] = useState(false);
-    const [display_data, setDisplay_data] = useState(null);
+    const [display_data, setDisplay_data] = useState(no_data);
+    const [fetched_data, setFetched_data] = useState(no_data)
+    const [filter_open, setFilter_open] = useState(false);
+    const [filter_keyword, setFilter_keyword] = useState('');
+    const [user_data, setUser_data] = useState(user_no_data);
 
-    let rows = display_data;
-    function handleAddOpen(){
-        setAdd_open(true);
-    }
-    function handleAddClose(){
-        setAdd_open(false);
-    }
-    const emailOnchange =(e)=>{
-        setEmail(e.target.value);
-    }
+
+    //Global functions
     useEffect(() => {
         refreshPage();
     }, [])
-    function refreshPage(){
+    function fetchUser(){
 
-        const email = "SiyannLi@outlook.com";
-        const post = {email};
-        console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/getAllAdministrator', {
-            method: 'POST',
+        fetch(url + '/users/getAllUsers', {
+            method: 'GET',
             mode : 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
-            },
-            body : JSON.stringify(post)
+            }
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createUserData(i, data[i].email);
+                }
+                setUser_data(standardisedData);
+            }
+            else{
+                alert(errorMessage);
+            }
+
+        })
+    }
+    function refreshPage(){
+        fetchUser();
+        fetch(url + '/users/getAllAdministrator', {
+            method: 'GET',
+            mode : 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
@@ -148,6 +120,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
                 }
+                setFetched_data(standardisedData);
                 setDisplay_data(standardisedData);
             }
             else{
@@ -158,6 +131,8 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
 
     }
 
+    // Remove Admin relevant methods
+    const display_msg = 'Do you want to remove the administrator access of ' + first_name + ' ' + last_name + '[' + email + '] ?'
     function handleOpen(first_name, last_name, email){
         setFirst_name(first_name);
         setLast_name(last_name);
@@ -170,33 +145,27 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         setLast_name('');
         setEmail('');
     }
-    function handleAdd(){
-        const operatorEmail = "SiyannLi@outlook.com"
-        const post = {operatorEmail,email};
-        console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/insertAdmin', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
-            },
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-            //TODO
-            refreshPage();
-        })
-
-        handleAddClose();
+    function deleteDialog(){
+        return(
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Remove Administrator</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        {display_msg}
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={handleConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
     }
     const handleConfirm =() =>{
         const operatorEmail = "teco@teco.com"
         const post = {operatorEmail,email};
         console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/revokeAdmin', {
+        fetch(url + '/users/revokeAdmin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -215,7 +184,134 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         handleClose();
 
     }
-    // Avoid a layout jump when reaching the last page with empty rows.
+
+    //Add Admin relevant methods
+    function handleAddOpen(){
+        setAdd_open(true);
+    }
+    function handleAddClose(){
+        setAdd_open(false);
+    }
+    function handleAdd(){
+        const operatorEmail = "SiyannLi@outlook.com"
+        const post = {operatorEmail,email};
+        console.log(post);
+        fetch(url + '/users/insertAdmin', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+            body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            //TODO
+            refreshPage();
+        })
+
+        handleAddClose();
+    }
+    function addDialog(){
+        return(
+            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
+                <DialogTitle>Add Administrator</DialogTitle>
+                <DialogContent>
+                    <Autocomplete
+                        id="free-solo-demo"
+                        freeSolo
+                        options={user_data.map((option) => option.entry)}
+                        renderInput={(params) => <TextField {...params} label="Email" />}
+                        value={email}
+                        onChange={(event, newEmail) => {
+                            setEmail(newEmail);
+                        }}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAddClose}>Close</Button>
+                    <Button onClick={handleAdd}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    // Filter function relevant methods
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    function handleFilter_close(){
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].first_name.toString().includes(keyword)
+                    || fetched_data[i].last_name.toString().includes(keyword)
+                    || fetched_data[i].email.toString().includes(keyword)){
+                    filteredData[count] = fetched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
+
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : name/email"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
+    }
+
+    // Page Settings
     function emptyRows(){
         if(rows.length < rowsPerPage){
             return rowsPerPage-rows.length;
@@ -227,7 +323,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             return 0;
         }
     }
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -235,11 +330,19 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-    const display_msg = 'Do you want to remove the administrator access of ' + first_name + ' ' + last_name + '[' + email + '] ?'
-    const table_title = 'All Administrators'
+
+    //Table which serve as the vessel of data display
+    function table_title(){
+        return(
+            <Typography variant="h4" display="block" gutterBottom>
+                All Administrators
+            </Typography>
+            )
+    }
+    let rows = display_data;
     function table(){
         if(display_data === null){
-            rows = loading;
+            rows = no_data;
         }
         return(
             <TableContainer component={Paper} style={{height : "60vh", width : "40vw"}}>
@@ -269,7 +372,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                                 </TableCell>
                                 <TableCell style={{ width: "1vw", height : 53 }} align="center">
                                     <IconButton aria-label="view"
-                                                disabled={rows[row.id].first_name === 'loading'}
+                                                disabled={rows[row.id].first_name === 'N/A'}
                                                 onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
                                         <PersonRemoveIcon />
                                     </IconButton>
@@ -287,6 +390,10 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                         <TableRow >
                             <IconButton aria-label="view" size="large" onClick={handleAddOpen}>
                                 <PersonAddIcon />
+                            </IconButton>
+                            <IconButton
+                                onClick={()=>handleFilter_open()}>
+                                <FilterListIcon />
                             </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
@@ -310,51 +417,17 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             </TableContainer>
         )
     }
+
+
     return (
         <div>
             <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
-                <Typography variant="h4" display="block" gutterBottom>
-                    {table_title}
-                </Typography>
+                {table_title()}
                 {table()}
             </Stack>
-
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Remove Administrator</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {display_msg}
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handleConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
-                <DialogTitle>Add Administrator</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="email"
-                        label="Email"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        value ={email}
-                        onChange={emailOnchange}
-                        placeholder={'john.doe@example.com'}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAdd}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
+            {deleteDialog()}
+            {addDialog()}
+            {filterDialog()}
         </div>
 
     );

@@ -22,7 +22,8 @@ import {useContext, useEffect, useState} from "react";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
-const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
+
+import {url} from "../Navi_base"
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading'),];
 
 const fakedData = [createData(0,'556','sd', '5', '64','645', '645'),]

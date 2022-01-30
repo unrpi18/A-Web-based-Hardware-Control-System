@@ -1,7 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,11 +8,6 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog} from "@mui/material";
@@ -23,78 +15,20 @@ import {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-
+import {url} from "../Navi_base"
 import DialogActions from "@mui/material/DialogActions";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Stack from "@mui/material/Stack";
+import FilterListIcon from "@mui/icons-material/FilterList";
+import TextField from "@mui/material/TextField";
+import tablePaginationActions from "../Component/Table_Control";
 
 const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
 const loading= [createData(0,'loading', 'loading', 'loading')];
 
 
-
-function tablePaginationActions(props){
-    const theme = useTheme;
-    const { count, page, rowsPerPage, onPageChange } = props;
-
-    const handleFirstPageButtonClick = (event) => {
-        onPageChange(event, 0);
-    };
-
-    const handleBackButtonClick = (event) => {
-        onPageChange(event, page - 1);
-    };
-
-    const handleNextButtonClick = (event) => {
-        onPageChange(event, page + 1);
-    };
-
-    const handleLastPageButtonClick = (event) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
-
-    return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
-    );
-}
-
-TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-};
 
 function createData(id, first_name, last_name, email) {
     return {id, first_name, last_name, email };
@@ -109,28 +43,27 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
-    const [display_data, setDisplay_data] = useState(null);
+    const [display_data, setDisplay_data] = useState(no_data);
+    const [fetched_data, setFetched_data] = useState(no_data)
+    const [filter_open, setFilter_open] = useState(false);
+    const [filter_keyword, setFilter_keyword] = useState('');
 
-    let rows = display_data;
 
+
+
+    // global methods
     useEffect(() => {
         refreshPage();
     }, [])
-
     function refreshPage(){
-        const token = "001122";
-        const email = "SiyannLi@outlook.com";
-        const post = {email};
-        console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/getAllAccountToBeConfirmed', {
+        fetch(url + '/users/getAllAccountToBeConfirmed', {
             mode : 'cors',
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
-            },
-            body : JSON.stringify(post)
+            }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
@@ -143,9 +76,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                     let standardisedData = [];
                     for(let i = 0; i < data.length; i++){
                         standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
-
                     }
-
+                    setFetched_data(standardisedData);
                     setDisplay_data(standardisedData);
                 }
 
@@ -157,6 +89,80 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         })
     }
 
+    // methods and functions for filtering
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].first_name.toString().includes(keyword)
+                    || fetched_data[i].last_name.toString().includes(keyword)
+                    || fetched_data[i].email.toString().includes(keyword)){
+                    filteredData[count] = fetched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
+
+    }
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    function handleFilter_close(){
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : name/email"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
+    }
+
+    // functions for auditing registration requests
     function handleOpen(first_name, last_name, email){
         setFirst_name(first_name);
         setLast_name(last_name);
@@ -173,7 +179,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         const operatorEmail = "SiyannLi@outlook.com";
         const post = {operatorEmail, email};
         console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/confirmUserRegistration', {
+        fetch(url + '/users/confirmUserRegistration', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -191,17 +197,14 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         handleClose();
     }
     function handleReject(){
-        const operatorEmail = "SiyannLi@outlook.com";
-        const post = {operatorEmail, email};
-        console.log(post);
-        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/rejectUserRegistration', {
-            method: 'POST',
+
+        fetch(url +'/users/rejectUserRegistration', {
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
-            },
-            body: JSON.stringify(post)
+            }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
@@ -211,6 +214,26 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
 
         handleClose();
     }
+    function audit_dialog(){
+        return(
+            <Dialog open={open} onClose={handleClose}>
+                <DialogTitle>Registration Request</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        <Typography variant="body" display="block" gutterBottom>
+                            {display_msg}
+                        </Typography>
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleClose}> Close</Button>
+                    <Button onClick={handleReject}>Reject</Button>
+                    <Button onClick={handleAccept}>Approve</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
 
     // Avoid a layout jump when reaching the last page with empty rows.
     function emptyRows(){
@@ -224,7 +247,18 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             return 0;
         }
     }
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
 
+    // table for data
+    let rows = display_data;
+    const display_msg = 'Do you want to approve or reject the registration request of ' + first_name + ' ' + last_name + '[' + email + '] ?'
+    const table_title = 'All Registration Requests'
     function table(){
         if(display_data === null) {
             rows = loading;
@@ -257,7 +291,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                             </TableCell>
                             <TableCell style={{ width: "1vw" , height : 53}} align="center">
                                 <IconButton aria-label="view"
-                                            disabled={rows[row.id].first_name === 'loading'}
+                                            disabled={rows[row.id].first_name === 'N/A' || rows[row.id].first_name === 'loading'}
                                             onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
                                     <VisibilityIcon />
                                 </IconButton>
@@ -273,6 +307,10 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 </TableBody>
                 <TableFooter>
                     <TableRow>
+                        <IconButton
+                            onClick={()=>handleFilter_open()}>
+                            <FilterListIcon />
+                        </IconButton>
                         <TablePagination
                             rowsPerPageOptions={5}
                             colSpan={3}
@@ -295,15 +333,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         </TableContainer>
         )
     }
-    const handleChangePage = (event, newPage) => {
-        setPage(newPage);
-    };
-    const handleChangeRowsPerPage = (event) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
-    const display_msg = 'Do you want to approve or reject the registration request of ' + first_name + ' ' + last_name + '[' + email + '] ?'
-    const table_title = 'All Registration Requests'
+
     return (
         <div>
             <Stack direction="column" justifyContent="center" alignItems="center" spacing={2}>
@@ -312,22 +342,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 </Typography>
                 {table()}
             </Stack>
-
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Registration Request</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        <Typography variant="body" display="block" gutterBottom>
-                            {display_msg}
-                        </Typography>
-                    </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}> Close</Button>
-                    <Button onClick={handleReject}>Reject</Button>
-                    <Button onClick={handleAccept}>Approve</Button>
-                </DialogActions>
-            </Dialog>
+            {filterDialog}
+            {audit_dialog()}
         </div>
 
     );
