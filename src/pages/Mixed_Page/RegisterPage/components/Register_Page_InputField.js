@@ -6,10 +6,10 @@ import Stack from "@mui/material/Stack";
 import SendIcon from '@mui/icons-material/Send';
 import {useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/checkMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
-import {handleVerificationCode} from "../../../User_Page/checkMethod/handleVerificationCode";
+import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";
 import '../Register_Page_Style.css'
 
 

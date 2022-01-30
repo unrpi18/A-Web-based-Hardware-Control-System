@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="USER STOCK">
-      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order_Style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/User_Navi/User_Navi_Panel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/checkInputFieldsIsBlank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFieldsIsBlank.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/fetchData.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/storeDataPersistance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/storeDataPersistance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +104,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="4692de1b-c827-4f4a-a6af-d11758ad020e" name="Changes" comment="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
+      <changelist id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="USER STOCK" />
       <created>1642344478416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -118,6 +126,10 @@
       <workItem from="1642702081477" duration="1000" />
       <workItem from="1642779847527" duration="14000" />
       <workItem from="1642981874959" duration="338000" />
+      <workItem from="1643394991447" duration="54000" />
+      <workItem from="1643396261787" duration="506000" />
+      <workItem from="1643409758021" duration="1641000" />
+      <workItem from="1643412002586" duration="322000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -196,7 +208,14 @@
       <option name="project" value="LOCAL" />
       <updated>1642701892189</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <created>1643395019341</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1643395019341</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +242,7 @@
     <MESSAGE value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
     <MESSAGE value="fixed bug" />
     <MESSAGE value="mixed page web version 3.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="mixed page web version 3.0" />
+    <MESSAGE value="ACTIVE ORDER &amp; PAST ORDER _USER" />
+    <option name="LAST_COMMIT_MESSAGE" value="ACTIVE ORDER &amp; PAST ORDER _USER" />
   </component>
 </project>

@@ -1,6 +1,6 @@
 import {useContext, useEffect} from "react";
 import {UserContext} from "../../../../contexts/RegisterContext";
-import {useRefreshControlGet, useRefreshControlSet} from "../../checkMethod/storeDataPersistance";
+import {useRefreshControlGet, useRefreshControlSet} from "../../ReusedMethod/storeDataPersistance";
 import '../User_Main_Page_Style.css'
 import backpic from "../components/backpic.jpg"
 

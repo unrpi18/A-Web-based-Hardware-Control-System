@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/checkMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
 import Box from "@mui/material/Box";
@@ -14,7 +14,7 @@ import {ThemeProvider} from "@mui/styles";
 import '../Forget_Password_Page_Style.css'
 import Stack from "@mui/material/Stack";
 import SendIcon from "@mui/icons-material/Send";
-import {handleVerificationCode} from "../../../User_Page/checkMethod/handleVerificationCode";
+import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";
 
 
 const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
