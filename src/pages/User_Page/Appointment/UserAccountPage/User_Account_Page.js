@@ -1,6 +1,6 @@
 import USER_ACCOUNT_TEXT from "./components/User_Account_Text";
-import LOGO from "../../../components/logos/Logo";
-import User_Main_Page_Profile from "../ExportUserProfile/User_Main_Page_Profile";
+import LOGO from "../../../../components/logos/Logo";
+import User_Main_Page_Profile from "../../ExportUserProfile/User_Main_Page_Profile";
 import USER_ACCOUNT_FORM from "./components/User_Account_Form";
 import USER_ACCOUNT_READ_ONLY_FIELDS from "./components/User_Acoount_ReadOnlyFields";
 

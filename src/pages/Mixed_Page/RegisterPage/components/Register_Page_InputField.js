@@ -77,8 +77,8 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
             }}
             noValidate
             autoComplete="off"
-
             className='spacing_register_page'
+
         >
             <div>
                 <Stack direction="row" spacing={1}>

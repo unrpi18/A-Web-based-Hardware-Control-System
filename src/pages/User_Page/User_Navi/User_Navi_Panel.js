@@ -13,21 +13,25 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import GroupsIcon from '@mui/icons-material/Groups';
 import IconButton from '@mui/material/IconButton';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import ArticleIcon from '@mui/icons-material/Article';
 import {useNavigate} from "react-router";
 import '../../User_Page/User_Navi/User_Navi_Panel_Stytle.css'
+import {ExpandLess, ExpandMore, StarBorder} from "@mui/icons-material";
+import {Collapse} from "@material-ui/core";
+import {ListItemButton} from "@mui/material";
+import {useState} from "react";
 
 
 const USER_NAVI_PANEL = () => {
-    const [state, setState] = React.useState({
-        top: false,
-        left: false,
-        bottom: false,
-        right: false,
+    const [state, setState] = useState({
+        left: false, bottom: false,
+
     });
+    const [open, setOpen] = useState(true);
+
     const navigate = useNavigate();
+
     const toggleDrawer = (anchor, open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+        if ((event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
 
@@ -35,50 +39,93 @@ const USER_NAVI_PANEL = () => {
     };
 
 
-    const list = (anchor) => (
-        <Box
-            sx={{width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300, mb: 0, ml: 0}}
-            role="presentation"
-            onClick={toggleDrawer(anchor, false)}
-            onKeyDown={toggleDrawer(anchor, false)}
+    const handleClick = () => {
+        setOpen(!open);
+    };
 
-        >
-            <Divider/>
-            <List>
-                <ListItem button onClick={() => navigate("/user_appointment_page")}>
-                    <ListItemIcon>
-                        <EventIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary='Appointments' primaryTypographyProps={{
-                        color: '#009682',
-                        fontWeight: 'medium',
-                        fontSize: 20
-                    }}/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <InventoryIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary='Stocks & Orders' primaryTypographyProps={{
-                        color: '#009682',
-                        fontWeight: 'medium',
-                        fontSize: 20
-                    }}/>
-                </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
-                        <VideocamIcon/>
-                    </ListItemIcon>
-                    <ListItemText primary='Webcam' primaryTypographyProps={{
-                        color: '#009682',
-                        fontWeight: 'medium',
-                        fontSize: 20
-                    }}/>
-                </ListItem>
+    const list = (anchor) => (<Box
+                sx={{width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 300, mb: 0, ml: 0}}
+                role="presentation"
 
-            </List>
-        </Box>
-    );
+                onKeyDown={toggleDrawer(anchor, false)}
+
+            >
+                <Divider/>
+                <List>
+
+                    <ListItem button onClick={() => navigate("/user_appointment_page")}>
+                        <ListItemIcon>
+                            <EventIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary='Appointments' primaryTypographyProps={{
+                            color: '#009682', fontWeight: 'medium', fontSize: 20
+                        }}/>
+                    </ListItem>
+                    <Divider light/>
+                    < ListItem button onClick={handleClick}>
+
+                        <ListItemIcon>
+                            <InventoryIcon/>
+                        </ListItemIcon>
+
+                        <ListItemText primary='Stocks & Orders' primaryTypographyProps={{
+                            color: '#009682',
+                            fontWeight: 'medium',
+                            fontSize: 20
+                        }}/>
+                        {open ? <ExpandLess/> : <ExpandMore/>}
+
+                    </ListItem>
+
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+
+                            {[{
+                                "text": 'Stock',
+                                "url": '/stock_view',
+                            },
+                                {
+                                    "text": 'Active Order',
+                                    "url": '/active_order',
+                                },
+                                {
+                                    "text": 'Past Order',
+                                    "url": '/past_order',
+                                },
+                                {
+                                    "text": 'Submit Order',
+                                    "url": '/submit_order',
+                                }
+                            ].map((input) => (
+                                <ListItemButton sx={{pl: 4}} key={input.text} onClick={() => navigate(input.url)}>
+                                    <ListItemText primary={input.text} primaryTypographyProps={{
+                                        color: '#009682', fontWeight: 'medium', fontSize: 15
+                                    }}/>
+                                </ListItemButton>
+                            ))
+
+                            }
+                        < /List>
+
+                    </Collapse>
+
+
+                    <Divider light/>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <VideocamIcon/>
+                        </ListItemIcon>
+                        <ListItemText primary='Webcam' primaryTypographyProps={{
+                            color: '#009682',
+                            fontWeight: 'medium',
+                            fontSize: 20
+                        }}/>
+                    </ListItem>
+
+                </List>
+            </Box>
+        )
+    ;
 
     return (
         <div className='User_Navi_Panel_Style'>
