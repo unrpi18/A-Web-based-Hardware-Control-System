@@ -7,41 +7,12 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import '../User_Active_Order_Style.css'
 import {Link} from "@material-ui/core";
+import {useFetchData} from "../../../ReusedMethod/fetchData";
 
 const USER_ACTIVE_ORDER_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
-
-
-    const useFetch = () => {
-        const navigate = useNavigate();
-
-        let email = loginUser.email
-        const [rows, setRows] = useState([]);
-        const post = {email}
-
-        console.log(post)
-        useEffect(() => {
-            fetch(baseUrl + "/orders/getUserActiveOrders", {
-                method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson.data)
-                let message = responseJson.message;
-                if (message === "SUCCESS") {
-                    console.log(responseJson.data)
-
-                    setRows(rows => ({...rows, data: responseJson.data}))
-                } else {
-                    alert(message);
-
-                }
-
-            }).catch(error => console.error(error))
-        }, []);
-
-        return {rows, setRows};
-    }
-
-    const {rows, setRows} = useFetch();
+    const activeOrderApi = "/orders/getUserActiveOrders";
+    const {rows, setRows} = useFetchData('POST', loginUser, activeOrderApi)
 
     const columns = [
         {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center', hide: 'true'},

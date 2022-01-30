@@ -2,55 +2,31 @@ import {DataGrid, GridColDef} from "@mui/x-data-grid";
 import React, {useContext, useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import {useNavigate} from "react-router";
-import {baseUrl} from "../../../../../contexts/RegisterContext";
+import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
+import {useFetchData} from "../../../ReusedMethod/fetchData";
+
+const USER_STOCK_VIEW = () => {
+    const {loginUser, setLoginUser} = useContext(UserContext);
+    const stockViewApi = "/stocks/getAllItems"
+    const {rows, setRows} = useFetchData('GET', loginUser, stockViewApi)
 
 
-const useFetch = () => {
-    const navigate = useNavigate();
-
-    const [rows, setRows] = useState([]);
-    useEffect(() => {
-        fetch(baseUrl + "/stocks/getAllItems", {
-            method: 'GET', headers: {"Content-Type": "application/json"}
-        }).then(response => response.json()).then(responseJson => {
-
-            let message = responseJson.message;
-            if (message === "SUCCESS") {
-                console.log(responseJson.data)
-
-                setRows(rows => ({...rows, data: responseJson.data}))
-            } else {
-                alert(message);
-
-            }
-
-        })
-    }, []);
-
-    return {rows, setRows};
-}
-
-export function USER_STOCK_VIEW() {
-    const columns = [{
-        field: 'itemName',
-        headerName: 'Article',
-        width: 70,
-        headerAlign: 'center'
-    },
-        {field: 'amount', headerName: 'Amount', width: 130, headerAlign: 'center'},
+    const columns = [
         {
-            field: 'link',
-            headerName: 'Link',
-            width: 130,
-            headerAlign: 'center'
-        },];
-
-    const {rows, setRows} = useFetch();
+            field: 'itemName', headerName: 'Article', width: 150, headerAlign: 'center'
+        },
+        {
+            field: 'amount', headerName: 'Amount', width: 130, headerAlign: 'center'
+        },
+        {
+            field: 'description', headerName: 'Description', width: 500, headerAlign: 'center'
+        },
+    ];
 
 
     return (<div
         style={{
-            height: 400, width: '40%',
+            height: 400, width: '45%',
 
         }} className='view_position'>
         <Typography variant="h4" display="block" align='center' sx={{
@@ -65,6 +41,15 @@ export function USER_STOCK_VIEW() {
                       boxShadow: 2, border: 2, borderColor: '#009682', '& .MuiDataGrid-cell:hover': {
                           color: 'primary.secondary',
                       },
+                      '& .MuiDataGrid-cell': {
+                          whiteSpace: 'normal',
+                          wordBreak: 'break-word',
+                          lineHeight: 1,
+                          height: 50,
+                          zeroMinWidth: 500,
+                          alignItems: 'center',
+                          justifyContent: "center"
+                      }
                   }}
                   getRowId={row => row.itemName}
         />

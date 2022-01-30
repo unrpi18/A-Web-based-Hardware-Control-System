@@ -1,46 +1,14 @@
 import {Link} from "@material-ui/core";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
 import React, {useContext, useEffect, useState} from "react";
 import Typography from "@mui/material/Typography";
 import {DataGrid} from "@mui/x-data-grid";
 import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
-import {useNavigate} from "react-router";
+import {useFetchData} from "../../../ReusedMethod/fetchData";
 
 const USER_PAST_ORDER_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
-
-
-    const useFetch = () => {
-        const navigate = useNavigate();
-
-        let email = loginUser.email
-        const [rows, setRows] = useState([]);
-        const post = {email}
-
-        console.log(post)
-        useEffect(() => {
-            fetch(baseUrl + "/orders/getUserPastOrders", {
-                method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson.data)
-                let message = responseJson.message;
-                if (message === "SUCCESS") {
-                    console.log(responseJson.data)
-
-                    setRows(rows => ({...rows, data: responseJson.data}))
-                } else {
-                    alert(message);
-
-                }
-
-            }).catch(error => console.error(error))
-        }, []);
-
-        return {rows, setRows};
-    }
-
-    const {rows, setRows} = useFetch();
+    const pastOrderApi = "/orders/getUserPastOrders";
+    const {rows, setRows} = useFetchData('POST', loginUser, pastOrderApi);
 
     const columns = [
         {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center', hide: 'true'},

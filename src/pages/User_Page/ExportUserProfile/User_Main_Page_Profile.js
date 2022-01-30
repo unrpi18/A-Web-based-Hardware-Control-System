@@ -13,7 +13,7 @@ import '../ExportUserProfile/User_Profile_Style.css'
 import {useContext} from "react";
 import {UserContext} from "../../../contexts/RegisterContext";
 import {green, purple} from "@material-ui/core/colors";
-import {useRefreshControlGet, useRefreshControlSet} from "../checkMethod/storeDataPersistance";
+import {useRefreshControlGet, useRefreshControlSet} from "../ReusedMethod/storeDataPersistance";
 
 const USER_MAIN_PAGE_PROFILE = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);

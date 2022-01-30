@@ -4,26 +4,27 @@ import {Button} from "@mui/material";
 import * as React from "react";
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../checkMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../ReusedMethod/checkInputFieldsIsBlank";
 import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import '../User_Submit_Page_Style.css'
 
 const USER_SUBMIT_PAGE_FORM = () => {
-    const initialData = {itemName: '', amount: '', link: '', contact: '', description: ''}
+    const initialData = {itemName: '', amount: '', link: '', contact: ''}
     const [data, setData] = useState(initialData)
     const {loginUser} = useContext(UserContext);
-    const navigate = useNavigate();
 
     const handleSendApplication = (e) => {
         console.log(data)
         let nullCheck = isBlank(data.amount) && isBlank(data.itemName) && isBlank(data.link)
-            && isBlank(data.contact) && isBlank(data.description);
+            && isBlank(data.contact)
         let email = loginUser.email;
         let itemName = data.itemName;
         let amount = data.amount;
+        if (amount < 0) {
+            alert("incorrect amount")
+        }
         let itemLink = data.link;
         let contactEmail = data.contact;
-        let description = data.description;
         if (nullCheck) {
             const post = {itemName, amount, itemLink, contactEmail, description, email}
 
@@ -56,8 +57,6 @@ const USER_SUBMIT_PAGE_FORM = () => {
     }
     const handleOnChange = (e, input) => {
         e.preventDefault();
-        console.log(e.target.name)
-        console.log(input.value)
         setData({...data, [e.target.name]: e.target.value})
     }
 
@@ -98,12 +97,7 @@ const USER_SUBMIT_PAGE_FORM = () => {
                         "value": contact,
                         "type": "email",
                     },
-                    {
-                        "text": 'Description',
-                        "value": description,
-                        "type": "text",
-
-                    }].map((input) => (
+                ].map((input) => (
                     <p>
 
 

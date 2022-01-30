@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import {UserContext} from "../../../../../contexts/RegisterContext";
 import '../User_Account_Page_Style.css'
-import {useRefreshControlGet, useRefreshControlSet} from "../../../checkMethod/storeDataPersistance";
+import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/storeDataPersistance";
 
 const USER_ACCOUNT_FORM = () => {
     const {loginUser, setLoginUser} = useContext(UserContext)
