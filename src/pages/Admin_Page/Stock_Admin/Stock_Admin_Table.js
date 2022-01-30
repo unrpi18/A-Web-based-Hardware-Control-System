@@ -32,7 +32,7 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
-
+const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
 const loading = [
     createData(0,'NA','NA','NA')]
 
@@ -99,8 +99,8 @@ TablePaginationActions.propTypes = {
     rowsPerPage: PropTypes.number.isRequired,
 };
 
-function createData(id, item, amount, link) {
-    return {id, item, amount, link };
+function createData(id, item, amount, description) {
+    return {id, item, amount, description };
 }
 
 
@@ -115,7 +115,7 @@ export default function STOCK_ADMIN_TABLE() {
 
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
-    const [link, setLink] = useState('');
+    const [description, setDescription] = useState('');
     const [displayData, setDisplayData] = useState(null);
 
     let rows = displayData;
@@ -130,13 +130,13 @@ export default function STOCK_ADMIN_TABLE() {
         setEdit_open(false);
         setItem('');
         setAmount('');
-        setLink('');
+        setDescription('');
     }
 
-    function handleRemoveOpen(item, amount, link) {
+    function handleRemoveOpen(item, amount, description) {
         setItem(item);
         setAmount(amount);
-        setLink(link);
+        setDescription(description);
         setRemove_open(true);
     }
 
@@ -144,7 +144,7 @@ export default function STOCK_ADMIN_TABLE() {
         setRemove_open(false);
         setItem('');
         setAmount('');
-        setLink('');
+        setDescription('');
     }
 
     function handleAddOpen() {
@@ -155,7 +155,7 @@ export default function STOCK_ADMIN_TABLE() {
         setAdd_open(false);
         setItem('');
         setAmount('');
-        setLink('');
+        setDescription('');
     }
 
     const itemOnchange = (e) => {
@@ -164,8 +164,8 @@ export default function STOCK_ADMIN_TABLE() {
     const amountOnchange = (e) => {
         setAmount(e.target.value);
     }
-    const linkOnchange = (e) => {
-        setLink(e.target.value);
+    const descriptionOnchange = (e) => {
+        setDescription(e.target.value);
     }
 
     useEffect(()=>{
@@ -174,7 +174,7 @@ export default function STOCK_ADMIN_TABLE() {
 
     function refreshPage() {
 
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/getAllItems', {
+        fetch(url + '/stocks/getAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -188,7 +188,7 @@ export default function STOCK_ADMIN_TABLE() {
             if(resultCode === 200){
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
-                    standardisedData[i] = createData(i, data[i].itemName, data[i].amount, data[i].link);
+                    standardisedData[i] = createData(i, data[i].itemName, data[i].amount, data[i].description);
                 }
                 setDisplayData(standardisedData);
             }
@@ -206,7 +206,7 @@ export default function STOCK_ADMIN_TABLE() {
         const itemName = item;
         const post = {itemName, amount};
         console.log(post);
-        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/changeItemAmount',{
+        fetch (url + '/stocks/changeItemAmount',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -224,7 +224,7 @@ export default function STOCK_ADMIN_TABLE() {
         const itemName = item;
         const post = {itemName};
         console.log(post);
-        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/deleteItem',{
+        fetch (url + '/stocks/deleteItem',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -242,9 +242,9 @@ export default function STOCK_ADMIN_TABLE() {
 
         const itemName = item;
         const description = 'aaa';
-        const post = {itemName, amount, link,description};
+        const post = {itemName, amount, description};
         console.log(post);
-        fetch ('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/addItem',{
+        fetch (url + '/stocks/addItem',{
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -285,7 +285,7 @@ export default function STOCK_ADMIN_TABLE() {
                         <TableRow>
                             <TableCell align="center">Item</TableCell>
                             <TableCell align="center">Amount</TableCell>
-                            <TableCell align="center">Links</TableCell>
+                            <TableCell align="center">Description</TableCell>
                             <TableCell align="center">Options</TableCell>
                         </TableRow>
                     </TableHead>
@@ -302,7 +302,7 @@ export default function STOCK_ADMIN_TABLE() {
                                     {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: 300, height : 53}} align="center">
-                                    {row.link}
+                                    {row.description}
                                 </TableCell>
                                 <TableCell style={{width: 40 ,height : 53 }} align="center">
                                     <Stack direction="row" justifyContent="space-evenly">
@@ -473,12 +473,12 @@ export default function STOCK_ADMIN_TABLE() {
                         }}
                         required
                         margin="dense"
-                        id="link"
-                        label="link"
+                        id="description"
+                        label="description"
                         fullWidth
                         variant="standard"
-                        value={link}
-                        onChange={linkOnchange}
+                        value={description}
+                        onChange={descriptionOnchange}
                         placeholder={"www.conrad.de/example_item.html"}
                     />
                 </DialogContent>

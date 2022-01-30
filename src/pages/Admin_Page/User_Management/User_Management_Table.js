@@ -31,7 +31,7 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-
+const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
 const loading= [createData(0,'loading', 'loading', 'loading', 'loading')];
 
 
@@ -128,19 +128,14 @@ export default function USER_MANAGEMENT_TABLE() {
     }, [])
 
     function refreshPage(){
-
-        const email = "SiyannLi@outlook.com";
-        const post = {email};
-        console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/getAllUsers', {
-            method: 'POST',
+        fetch(url +'/users/getAllUsers', {
+            method: 'GET',
             mode : 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
-            },
-            body : JSON.stringify(post)
+            }
         }).then(response => response.json()).then(responseJson => {
 
             console.log(responseJson);
@@ -183,7 +178,7 @@ export default function USER_MANAGEMENT_TABLE() {
         const userStatus = access;
         const post = {email, lastName,firstName,userStatus};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/resetUserInfo', {
+        fetch(url + '/users/resetUserInfo', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

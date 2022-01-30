@@ -1,4 +1,3 @@
-import axios from 'axios';
 
 import React, {useState} from 'react';
 import Typography from "@mui/material/Typography";
@@ -8,6 +7,9 @@ import {styled} from "@mui/styles";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import Stack from "@mui/material/Stack"
 import SaveIcon from '@mui/icons-material/Save';
+
+const url = '';
+
 export default function FILE_UPLOADER (){
     const Input = styled('input')({
         display: 'none',
@@ -27,10 +29,27 @@ export default function FILE_UPLOADER (){
 
         // Details of the uploaded file
         console.log(post);
+        fetch(url + '/orders/getAllPastOrders', {
+            mode: 'cors',
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+            body : JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if (resultCode === 200) {
+                //TODO Alert Successful
+            } else {
+                alert(errorMessage);
+            }
 
-        // Request made to the backend api
-        // Send formData object
-        axios.post("api/uploadfile", post);
+        })
     };
 
     // File content to be displayed after

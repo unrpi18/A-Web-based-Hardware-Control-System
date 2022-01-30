@@ -16,8 +16,16 @@ import New_User_Management from "../pages/Admin_Page/New_User_Management/New_Use
 import USER_MANAGEMENT from "../pages/Admin_Page/User_Management/User_Management";
 import ADMINISTRATOR_MANAGEMENT from "../pages/Admin_Page/Administrator_Management/Administrator_Management";
 import ALL_APPOINTMENT_ADMIN from "../pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin";
+
 import NotFound from "./NotFound";
 import USER_GROUP_NAVI_PAGE from "../pages/Admin_Page/User_Group_Navi_Page/User_Group_Navi_Page";
+import MY_APPOINTMENT_PAGE from "../pages/User_Page/My_Appointment_Page/My_Appointment_Page";
+import TERMS_AND_CONDITIONS_UPDATE from "../pages/Admin_Page/Terms_And_Conditions_Update/Terms_And_Conditions_Update";
+import STOCK_ADMIN from "../pages/Admin_Page/Stock_Admin/Stock_Admin";
+
+import STOCK_ORDER_NAVI_PAGE from "../pages/Admin_Page/Stock_Order_Navi_Page_Admin/Stock_Order_Navi_Page";
+import ACTIVE_ORDER_ADMIN from "../pages/Admin_Page/Order_Admin/Active_Order_Admin";
+import PAST_ORDER_ADMIN from "../pages/Admin_Page/Order_Admin/Past_Order_Admin";
 import MY_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/My_Appointment_Page/My_Appointment_Page"
 import USER_STOCK_PAGE from "../pages/User_Page/StocksAndOrders/User_Stock_Page/User_Stock_Page";
 import USER_SUBMIT_PAGE from "../pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page";
@@ -54,6 +62,7 @@ function Router_Web() {
                 <Route path='admin_management' element={<ADMINISTRATOR_MANAGEMENT/>}/>
                 <Route path='all_appointment_admin' element={<ALL_APPOINTMENT_ADMIN/>}/>
                 <Route path='user_group_navi_page' element={<USER_GROUP_NAVI_PAGE/>}/>
+                <Route path='past_order_admin' element = {<PAST_ORDER_ADMIN/>}/>
             </Routes>
 
         </UserContext.Provider>

@@ -18,7 +18,7 @@ import LastPageIcon from '@mui/icons-material/LastPage';
 import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
-import {Dialog, TextField} from "@mui/material";
+import {Dialog, Link, TextField} from "@mui/material";
 import {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -33,11 +33,12 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FlakyIcon from '@mui/icons-material/Flaky';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+
+const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading', 'loading'),];
 const stocksLoading = [createItemsData(0,'loading','loading', 'loading')];
+const no_data = [createData(0,'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
 
-
-const fakedData = [createData(0,'556','sd', '5', '64','645', '645', 'confirmed'),]
 function tablePaginationActions(props){
     const theme = useTheme;
     const { count, page, rowsPerPage, onPageChange } = props;
@@ -116,7 +117,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
     const [order_id, setOrder_id] = useState('');
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
-    const [display_data, setDisplay_data] = useState(fakedData);
+    const [display_data, setDisplay_data] = useState(loading);
     const [items_in_stock, setItems_In_stock] = useState('');
     const [audit_open, setAudit_open] = useState(false);
     const [instock_open, setInstock_open] = useState(false);
@@ -132,32 +133,32 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
 
     function refreshPage() {
         const token = "001122";
-        const email = "SiyannLi@outlook.com";
-        const post = {email};
 
-
-        console.log(post);
-        fetch(null, {
+        fetch(url + '/orders/getAllActiveOrders', {
             mode: 'cors',
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
             },
-            body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if (resultCode === 200) {
-                let standardisedData = [];
-                for (let i = 0; i < data.length; i++) {
-                    standardisedData[i] = createItemsData(i, data[i].itemName, data[i].amount, data[i].link);
+                if(data.length === 0){
+                    setDisplay_data(no_data);
+                } else {
+                    let standardisedData = [];
+                    for (let i = 0; i < data.length; i++) {
+                        standardisedData[i] = createData(i, data[i].orderId, data[i].itemName, data[i].amount, data[i].itemLink, data[i].userName, data[i].userEmail, data[i].orderStatus);
+                    }
+                    setDisplay_data(standardisedData);
+                    allStockDataFetch();
                 }
-                setDisplay_data(standardisedData);
-                allStockDataFetch();
+
             } else {
                 alert(errorMessage);
             }
@@ -166,7 +167,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
     }
 
     function allStockDataFetch(){
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/stocks/getAllItems', {
+        fetch(url +'/stocks/getAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -206,9 +207,10 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         setOrder_id('');
     }
 
-    function handleInStockOpen(item, amount){
+    function handleInStockOpen(order_id, amount, item){
         setItem(item);
         setAmount(amount);
+        setOrder_id(order_id);
         setInstock_open(true);
     }
     const handleInStockClose = () => {
@@ -218,13 +220,42 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
 
     }
     function handleInStockSubmit(){
+        const orderId = order_id;
+        const itemName = items_in_stock;
+        const post = {orderId, itemName};
+        console.log(post);
+        fetch(url + '/orders/inStock', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + "001122"
+            },
+            body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            if (resultCode === 200){
+                //TODO process data
+            }
+            else if( resultCode === 500){
+                //TODO Alert but stay
+            }
+            else{
+                //TODO illegal access, alert and leave
+            }
+        })
 
+        refreshPage();
+        handleInStockClose();
     }
     function handleSubmit(result) {
-        const url = result === "approved" ? 'urlA' : 'urlB';
-        const post ={order_id};
+        const url_postfix = result === "Approve" ? '/orders/confirmOrder' : '/orders/rejectOrder';
+        const orderId = order_id;
+        const post ={orderId};
         console.log(post);
-        fetch(url, {
+        fetch(url + url_postfix, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -343,14 +374,15 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             rows = loading;
         }
         return (
-            <TableContainer component={Paper} style={{height: "60vh", width: "40vw"}}>
-                <Table style={{height: "60vh", width: "40vw"}} aria-label="custom pagination table">
+            <TableContainer component={Paper} style={{height: "60vh", width: "70vw"}}>
+                <Table style={{height: "60vh", width: "70vw"}} aria-label="custom pagination table">
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">Order ID</TableCell>
                             <TableCell align="center">Item</TableCell>
                             <TableCell align="center">Amount</TableCell>
                             <TableCell align="center">Link</TableCell>
+                            <TableCell align="center">Name</TableCell>
                             <TableCell align="center">Contact</TableCell>
                             <TableCell align="center">Status</TableCell>
                             <TableCell align="center">Options</TableCell>
@@ -369,19 +401,22 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                     {row.item}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.email}
-                                </TableCell>
-                                <TableCell style={{width: "5vw", height: 53}} align="center">
                                     {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.link}
+                                    <Link href={row.link}>Link</Link>
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell style={{width: "5vw", height: 53}} align="center">
+                                    {row.email}
+                                </TableCell>
+                                <TableCell style={{width: "3vw", height: 53}} align="center">
                                     {row.status}
                                 </TableCell>
                                 <TableCell style={{width: "1vw", height: 53}} align="center">
-                                    {rows[row.id].status === "Pending"
+                                    {rows[row.id].status === "PENDING"
                                     ?<IconButton aria-label="view"
                                                 disabled={rows[row.id].item === 'loading'}
                                                 onClick={() => handleAuditOpen(rows[row.id].order_id)}>
@@ -389,7 +424,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                     </IconButton>
                                     :<IconButton aria-label="view"
                                                  disabled={rows[row.id].item === 'loading'}
-                                                 onClick={() => handleInStockOpen(rows[row.id].item, rows[row.id].amount)}>
+                                                 onClick={() => handleInStockOpen(rows[row.id].order_id, rows[row.id].item, rows[row.id].amount)}>
                                     <MergeTypeIcon/>
                                 </IconButton>}
                                 </TableCell>
@@ -398,7 +433,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
 
                         {emptyRows > 0 && (
                             <TableRow style={{height: 53 * emptyRows}}>
-                                <TableCell colSpan={6}/>
+                                <TableCell colSpan={8}/>
                             </TableRow>
                         )}
                     </TableBody>
