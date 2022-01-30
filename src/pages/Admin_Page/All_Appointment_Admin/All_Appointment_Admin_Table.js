@@ -1,4 +1,4 @@
-
+import FilterListIcon from '@mui/icons-material/FilterList';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -28,8 +28,15 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
 import DeleteIcon from '@mui/icons-material/Delete';
+import TextField from "@mui/material/TextField";
+
+const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
 const loading = [
     createData(0,'loading','loading','loading','loading',-999)
+]
+
+const no_data =[
+    createData(0, 'N/A','N/A','N/A','N/A',-999)
 ]
 function convertIDtoSlot(id){
     switch (id){
@@ -110,30 +117,36 @@ function createData(id, first_name, last_name, email,date,timeslot) {
 }
 
 
+
 export default function ALL_APPOINTMENT_ADMIN_TABLE() {
 
     const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [open, setOpen] = useState(false);
+    const [delete_open, setDelete_open] = useState(false);
+    const [filter_open, setFilter_open] = useState(false);
     const [email, setEmail] = useState('');
     const [first_name, setFirst_name] = useState('');
     const [last_name,setLast_name] = useState('');
     const [date, setDate] = useState('');
     const [time_slot, setTime_slot] = useState();
     const [display_data, setDisplay_data] = useState(loading);
+    const [filter_keyword, setFilter_keyword]= useState('');
+    const [feteched_data, setFetched_data] = useState('');
 
     let rows = display_data;
 
     useEffect(() => {
         refreshPage();
     }, [])
-
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
+    }
     function refreshPage(){
 
 
 
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/timeslots/getBookedTimeSlot', {
+        fetch(url + '/timeslots/getBookedTimeSlot', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -150,32 +163,79 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 for(let i = 0; i < data.length; i++){
                     standarisedData[i] = createData(i, data[i].user.firstName,  data[i].user.lastName, data[i].user.email, data[i].timeSlotDate, data[i].slot)
                 }
-                setDisplay_data(standarisedData);
+                if(standarisedData.length === 0){
+                    setFetched_data(no_data);
+                    setDisplay_data(no_data)
+                }else{
+                    setFetched_data(standarisedData);
+                    setDisplay_data(standarisedData);
+                }
             }
 
         })
     }
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <feteched_data.length; i++){
+                if(feteched_data[i].first_name.toString().includes(keyword)
+                    || feteched_data[i].last_name.toString().includes(keyword)
+                    || feteched_data[i].email.toString().includes(keyword)
+                    || feteched_data[i].date.toString().includes(keyword)
+                    || convertIDtoSlot(feteched_data[i].timeslot).toString().includes(keyword)) {
+                    filteredData[count] = feteched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
 
-    function handleOpen(first_name, last_name, email, date, time_slot){
+    }
+
+    function handleDelete_open(first_name, last_name, email, date, time_slot){
         setFirst_name(first_name);
         setLast_name(last_name);
         setEmail(email);
         setDate(date);
         setTime_slot(time_slot);
-        setOpen(true);
+        setDelete_open(true);
     }
-    const handleClose =()=>{
-        setOpen(false);
+    const handleDelete_close =()=>{
+        setDelete_open(false);
         setFirst_name('');
         setLast_name('');
         setEmail('');
     }
-
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    const handleFilter_close =()=>{
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
     const handleConfirm =() =>{
         const slot = time_slot;
         const post = {date,slot};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/appointments/deleteAppointment', {
+        fetch(url +'/appointments/deleteAppointment', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
@@ -183,11 +243,10 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            //TODO
             refreshPage();
         })
 
-        handleClose();
+        handleDelete_close();
 
     }
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -239,7 +298,9 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                                     {convertIDtoSlot(row.timeslot)}
                                 </TableCell>
                                 <TableCell style={{ width: 40 }} align="center">
-                                    <IconButton aria-label="view" onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
+                                    <IconButton aria-label="view"
+
+                                                onClick={()=>handleDelete_open(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
                                         <DeleteIcon />
                                     </IconButton>
                                 </TableCell>
@@ -254,6 +315,9 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                     </TableBody>
                     <TableFooter>
                         <TableRow >
+                            <IconButton disabled={false} onClick={()=>handleFilter_open()}>
+                                <FilterListIcon />
+                            </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
                                 colSpan={3}
@@ -276,6 +340,48 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             </TableContainer>
         )
     }
+    function deleteDialog(){
+        return(
+            <Dialog open={delete_open} onClose={handleDelete_close}>
+                <DialogTitle>Cancel Appointment</DialogTitle>
+                <DialogContent>
+                    <DialogContentText> {display_msg} </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDelete_close}>Close</Button>
+                    <Button onClick={handleConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : name/email/date"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
     const display_msg = 'Do you want to cancel the appointment of ' + first_name + ' ' + last_name + '[' + email + '] on ' + date +' during '+ convertIDtoSlot(time_slot) +'  ?';
     const table_title = 'All Appointments'
     return (
@@ -286,17 +392,10 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 </Typography>
                 {table()}
             </Stack>
+            {deleteDialog()}
+            {filterDialog()}
 
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Cancel Appointment</DialogTitle>
-                <DialogContent>
-                    <DialogContentText> {display_msg} </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handleConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
+
         </div>
 
     );

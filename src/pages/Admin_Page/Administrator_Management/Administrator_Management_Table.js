@@ -129,7 +129,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         const email = "SiyannLi@outlook.com";
         const post = {email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/getAllAdministrator', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/getAllAdministrator', {
             method: 'POST',
             mode : 'cors',
             headers: {
@@ -174,7 +174,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         const operatorEmail = "SiyannLi@outlook.com"
         const post = {operatorEmail,email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/insertAdmin', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/insertAdmin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -196,7 +196,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         const operatorEmail = "teco@teco.com"
         const post = {operatorEmail,email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/revokeAdmin', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/revokeAdmin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

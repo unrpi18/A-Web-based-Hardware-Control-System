@@ -30,6 +30,7 @@ import Typography from "@mui/material/Typography";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Stack from "@mui/material/Stack";
 
+const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
 const loading= [createData(0,'loading', 'loading', 'loading')];
 
 
@@ -121,7 +122,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         const email = "SiyannLi@outlook.com";
         const post = {email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/getAllAccountToBeConfirmed', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/getAllAccountToBeConfirmed', {
             mode : 'cors',
             method: 'POST',
             headers: {
@@ -136,13 +137,18 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
-                let standardisedData = [];
-                for(let i = 0; i < data.length; i++){
-                    standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
+                if(data.length === 0){
+                    setDisplay_data(no_data);
+                }else{
+                    let standardisedData = [];
+                    for(let i = 0; i < data.length; i++){
+                        standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
 
+                    }
+
+                    setDisplay_data(standardisedData);
                 }
 
-                setDisplay_data(standardisedData);
             }
             else{
                 alert(errorMessage);
@@ -167,7 +173,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         const operatorEmail = "SiyannLi@outlook.com";
         const post = {operatorEmail, email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/confirmUserRegistration', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/confirmUserRegistration', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -188,7 +194,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         const operatorEmail = "SiyannLi@outlook.com";
         const post = {operatorEmail, email};
         console.log(post);
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/users/rejectUserRegistration', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/users/rejectUserRegistration', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -218,6 +224,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             return 0;
         }
     }
+
     function table(){
         if(display_data === null) {
             rows = loading;

@@ -47,7 +47,7 @@ export default function ADMIN_NAVI_PANEL() {
                     </ListItemIcon>
                     <ListItemText primary='Appointments' />
                 </ListItem>
-                <ListItem button >
+                <ListItem button onClick ={()=>navigate("/stock_and_order_admin_navi")}>
                     <ListItemIcon>
                         <InventoryIcon />
                     </ListItemIcon>

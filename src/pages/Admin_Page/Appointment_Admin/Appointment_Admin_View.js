@@ -94,7 +94,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
         const startDate = start_date;
         const post = {startDate};
-        fetch('http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/timeslots/timeSlotCalender', {
+        fetch('http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/timeslots/timeSlotCalender', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
@@ -203,7 +203,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             const slot = time_slot
             const post = {email, date, slot};
             console.log(post);
-            fetch("http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/appointments/addAppointment", {
+            fetch("http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/appointments/addAppointment", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -227,7 +227,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         if (nullCheck) {
             const slot = time_slot
             const post = {date, slot};
-            fetch("http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/appointments/deleteAppointment", {
+            fetch("http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/appointments/deleteAppointment", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -256,7 +256,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             const status = ts_status
             const post = {startDate, slot, endRepeatAfter, status};
             console.log(post);
-            fetch("http://95ec-2a01-c23-7d85-f00-9891-c29-cfdf-50ad.ngrok.io/timeslots/setPeriodTimeSlots", {
+            fetch("http://232b-2a01-c22-d5a9-6700-f181-3410-3672-d63.ngrok.io/timeslots/setPeriodTimeSlots", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
