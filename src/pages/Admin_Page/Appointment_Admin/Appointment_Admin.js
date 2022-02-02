@@ -1,7 +1,4 @@
-import './Appointment_Admin.css'
 import Admin_Profile from "../Admin_Icon/Admin_Profile";
-
-
 import APPOINTMENT_ADMIN_VIEW from "./Appointment_Admin_View";
 import ADMIN_NAVI_PANEL from "../Admin_Navi/Admin_Navi_Panel";
 import Stack from "@mui/material/Stack";

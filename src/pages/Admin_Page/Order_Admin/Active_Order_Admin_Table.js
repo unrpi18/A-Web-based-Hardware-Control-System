@@ -34,7 +34,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FlakyIcon from '@mui/icons-material/Flaky';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 
-const url = 'http://a604-2a02-8071-22d4-5c00-8ce3-a41a-5eb4-628d.ngrok.io';
+import {url} from "../Navi_base"
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading', 'loading'),];
 const stocksLoading = [createItemsData(0,'loading','loading', 'loading')];
 const no_data = [createData(0,'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
@@ -353,7 +353,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         const display_msg = 'Do you want to approve or reject order :' + order_id + ' ?'
         return (
             <Dialog open={audit_open} onClose={handleAuditClose}>
-                <DialogTitle>Registration Request</DialogTitle>
+                <DialogTitle>Order Audition</DialogTitle>
                 <DialogContent>
                     <DialogContentText>
                         <Typography variant="body" display="block" gutterBottom>

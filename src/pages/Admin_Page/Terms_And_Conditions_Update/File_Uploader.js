@@ -1,14 +1,13 @@
-
 import React, {useState} from 'react';
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import {Input} from "@mui/material";
+import {url} from "../Navi_base"
 import {styled} from "@mui/styles";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import Stack from "@mui/material/Stack"
-import SaveIcon from '@mui/icons-material/Save';
+import UpdateIcon from '@mui/icons-material/Update';
 
-const url = '';
 
 export default function FILE_UPLOADER (){
     const Input = styled('input')({
@@ -23,21 +22,17 @@ export default function FILE_UPLOADER (){
     };
 
     // On file upload (click the upload button)
-    const onFileUpload = () => {
-        const post = selectedFile;
+    const onFileUpload = async () => {
+        const formData = new FormData()
+        formData.append('File', selectedFile);
+        console.log(formData);
+        console.log(selectedFile);
         // Create an object of formData
 
         // Details of the uploaded file
-        console.log(post);
-        fetch(url + '/orders/getAllPastOrders', {
-            mode: 'cors',
+        fetch(url + '/files/upload', {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
-            },
-            body : JSON.stringify(post)
+            body: formData
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
@@ -99,13 +94,13 @@ export default function FILE_UPLOADER (){
                     <label htmlFor="contained-button-file">
                         <Input accept=".md" id="contained-button-file" type="file" onChange={onFileChange}/>
                         <Button variant="contained" component = "span" startIcon={<UploadFileIcon />}>
-                            Upload
+                            Select File
                         </Button>
                     </label>
                 </div>
                 {fileData()}
-                <Button variant="contained" component = "span" startIcon={<SaveIcon />} onClick ={onFileUpload}>
-                    Save
+                <Button variant="contained" component = "span" startIcon={<UpdateIcon />} onClick ={onFileUpload}>
+                    Update
                 </Button>
             </Stack>
 

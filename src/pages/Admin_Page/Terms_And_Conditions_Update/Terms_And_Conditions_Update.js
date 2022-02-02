@@ -16,7 +16,6 @@ export default function TERMS_AND_CONDITIONS_UPDATE(){
                     <FILE_UPLOADER/>
                 </Box>
             </Stack>
-
         </div>
     )
 }
