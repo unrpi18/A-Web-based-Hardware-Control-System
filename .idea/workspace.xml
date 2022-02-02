@@ -4,25 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/checkInputFieldsIsBlank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFieldsIsBlank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/fetchData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/storeDataPersistance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/storeDataPersistance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

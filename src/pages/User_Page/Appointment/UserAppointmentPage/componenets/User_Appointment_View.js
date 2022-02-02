@@ -89,12 +89,11 @@ const APPOINTMENT_USER_VIEW = () => {
 
         const startDate = start_date;
         const post = {startDate};
-        fetch(url + '/timeslots/timeSlotCalender', {
+        fetch(url + '/appointments/bookedAndFree', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-
             let result_code =responseJson.resultCode;
             let errorMessage = responseJson.message;
             if(result_code === 200){

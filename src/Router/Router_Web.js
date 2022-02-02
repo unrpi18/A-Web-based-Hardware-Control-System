@@ -67,6 +67,11 @@ function Router_Web() {
                 <Route path='all_appointment_admin' element={<ALL_APPOINTMENT_ADMIN/>}/>
                 <Route path='user_group_navi_page' element={<USER_GROUP_NAVI_PAGE/>}/>
                 <Route path='past_order_admin' element={<PAST_ORDER_ADMIN/>}/>
+                <Route path='t_and_c_update' element={<TERMS_AND_CONDITIONS_UPDATE/>}/>
+                <Route path='stock_admin' element={<STOCK_ADMIN/>}/>
+                <Route path='past_order_admin' element={<PAST_ORDER_ADMIN/>}/>
+                <Route path='active_order_admin' element={<ACTIVE_ORDER_ADMIN/>}/>
+                <Route path='stock_and_order_admin_navi' element={<STOCK_ORDER_NAVI_PAGE/>}/>
             </Routes>
 
         </UserContext.Provider>

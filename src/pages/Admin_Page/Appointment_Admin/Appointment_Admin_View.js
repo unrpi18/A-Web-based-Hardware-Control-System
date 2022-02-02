@@ -55,12 +55,7 @@ function createData(ts_id, Mon, Tue, Wed, Thu, Fri, Sat, Sun) {
     return {ts_id, Mon, Tue, Wed, Thu, Fri, Sat, Sun };
 }
 
-//Util function to calculate the end date of a week
-function calculateEndDate(day){
-    const targetDate = new Date(current_view_start_date)
-    targetDate.setDate(targetDate.getDate() + day)
-    return `${targetDate.getFullYear()}-${('0' + (targetDate.getMonth()+1)).slice(-2)}-${('0' + targetDate.getDate()).slice(-2)}`;
-}
+
 
 // Util functions for standardizing data
 function dataStandardisation(data){
@@ -99,6 +94,13 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
     const [fetchedData, setFetchedData] = useState(loading);
+
+    //Util function to calculate the end date of a week
+    function calculateEndDate(day){
+        const targetDate = new Date(current_view_start_date)
+        targetDate.setDate(targetDate.getDate() + day)
+        return `${targetDate.getFullYear()}-${('0' + (targetDate.getMonth()+1)).slice(-2)}-${('0' + targetDate.getDate()).slice(-2)}`;
+    }
 
     // global var
     let start_date = current_view_start_date;
