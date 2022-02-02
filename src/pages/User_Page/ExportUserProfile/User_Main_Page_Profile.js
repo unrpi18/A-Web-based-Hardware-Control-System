@@ -30,8 +30,6 @@ const USER_MAIN_PAGE_PROFILE = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
-
-
     return (<form className='IconPosition_User_main_page'>
         <React.Fragment>
             <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center'}}>

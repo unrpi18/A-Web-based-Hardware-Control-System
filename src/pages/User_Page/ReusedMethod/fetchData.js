@@ -3,6 +3,7 @@ import {baseUrl, UserContext} from "../../../contexts/RegisterContext";
 
 export const useFetchData = (type, loginUser, api) => {
 
+
     let email = loginUser.email
     const [rows, setRows] = useState([]);
     const post = {email}
@@ -27,7 +28,7 @@ export const useFetchData = (type, loginUser, api) => {
 
         }).catch(error => console.error(error))
     }, []);
-
     return {rows, setRows};
+
 
 }

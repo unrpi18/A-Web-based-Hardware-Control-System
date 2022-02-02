@@ -17,56 +17,60 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
     const [email, setEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const {loginUser, setLoginUser} = useContext(UserContext);
+
     const navigate = useNavigate();
     const adminLoginApi = "/users/adminLogin";
     const userLoginApi = "/users/visitorLogin";
 
 
-    const handleLogin = (url, navigatePage) => {
+    const handleLogin = (url, navigatePage, isLogged) => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
             alert("Please fill the field(s) first!");
-        } else {
-            let password = sha256(userPassword.toString()).toString();
-            const post = {email, password};
-
-            console.log(post);
-            console.log(baseUrl + url)
-            fetch(baseUrl + url, {
-                method: 'POST',
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson);
-
-                let resultCode = responseJson.resultCode;
-                let errorMessage = responseJson.message;
-
-
-                if (resultCode === 200) {
-                    setLoginUser(responseJson);
-                    /*
-                    setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
-                    setLoginUser(prev => ({...prev, lastName: responseJson.lastName}))
-                    setLoginUser(prev => ({...prev, email: responseJson.email}))
-                    setLoginUser(prev => ({...prev, token: responseJson.token}))
-
-                     */
-                    setLoginUser(prev => ({...prev, isLogged: true}))
-                    navigate(navigatePage);
-                } else {
-                    alert(errorMessage);
-
-                }
-
-            })
         }
+        let password = sha256(userPassword.toString()).toString();
+        const post = {email, password};
+        console.log(post);
+        console.log(baseUrl + url)
+        fetch(baseUrl + url, {
+            method: 'POST',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
 
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+
+
+            if (resultCode === 200) {
+                setLoginUser(responseJson)
+                setLoginUser(prev => ({...prev, isLogged: true}))
+                /*
+                setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
+                setLoginUser(prev => ({...prev, lastName: responseJson.lastName}))
+                setLoginUser(prev => ({...prev, email: responseJson.email}))
+                setLoginUser(prev => ({...prev, token: responseJson.token}))
+
+                 */
+                navigate(navigatePage);
+            } else {
+                alert(errorMessage);
+
+            }
+
+        })
     }
 
+    let isUserLogged = loginUser.isUserLogged
+    let isAdminLogged = loginUser.isAdminLogged
     const buttons = [
-        <Button key="one" onClick={() => handleLogin(userLoginApi, '/user_main_page')}>User Login</Button>,
-        <Button key="two" onClick={() => handleLogin(adminLoginApi, '/admin_main_page')}>Admin Login</Button>,
+        <Button key="one"
+                onClick={() => handleLogin(userLoginApi, '/user_main_page', isUserLogged)}>User
+            Login</Button>,
+        <Button key="two"
+                onClick={() => handleLogin(adminLoginApi, '/admin_main_page', isAdminLogged)}>Admin
+            Login</Button>,
 
     ];
 
@@ -76,7 +80,6 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
 
 
     const theme = createTheme();
-
 
     return (
         <Box

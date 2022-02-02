@@ -4,9 +4,11 @@ import Typography from "@mui/material/Typography";
 import {useNavigate} from "react-router";
 import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
+import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/storeDataPersistance";
 
 const USER_STOCK_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
+
     const stockViewApi = "/stocks/getAllItems"
     const {rows, setRows} = useFetchData('GET', loginUser, stockViewApi)
 
@@ -22,6 +24,7 @@ const USER_STOCK_VIEW = () => {
             field: 'description', headerName: 'Description', width: 500, headerAlign: 'center'
         },
     ];
+
 
 
     return (<div

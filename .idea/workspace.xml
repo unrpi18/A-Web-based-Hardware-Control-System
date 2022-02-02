@@ -4,25 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="version 4.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/Login_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/Register_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Account_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAccountPage/components/User_Acoount_ReadOnlyFields.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ExportUserProfile/User_Main_Page_Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/fetchData.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page_Style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/UserMainPage/components/User_Main_Page_Text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/checkInputFieldsIsBlank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFieldsIsBlank.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/fetchData.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/fetchData.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/checkMethod/storeDataPersistance.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/storeDataPersistance.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,6 +126,11 @@
       <workItem from="1643396261787" duration="506000" />
       <workItem from="1643409758021" duration="1641000" />
       <workItem from="1643412002586" duration="322000" />
+      <workItem from="1643576511826" duration="6912000" />
+      <workItem from="1643627865322" duration="10000" />
+      <workItem from="1643627963433" duration="203000" />
+      <workItem from="1643628297542" duration="2226000" />
+      <workItem from="1643790278917" duration="1150000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -219,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643395019341</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="version 4.0">
+      <created>1643576552683</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643576552683</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +251,7 @@
     <MESSAGE value="fixed bug" />
     <MESSAGE value="mixed page web version 3.0" />
     <MESSAGE value="ACTIVE ORDER &amp; PAST ORDER _USER" />
-    <option name="LAST_COMMIT_MESSAGE" value="ACTIVE ORDER &amp; PAST ORDER _USER" />
+    <MESSAGE value="version 4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 4.0" />
   </component>
 </project>

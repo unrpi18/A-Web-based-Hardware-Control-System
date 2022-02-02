@@ -9,7 +9,7 @@ import ADMIN_MAIN_PAGE from "../pages/Admin_Page/Admin_Main_Page/Admin_Main_Page
 import APPOINTMENT_ADMIN from "../pages/Admin_Page/Appointment_Admin/Appointment_Admin";
 import USER_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/UserAppointmentPage/User_Appointment_Page";
 import USER_MAIN_PAGE from "../pages/User_Page/UserMainPage/User_Main_Page";
-import {UserContext} from "../contexts/RegisterContext";
+import {AdminContext, UserContext} from "../contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "../pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
 import USER_ACCOUNT_PAGE from "../pages/User_Page/Appointment/UserAccountPage/User_Account_Page";
 import New_User_Management from "../pages/Admin_Page/New_User_Management/New_User_Management";
@@ -19,7 +19,6 @@ import ALL_APPOINTMENT_ADMIN from "../pages/Admin_Page/All_Appointment_Admin/All
 
 import NotFound from "./NotFound";
 import USER_GROUP_NAVI_PAGE from "../pages/Admin_Page/User_Group_Navi_Page/User_Group_Navi_Page";
-import MY_APPOINTMENT_PAGE from "../pages/User_Page/My_Appointment_Page/My_Appointment_Page";
 import TERMS_AND_CONDITIONS_UPDATE from "../pages/Admin_Page/Terms_And_Conditions_Update/Terms_And_Conditions_Update";
 import STOCK_ADMIN from "../pages/Admin_Page/Stock_Admin/Stock_Admin";
 
@@ -34,13 +33,19 @@ import USER_PAST_ORDER from "../pages/User_Page/StocksAndOrders/User_Past_Order_
 
 
 function Router_Web() {
-    const initialLoginUser = {token: '', firstName: '', lastName: '', email: '', isLogged: false};
+    const initialLoginUser = {
+        token: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        isUserLogged: false,
+        isAdminLogged: false
+    };
     const [loginUser, setLoginUser] = useState(initialLoginUser);
 
     return (
+
         <UserContext.Provider value={{loginUser, setLoginUser}}>
-
-
             <Routes>
                 <Route exact path="/" element={<WELCOME_PAGE/>}/>
                 <Route path="register" element={<REGISTER_PAGE/>}/>
@@ -49,7 +54,6 @@ function Router_Web() {
                 <Route path='user_main_page' element={<USER_MAIN_PAGE/>}/>
                 <Route path='user_appointment_page' element={<USER_APPOINTMENT_PAGE/>}/>
                 <Route path='user_account_info' element={<USER_ACCOUNT_PAGE/>}/>
-                <Route path='my_appointment' element={<MY_APPOINTMENT_PAGE/>}/>
                 <Route path='my_appointment' element={<MY_APPOINTMENT_PAGE/>}/>
                 <Route path='stock_view' element={<USER_STOCK_PAGE/>}/>
                 <Route path='submit_order' element={<USER_SUBMIT_PAGE/>}/>
@@ -62,7 +66,7 @@ function Router_Web() {
                 <Route path='admin_management' element={<ADMINISTRATOR_MANAGEMENT/>}/>
                 <Route path='all_appointment_admin' element={<ALL_APPOINTMENT_ADMIN/>}/>
                 <Route path='user_group_navi_page' element={<USER_GROUP_NAVI_PAGE/>}/>
-                <Route path='past_order_admin' element = {<PAST_ORDER_ADMIN/>}/>
+                <Route path='past_order_admin' element={<PAST_ORDER_ADMIN/>}/>
             </Routes>
 
         </UserContext.Provider>
