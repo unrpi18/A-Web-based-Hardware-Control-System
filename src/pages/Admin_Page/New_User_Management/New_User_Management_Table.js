@@ -197,14 +197,16 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         handleClose();
     }
     function handleReject(){
-
+        const operatorEmail = "SiyannLi@outlook.com";
+        const post = {operatorEmail, email};
         fetch(url +'/users/rejectUserRegistration', {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + "001122"
-            }
+            },
+            body : JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
