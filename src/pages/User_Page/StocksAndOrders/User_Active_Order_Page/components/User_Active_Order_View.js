@@ -12,10 +12,10 @@ import {useFetchData} from "../../../ReusedMethod/fetchData";
 const USER_ACTIVE_ORDER_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
     const activeOrderApi = "/orders/getUserActiveOrders";
-    const {rows, setRows} = useFetchData('POST', loginUser, activeOrderApi)
+    const {rows, setRows} = useFetchData('GET', loginUser, activeOrderApi)
 
     const columns = [
-        {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center', hide: 'true'},
+        {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center'},
         {field: 'itemName', headerName: 'Article', width: 100, headerAlign: 'center'},
         {field: 'amount', headerName: 'Amount', width: 130, headerAlign: 'center'},
         {field: 'contactEmail', headerName: 'Contact', width: 300, headerAlign: 'center'},
@@ -47,7 +47,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
         const post = {orderId};
         if (handleCancelButtonColor(user)) {
             fetch(baseUrl + "/orders/deleteOrder", {
-                method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
+                method: 'GET', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
 
                 let message = responseJson.message;

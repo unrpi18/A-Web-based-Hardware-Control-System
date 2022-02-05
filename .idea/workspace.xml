@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="version 4.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +122,7 @@
       <workItem from="1643396261787" duration="506000" />
       <workItem from="1643409758021" duration="1641000" />
       <workItem from="1643412002586" duration="322000" />
+      <workItem from="1643794271864" duration="3419000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -205,14 +208,7 @@
       <option name="project" value="LOCAL" />
       <updated>1643395019341</updated>
     </task>
-    <task id="LOCAL-00013" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
-      <created>1643798677709</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1643798677709</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,6 +236,7 @@
     <MESSAGE value="fixed bug" />
     <MESSAGE value="mixed page web version 3.0" />
     <MESSAGE value="ACTIVE ORDER &amp; PAST ORDER _USER" />
-    <option name="LAST_COMMIT_MESSAGE" value="ACTIVE ORDER &amp; PAST ORDER _USER" />
+    <MESSAGE value="version 4.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="version 4.0" />
   </component>
 </project>
