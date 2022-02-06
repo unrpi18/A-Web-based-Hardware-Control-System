@@ -24,6 +24,7 @@ import Stack from "@mui/material/Stack";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import TextField from "@mui/material/TextField";
 import tablePaginationActions from "../Component/Table_Control";
+import {useNavigate} from "react-router";
 
 const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
 const loading= [createData(0,'loading', 'loading', 'loading')];
@@ -36,7 +37,8 @@ function createData(id, first_name, last_name, email) {
 
 
 export default function NEW_USER_MANAGEMENT_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext)
+    const {loginUser, setLoginUser} = useContext(UserContext);
+    const [token, setToken] = useState((loginUser === null)? null : loginUser.token );
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [open, setOpen] = useState(false);
@@ -47,7 +49,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     const [fetched_data, setFetched_data] = useState(no_data)
     const [filter_open, setFilter_open] = useState(false);
     const [filter_keyword, setFilter_keyword] = useState('');
-
+    const navigate = useNavigate();
 
 
 
@@ -62,7 +64,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -70,6 +72,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token)
                 if(data.length === 0){
                     setDisplay_data(no_data);
                 }else{
@@ -80,10 +83,16 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                     setFetched_data(standardisedData);
                     setDisplay_data(standardisedData);
                 }
-
+                alert(errorMessage)
             }
-            else{
+            else if(resultCode === 500){
+                window.sessionStorage.clear();
                 alert(errorMessage);
+            }
+            else {
+                window.sessionStorage.setItem('token', responseJson.token)
+                alert(errorMessage);
+                navigate('/');
             }
 
         })
@@ -175,47 +184,36 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         setLast_name('');
         setEmail('');
     }
-    function handleAccept(){
-        const operatorEmail = "SiyannLi@outlook.com";
-        const post = {operatorEmail, email};
+    function handleAudit(command){
+        const post = {email};
+        const prefix_url = command === 'approve' ? '/users/confirmUserRegistration' : '/users/rejectUserRegistration'
         console.log(post);
-        fetch(url + '/users/confirmUserRegistration', {
+        fetch(url + prefix_url, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            if(resultCode === 200|| resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
+                alert(errorMessage)
+            }
+            else {
+                window.sessionStorage.setItem('token', responseJson.token)
+                alert(errorMessage);
+                navigate('/');
+            }
             refreshPage();
         })
 
         handleClose();
     }
-    function handleReject(){
-        const operatorEmail = "SiyannLi@outlook.com";
-        const post = {operatorEmail, email};
-        fetch(url +'/users/rejectUserRegistration', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
-            },
-            body : JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-            refreshPage();
-        })
 
-        handleClose();
-    }
     function audit_dialog(){
         return(
             <Dialog open={open} onClose={handleClose}>
@@ -229,8 +227,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}> Close</Button>
-                    <Button onClick={handleReject}>Reject</Button>
-                    <Button onClick={handleAccept}>Approve</Button>
+                    <Button onClick={()=>handleAudit('reject')}>Reject</Button>
+                    <Button onClick={()=>handleAudit('approve')}>Approve</Button>
                 </DialogActions>
             </Dialog>
         )

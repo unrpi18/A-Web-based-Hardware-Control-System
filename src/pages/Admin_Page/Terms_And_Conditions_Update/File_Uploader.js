@@ -7,9 +7,12 @@ import {styled} from "@mui/styles";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import Stack from "@mui/material/Stack"
 import UpdateIcon from '@mui/icons-material/Update';
+import {useNavigate} from "react-router";
 
 
 export default function FILE_UPLOADER (){
+
+    const navigate = useNavigate();
     const Input = styled('input')({
         display: 'none',
     });
@@ -32,16 +35,19 @@ export default function FILE_UPLOADER (){
         // Details of the uploaded file
         fetch(url + '/files/upload', {
             method: 'POST',
+            headers: {
+                'Authorization': window.sessionStorage.getItem('token')
+            },
             body: formData
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-            let data = responseJson.data;
-            if (resultCode === 200) {
-                //TODO Alert Successful
-            } else {
-                alert(errorMessage);
+            if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(responseJson.message);
+            }
+            else{
+                window.sessionStorage.clear();
+                alert(responseJson.message);
+                navigate('/');
             }
 
         })

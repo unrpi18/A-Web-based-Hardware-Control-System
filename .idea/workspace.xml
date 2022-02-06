@@ -5,10 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Webcam_Admin/Webcam_Admin_View.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/Admin_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/Admin_Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Past_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Past_Order_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Terms_And_Conditions_Update/File_Uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Terms_And_Conditions_Update/File_Uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Group_Navi_Page/User_Group_Secondary_Navi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Group_Navi_Page/User_Group_Secondary_Navi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643798677709</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <created>1643923039300</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643923039300</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

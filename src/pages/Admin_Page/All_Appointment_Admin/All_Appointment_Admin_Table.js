@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from "@mui/material/TextField";
 import {url} from "../Navi_base"
 import tablePaginationActions from "../Component/Table_Control";
+import {useNavigate} from "react-router";
 
 // default data for loading
 const no_data =[
@@ -76,7 +77,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const [display_data, setDisplay_data] = useState(no_data);
     const [filter_keyword, setFilter_keyword]= useState('');
     const [feteched_data, setFetched_data] = useState(no_data);
-
+    const navigate = useNavigate();
 
     // Global methods
     useEffect(() => {
@@ -88,15 +89,16 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem("token")
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             let standarisedData = [];
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
                 for(let i = 0; i < data.length; i++){
                     standarisedData[i] = createData(i, data[i].user.firstName,  data[i].user.lastName, data[i].user.email, data[i].timeSlotDate, data[i].slot)
                 }
@@ -107,7 +109,15 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                     setFetched_data(standarisedData);
                     setDisplay_data(standarisedData);
                 }
+            } else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            } else {
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
+            refreshPage();
 
         })
     }
@@ -138,12 +148,18 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            if(resultCode === 200 || resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
+            } else {
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
+            }
             refreshPage();
         })
-
         handleDelete_close();
 
     }

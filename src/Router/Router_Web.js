@@ -39,7 +39,8 @@ function Router_Web() {
         lastName: '',
         email: '',
         isUserLogged: false,
-        isAdminLogged: false
+        isAdminLogged: false,
+        receiveNotification : true
     };
     const [loginUser, setLoginUser] = useState(initialLoginUser);
 

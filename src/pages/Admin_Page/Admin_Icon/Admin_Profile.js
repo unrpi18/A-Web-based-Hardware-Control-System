@@ -8,19 +8,17 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router";
-import {useContext} from "react";
 import {useState} from "react";
 import {Fragment} from "react";
-import {UserContext} from "../../../contexts/RegisterContext";
 import Stack from "@mui/material/Stack";
 import LOGO from "../../../components/logos/Logo";
 import { InputLabel} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import {url} from "../Navi_base";
 
 const Admin_Profile = () => {
     const [anchorEl, setAnchorEl] = useState(null);
-    const {loginUser, setLoginUser} = useContext(UserContext)
     const [notification_status, setNotification_status] = useState(false)
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
@@ -34,33 +32,35 @@ const Admin_Profile = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     const notification_statusOnchange =(e)=>{
         setNotification_status(e.target.value);
-        const user_token = loginUser.token;
-        let post = {user_token, notification_status};
+        const user_token  = window.loginUser.getItem('token');
+        let post = {notification_status};
         console.log(post);
-        fetch('192.168.1.1', {
+        fetch(url + 'changeEmailSetting', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': user_token
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
+            console.log(responseJson)
+            if(responseJson.resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                setNotification_status(window.sessionStorage.getItem('receiveNotification') === 'true');
+            } else if(responseJson.resultCode === 402){
+                window.sessionStorage.clear();
+                alert(responseJson.message)
+                navigate('/')
+            }else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                setNotification_status(window.sessionStorage.getItem('receiveNotification') === 'true');
+                alert(responseJson.message)
+            }
         })
-    }
-
-    function fetchEmailNotificationStatus(){
-        const user_token = loginUser.token;
-        let post = {user_token};
-        console.log(post);
-        fetch('192.168.1.1', {
-            method: 'POST',
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            return responseJson.notification_status === 'true';
-        })
-        return false;
     }
 
 
@@ -78,7 +78,7 @@ const Admin_Profile = () => {
                             aria-haspopup="true"
                             aria-expanded={open ? 'true' : undefined}
                         >
-                            <Avatar sx={{width: 70, height: 70}}>{loginUser.firstName}</Avatar>
+                            <Avatar sx={{width: 70, height: 70}}>{window.sessionStorage.getItem('first_name').charAt(0).toUpperCase()}</Avatar>
                         </IconButton>
                     </Tooltip>
                 </Box>
@@ -121,6 +121,7 @@ const Admin_Profile = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={notification_status}
+                                defaultValue={notification_status}
                                 label="Notification Status"
                                 onChange={notification_statusOnchange}>
                                 <MenuItem value={true}>On</MenuItem>
