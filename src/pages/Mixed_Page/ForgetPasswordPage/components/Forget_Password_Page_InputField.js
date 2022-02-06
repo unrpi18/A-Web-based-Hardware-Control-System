@@ -93,7 +93,7 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
 
                         onChange={(e) => setData(prev => ({...prev, email: e.target.value}))}
                     />
-                    < Button className='verifyButton_register_page' variant="contained" endIcon={<SendIcon/>}
+                    < Button className='verifyButton_forget_password_page' variant="contained" endIcon={<SendIcon/>}
                              onClick={() => handleVerificationCode(data.email, 'forget password')}>
                         Verify
                     </Button>

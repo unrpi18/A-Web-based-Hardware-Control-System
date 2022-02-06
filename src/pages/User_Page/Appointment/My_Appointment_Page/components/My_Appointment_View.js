@@ -10,15 +10,15 @@ import Typography from "@mui/material/Typography";
 
 function convertIDtoSlot(id) {
     switch (id) {
-        case '0' :
+        case 0 :
             return '08:00-10:00';
-        case '1' :
+        case 1 :
             return '10:00-12:00';
-        case '2' :
+        case 2 :
             return '12:00-14:00';
-        case '3' :
+        case 3 :
             return '14:00-16:00';
-        case '4' :
+        case 4 :
             return '16:00-18:00';
         default :
             return '18:00-20:00';
@@ -42,6 +42,7 @@ const useFetchData = () => {
             let message = responseJson.message;
 
             if (message === "SUCCESS") {
+                console.log(responseJson)
                 console.log(responseJson.data)
 
                 setRows(rows => ({...rows, data: responseJson.data}))
@@ -66,6 +67,7 @@ const MY_APPOINTMENT_VIEW = () => {
         headerName: 'slot id',
         width: 70,
         headerAlign: 'center',
+        hide: 'true'
     }, {field: 'slot', headerName: 'Time Slot', width: 130, headerAlign: 'center'}, {
         field: 'timeSlotDate',
         headerName: 'Date',
@@ -131,6 +133,7 @@ const MY_APPOINTMENT_VIEW = () => {
 
                       },
                   }}
+
                   getRowId={row => row.timeSlotId}
 
         />
