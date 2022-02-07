@@ -4,7 +4,7 @@ import {Button} from "@mui/material";
 import * as React from "react";
 import {useContext, useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../ReusedMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../ReusedMethod/checkInputFields";
 import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import '../User_Submit_Page_Style.css'
 
@@ -25,6 +25,7 @@ const USER_SUBMIT_PAGE_FORM = () => {
         }
         let itemLink = data.link;
         let contactEmail = data.contact;
+        let token = loginUser.token
         if (nullCheck) {
             const post = {itemName, amount, itemLink, contactEmail, description, email}
 
@@ -33,7 +34,10 @@ const USER_SUBMIT_PAGE_FORM = () => {
 
             fetch(baseUrl + "/orders/submitOrder", {
                 method: 'POST',
-                headers: {"Content-Type": "application/json"},
+                headers: {
+                    "Authorization": token,
+                    'Content-Type': 'application/json'
+                },
                 body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
                 console.log(responseJson);

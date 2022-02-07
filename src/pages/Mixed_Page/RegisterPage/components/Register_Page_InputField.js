@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import SendIcon from '@mui/icons-material/Send';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFields";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
 import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";

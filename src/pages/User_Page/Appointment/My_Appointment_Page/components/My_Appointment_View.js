@@ -32,11 +32,12 @@ const useFetchData = () => {
     const [rows, setRows] = useState([]);
     let email = loginUser.email;
     const post = {email};
-
+    let token = loginUser.token
     console.log(post)
+    console.log(token)
     useEffect(() => {
-        fetch(baseUrl + "/appointments/getUserAppointmentsWithEmail", {
-            method: 'POST', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
+        fetch(baseUrl + "/appointments/userGetUserAppointments", {
+            method: 'GET', headers: {"Authorization": token}
         }).then(response => response.json()).then(responseJson => {
             console.log(":go")
             let message = responseJson.message;

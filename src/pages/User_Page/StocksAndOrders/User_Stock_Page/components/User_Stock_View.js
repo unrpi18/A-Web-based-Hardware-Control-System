@@ -9,7 +9,7 @@ import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/
 const USER_STOCK_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
 
-    const stockViewApi = "/stocks/getAllItems"
+    const stockViewApi = "/stocks/userGetAllItems"
     const {rows, setRows} = useFetchData('GET', loginUser, stockViewApi)
 
 

@@ -45,9 +45,14 @@ const USER_ACTIVE_ORDER_VIEW = () => {
         let orderId = waitedCancelData[0].orderId
 
         const post = {orderId};
+        let token = loginUser.token
+        console.log(token)
         if (handleCancelButtonColor(user)) {
             fetch(baseUrl + "/orders/deleteOrder", {
-                method: 'GET', headers: {"Content-Type": "application/json"}, body: JSON.stringify(post)
+                method: 'POST', headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                }, body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
 
                 let message = responseJson.message;

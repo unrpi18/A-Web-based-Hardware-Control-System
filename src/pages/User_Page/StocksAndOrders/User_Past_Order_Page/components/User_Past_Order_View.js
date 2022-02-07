@@ -8,7 +8,7 @@ import {useFetchData} from "../../../ReusedMethod/fetchData";
 const USER_PAST_ORDER_VIEW = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
     const pastOrderApi = "/orders/getUserPastOrders";
-    const {rows, setRows} = useFetchData('POST', loginUser, pastOrderApi);
+    const {rows, setRows} = useFetchData('GET', loginUser, pastOrderApi);
 
     const columns = [
         {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center', hide: 'true'},
