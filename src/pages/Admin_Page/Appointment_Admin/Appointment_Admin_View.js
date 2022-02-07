@@ -97,8 +97,6 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
     const [fetchedData, setFetchedData] = useState(loading);
-    const {loginUser, setLoginUser} = useContext(UserContext);
-    const [token, setToken] = useState((loginUser === null)? null : loginUser.token );
     const navigate = useNavigate();
     //Util function to calculate the end date of a week
     function calculateEndDate(day){
@@ -206,30 +204,37 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setBook_open(false);
     };
     function handleConfirm(command){
-        const prefix_url = command === 'Book' ? "/appointments/addAppointment" : "/appointments/deleteAppointment";
-        const slot = time_slot
-        const post = command === 'Book' ? {email, date, slot} : {date, slot};
-        fetch(url + prefix_url, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': window.sessionStorage.getItem('token')
-            },
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
-                window.sessionStorage.setItem('token', responseJson.token);
-                alert(responseJson.message);
-            }else{
-                window.sessionStorage.clear();
-                alert(responseJson.message);
-                navigate('/');
-            }
+        if(moment().isAfter(date) === true){
+            console.log(date);
+            alert("You may not modify appointment in the past!")
+            handleBookClose();
+        }else{
+            const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
+            const slot = time_slot
+            const post = command === 'Book' ? {email, date, slot} : {date, slot};
+            fetch(url + prefix_url, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': window.sessionStorage.getItem('token')
+                },
+                body: JSON.stringify(post)
+            }).then(response => response.json()).then(responseJson => {
+                if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                }else{
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
 
-            refreshPage(start_date);
-            handleBookClose()
-        })
+                refreshPage(start_date);
+                handleBookClose()
+            })
+        }
+
 
     }
 
@@ -359,16 +364,15 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setTs_open(false);
     }
     const handleConfirmTSChange = (e)=>{
+        const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
         e.preventDefault();
-        let nullCheck = isDateLegal(date);
-
         const startDate = date;
         const slot = time_slot.toString();
         const endRepeatAfter = rpt_wks
         const status = ts_status
         const post = {startDate, slot, endRepeatAfter, status};
         console.log(post);
-        fetch(url + "/timeslots/setPeriodTimeSlots", {
+        fetch(url + url_prefix, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -474,7 +478,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
     // function for clicking prev and next week
     function prevWeek(){
-        if(!moment(start_date).isBefore(moment().format('YYYY-MM-DD'))){
+        if(moment(start_date).isAfter(moment().format('YYYY-MM-DD'))){
             refreshPage(calculateEndDate(-7));
             setCurrent_view_start_date(calculateEndDate(-7));
         }
@@ -491,17 +495,17 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     function table(){
         return(
             <TableContainer>
-                <Table sx={{ minWidth : '60vw', maxWidth: '60vw', maxHeight : '25vh', minHeight : '40vh', border : 3, mx :'auto'}} aria-label="simple table">
+                <Table sx={{ minWidth : '80vw', maxWidth: '80vw', maxHeight : '25vh', minHeight : '40vh', border : 3, mx :'auto'}}  aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Time Slot/Day</TableCell>
-                            <TableCell align="center">Monday</TableCell>
-                            <TableCell align="center">Tuesday</TableCell>
-                            <TableCell align="center">Wednesday</TableCell>
-                            <TableCell align="center">Thursday</TableCell>
-                            <TableCell align="center">Friday</TableCell>
-                            <TableCell align="center">Saturday</TableCell>
-                            <TableCell align="center">Sunday</TableCell>
+                            <TableCell align="center">Time Slot/Date</TableCell>
+                            <TableCell align="center">{current_view_start_date}/Mo</TableCell>
+                            <TableCell align="center">{calculateEndDate(1)}/Tu</TableCell>
+                            <TableCell align="center">{calculateEndDate(2)}/We</TableCell>
+                            <TableCell align="center">{calculateEndDate(3)}/Th</TableCell>
+                            <TableCell align="center">{calculateEndDate(4)}/Fr</TableCell>
+                            <TableCell align="center">{calculateEndDate(5)}/Sa</TableCell>
+                            <TableCell align="center">{calculateEndDate(6)}/Su</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -612,9 +616,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
     return (
         <div>
-            {setTimeSlotDialog()};
-            {bookAppointmentDialog()};
-            {cxlAppointmentDialog()};
+            {setTimeSlotDialog()}
+            {bookAppointmentDialog()}
+            {cxlAppointmentDialog()}
             <Stack direction="column-reverse" spacing={3}  alignItems="center" sx ={{mx : 'auto'}}>
                 <Button variant="contained" onClick={handleTimeSlotOpen} >Set Time Slots Status</Button>
                 {table()}

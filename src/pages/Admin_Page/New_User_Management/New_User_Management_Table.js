@@ -83,7 +83,6 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                     setFetched_data(standardisedData);
                     setDisplay_data(standardisedData);
                 }
-                alert(errorMessage)
             }
             else if(resultCode === 500){
                 window.sessionStorage.clear();

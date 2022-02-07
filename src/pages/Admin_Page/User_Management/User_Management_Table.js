@@ -105,8 +105,6 @@ function createData(id, first_name, last_name, email, access) {
 
 
 export default function USER_MANAGEMENT_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext);
-    const [token, setToken] = useState((loginUser === null)? null : loginUser.token );
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [open, setOpen] = useState(false);
@@ -134,8 +132,6 @@ export default function USER_MANAGEMENT_TABLE() {
         setFilter_keyword(e.target.value);
     }
     useEffect(() => {
-        setLoginUser(JSON.parse(window.sessionStorage.getItem("loginUser")));
-        setToken(loginUser.token)
         refreshPage();
     }, [])
 
@@ -370,17 +366,17 @@ export default function USER_MANAGEMENT_TABLE() {
                     ).map((row) => (
                         <TableRow  key={row.id}>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center" component="th" scope="row">
-                                {row.first_name}
+                                {row.last_name}
                             </TableCell>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center">
-                                {row.last_name}
+                                {row.first_name}
                             </TableCell>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center">
                                 {row.email}
                             </TableCell>
                             <TableCell style={{ width: "1vw", height : 53 }} align="center">
                                 <IconButton aria-label="view"
-                                            disabled={rows[row.id].first_name === 'N/A'}
+                                            disabled={rows[0].last_name === 'N/A'}
                                             onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
                                     <VisibilityIcon />
                                 </IconButton>
@@ -460,8 +456,8 @@ export default function USER_MANAGEMENT_TABLE() {
                 </Typography>
                 {table()}
             </Stack>
-            {filterDialog}
-            {deleteDialog}
+            {filterDialog()}
+            {deleteDialog()}
         </div>
 
     );

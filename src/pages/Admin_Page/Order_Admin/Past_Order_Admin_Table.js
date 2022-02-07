@@ -25,7 +25,7 @@ import Stack from "@mui/material/Stack";
 
 import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
-import {Dialog, TextField} from "@mui/material";
+import {Dialog, Link, TextField} from "@mui/material";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -137,7 +137,6 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                 }
                 setDisplay_data(standardisedData);
                 setFetched_data(standardisedData);
-                alert(errorMessage)
             } else if(resultCode === 500){
                 window.sessionStorage.setItem('token', responseJson.token)
                 alert(errorMessage);
@@ -266,16 +265,16 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                                     {row.item}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.email}
+                                    {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.amount}
+                                    <Link href={row.link}>Link</Link>
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
                                     {row.name}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.link}
+                                    {row.email}
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -25,10 +25,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
-
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
@@ -108,8 +106,7 @@ function createData(id, item, amount, description) {
 
 
 export default function STOCK_ADMIN_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext)
-    const [token, setToken] = useState(loginUser.token)
+
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -129,8 +126,7 @@ export default function STOCK_ADMIN_TABLE() {
     let rows = display_data;
 
     useEffect(() => {
-        setLoginUser(JSON.parse(window.sessionStorage.getItem("loginUser")));
-        setToken(loginUser.token)
+        refreshPage()
     }, []);
 
     function handleEditOpen(item, amount) {
@@ -181,13 +177,8 @@ export default function STOCK_ADMIN_TABLE() {
         setDescription(e.target.value);
     }
 
-    useEffect(()=>{
-        refreshPage();
-    })
-
     function refreshPage() {
-
-        fetch(url + '/stocks/getAllItems', {
+        fetch(url + '/stocks/adminGetAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -215,8 +206,6 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
         })
-
-
     }
 
     const handleEditConfirm = ()=>{

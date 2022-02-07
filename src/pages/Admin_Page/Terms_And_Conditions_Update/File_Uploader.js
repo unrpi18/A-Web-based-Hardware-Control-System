@@ -98,7 +98,7 @@ export default function FILE_UPLOADER (){
                 </Typography>
                 <div>
                     <label htmlFor="contained-button-file">
-                        <Input accept=".md" id="contained-button-file" type="file" onChange={onFileChange}/>
+                        <Input accept=".pdf" id="contained-button-file" type="file" onChange={onFileChange}/>
                         <Button variant="contained" component = "span" startIcon={<UploadFileIcon />}>
                             Select File
                         </Button>

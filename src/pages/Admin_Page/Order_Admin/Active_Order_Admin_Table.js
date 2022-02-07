@@ -132,7 +132,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
 
     useEffect(() => {
         refreshPage();
-        allStockDataFetch();
     }, [])
 
     function refreshPage() {
@@ -151,7 +150,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             let data = responseJson.data;
             if (resultCode === 200) {
                 window.sessionStorage.setItem('token', responseJson.token);
-                if(data.length === 0){
+                if(data === null){
                     setDisplay_data(no_data);
                 } else {
                     let standardisedData = [];
@@ -162,7 +161,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                     setFetched_data(standardisedData);
                     allStockDataFetch();
                 }
-                alert(errorMessage);
 
             } else if(resultCode === 500){
                 window.sessionStorage.setItem('token', responseJson.token);
@@ -177,7 +175,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
     }
 
     function allStockDataFetch(){
-        fetch(url +'/stocks/getAllItems', {
+        fetch(url +'/stocks/adminGetAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -195,7 +193,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                     standardisedData[i] = createItemsData(i, data[i].itemName, data[i].amount, data[i].link);
                 }
                 setAll_stock_data(standardisedData);
-                alert(errorMessage);
             }
             else if (resultCode === 500){
                 window.sessionStorage.setItem('token', responseJson.token);
@@ -508,12 +505,12 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                 <TableCell style={{width: "1vw", height: 53}} align="center">
                                     {rows[row.id].status === "PENDING"
                                     ?<IconButton aria-label="view"
-                                                disabled={rows[row.id].item === 'loading'}
+                                                disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                 onClick={() => handleAuditOpen(rows[row.id].order_id)}>
                                         <FlakyIcon/>
                                     </IconButton>
                                     :<IconButton aria-label="view"
-                                                 disabled={rows[row.id].item === 'loading'}
+                                                 disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                  onClick={() => handleInStockOpen(rows[row.id].order_id, rows[row.id].item, rows[row.id].amount)}>
                                     <MergeTypeIcon/>
                                 </IconButton>}

@@ -15,6 +15,7 @@ import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
 import {url} from "../../../../Admin_Page/Navi_base"
+import {useNavigate} from "react-router";
 
 const loading = [
     createData(0, 'loading', 'loading', 'loading', 'loading','loading', 'loading', 'loading'),
@@ -78,7 +79,7 @@ const APPOINTMENT_USER_VIEW = () => {
     const [date, setDate] = useState('')
     const [time_slot, setTimeSlot] = useState('')
     const [fetchedData, setFetchedData] = useState([]);
-
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -91,12 +92,17 @@ const APPOINTMENT_USER_VIEW = () => {
         const post = {startDate};
         fetch(url + '/appointments/bookedAndFree', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             let result_code =responseJson.resultCode;
             let errorMessage = responseJson.message;
             if(result_code === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 let standarisedData = dataStandardisation(responseJson.data);
                 let displayData = [];
                 for(let i = 0; i < 6; i++){
@@ -104,14 +110,18 @@ const APPOINTMENT_USER_VIEW = () => {
                 }
                 setFetchedData(displayData);
 
-            }
-            else{
-
+            } else if(result_code === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage);
+
+            }else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
+
 
         })
-
     }
 
     /*
@@ -171,17 +181,25 @@ const APPOINTMENT_USER_VIEW = () => {
             const slot = time_slot
             const post = {date, slot};
             console.log(post);
-            fetch(url + "/appointments/addAppointment", {
+            fetch(url + "/appointments/userAddAppointment", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + "001122"
+                    'Authorization': window.sessionStorage.getItem('token')
                 },
                 body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson);
-                refreshPage(start_date, end_date);
+                if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                }else{
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
+
+                refreshPage(start_date);
                 handleBookClose()
             })
         } else {
@@ -195,18 +213,26 @@ const APPOINTMENT_USER_VIEW = () => {
         if (nullCheck) {
             const slot = time_slot
             const post = {date, slot};
-            fetch(url + "/appointments/deleteAppointment", {
+            fetch(url + "/appointments/userDeleteAppointment", {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + "001122"
+                    'Authorization': window.sessionStorage.getItem('token')
                 },
                 body: JSON.stringify(post)
-            }).then(() => {
-                console.log('success');
-                refreshPage(start_date, end_date);
-                handleCxlClose()
+            }).then(response => response.json()).then(responseJson =>  {
+                if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                }else{
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
+
+                refreshPage(start_date);
+            handleCxlClose();
             })
         } else {
             alert("please enter an valid date in yyyy-mm-dd");
