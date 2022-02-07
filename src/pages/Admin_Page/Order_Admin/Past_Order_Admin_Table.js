@@ -24,9 +24,15 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 import {url} from "../Navi_base"
+import {useNavigate} from "react-router";
+import {Dialog, Link, TextField} from "@mui/material";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import FilterListIcon from "@mui/icons-material/FilterList";
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading'),];
-
-const fakedData = [createData(0,'556','sd', '5', '64','645', '645'),]
+const no_data= [createData(0,'N/A','N/A', 'N/A', 'N/A','N/A', 'N/A'),];
 function tablePaginationActions(props){
     const theme = useTheme;
     const { count, page, rowsPerPage, onPageChange } = props;
@@ -97,9 +103,11 @@ export default function PAST_ORDER_ADMIN_TABLE() {
     const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-
-    const [display_data, setDisplay_data] = useState(fakedData);
-
+    const [filter_keyword, setFilter_keyword] = useState('')
+    const [filter_open, setFilter_open] = useState(false)
+    const [fetched_data, setFetched_data] = useState(loading);
+    const [display_data, setDisplay_data] = useState(loading);
+    const navigate = useNavigate();
 
     const table_title = 'All Past Orders'
     let rows = display_data;
@@ -115,24 +123,106 @@ export default function PAST_ORDER_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if (resultCode === 200) {
+                window.sessionStorage.setItem('token', responseJson.token)
                 let standardisedData = [];
                 for (let i = 0; i < data.length; i++) {
                     standardisedData[i] = createData(i, data[i].orderId,data[i].itemName, data[i].amount, data[i].itemLink, data[i].userName, data[i].userEmail);
                 }
                 setDisplay_data(standardisedData);
-            } else {
+                setFetched_data(standardisedData);
+            } else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
                 alert(errorMessage);
+            } else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
 
         })
+    }
+
+    //filter relevant methods
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    const handleFilter_close =()=>{
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : first name/last name/email/date"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].order_id.toString().includes(keyword)
+                    || fetched_data[i].item.toString().includes(keyword)
+                    || fetched_data[i].amount.toString().includes(keyword)
+                    || fetched_data[i].email.toString().includes(keyword)
+                    || fetched_data[i].name.toString().includes(keyword))
+                {
+                    filteredData[count] = fetched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
+
+    }
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
     }
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -175,16 +265,16 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                                     {row.item}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.email}
+                                    {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.amount}
+                                    <Link href={row.link}>Link</Link>
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
                                     {row.name}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    {row.link}
+                                    {row.email}
                                 </TableCell>
                             </TableRow>
                         ))}
@@ -197,6 +287,10 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                     </TableBody>
                     <TableFooter>
                         <TableRow>
+                            <IconButton
+                                onClick={()=>handleFilter_open()}>
+                                <FilterListIcon />
+                            </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
                                 colSpan={6}
@@ -238,6 +332,7 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                 </Typography>
                 {table()}
             </Stack>
+            {filterDialog()}
         </div>
 
     )

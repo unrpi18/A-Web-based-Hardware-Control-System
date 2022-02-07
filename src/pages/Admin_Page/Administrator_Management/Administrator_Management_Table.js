@@ -14,7 +14,6 @@ import React, {useContext, useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import Stack from "@mui/material/Stack";
@@ -24,6 +23,7 @@ import {url} from "../Navi_base"
 import {Autocomplete} from "@mui/lab";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import tablePaginationActions from "../Component/Table_Control";
+import {useNavigate} from "react-router";
 
 // default data by loading / no admins
 const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
@@ -53,7 +53,6 @@ function createUserData(id, entry){
 
 export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     //state var
-    const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [open, setOpen] = useState(false);
@@ -66,21 +65,21 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     const [filter_open, setFilter_open] = useState(false);
     const [filter_keyword, setFilter_keyword] = useState('');
     const [user_data, setUser_data] = useState(user_no_data);
-
+    const navigate = useNavigate();
 
     //Global functions
     useEffect(() => {
         refreshPage();
     }, [])
-    function fetchUser(){
 
+    function fetchUser(){
         fetch(url + '/users/getAllUsers', {
             method: 'GET',
             mode : 'cors',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -88,13 +87,19 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createUserData(i, data[i].email);
                 }
                 setUser_data(standardisedData);
             }
-            else{
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/')
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage);
             }
 
@@ -108,7 +113,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -116,6 +121,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email);
@@ -123,8 +129,12 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 setFetched_data(standardisedData);
                 setDisplay_data(standardisedData);
             }
-            else{
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
                 alert(errorMessage);
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
             }
 
         })
@@ -162,22 +172,32 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         )
     }
     const handleConfirm =() =>{
-        const operatorEmail = "teco@teco.com"
-        const post = {operatorEmail,email};
+        const post = {email};
         console.log(post);
         fetch(url + '/users/revokeAdmin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
+
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            //TODO
+            if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            }
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
+                alert(errorMessage);
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
+            }
             refreshPage();
         })
 
@@ -193,22 +213,31 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
         setAdd_open(false);
     }
     function handleAdd(){
-        const operatorEmail = "SiyannLi@outlook.com"
-        const post = {operatorEmail,email};
+        const post = {email};
         console.log(post);
         fetch(url + '/users/insertAdmin', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            //TODO
+            if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            }
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
+                alert(errorMessage);
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
+            }
             refreshPage();
         })
 

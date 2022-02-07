@@ -8,9 +8,9 @@ export default function STOCK_ORDER_SECONDARY_NAVI(){
     const navigate = useNavigate();
     return (
             <ButtonGroup orientation="vertical">
-                <Button variant = "contained" onClick= {()=>navigate('/new_user_management')}>Stocks</Button>
-                <Button variant = "contained" onClick= {()=>navigate('/user_management')}>Active Orders</Button>
-                <Button variant = "contained" disabled = {false} onClick= {()=>navigate('/admin_management')}>Past Orders</Button>
+                <Button variant = "contained" onClick= {()=>navigate('/stock_admin')}>Stocks</Button>
+                <Button variant = "contained" onClick= {()=>navigate('/active_order_admin')}>Active Orders</Button>
+                <Button variant = "contained" onClick= {()=>navigate('/past_order_admin')}>Past Orders</Button>
             </ButtonGroup>
     )
 }

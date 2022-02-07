@@ -25,17 +25,18 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
-
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
-
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 import {url} from "../Navi_base"
+import {useNavigate} from "react-router";
+import FilterListIcon from "@mui/icons-material/FilterList";
 const loading = [
+    createData(0,'loading','loading','loading')]
+const no_data = [
     createData(0,'NA','NA','NA')]
-
 
 
 function tablePaginationActions(props){
@@ -105,20 +106,28 @@ function createData(id, item, amount, description) {
 
 
 export default function STOCK_ADMIN_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext)
+
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const [edit_open, setEdit_open] = useState(false);
     const [add_open, setAdd_open] = useState(false)
     const [remove_open, setRemove_open] = useState(false);
+    const [filter_open, setFilter_open] = useState(false);
 
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-    const [displayData, setDisplayData] = useState(null);
+    const [fetched_data, setFetched_data] = useState(loading)
+    const [display_data, setDisplay_data] = useState(loading);
+    const [filter_keyword, setFilter_keyword] = useState('');
 
-    let rows = displayData;
+    const navigate = useNavigate();
+    let rows = display_data;
+
+    useEffect(() => {
+        refreshPage()
+    }, []);
 
     function handleEditOpen(item, amount) {
         setItem(item);
@@ -168,38 +177,35 @@ export default function STOCK_ADMIN_TABLE() {
         setDescription(e.target.value);
     }
 
-    useEffect(()=>{
-        refreshPage();
-    })
-
     function refreshPage() {
-
-        fetch(url + '/stocks/getAllItems', {
+        fetch(url + '/stocks/adminGetAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
         }).then(response => response.json()).then(responseJson => {
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token)
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createData(i, data[i].itemName, data[i].amount, data[i].description);
                 }
-                setDisplayData(standardisedData);
-            }
-            else{
+                setDisplay_data(standardisedData);
+                setFetched_data(standardisedData);
+            } else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
                 alert(errorMessage);
+            } else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
-
-
         })
-
-
     }
 
     const handleEditConfirm = ()=>{
@@ -211,13 +217,22 @@ export default function STOCK_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
+            if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(responseJson.message);
+            }
+            else{
+                window.sessionStorage.clear();
+                alert(responseJson.message);
+                navigate('/');
+            }
+            refreshPage();
         })
-        refreshPage();
+
         handleEditClose();
     }
     const handleRemoveConfirm = () => {
@@ -229,13 +244,21 @@ export default function STOCK_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
+            if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(responseJson.message);
+            }
+            else{
+                window.sessionStorage.clear();
+                alert(responseJson.message);
+                navigate('/');
+            }
+            refreshPage();
         })
-        refreshPage();
         handleRemoveClose();
     }
     const handleAddConfirm = () => {
@@ -249,17 +272,97 @@ export default function STOCK_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
+            if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(responseJson.message);
+            }
+            else{
+                window.sessionStorage.clear();
+                alert(responseJson.message);
+                navigate('/');
+            }
+            refreshPage();
         })
-        refreshPage();
         handleAddClose();
     }
 
+    //filter relevant methods
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    const handleFilter_close =()=>{
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
 
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : first name/last name/email/date"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].item.toString().includes(keyword)
+                    || fetched_data[i].amount.toString().includes(keyword)
+                    || fetched_data[i].description.toString().includes(keyword))
+                {
+                    filteredData[count] = fetched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
+
+    }
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
+    }
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length +1) : 0;
@@ -274,7 +377,7 @@ export default function STOCK_ADMIN_TABLE() {
 
     const table_title = 'All Items in Stock'
     const stock_table = ()=>{
-        if(displayData === null){
+        if(display_data === null){
             rows = loading;
         }
         return (
@@ -330,6 +433,10 @@ export default function STOCK_ADMIN_TABLE() {
                             <Button variant="contained" component = "span" onClick = {handleAddOpen} startIcon={<AddIcon />} size="large">
                                 New Item
                             </Button>
+                            <IconButton
+                                onClick={()=>handleFilter_open()}>
+                                <FilterListIcon />
+                            </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
                                 colSpan={4}
@@ -501,6 +608,7 @@ export default function STOCK_ADMIN_TABLE() {
             {add_dialog()}
             {remove_dialog()}
             {edit_dialog()}
+            {filterDialog()}
         </div>
 
     );

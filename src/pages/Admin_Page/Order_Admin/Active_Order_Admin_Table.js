@@ -35,6 +35,8 @@ import FlakyIcon from '@mui/icons-material/Flaky';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 
 import {url} from "../Navi_base"
+import {useNavigate} from "react-router";
+import FilterListIcon from "@mui/icons-material/FilterList";
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading', 'loading'),];
 const stocksLoading = [createItemsData(0,'loading','loading', 'loading')];
 const no_data = [createData(0,'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
@@ -110,37 +112,36 @@ function createItemsData (id, item, amount, link){
 
 
 export default function ACTIVE_ORDER_ADMIN_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext)
+    const [filter_keyword, setFilter_keyword] = useState('');
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
 
     const [order_id, setOrder_id] = useState('');
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
+    const [fetched_data, setFetched_data] = useState(loading);
     const [display_data, setDisplay_data] = useState(loading);
     const [items_in_stock, setItems_In_stock] = useState('');
+    const [filter_open, setFilter_open] = useState(false);
     const [audit_open, setAudit_open] = useState(false);
     const [instock_open, setInstock_open] = useState(false);
     const [all_stock_data, setAll_stock_data] = useState(stocksLoading);
-
+    const navigate = useNavigate();
     const table_title = 'All Active Orders'
     let rows = display_data;
 
     useEffect(() => {
         refreshPage();
-        allStockDataFetch();
     }, [])
 
     function refreshPage() {
-        const token = "001122";
-
         fetch(url + '/orders/getAllActiveOrders', {
             mode: 'cors',
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -148,7 +149,8 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if (resultCode === 200) {
-                if(data.length === 0){
+                window.sessionStorage.setItem('token', responseJson.token);
+                if(data === null){
                     setDisplay_data(no_data);
                 } else {
                     let standardisedData = [];
@@ -156,42 +158,50 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                         standardisedData[i] = createData(i, data[i].orderId, data[i].itemName, data[i].amount, data[i].itemLink, data[i].userName, data[i].userEmail, data[i].orderStatus);
                     }
                     setDisplay_data(standardisedData);
+                    setFetched_data(standardisedData);
                     allStockDataFetch();
                 }
 
-            } else {
+            } else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage);
+            } else{
+                window.sessionStorage.clear();
+                alert(errorMessage)
+                navigate('/')
             }
 
         })
     }
 
     function allStockDataFetch(){
-        fetch(url +'/stocks/getAllItems', {
+        fetch(url +'/stocks/adminGetAllItems', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
         }).then(response => response.json()).then(responseJson => {
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
-
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createItemsData(i, data[i].itemName, data[i].amount, data[i].link);
                 }
                 setAll_stock_data(standardisedData);
-
             }
-            else{
+            else if (resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage);
+            } else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
-
-
         })
     }
     const itemInStockOnchange =(e)=>{
@@ -229,25 +239,26 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            if (resultCode === 200){
-                //TODO process data
-            }
-            else if( resultCode === 500){
-                //TODO Alert but stay
+            if (resultCode === 200 || resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
+                alert(errorMessage)
             }
             else{
-                //TODO illegal access, alert and leave
+                window.sessionStorage.clear();
+                alert(errorMessage)
+                navigate('/');
             }
+            refreshPage();
         })
 
-        refreshPage();
+
         handleInStockClose();
     }
     function handleSubmit(result) {
@@ -260,26 +271,102 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            if (resultCode === 200){
-                //TODO process data
-            }
-            else if( resultCode === 500){
-                //TODO Alert but stay
+            if (resultCode === 200 || resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
+                alert(errorMessage)
             }
             else{
-                //TODO illegal access, alert and leave
+                window.sessionStorage.clear();
+                alert(errorMessage)
+                navigate('/');
             }
+            refreshPage();
         })
-
-        refreshPage();
         handleAuditClose();
+    }
+
+    //filter relevant methods
+    function handleFilter_open(){
+        setFilter_open(true);
+    }
+    const handleFilter_close =()=>{
+        setFilter_open(false);
+    }
+    const applyFilter=() => {
+        filterData(filter_keyword);
+        handleFilter_close();
+    }
+    const resetFilter=()=>{
+        filterData('');
+        handleFilter_close();
+    }
+    function filterDialog(){
+        return(
+            <Dialog open={filter_open} onClose={handleFilter_close}>
+                <DialogTitle>Filtering</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+
+                        margin="dense"
+                        id="rpt"
+                        label="Keywords"
+                        fullWidth
+                        variant="standard"
+                        value ={filter_keyword}
+                        onChange={filter_keywordOnchange}
+                        placeholder={"eg : first name/last name/email/date"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleFilter_close}>Close</Button>
+                    <Button onClick={resetFilter}>Reset Filter</Button>
+                    <Button onClick={applyFilter}>Apply Filter</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+    function filterData (keyword){
+        setPage(0);
+        if(keyword === ''){
+            setFilter_keyword('');
+            refreshPage();
+        }
+        else {
+            let filteredData =[];
+            let count = 0;
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].order_id.toString().includes(keyword)
+                    || fetched_data[i].item.toString().includes(keyword)
+                    || fetched_data[i].amount.toString().includes(keyword)
+                    || fetched_data[i].email.toString().includes(keyword)
+                    || fetched_data[i].name.toString().includes(keyword)
+                    || fetched_data[i].status.toString().includes(keyword))
+                {
+                    filteredData[count] = fetched_data[i];
+                    count ++;
+                }
+            }
+            if(filteredData.length === 0){
+                setDisplay_data(no_data);
+            }
+            else{
+                setDisplay_data(filteredData);
+            }
+        }
+
+    }
+    const filter_keywordOnchange =(e)=>{
+        setFilter_keyword(e.target.value);
     }
 
     // Avoid a layout jump when reaching the last page with empty rows.
@@ -418,12 +505,12 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                 <TableCell style={{width: "1vw", height: 53}} align="center">
                                     {rows[row.id].status === "PENDING"
                                     ?<IconButton aria-label="view"
-                                                disabled={rows[row.id].item === 'loading'}
+                                                disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                 onClick={() => handleAuditOpen(rows[row.id].order_id)}>
                                         <FlakyIcon/>
                                     </IconButton>
                                     :<IconButton aria-label="view"
-                                                 disabled={rows[row.id].item === 'loading'}
+                                                 disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                  onClick={() => handleInStockOpen(rows[row.id].order_id, rows[row.id].item, rows[row.id].amount)}>
                                     <MergeTypeIcon/>
                                 </IconButton>}
@@ -439,6 +526,10 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                     </TableBody>
                     <TableFooter>
                         <TableRow>
+                            <IconButton
+                                onClick={()=>handleFilter_open()}>
+                                <FilterListIcon />
+                            </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
                                 colSpan={3}
@@ -482,6 +573,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             </Stack>
             {order_audit_dialog()}
             {in_stock_dialog()}
+            {filterDialog()}
         </div>
 
     )

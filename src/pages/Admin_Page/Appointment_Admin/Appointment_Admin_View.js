@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,7 +20,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-import {url} from "../Navi_base"
+import {useLogout, url} from "../Navi_base"
+import {UserContext} from "../../../contexts/RegisterContext";
+import {useNavigate} from "react-router";
+import {func} from "prop-types";
 
 //loading data
 const loading = [
@@ -94,7 +97,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
     const [fetchedData, setFetchedData] = useState(loading);
-
+    const navigate = useNavigate();
     //Util function to calculate the end date of a week
     function calculateEndDate(day){
         const targetDate = new Date(current_view_start_date)
@@ -133,13 +136,18 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         const post = {startDate};
         fetch(url + '/timeslots/timeSlotCalender', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
 
             let result_code =responseJson.resultCode;
             let errorMessage = responseJson.message;
             if(result_code === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 let standarisedData = dataStandardisation(responseJson.data);
                 let displayData = [];
                 for(let i = 0; i < 6; i++){
@@ -147,10 +155,14 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 }
                 setFetchedData(displayData);
 
-            }
-            else{
-
+            } else if(result_code === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage);
+
+            }else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
 
         })
@@ -191,53 +203,41 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const handleBookClose = () => {
         setBook_open(false);
     };
-    const handleConfirmBooking = (e) => {
-        e.preventDefault();
-        let nullCheck = isDateLegal(date);
-        if (nullCheck) {
+    function handleConfirm(command){
+        if(moment().isAfter(date) === true){
+            console.log(date);
+            alert("You may not modify appointment in the past!")
+            handleBookClose();
+        }else{
+            const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
             const slot = time_slot
-            const post = {email, date, slot};
-            console.log(post);
-            fetch(url + "/appointments/addAppointment", {
+            const post = command === 'Book' ? {email, date, slot} : {date, slot};
+            fetch(url + prefix_url, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + "001122"
+                    'Authorization': window.sessionStorage.getItem('token')
                 },
                 body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
-                console.log(responseJson);
-                refreshPage(start_date, end_date);
+                if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                }else{
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
+
+                refreshPage(start_date);
                 handleBookClose()
             })
-        } else {
-            alert("please enter an valid date in yyyy-mm-dd");
         }
+
+
     }
-    const handleConfirmCxl = (e) =>{
-        e.preventDefault();
-        let nullCheck = isDateLegal(date);
-        if (nullCheck) {
-            const slot = time_slot
-            const post = {date, slot};
-            fetch(url + "/appointments/deleteAppointment", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + "001122"
-                },
-                body: JSON.stringify(post)
-            }).then(() => {
-                console.log('success');
-                refreshPage(start_date, end_date);
-                handleCxlClose()
-            })
-        } else {
-            alert("please enter an valid date in yyyy-mm-dd");
-        }
-    }
+
     function bookAppointmentDialog(){
         return(
             <Dialog open={book_open} onClose={handleBookClose}>
@@ -259,7 +259,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                         variant="standard"
                         value ={email}
                         onChange={emailOnchange}
-                        placeholder={'john.doe@example.com'}
+                        defaultValue={'john.doe@example.com'}
                     />
                     <TextField
                         InputLabelProps={{
@@ -297,7 +297,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleBookClose}>Cancel</Button>
-                    <Button onClick={handleConfirmBooking}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Book')}>Confirm</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -346,7 +346,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCxlClose}>Cancel</Button>
-                    <Button onClick={handleConfirmCxl}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Cancel')}>Confirm</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -364,31 +364,35 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setTs_open(false);
     }
     const handleConfirmTSChange = (e)=>{
+        const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
         e.preventDefault();
-        let nullCheck = isDateLegal(date);
-        if (nullCheck) {
-            const startDate = date;
-            const slot = time_slot.toString();
-            const endRepeatAfter = rpt_wks
-            const status = ts_status
-            const post = {startDate, slot, endRepeatAfter, status};
-            console.log(post);
-            fetch(url + "/timeslots/setPeriodTimeSlots", {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + "001122"
-                },
-                body: JSON.stringify(post)
-            }).then(() => {
-                console.log('success');
-                refreshPage(start_date, end_date);
-                handleTimeSlotClose()
-            })
-        } else {
-            alert("please enter an valid date in yyyy-mm-dd");
-        }
+        const startDate = date;
+        const slot = time_slot.toString();
+        const endRepeatAfter = rpt_wks
+        const status = ts_status
+        const post = {startDate, slot, endRepeatAfter, status};
+        console.log(post);
+        fetch(url + url_prefix, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            },
+            body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+            if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(responseJson.message);
+            }else{
+                window.sessionStorage.clear();
+                alert(responseJson.message);
+                navigate('/');
+            }
+            refreshPage(start_date);
+            handleTimeSlotClose()
+        })
+
     }
     function setTimeSlotDialog(){
         return(
@@ -474,13 +478,13 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
     // function for clicking prev and next week
     function prevWeek(){
-        if(!moment(start_date).isBefore(moment().format('YYYY-MM-DD'))){
-            refreshPage(calculateEndDate(-7), calculateEndDate(-1));
+        if(moment(start_date).isAfter(moment().format('YYYY-MM-DD'))){
+            refreshPage(calculateEndDate(-7));
             setCurrent_view_start_date(calculateEndDate(-7));
         }
     }
     function nextWeek(){
-        refreshPage(calculateEndDate(7), calculateEndDate(13));
+        refreshPage(calculateEndDate(7));
         setCurrent_view_start_date(calculateEndDate(7));
     }
 
@@ -491,17 +495,17 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     function table(){
         return(
             <TableContainer>
-                <Table sx={{ minWidth : '60vw', maxWidth: '60vw', maxHeight : '25vh', minHeight : '40vh', border : 3, mx :'auto'}} aria-label="simple table">
+                <Table sx={{ minWidth : '80vw', maxWidth: '80vw', maxHeight : '25vh', minHeight : '40vh', border : 3, mx :'auto'}}  aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">Time Slot/Day</TableCell>
-                            <TableCell align="center">Monday</TableCell>
-                            <TableCell align="center">Tuesday</TableCell>
-                            <TableCell align="center">Wednesday</TableCell>
-                            <TableCell align="center">Thursday</TableCell>
-                            <TableCell align="center">Friday</TableCell>
-                            <TableCell align="center">Saturday</TableCell>
-                            <TableCell align="center">Sunday</TableCell>
+                            <TableCell align="center">Time Slot/Date</TableCell>
+                            <TableCell align="center">{current_view_start_date}/Mo</TableCell>
+                            <TableCell align="center">{calculateEndDate(1)}/Tu</TableCell>
+                            <TableCell align="center">{calculateEndDate(2)}/We</TableCell>
+                            <TableCell align="center">{calculateEndDate(3)}/Th</TableCell>
+                            <TableCell align="center">{calculateEndDate(4)}/Fr</TableCell>
+                            <TableCell align="center">{calculateEndDate(5)}/Sa</TableCell>
+                            <TableCell align="center">{calculateEndDate(6)}/Su</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -612,9 +616,9 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
     return (
         <div>
-            {setTimeSlotDialog()};
-            {bookAppointmentDialog()};
-            {cxlAppointmentDialog()};
+            {setTimeSlotDialog()}
+            {bookAppointmentDialog()}
+            {cxlAppointmentDialog()}
             <Stack direction="column-reverse" spacing={3}  alignItems="center" sx ={{mx : 'auto'}}>
                 <Button variant="contained" onClick={handleTimeSlotOpen} >Set Time Slots Status</Button>
                 {table()}

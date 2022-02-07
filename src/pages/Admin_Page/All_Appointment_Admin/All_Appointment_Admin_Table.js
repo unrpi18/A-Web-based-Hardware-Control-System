@@ -23,6 +23,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from "@mui/material/TextField";
 import {url} from "../Navi_base"
 import tablePaginationActions from "../Component/Table_Control";
+import {useNavigate} from "react-router";
 
 // default data for loading
 const no_data =[
@@ -76,19 +77,20 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const [display_data, setDisplay_data] = useState(no_data);
     const [filter_keyword, setFilter_keyword]= useState('');
     const [feteched_data, setFetched_data] = useState(no_data);
-
+    const navigate = useNavigate();
 
     // Global methods
     useEffect(() => {
         refreshPage();
     }, [])
+
     function refreshPage(){
         fetch(url + '/timeslots/getBookedTimeSlot', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem("token")
             }
         }).then(response => response.json()).then(responseJson => {
             console.log(responseJson);
@@ -97,6 +99,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
             let data = responseJson.data;
             let standarisedData = [];
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
                 for(let i = 0; i < data.length; i++){
                     standarisedData[i] = createData(i, data[i].user.firstName,  data[i].user.lastName, data[i].user.email, data[i].timeSlotDate, data[i].slot)
                 }
@@ -107,6 +110,13 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                     setFetched_data(standarisedData);
                     setDisplay_data(standarisedData);
                 }
+            } else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            } else {
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
 
         })
@@ -133,17 +143,27 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
         const slot = time_slot;
         const post = {date,slot};
         console.log(post);
-        fetch(url +'/appointments/deleteAppointment', {
+        fetch(url +'/appointments/adminDeleteAppointment', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem("token")
+            },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
+            if(resultCode === 200 || resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage)
+            } else {
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
+            }
             refreshPage();
         })
-
         handleDelete_close();
 
     }
@@ -239,7 +259,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - display_data.length) : 0;
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };

@@ -33,6 +33,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import {url} from "../Navi_base"
 import FilterListIcon from "@mui/icons-material/FilterList";
+import {useNavigate} from "react-router";
 
 const no_data= [createData(0,'N/A', 'N/A', 'N/A', 'N/A')];
 
@@ -104,7 +105,6 @@ function createData(id, first_name, last_name, email, access) {
 
 
 export default function USER_MANAGEMENT_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [open, setOpen] = useState(false);
@@ -117,6 +117,7 @@ export default function USER_MANAGEMENT_TABLE() {
     const [filter_open, setFilter_open] = useState(false);
     const [filter_keyword, setFilter_keyword] = useState('');
     let rows = display_data;
+    const navigate = useNavigate();
 
     const first_nameOnchange =(e)=>{
         setFirst_name(e.target.value);
@@ -141,27 +142,29 @@ export default function USER_MANAGEMENT_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
             if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token)
                 let standardisedData = [];
                 for(let i = 0; i < data.length; i++){
                     standardisedData[i] = createData(i, data[i].firstName, data[i].lastName, data[i].email, data[i].userAccountStatus);
                 }
                 setDisplay_data(standardisedData);
+                setFetched_data(standardisedData);
             }
-            else{
+            else if(resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token)
                 alert(errorMessage);
+            }else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
             }
-
-
-
         })
     }
 
@@ -222,16 +225,24 @@ export default function USER_MANAGEMENT_TABLE() {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + "001122"
+                'Authorization': window.sessionStorage.getItem('token')
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
-            //TODO
+            if(resultCode === 200 || resultCode === 500){
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            }
+            else{
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/');
+            }
+            refreshPage();
         })
-        refreshPage();
+
         handleClose();
 
     }
@@ -355,17 +366,17 @@ export default function USER_MANAGEMENT_TABLE() {
                     ).map((row) => (
                         <TableRow  key={row.id}>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center" component="th" scope="row">
-                                {row.first_name}
+                                {row.last_name}
                             </TableCell>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center">
-                                {row.last_name}
+                                {row.first_name}
                             </TableCell>
                             <TableCell style={{ width: "5vw" , height : 53}} align="center">
                                 {row.email}
                             </TableCell>
                             <TableCell style={{ width: "1vw", height : 53 }} align="center">
                                 <IconButton aria-label="view"
-                                            disabled={rows[row.id].first_name === 'N/A'}
+                                            disabled={rows[0].last_name === 'N/A'}
                                             onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
                                     <VisibilityIcon />
                                 </IconButton>
@@ -445,8 +456,8 @@ export default function USER_MANAGEMENT_TABLE() {
                 </Typography>
                 {table()}
             </Stack>
-            {filterDialog}
-            {deleteDialog}
+            {filterDialog()}
+            {deleteDialog()}
         </div>
 
     );
