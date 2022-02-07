@@ -212,6 +212,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
             const slot = time_slot
             const post = command === 'Book' ? {email, date, slot} : {date, slot};
+            console.log(window.sessionStorage.getItem('token'))
             fetch(url + prefix_url, {
                 method: 'POST',
                 headers: {
@@ -220,6 +221,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                     'Authorization': window.sessionStorage.getItem('token')
                 },
                 body: JSON.stringify(post)
+
             }).then(response => response.json()).then(responseJson => {
                 if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
                     window.sessionStorage.setItem('token', responseJson.token);
