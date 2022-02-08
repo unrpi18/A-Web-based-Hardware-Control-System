@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Fragment} from "react";
 import Stack from "@mui/material/Stack";
 import LOGO from "../../../components/logos/Logo";
@@ -22,6 +22,8 @@ const Admin_Profile = () => {
     const [notification_status, setNotification_status] = useState(window.sessionStorage.getItem('receiveNotification') === 'true')
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
+
+
 
     const handleProfileNavigate = (url) => {
         navigate(url);
@@ -65,7 +67,7 @@ const Admin_Profile = () => {
         window.sessionStorage.clear();
         alert("session invalid, please log in again");
         navigate('/');
-        return null;
+        return "invalid, you are being log out";
     }
     function returned_component(){
         if(window.sessionStorage.getItem('first_name') === null ){

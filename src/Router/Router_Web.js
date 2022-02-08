@@ -30,6 +30,7 @@ import USER_STOCK_PAGE from "../pages/User_Page/StocksAndOrders/User_Stock_Page/
 import USER_SUBMIT_PAGE from "../pages/User_Page/StocksAndOrders/User_Submit_Order_Page/User_Submit_Page";
 import USER_ACTIVE_ORDER from "../pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order";
 import USER_PAST_ORDER from "../pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order";
+import WEBCAM_ADMIN from "../pages/Admin_Page/Webcam_Admin/Webcam_Admin";
 
 
 function Router_Web() {
@@ -73,6 +74,7 @@ function Router_Web() {
                 <Route path='past_order_admin' element={<PAST_ORDER_ADMIN/>}/>
                 <Route path='active_order_admin' element={<ACTIVE_ORDER_ADMIN/>}/>
                 <Route path='stock_and_order_admin_navi' element={<STOCK_ORDER_NAVI_PAGE/>}/>
+                <Route path='webcam_admin' element ={<WEBCAM_ADMIN/>}/>
             </Routes>
 
         </UserContext.Provider>

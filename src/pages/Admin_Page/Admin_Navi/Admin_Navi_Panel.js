@@ -53,7 +53,7 @@ export default function ADMIN_NAVI_PANEL() {
                     </ListItemIcon>
                     <ListItemText primary='Stocks & Orders' />
                 </ListItem>
-                <ListItem button >
+                <ListItem button onClick ={()=>navigate("/webcam_admin")}>
                     <ListItemIcon>
                         <VideocamIcon />
                     </ListItemIcon>

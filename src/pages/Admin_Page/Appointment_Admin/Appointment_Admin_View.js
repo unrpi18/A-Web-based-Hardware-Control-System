@@ -204,10 +204,10 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setBook_open(false);
     };
     function handleConfirm(command){
-        if(moment().isAfter(date) === true){
-            console.log(date);
+        if(moment(moment().format('YYYY-MM-DD')).isAfter(date) === true){
             alert("You may not modify appointment in the past!")
             handleBookClose();
+            handleCxlClose();
         }else{
             const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
             const slot = time_slot
@@ -232,6 +232,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
                 refreshPage(start_date);
                 handleBookClose()
+                handleCxlClose();
             })
         }
 
@@ -364,35 +365,40 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         setTs_open(false);
     }
     const handleConfirmTSChange = (e)=>{
-        const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
-        e.preventDefault();
-        const startDate = date;
-        const slot = time_slot.toString();
-        const endRepeatAfter = rpt_wks
-        const status = ts_status
-        const post = {startDate, slot, endRepeatAfter, status};
-        console.log(post);
-        fetch(url + url_prefix, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': window.sessionStorage.getItem('token')
-            },
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            if(responseJson.resultCode === 200 || responseJson.resultCode === 500){
-                window.sessionStorage.setItem('token', responseJson.token);
-                alert(responseJson.message);
-            }else{
-                window.sessionStorage.clear();
-                alert(responseJson.message);
-                navigate('/');
-            }
-            refreshPage(start_date);
-            handleTimeSlotClose()
-        })
-
+        if(moment(moment().format('YYYY-MM-DD')).isAfter(date) === true){
+            alert("You may not modify appointment in the past!")
+            handleBookClose();
+            handleCxlClose();
+        }else {
+            const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
+            e.preventDefault();
+            const startDate = date;
+            const slot = time_slot.toString();
+            const endRepeatAfter = rpt_wks
+            const status = ts_status
+            const post = {startDate, slot, endRepeatAfter, status};
+            console.log(post);
+            fetch(url + url_prefix, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': window.sessionStorage.getItem('token')
+                },
+                body: JSON.stringify(post)
+            }).then(response => response.json()).then(responseJson => {
+                if (responseJson.resultCode === 200 || responseJson.resultCode === 500) {
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                } else {
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
+                refreshPage(start_date);
+                handleTimeSlotClose()
+            })
+        }
     }
     function setTimeSlotDialog(){
         return(

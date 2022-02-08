@@ -49,7 +49,6 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
                 window.sessionStorage.setItem('first_name', responseJson.firstName);
                 window.sessionStorage.setItem('email', responseJson.email);
                 window.sessionStorage.setItem('token', responseJson.token);
-                window.sessionStorage.setItem('isAdminLogged', responseJson.adminLogged.toString());
                 window.sessionStorage.setItem('receiveNotification', responseJson.isReceiveBulkEmail)
                 /*
                 setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
