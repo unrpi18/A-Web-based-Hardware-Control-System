@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import SendIcon from '@mui/icons-material/Send';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFields";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
 import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";
@@ -218,7 +218,8 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
                 <FormControlLabel
                     value={checked}
                     control={<Checkbox/>}
-                    label={<div>By ticking this check box, I agree to all <Link href={data}>Terms & Conditions</Link> of
+                    label={<div>By ticking this check box, I agree to all <Link href={data} target="_blank">Terms &
+                        Conditions</Link> of
                         TECO Lab Management System.</div>}
                     onChange={(e) => setChecked(!checked)}
                     className='terms_position'

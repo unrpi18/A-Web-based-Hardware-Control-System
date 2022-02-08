@@ -9,7 +9,7 @@ import '../Login_Page_Style.css'
 import {baseUrl, UserContext} from "../../../../contexts/RegisterContext";
 import {useNavigate} from "react-router";
 import sha256 from "crypto-js/sha256";
-import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFields";
 import {Link} from "react-router-dom";
 import {ButtonGroup} from '../../../../components/ButtonGroup'
 

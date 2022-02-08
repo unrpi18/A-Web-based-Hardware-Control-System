@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFieldsIsBlank";
+import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFields";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
 import Box from "@mui/material/Box";

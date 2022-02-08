@@ -1,4 +1,4 @@
-import {isBlank} from "./checkInputFieldsIsBlank";
+import {isBlank} from "./checkInputFields";
 import {baseUrl} from "../../../contexts/RegisterContext";
 
 export const handleVerificationCode = (email,info) => {

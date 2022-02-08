@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="29f66f39-4907-41ed-b242-8aee5b31808f" name="Changes" comment="token get">
     <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
       <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Webcam_Admin/Webcam_Admin_View.js" afterDir="false" />
     <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="version 4.0">
@@ -25,8 +26,16 @@
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFieldsIsBlank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +121,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="USER STOCK" />
+      <changelist id="29f66f39-4907-41ed-b242-8aee5b31808f" name="Changes" comment="token get" />
       <created>1642344478416</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -139,6 +148,8 @@
       <workItem from="1643409758021" duration="1641000" />
       <workItem from="1643412002586" duration="322000" />
       <workItem from="1643794271864" duration="3419000" />
+      <workItem from="1644093042670" duration="116000" />
+      <workItem from="1644223097174" duration="1687000" />
     </task>
     <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
       <created>1642345591887</created>
@@ -224,6 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643395019341</updated>
     </task>
+    <task id="LOCAL-00013" summary="token get">
+      <created>1644065823678</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644065823678</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <task id="LOCAL-00013" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
       <created>1643798677709</created>
       <option name="number" value="00013" />
@@ -268,6 +287,7 @@
     <MESSAGE value="mixed page web version 3.0" />
     <MESSAGE value="ACTIVE ORDER &amp; PAST ORDER _USER" />
     <MESSAGE value="version 4.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="version 4.0" />
+    <MESSAGE value="token get" />
+    <option name="LAST_COMMIT_MESSAGE" value="token get" />
   </component>
 </project>
