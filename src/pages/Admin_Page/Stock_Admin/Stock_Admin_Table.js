@@ -41,8 +41,8 @@ export default function STOCK_ADMIN_TABLE() {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [fullWidth, setFullWidth] = React.useState(true);
-    const [maxWidth, setMaxWidth] = React.useState('sm');
+    const [fullWidth] = React.useState(true);
+    const [maxWidth] = React.useState('sm');
 
     const [edit_open, setEdit_open] = useState(false);
     const [add_open, setAdd_open] = useState(false)

@@ -141,7 +141,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
         })
     }
-    
+
     const dateOnchange =(e)=>{
         setDate(e.target.value);
     }
