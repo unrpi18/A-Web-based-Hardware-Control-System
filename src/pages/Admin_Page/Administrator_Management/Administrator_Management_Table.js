@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog, TextField} from "@mui/material";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
@@ -296,6 +296,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                     || fetched_data[i].last_name.toString().includes(keyword)
                     || fetched_data[i].email.toString().includes(keyword)){
                     filteredData[count] = fetched_data[i];
+                    filteredData[count].id = count;
                     count ++;
                 }
             }
@@ -401,7 +402,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                                 </TableCell>
                                 <TableCell style={{ width: "1vw", height : 53 }} align="center">
                                     <IconButton aria-label="view"
-                                                disabled={rows[row.id].first_name === 'N/A'}
+                                                disabled={rows[row.id].first_name === 'N/A' || rows[row.id].email === 'teco@teco.com'}
                                                 onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
                                         <PersonRemoveIcon />
                                     </IconButton>
@@ -426,7 +427,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                             </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
-                                colSpan={3}
+                                colSpan={4}
                                 count={rows.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}

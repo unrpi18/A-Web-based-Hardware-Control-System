@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,10 +20,9 @@ import MenuItem from "@mui/material/MenuItem";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-import {useLogout, url} from "../Navi_base"
-import {UserContext} from "../../../contexts/RegisterContext";
+import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
-import {func} from "prop-types";
+import {Autocomplete} from "@mui/lab";
 
 //loading data
 const loading = [
@@ -34,13 +33,11 @@ const loading = [
     createData(4, 'loading', 'loading', 'loading', 'loading','loading', 'loading', 'loading'),
     createData(5, 'loading', 'loading', 'loading', 'loading','loading', 'loading', 'loading')
 ]
-
-
-function isDateLegal(str) {
-    const reg = /^[1-9]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-    const regExp = new RegExp(reg);
-    return regExp.test(str);
+const user_no_data = [createUserData(0, 'N/A')]
+function createUserData(id, entry){
+    return {id, entry};
 }
+
 
 function convertIdToTs(id){
     switch (id){
@@ -97,6 +94,8 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     const [ts_status, setTs_status] = useState('')
     const [rpt_wks,setRpt_wks] = useState('')
     const [fetchedData, setFetchedData] = useState(loading);
+
+    const [user_data, setUser_data] = useState(user_no_data);
     const navigate = useNavigate();
     //Util function to calculate the end date of a week
     function calculateEndDate(day){
@@ -109,10 +108,40 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     let start_date = current_view_start_date;
     let end_date = calculateEndDate(6);
 
-    // on change methods
-    const emailOnchange =(e)=>{
-        setEmail(e.target.value);
+    function fetchUser(){
+        fetch(url + '/users/getAllUsers', {
+            method: 'GET',
+            mode : 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            }
+        }).then(response => response.json()).then(responseJson => {
+            console.log(responseJson);
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createUserData(i, data[i].email);
+                }
+                setUser_data(standardisedData);
+            }
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/')
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            }
+
+        })
     }
+    
     const dateOnchange =(e)=>{
         setDate(e.target.value);
     }
@@ -173,6 +202,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     //function for handle booking and canceling appointments in calendar view
     function handleClick(av ,day ,ts_id){
         if(av === 'Free'){
+            fetchUser();
             handleBook(day, ts_id);
         }
         else {
@@ -249,20 +279,15 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                     <DialogContentText>
                         Please provide the following information to book an appointment for another user
                     </DialogContentText>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
+                    <Autocomplete
+                        id="free-solo-demo"
+                        freeSolo
+                        options={user_data.map((option) => option.entry)}
+                        renderInput={(params) => <TextField {...params} label="Email" />}
+                        value={email}
+                        onChange={(event, newEmail) => {
+                            setEmail(newEmail);
                         }}
-                        required
-                        margin="dense"
-                        id="email"
-                        label="Email"
-                        type="email"
-                        fullWidth
-                        variant="standard"
-                        value ={email}
-                        onChange={emailOnchange}
-                        defaultValue={'john.doe@example.com'}
                     />
                     <TextField
                         InputLabelProps={{

@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {Fragment} from "react";
 import Stack from "@mui/material/Stack";
 import LOGO from "../../../components/logos/Logo";
@@ -16,6 +16,7 @@ import { InputLabel} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import {url} from "../Navi_base";
+import ADMIN_NAVI_PANEL from "../Admin_Navi/Admin_Navi_Panel";
 
 const Admin_Profile = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -67,7 +68,7 @@ const Admin_Profile = () => {
         window.sessionStorage.clear();
         alert("session invalid, please log in again");
         navigate('/');
-        return "invalid, you are being log out";
+        return "invalid, you are being logged out";
     }
     function returned_component(){
         if(window.sessionStorage.getItem('first_name') === null ){
@@ -80,6 +81,7 @@ const Admin_Profile = () => {
                     <LOGO/>
                     <Fragment>
                         <Box sx={{display: 'flex', alignItems: 'center', textAlign: 'center', mr: '0'}}>
+                            <ADMIN_NAVI_PANEL/>
                             <Tooltip title="Account settings">
                                 <IconButton
                                     onClick={handleClick}
