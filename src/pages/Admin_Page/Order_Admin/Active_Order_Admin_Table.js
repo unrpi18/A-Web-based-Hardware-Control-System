@@ -218,6 +218,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             }
             refreshPage();
         })
+        refreshPage();
         handleAuditClose();
     }
 

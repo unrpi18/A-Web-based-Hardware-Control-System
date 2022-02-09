@@ -27,8 +27,6 @@ export default function WEBCAM_ADMIN_VIEW(){
 
     useEffect(() => {
         identification_process();
-        fetchResolution();
-        fetchDuration();
     }, [])
     const durationOnchange =(e)=>{
         setDuration(e.target.value);
@@ -43,7 +41,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             alert('invalid access, you are being logged out.')
             navigate('/')
         }else {
-            fetch('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/get_resolution', {
+            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -66,7 +64,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             alert('invalid access, you are being logged out.')
             navigate('/')
         }else {
-            fetch('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/get_max_download_time', {
+            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_max_download_time', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -91,9 +89,10 @@ export default function WEBCAM_ADMIN_VIEW(){
             alert('invalid access, you are being logged out.')
             navigate('/')
         }else {
-            const post = (command === 'resolution') ? {resolution} : {duration};
+            const max_download_time = parseInt(duration);
+            const post = (command === 'resolution') ? {resolution} : {max_download_time};
             const ending = (command === 'resolution') ? 'change_resolution' : 'change_max_download_time';
-            fetch('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + ending, {
+            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + ending, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -112,6 +111,8 @@ export default function WEBCAM_ADMIN_VIEW(){
                     navigate('/')
                 }
             })
+            fetchDuration();
+            fetchResolution();
             handleResolutionClose();
             handleDurationClose();
         }
@@ -199,12 +200,26 @@ export default function WEBCAM_ADMIN_VIEW(){
         })
     }
     async function handleOpenStream() {
-        window.open('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + resolution);
+        fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            }
+        }).then(response => response.json()).then(responseJson => {
+            if(responseJson.code === 200){
+                setResolution(responseJson.current_resolution);
+            } else{
+                alert('invalid access, you are being logged out.')
+                navigate('/');
+            }
+        }).then(()=>window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + resolution));
     }
     return (
         <div>
             <Stack direction = "column" alignItems="center" spacing ={6}>
-                <Button variant="contained" startIcon={<LiveTvIcon/>} onClick={handleOpenStream}>
+                <Button variant="contained" startIcon={<LiveTvIcon/>} onClick={handleOpenStream} >
                     View Stream
                 </Button>
                 <Typography variant ="h5">
