@@ -11,7 +11,7 @@ import USER_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/UserAppointmen
 import USER_MAIN_PAGE from "../pages/User_Page/UserMainPage/User_Main_Page";
 import {AdminContext, UserContext} from "../contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "../pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
-import USER_ACCOUNT_PAGE from "../pages/User_Page/Appointment/UserAccountPage/User_Account_Page";
+import USER_ACCOUNT_PAGE from "../pages/User_Page/UserAccountPage/User_Account_Page";
 import New_User_Management from "../pages/Admin_Page/New_User_Management/New_User_Management";
 import USER_MANAGEMENT from "../pages/Admin_Page/User_Management/User_Management";
 import ADMINISTRATOR_MANAGEMENT from "../pages/Admin_Page/Administrator_Management/Administrator_Management";
@@ -31,6 +31,7 @@ import USER_SUBMIT_PAGE from "../pages/User_Page/StocksAndOrders/User_Submit_Ord
 import USER_ACTIVE_ORDER from "../pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order";
 import USER_PAST_ORDER from "../pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order";
 import WEBCAM_ADMIN from "../pages/Admin_Page/Webcam_Admin/Webcam_Admin";
+import USER_WEBCAM_PAGE from "../pages/User_Page/Webcam/User_Webcam_Page";
 
 
 function Router_Web() {
@@ -61,6 +62,7 @@ function Router_Web() {
                 <Route path='submit_order' element={<USER_SUBMIT_PAGE/>}/>
                 <Route path='active_order' element={<USER_ACTIVE_ORDER/>}/>
                 <Route path='past_order' element={<USER_PAST_ORDER/>}/>
+                <Route path='webcam_user' element={<USER_WEBCAM_PAGE/>}/>
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
                 <Route path='new_user_management' element={<New_User_Management/>}/>

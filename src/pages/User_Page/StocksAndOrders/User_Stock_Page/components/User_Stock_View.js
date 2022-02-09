@@ -1,13 +1,15 @@
-import {DataGrid, GridColDef} from "@mui/x-data-grid";
-import React, {useContext, useEffect, useState} from "react";
+import {DataGrid} from "@mui/x-data-grid";
+import React, { useState} from "react";
 import Typography from "@mui/material/Typography";
-import {useNavigate} from "react-router";
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
-import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/storeDataPersistance";
+import '../User_Stock_Page_Style.css'
 
 const USER_STOCK_VIEW = () => {
-    const {loginUser, setLoginUser} = useContext(UserContext);
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
 
     const stockViewApi = "/stocks/userGetAllItems"
     const {rows, setRows} = useFetchData('GET', loginUser, stockViewApi)
@@ -21,7 +23,7 @@ const USER_STOCK_VIEW = () => {
             field: 'amount', headerName: 'Amount', width: 130, headerAlign: 'center'
         },
         {
-            field: 'description', headerName: 'Description', width: 500, headerAlign: 'center'
+            field: 'description', headerName: 'Description', width: 600, headerAlign: 'center'
         },
     ];
 
@@ -29,9 +31,9 @@ const USER_STOCK_VIEW = () => {
 
     return (<div
         style={{
-            height: 400, width: '45%',
+            height: 400, width: '60%',
 
-        }} className='view_position'>
+        }} className='User_Stock_View_Position'>
         <Typography variant="h4" display="block" align='center' sx={{
             color: '#009682'
         }} gutterBottom>

@@ -23,11 +23,12 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
     const userLoginApi = "/users/visitorLogin";
 
 
-    const handleLogin = (url, navigatePage, isLogged) => {
+    const handleLogin = (url, navigatePage) => {
         let nullCheck = isBlank(email) && isBlank(userPassword);
         if (!nullCheck) {
             alert("Please fill the field(s) first!");
         }
+
         let password = sha256(userPassword.toString()).toString();
         const post = {email, password};
         console.log(post);
@@ -45,18 +46,11 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
 
             if (resultCode === 200) {
                 setLoginUser(responseJson)
-                setLoginUser(prev => ({...prev, isLogged: true}))
                 window.sessionStorage.setItem('first_name', responseJson.firstName);
                 window.sessionStorage.setItem('email', responseJson.email);
                 window.sessionStorage.setItem('token', responseJson.token);
                 window.sessionStorage.setItem('receiveNotification', responseJson.isReceiveBulkEmail)
-                /*
-                setLoginUser(prev => ({...prev, firstName: responseJson.firstName}))
-                setLoginUser(prev => ({...prev, lastName: responseJson.lastName}))
-                setLoginUser(prev => ({...prev, email: responseJson.email}))
-                setLoginUser(prev => ({...prev, token: responseJson.token}))
 
-                 */
                 navigate(navigatePage);
             } else {
                 alert(errorMessage);

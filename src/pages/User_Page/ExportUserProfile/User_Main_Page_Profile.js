@@ -10,14 +10,16 @@ import Tooltip from '@mui/material/Tooltip';
 import Logout from '@mui/icons-material/Logout';
 import {useNavigate} from "react-router";
 import '../ExportUserProfile/User_Profile_Style.css'
-import {useContext} from "react";
-import {UserContext} from "../../../contexts/RegisterContext";
+import {useState} from "react";
 import {green, purple} from "@material-ui/core/colors";
-import {useRefreshControlGet, useRefreshControlSet} from "../ReusedMethod/storeDataPersistance";
 
 const USER_MAIN_PAGE_PROFILE = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const {loginUser, setLoginUser} = useContext(UserContext)
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
     const open = Boolean(anchorEl);
     const navigate = useNavigate();
 

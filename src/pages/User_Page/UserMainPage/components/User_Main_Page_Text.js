@@ -1,13 +1,13 @@
 import {useContext, useEffect} from "react";
 import {UserContext} from "../../../../contexts/RegisterContext";
-import {useRefreshControlGet, useRefreshControlSet} from "../../ReusedMethod/storeDataPersistance";
+import {useRefreshControlGet} from "../../ReusedMethod/storeDataPersistance";
 import '../User_Main_Page_Style.css'
 import backpic from "../components/backpic.jpg"
 
 const USER_MAIN_PAGE_TEXT = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
+
     useRefreshControlGet(setLoginUser);
-    useRefreshControlSet(loginUser);
 
     return <form className='"Title_set_all"'>
 

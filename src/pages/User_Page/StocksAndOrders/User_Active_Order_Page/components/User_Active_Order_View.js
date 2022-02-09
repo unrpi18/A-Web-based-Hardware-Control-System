@@ -1,18 +1,88 @@
 import {DataGrid} from "@mui/x-data-grid";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import Typography from "@mui/material/Typography";
 import {useNavigate} from "react-router";
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
+import {baseUrl} from "../../../../../contexts/RegisterContext";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import '../User_Active_Order_Style.css'
 import {Link} from "@material-ui/core";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
+import Dialog from "@mui/material/Dialog";
+import {BootstrapDialogTitle} from "../../../ReusedMethod/BootstrapDialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 
 const USER_ACTIVE_ORDER_VIEW = () => {
-    const {loginUser, setLoginUser} = useContext(UserContext);
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
     const activeOrderApi = "/orders/getUserActiveOrders";
     const {rows, setRows} = useFetchData('GET', loginUser, activeOrderApi)
+    const [open, setOpen] = useState(false);
+    const [param, setParam] = useState();
+    const [id, setId] = useState();
+    const navigate = useNavigate()
+
+    const handleCancelButton = (param) => {
+        if (!handleCancelButtonColor(param)) {
+            alert("you can not delete the confirmed order")
+            return
+        }
+        setOpen(true);
+        setParam(param)
+        setId(param.id)
+
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirm = () => {
+        navigate('/active_order')
+    }
+
+    const handleCancel = () => {
+        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === id))
+        let orderId = waitedCancelData[0].orderId
+
+        const post = {orderId};
+        let token = loginUser.token
+
+
+        fetch(baseUrl + "/orders/deleteOrder", {
+            method: 'POST', headers: {
+                "Content-Type": "application/json",
+                "Authorization": token
+            }, body: JSON.stringify(post)
+        }).then(response => response.json()).then(responseJson => {
+
+            let message = responseJson.message;
+
+            if (message === "succeed") {
+                let newData = (rows.data.filter((rowData) => rowData.orderId !== id))
+                setRows(rows => ({...rows, data: newData}))
+                handleConfirm()
+                window.location.reload()
+            } else {
+                alert(message);
+
+            }
+
+        })
+
+
+    }
+    const handleCancelButtonColor = (param) => {
+        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === param.id))
+        let status = waitedCancelData[0].orderStatus
+        return status === 'PENDING';
+
+    }
 
     const columns = [
         {field: 'orderId', headerName: 'id', width: 70, headerAlign: 'center'},
@@ -23,75 +93,63 @@ const USER_ACTIVE_ORDER_VIEW = () => {
             field: 'itemLink', headerName: 'Link', width: 500, headerAlign: 'center', renderCell: (param) => (
                 <>
 
-                    <Link href={handleLink(param)} color="inherit">
+                    <Link href={handleLink(param)} target="_blank" color="inherit">
                         {handleLink(param)}
                     </Link>
                 </>),
         },
         {field: 'orderStatus', headerName: 'Status', width: 130, headerAlign: 'center'},
         {
-            field: 'action', headerName: 'Action', sortable: false, renderCell: (param) => (<>
-                <IconButton aria-label="view" sx={{
-                    color: handleCancelButtonColor(param) ? 'black' : 'grey'
-                }} onClick={() => handleCancel(param)}>
-                    <DeleteIcon/>
-                </IconButton>
-            </>),
+            field: 'action', headerName: 'Action', sortable: false, headerAlign: 'center', renderCell: (param) => {
+                return (
+                    <div>
+
+
+                        <IconButton aria-label="view" sx={{
+                            color: handleCancelButtonColor(param) ? 'black' : 'grey'
+                        }} onClick={() => handleCancelButton(param)}>
+                            <DeleteIcon/>
+                        </IconButton>
+                        <Dialog
+                            onClose={handleClose}
+                            open={open}>
+                            <BootstrapDialogTitle color='#006356' onClose={handleClose}>
+                                Cancel Information
+                            </BootstrapDialogTitle>
+                            <DialogContent>
+                                <Typography color='red'>
+                                    Do you want to cancel the order {id} ?
+                                </Typography>
+                            </DialogContent>
+                            <DialogActions>
+                                <Button onClick={handleClose}>
+                                    No,thanks
+                                </Button>
+                                <Button onClick={handleCancel}>
+                                    Confirm
+                                </Button>
+
+
+                            </DialogActions>
+                        </Dialog>
+                    </div>
+                )
+            },
         },
 
     ];
-    const handleCancel = (user) => {
-        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === user.id))
-        let orderId = waitedCancelData[0].orderId
 
-        const post = {orderId};
-        let token = loginUser.token
-        console.log(token)
-        if (handleCancelButtonColor(user)) {
-            fetch(baseUrl + "/orders/deleteOrder", {
-                method: 'POST', headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                }, body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-
-                let message = responseJson.message;
-
-                if (message === "SUCCESS") {
-                    let newData = (rows.data.filter((rowData) => rowData.orderId !== user.id))
-                    setRows(rows => ({...rows, data: newData}))
-
-
-                } else {
-                    alert(message);
-
-                }
-
-            })
-        } else {
-            alert("you can not delete the confirmed order")
-        }
-
-
-    }
-
-    const handleCancelButtonColor = (user) => {
-        let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === user.id))
-        let status = waitedCancelData[0].orderStatus
-        console.log(status)
-        return status === 'PENDING';
-
-    }
 
     const handleLink = (user) => {
         let waitedData = (rows.data.filter((rowData) => rowData.orderId === user.id))
         return waitedData[0].itemLink;
     }
 
-    console.log(rows)
 
     return (
-        <div style={{height: 500, width: '80%'}} className='form_active_order_page_position'>
+
+
+        <div style={{height: 800, width: '80%'}} className='form_active_order_page_position'>
 
 
             <Typography variant="h4" display="block" align='center' sx={{
@@ -99,7 +157,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
             }} gutterBottom>
                 Below is a view of active orders for you.
             </Typography>
-            <DataGrid rows={rows.data} columns={columns} pageSize={5} rowHeight={150}
+            <DataGrid rows={rows.data} columns={columns} pageSize={10} rowHeight={150}
                       id='orderId'
                       sx={{
                           boxShadow: 2,
@@ -124,7 +182,8 @@ const USER_ACTIVE_ORDER_VIEW = () => {
             />
 
         </div>
-    );
+    )
+        ;
 }
 
 export default USER_ACTIVE_ORDER_VIEW

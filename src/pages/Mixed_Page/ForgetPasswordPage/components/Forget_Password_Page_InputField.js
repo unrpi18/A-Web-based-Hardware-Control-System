@@ -49,9 +49,10 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
                 console.log(responseJson);
 
                 let message = responseJson.message;
+                let resultCode = responseJson.resultCode
                 console.log(message);
 
-                if (message === "SUCCESS") {
+                if (resultCode === 200) {
                     navigate('/login');
                 } else {
                     alert(message);
