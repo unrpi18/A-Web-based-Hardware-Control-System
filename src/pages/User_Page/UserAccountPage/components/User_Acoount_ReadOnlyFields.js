@@ -1,8 +1,8 @@
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import {useContext} from "react";
-import {UserContext} from "../../../../../contexts/RegisterContext";
-import {useRefreshControlGet} from "../../../ReusedMethod/storeDataPersistance";
+import {UserContext} from "../../../../contexts/RegisterContext";
+import {useRefreshControlGet} from "../../ReusedMethod/storeDataPersistance";
 import * as React from "react";
 
 const USER_ACCOUNT_READ_ONLY_FIELDS = () => {

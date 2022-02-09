@@ -170,9 +170,10 @@ const USER_SUBMIT_PAGE_FORM = () => {
                     Information
                 </BootstrapDialogTitle>
                 <DialogContent>
-                    <Typography color='red'>
+                    <Typography color='grey'>
                         You have successfully sent your order.
-                        Do you still have an item you want to apply for?
+                      <br/>
+                        Do you have any other order to submit?
                     </Typography>
                 </DialogContent>
                 <DialogActions>
@@ -180,7 +181,7 @@ const USER_SUBMIT_PAGE_FORM = () => {
                         No,thanks
                     </Button>
                     <Button autoFocus onClick={() => handleConfirm()}>
-                        Confirm
+                        Yes
                     </Button>
 
 

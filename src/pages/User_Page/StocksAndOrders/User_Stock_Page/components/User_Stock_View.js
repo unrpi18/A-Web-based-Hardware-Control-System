@@ -2,6 +2,7 @@ import {DataGrid} from "@mui/x-data-grid";
 import React, { useState} from "react";
 import Typography from "@mui/material/Typography";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
+import '../User_Stock_Page_Style.css'
 
 const USER_STOCK_VIEW = () => {
     const [loginUser, setLoginUser] = useState(() => {
@@ -22,7 +23,7 @@ const USER_STOCK_VIEW = () => {
             field: 'amount', headerName: 'Amount', width: 130, headerAlign: 'center'
         },
         {
-            field: 'description', headerName: 'Description', width: 500, headerAlign: 'center'
+            field: 'description', headerName: 'Description', width: 600, headerAlign: 'center'
         },
     ];
 
@@ -30,9 +31,9 @@ const USER_STOCK_VIEW = () => {
 
     return (<div
         style={{
-            height: 400, width: '45%',
+            height: 400, width: '60%',
 
-        }} className='view_position'>
+        }} className='User_Stock_View_Position'>
         <Typography variant="h4" display="block" align='center' sx={{
             color: '#009682'
         }} gutterBottom>

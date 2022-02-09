@@ -1,5 +1,5 @@
 import {useContext} from "react";
-import {UserContext} from "../../../../../contexts/RegisterContext";
+import {UserContext} from "../../../../contexts/RegisterContext";
 
 const USER_ACCOUNT_TEXT = () => {
     const {loginUser, setLoginUser} = useContext(UserContext)

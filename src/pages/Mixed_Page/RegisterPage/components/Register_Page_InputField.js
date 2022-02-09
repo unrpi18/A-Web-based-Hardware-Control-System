@@ -12,8 +12,6 @@ import {baseUrl} from "../../../../contexts/RegisterContext";
 import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";
 import '../Register_Page_Style.css'
 import {Checkbox, FormControlLabel} from "@material-ui/core";
-import {Label} from "@mui/icons-material";
-import {useFetchData} from "../../../User_Page/ReusedMethod/fetchData";
 
 
 const REGISTER_PAGE_INPUT_FIELD = () => {
@@ -65,9 +63,9 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
                 console.log(responseJson);
 
                 let message = responseJson.message;
-                console.log(message);
+                let resultCode = responseJson.resultCode
 
-                if (message === "SUCCESS") {
+                if (resultCode === 200) {
                     navigate('/login');
                 } else {
                     alert(message);
@@ -84,6 +82,7 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
 
 
     const api = "/files/view"
+
     const useFetchData = () => {
 
         useEffect(() => {
@@ -103,9 +102,9 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
         }, []);
     }
 
+
     useFetchData()
 
-    console.log(data)
     return (
 
         <Box

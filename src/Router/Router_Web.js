@@ -11,7 +11,7 @@ import USER_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/UserAppointmen
 import USER_MAIN_PAGE from "../pages/User_Page/UserMainPage/User_Main_Page";
 import {AdminContext, UserContext} from "../contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "../pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
-import USER_ACCOUNT_PAGE from "../pages/User_Page/Appointment/UserAccountPage/User_Account_Page";
+import USER_ACCOUNT_PAGE from "../pages/User_Page/UserAccountPage/User_Account_Page";
 import New_User_Management from "../pages/Admin_Page/New_User_Management/New_User_Management";
 import USER_MANAGEMENT from "../pages/Admin_Page/User_Management/User_Management";
 import ADMINISTRATOR_MANAGEMENT from "../pages/Admin_Page/Administrator_Management/Administrator_Management";

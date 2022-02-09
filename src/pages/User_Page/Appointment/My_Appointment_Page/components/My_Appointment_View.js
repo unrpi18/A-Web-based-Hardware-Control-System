@@ -79,8 +79,9 @@ const MY_APPOINTMENT_VIEW = () => {
         }).then(response => response.json()).then(responseJson => {
 
             let message = responseJson.message;
+            let resultCode =responseJson.resultCode
             console.log(responseJson)
-            if (message === "succeed") {
+            if (resultCode === 200) {
                 let newData = (rows.data.filter((rowData) => rowData.timeSlotId !== id))
                 setRows(rows => ({...rows, data: newData}))
                 handleClose()

@@ -35,7 +35,6 @@ const USER_PAST_ORDER_VIEW = () => {
         let waitedData = (rows.data.filter((rowData) => rowData.orderId === user.id))
         return waitedData[0].itemLink;
     }
-    console.log(rows)
 
     return (
         <div style={{height: 500, width: '80%'}} className='form_active_order_page_position'>

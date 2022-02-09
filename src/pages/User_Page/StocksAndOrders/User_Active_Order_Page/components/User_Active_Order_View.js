@@ -80,7 +80,6 @@ const USER_ACTIVE_ORDER_VIEW = () => {
     const handleCancelButtonColor = (param) => {
         let waitedCancelData = (rows.data.filter((rowData) => rowData.orderId === param.id))
         let status = waitedCancelData[0].orderStatus
-        console.log(status)
         return status === 'PENDING';
 
     }
@@ -101,7 +100,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
         },
         {field: 'orderStatus', headerName: 'Status', width: 130, headerAlign: 'center'},
         {
-            field: 'action', headerName: 'Action', sortable: false, renderCell: (param) => {
+            field: 'action', headerName: 'Action', sortable: false, headerAlign: 'center', renderCell: (param) => {
                 return (
                     <div>
 
@@ -146,7 +145,6 @@ const USER_ACTIVE_ORDER_VIEW = () => {
         return waitedData[0].itemLink;
     }
 
-    console.log(rows)
 
     return (
 

@@ -46,7 +46,6 @@ const LOGIN_PAGE_INPUT_FIELD = () => {
 
             if (resultCode === 200) {
                 setLoginUser(responseJson)
-             //   setLoginUser(prev => ({...prev, isLogged: true}))
                 window.sessionStorage.setItem('first_name', responseJson.firstName);
                 window.sessionStorage.setItem('email', responseJson.email);
                 window.sessionStorage.setItem('token', responseJson.token);

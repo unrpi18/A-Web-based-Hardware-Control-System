@@ -11,7 +11,7 @@ import '../User_Webcam_Page_Style.css'
 const USER_WEBCAM_VIEW = () => {
     const [start_timeGlobal, setStartTime] = useState(new Date())
     const [end_timeGlobal, setEndTime] = useState(new Date())
-    const [resolution, setResolution] = useState()
+    const [resolution, setResolution] = useState(640)
     const [loginUser, setLoginUser] = useState(() => {
         const saved = localStorage.getItem("user")
         const initialValue = JSON.parse(saved);
@@ -19,7 +19,7 @@ const USER_WEBCAM_VIEW = () => {
     })
 
     useEffect(() => {
-        fetch('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/get_resolution', {
+        fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const USER_WEBCAM_VIEW = () => {
             let end_time = end_timeLocal.replaceAll(':', '_')
             const post = {start_time, end_time}
             console.log(post)
-            window.open('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/download?start_time=' + start_time + '&end_time=' + end_time);
+            window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/download?start_time=' + start_time + '&end_time=' + end_time);
         } else {
             alert("Please enter the correct start/end time")
         }
@@ -63,7 +63,7 @@ const USER_WEBCAM_VIEW = () => {
             <Stack direction="column" alignItems="center" spacing={4} className='User_Webcam_Page_Style'>
                 <Button variant="contained" startIcon={<LiveTvIcon/>}
                         className='User_Webcam_View_Stream'
-                        onClick={() => window.open('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + resolution)}>
+                        onClick={() => window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + resolution)}>
                     View Stream
                 </Button>
 
