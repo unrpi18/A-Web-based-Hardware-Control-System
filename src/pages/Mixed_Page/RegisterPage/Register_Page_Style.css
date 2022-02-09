@@ -1,0 +1,38 @@
+
+.TECO_LAB_TEXT {
+    padding-left: 8%;
+    position: absolute;
+    top: 16%;
+    font-size: 200%;
+}
+
+
+.spacing_register_page {
+    position: absolute;
+    top: 17vw;
+    width: 100%;
+    left: 40%;
+    font-size: 20px;
+
+}
+
+.verifyButton_register_page {
+    position: absolute;
+    height: 30px;
+    left: -110px;
+    top: 25px;
+
+}
+
+.registerButton_register_page {
+    text-align: center;
+    position: absolute;
+    top: 60px;
+    left: 400px;
+}
+
+.terms_position {
+    position: absolute;
+    top: 465px;
+    left: 5px;
+}

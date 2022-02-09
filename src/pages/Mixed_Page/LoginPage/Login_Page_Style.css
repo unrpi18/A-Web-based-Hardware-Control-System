@@ -1,0 +1,78 @@
+
+.Login_Button {
+    position: absolute;
+    top: 180px;
+    left: 35px;
+
+}
+
+
+.Title_set_all {
+
+    padding-left: 10%;
+
+}
+
+.Title_Set {
+    padding-left: 2%;
+    position: absolute;
+    top: 4vw;
+    font-size: 3vw;
+    overflow: hidden;
+}
+
+.TECO_LAB_TEXT {
+    padding-left: 8%;
+    position: absolute;
+    top: 8vw;
+    font-size: 2vw;
+}
+
+
+.spacing_login_page {
+    position: absolute;
+    top: 20vw;
+    width: 100%;
+    left: 45%;
+    font-size: 20px;
+
+}
+
+
+.Goto_Register_Page_Button {
+    position: absolute;
+    width: 10%;
+    height: 30%;
+    top: 100px;
+    left: 50px;
+    flex: 2;
+    background: #FFFFFF;
+    border: 2px solid #009682;
+}
+
+.linkStyle_login_page {
+    color: #009682;
+    text-decoration: inherit;
+}
+
+.linkFontSize_login_page {
+    position: absolute;
+    top: 145px;
+    left: 20px;
+    font-size: 15px;
+}
+
+.registerPosition_login_page {
+    color: #009682;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 25px;
+}
+
+.addUserIcon_login_page {
+    position: relative;
+    top: 4px;
+    width: 25px;
+    height: 25px;
+}

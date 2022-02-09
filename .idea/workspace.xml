@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29f66f39-4907-41ed-b242-8aee5b31808f" name="Changes" comment="token get">
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <change afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Webcam_Admin/Webcam_Admin_View.js" afterDir="false" />
+    <list default="true" id="e24ee18c-3079-4052-9dc2-7e9333c3f8e6" name="Changes" comment="version 4.0">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router/Router_Web.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router/Router_Web.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/RegisterContext.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/RegisterContext.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/Admin_Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Admin_Icon/Admin_Profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Administrator_Management/Administrator_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/All_Appointment_Admin/All_Appointment_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Appointment_Admin/Appointment_Admin_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Navi_base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/New_User_Management/New_User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Active_Order_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Past_Order_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Order_Admin/Past_Order_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Stock_Admin/Stock_Admin_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/Terms_And_Conditions_Update/File_Uploader.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/Terms_And_Conditions_Update/File_Uploader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Group_Navi_Page/User_Group_Secondary_Navi.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Group_Navi_Page/User_Group_Secondary_Navi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Admin_Page/User_Management/User_Management_Table.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page_Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/ForgetPasswordPage/components/Forget_Password_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/LoginPage/components/Login_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Mixed_Page/RegisterPage/components/Register_Page_InputField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/My_Appointment_Page/components/My_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/Appointment/UserAppointmentPage/componenets/User_Appointment_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFieldsIsBlank.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/checkInputFields.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/ReusedMethod/handleVerificationCode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Active_Order_Page/components/User_Active_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Past_Order_Page/components/User_Past_Order_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Stock_Page/components/User_Stock_View.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page/components/User_Submit_Page_Form.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Keyi &lt;likkey1@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="23mg3aYjpwQITC9G7PceEBpjhj1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path" value="node" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/User_Page/StocksAndOrders/User_Submit_Order_Page" />
+      <recent name="$PROJECT_DIR$/src/pages/User_Page/User_Main_Page" />
+      <recent name="$PROJECT_DIR$/src/pages/Admin_Page" />
+      <recent name="$PROJECT_DIR$/src/pages/MixedPage" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.npm start">
+    <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="npm start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.Debug Application" />
+      <item itemvalue="npm.npm start" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29f66f39-4907-41ed-b242-8aee5b31808f" name="Changes" comment="token get" />
+      <created>1642344478416</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1642344478416</updated>
+      <workItem from="1642344480549" duration="1715000" />
+      <workItem from="1642378830341" duration="3669000" />
+      <workItem from="1642450857909" duration="1476000" />
+      <workItem from="1642515763162" duration="987000" />
+      <workItem from="1642519174821" duration="43000" />
+      <workItem from="1642519289555" duration="32000" />
+      <workItem from="1642519589845" duration="7721000" />
+      <workItem from="1642545501246" duration="64000" />
+      <workItem from="1642617560759" duration="8303000" />
+      <workItem from="1642582672377" duration="473000" />
+      <workItem from="1642586464751" duration="469000" />
+      <workItem from="1642587032986" duration="4035000" />
+      <workItem from="1642701488390" duration="388000" />
+      <workItem from="1642701900598" duration="2000" />
+      <workItem from="1642702081477" duration="1000" />
+      <workItem from="1642779847527" duration="14000" />
+      <workItem from="1642981874959" duration="338000" />
+      <workItem from="1643394991447" duration="54000" />
+      <workItem from="1643396261787" duration="506000" />
+      <workItem from="1643409758021" duration="1641000" />
+      <workItem from="1643412002586" duration="322000" />
+      <workItem from="1643794271864" duration="3419000" />
+      <workItem from="1644093042670" duration="116000" />
+      <workItem from="1644223097174" duration="1687000" />
+    </task>
+    <task id="LOCAL-00001" summary="version 2.3 adjust the program structure.">
+      <created>1642345591887</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1642345591888</updated>
+    </task>
+    <task id="LOCAL-00002" summary="version 2.3 adjust the program structure.">
+      <created>1642345784484</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1642345784484</updated>
+    </task>
+    <task id="LOCAL-00003" summary="calender">
+      <created>1642378011809</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1642378011809</updated>
+    </task>
+    <task id="LOCAL-00004" summary="version 2.4 adjust the program structure.">
+      <created>1642519211056</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1642519211056</updated>
+    </task>
+    <task id="LOCAL-00005" summary="version 2.4 adjust the program structure.">
+      <created>1642521094513</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1642521094513</updated>
+    </task>
+    <task id="LOCAL-00006" summary="version 2.4 adjust the program structure.">
+      <created>1642521316041</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1642521316041</updated>
+    </task>
+    <task id="LOCAL-00007" summary="2.5 version">
+      <created>1642542722916</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1642542722916</updated>
+    </task>
+    <task id="LOCAL-00008" summary="appointment_admin_book_appointment_finished">
+      <created>1642548439479</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1642548439479</updated>
+    </task>
+    <task id="LOCAL-00009" summary="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE">
+      <created>1642701259252</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701259252</updated>
+    </task>
+    <task id="LOCAL-00010" summary="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE">
+      <created>1642701327487</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701327487</updated>
+    </task>
+    <task id="LOCAL-00011" summary="fixed bug">
+      <created>1642701892189</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1642701892189</updated>
+    </task>
+    <task id="LOCAL-00012" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <created>1643395019341</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1643395019341</updated>
+    </task>
+    <task id="LOCAL-00013" summary="token get">
+      <created>1644065823678</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1644065823678</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00013" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <created>1643798677709</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1643798677709</updated>
+    </task>
+    <task id="LOCAL-00014" summary="ACTIVE ORDER &amp; PAST ORDER _USER">
+      <created>1643923039300</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1643923039300</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="version 2.3 adjust the program structure." />
+    <MESSAGE value="calender" />
+    <MESSAGE value="version 2.4 adjust the program structure." />
+    <MESSAGE value="book appointment w bug" />
+    <MESSAGE value="2.5 version" />
+    <MESSAGE value="appointment_admin_book_appointment_finished" />
+    <MESSAGE value="ADDED FORGE_PASSWORD_PAGE &amp; USER_ACCOUNT_INFO_PAGE" />
+    <MESSAGE value="fixed bug" />
+    <MESSAGE value="mixed page web version 3.0" />
+    <MESSAGE value="ACTIVE ORDER &amp; PAST ORDER _USER" />
+    <MESSAGE value="version 4.0" />
+    <MESSAGE value="token get" />
+    <option name="LAST_COMMIT_MESSAGE" value="token get" />
+  </component>
+</project>

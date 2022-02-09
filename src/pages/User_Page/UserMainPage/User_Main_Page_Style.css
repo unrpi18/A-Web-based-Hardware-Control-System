@@ -1,0 +1,38 @@
+.LOGOUT_ADMIN_MAIN_PAGE {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.APPOINTMENT_ADMIN_MAIN_PAGE {
+    position: absolute;
+    top: 13vw;
+    right: 40%;
+}
+
+.STOCK_AND_ORDER_ADMIN_MAIN_PAGE {
+    position: absolute;
+    top: 18vw;
+    right: 40%;
+}
+
+.WEBCAM_ADMIN_MAIN_PAGE {
+    position: absolute;
+    top: 23vw;
+    right: 40%;
+}
+
+
+.Title_Set_Center_User_Main_Page {
+    text-align: center;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 3vw;
+}
+
+.backpic_User_Main_Page {
+    width: 70%;
+    height: 50%;
+}
