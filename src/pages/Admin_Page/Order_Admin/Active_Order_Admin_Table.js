@@ -78,7 +78,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             },
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -167,7 +166,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         const orderId = order_id;
         const itemName = items_in_stock;
         const post = {orderId, itemName};
-        console.log(post);
         fetch(url + '/orders/inStock', {
             method: 'POST',
             headers: {
@@ -177,7 +175,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if (resultCode === 200 || resultCode === 500){
@@ -199,7 +196,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         const url_postfix = result === "Approve" ? '/orders/confirmOrder' : '/orders/rejectOrder';
         const orderId = order_id;
         const post ={orderId};
-        console.log(post);
         fetch(url + url_postfix, {
             method: 'POST',
             headers: {
@@ -209,7 +205,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if (resultCode === 200 || resultCode === 500){

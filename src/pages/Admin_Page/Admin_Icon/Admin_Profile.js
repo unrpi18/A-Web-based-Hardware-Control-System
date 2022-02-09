@@ -48,7 +48,6 @@ const Admin_Profile = () => {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson)
             if(responseJson.resultCode === 200){
                 window.sessionStorage.setItem('token', responseJson.token);
                 window.sessionStorage.setItem('receiveNotification', isReceiveBulkEmail);
@@ -64,6 +63,7 @@ const Admin_Profile = () => {
             }
         })
     }
+
     function forced_logout(){
         window.sessionStorage.clear();
         alert("session invalid, please log in again");

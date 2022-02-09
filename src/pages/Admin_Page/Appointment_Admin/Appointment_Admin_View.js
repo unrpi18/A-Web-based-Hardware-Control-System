@@ -108,40 +108,8 @@ const APPOINTMENT_ADMIN_VIEW = () => {
     let start_date = current_view_start_date;
     let end_date = calculateEndDate(6);
 
-    function fetchUser(){
-        fetch(url + '/users/getAllUsers', {
-            method: 'GET',
-            mode : 'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': window.sessionStorage.getItem('token')
-            }
-        }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
-            let resultCode = responseJson.resultCode;
-            let errorMessage = responseJson.message;
-            let data = responseJson.data;
-            if(resultCode === 200){
-                window.sessionStorage.setItem('token', responseJson.token);
-                let standardisedData = [];
-                for(let i = 0; i < data.length; i++){
-                    standardisedData[i] = createUserData(i, data[i].email);
-                }
-                setUser_data(standardisedData);
-            }
-            else if(resultCode === 402){
-                window.sessionStorage.clear();
-                alert(errorMessage);
-                navigate('/')
-            } else {
-                window.sessionStorage.setItem('token', responseJson.token);
-                alert(errorMessage);
-            }
 
-        })
-    }
-
+    // onChange method
     const dateOnchange =(e)=>{
         setDate(e.target.value);
     }
@@ -197,6 +165,38 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         })
 
     }
+    function fetchUser(){
+        fetch(url + '/users/getAllUsers', {
+            method: 'GET',
+            mode : 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': window.sessionStorage.getItem('token')
+            }
+        }).then(response => response.json()).then(responseJson => {
+            let resultCode = responseJson.resultCode;
+            let errorMessage = responseJson.message;
+            let data = responseJson.data;
+            if(resultCode === 200){
+                window.sessionStorage.setItem('token', responseJson.token);
+                let standardisedData = [];
+                for(let i = 0; i < data.length; i++){
+                    standardisedData[i] = createUserData(i, data[i].email);
+                }
+                setUser_data(standardisedData);
+            }
+            else if(resultCode === 402){
+                window.sessionStorage.clear();
+                alert(errorMessage);
+                navigate('/')
+            } else {
+                window.sessionStorage.setItem('token', responseJson.token);
+                alert(errorMessage);
+            }
+
+        })
+    }
 
 
     //function for handle booking and canceling appointments in calendar view
@@ -242,7 +242,6 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
             const slot = time_slot
             const post = command === 'Book' ? {email, date, slot} : {date, slot};
-            console.log(window.sessionStorage.getItem('token'))
             fetch(url + prefix_url, {
                 method: 'POST',
                 headers: {
@@ -270,7 +269,6 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
 
     }
-
     function bookAppointmentDialog(){
         return(
             <Dialog open={book_open} onClose={handleBookClose}>
@@ -404,7 +402,6 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             const endRepeatAfter = rpt_wks
             const status = ts_status
             const post = {startDate, slot, endRepeatAfter, status};
-            console.log(post);
             fetch(url + url_prefix, {
                 method: 'POST',
                 headers: {

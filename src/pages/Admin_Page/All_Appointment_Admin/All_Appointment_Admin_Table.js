@@ -91,7 +91,6 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 'Authorization': window.sessionStorage.getItem("token")
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -140,7 +139,6 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const handleConfirm =() =>{
         const slot = time_slot;
         const post = {date,slot};
-        console.log(post);
         fetch(url +'/appointments/adminDeleteAppointment', {
             method: 'POST',
             headers: {

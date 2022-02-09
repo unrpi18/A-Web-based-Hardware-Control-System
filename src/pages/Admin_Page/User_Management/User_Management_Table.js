@@ -152,7 +152,6 @@ export default function USER_MANAGEMENT_TABLE() {
         const firstName = first_name;
         const userStatus = access;
         const post = {email, lastName,firstName,userStatus};
-        console.log(post);
         fetch(url + '/users/resetUserInfo', {
             method: 'POST',
             headers: {

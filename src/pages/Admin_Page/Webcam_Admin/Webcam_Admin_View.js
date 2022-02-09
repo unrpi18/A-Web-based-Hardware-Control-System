@@ -29,10 +29,6 @@ export default function WEBCAM_ADMIN_VIEW(){
         identification_process();
         fetchResolution();
         fetchDuration();
-        if(identification === false){
-            alert('invalid access, you are being logged out.')
-            navigate('/')
-        }
     }, [])
     const durationOnchange =(e)=>{
         setDuration(e.target.value);
@@ -43,7 +39,6 @@ export default function WEBCAM_ADMIN_VIEW(){
     }
 
     function fetchResolution(){
-        identification_process();
         if(identification === false){
             alert('invalid access, you are being logged out.')
             navigate('/')
@@ -67,7 +62,6 @@ export default function WEBCAM_ADMIN_VIEW(){
     }
 
     function fetchDuration(){
-        identification_process();
         if(identification === false){
             alert('invalid access, you are being logged out.')
             navigate('/')
@@ -93,10 +87,12 @@ export default function WEBCAM_ADMIN_VIEW(){
 
     function handleConfirm(command){
         identification_process();
-        if(!identification){
+        if(identification === false){
+            alert('invalid access, you are being logged out.')
+            navigate('/')
         }else {
-            const post = command === 'resolution' ? {resolution} : {duration};
-            const ending = command === 'resolution' ? 'change_resolution' : 'change_max_download_time';
+            const post = (command === 'resolution') ? {resolution} : {duration};
+            const ending = (command === 'resolution') ? 'change_resolution' : 'change_max_download_time';
             fetch('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + ending, {
                 method: 'POST',
                 headers: {
@@ -106,6 +102,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                 },
                 body: JSON.stringify(post)
             }).then(response => response.json()).then(responseJson => {
+
                 if(responseJson.code === 200){
                     alert('Change has been saved');
                     fetchResolution()
@@ -115,6 +112,8 @@ export default function WEBCAM_ADMIN_VIEW(){
                     navigate('/')
                 }
             })
+            handleResolutionClose();
+            handleDurationClose();
         }
     }
     function resolution_dialog(){
@@ -145,12 +144,14 @@ export default function WEBCAM_ADMIN_VIEW(){
         )
     }
     function handleResolutionOpen(){
+        fetchResolution()
         setResolution_open(true);
     }
     function handleResolutionClose(){
         setResolution_open(false);
     }
     function handleDurationOpen(){
+        fetchDuration()
         setDuration_open(true);
     }
     function handleDurationClose(){
@@ -197,10 +198,13 @@ export default function WEBCAM_ADMIN_VIEW(){
             setIdentification(responseJson.resultCode === 200);
         })
     }
+    async function handleOpenStream() {
+        window.open('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + resolution);
+    }
     return (
         <div>
             <Stack direction = "column" alignItems="center" spacing ={6}>
-                <Button variant="contained" startIcon={<LiveTvIcon/>} onClick={()=> window.open('http://f072-2a02-3038-410-ae52-2509-5e98-277e-19e1.ngrok.io/' + resolution)}>
+                <Button variant="contained" startIcon={<LiveTvIcon/>} onClick={handleOpenStream}>
                     View Stream
                 </Button>
                 <Typography variant ="h5">

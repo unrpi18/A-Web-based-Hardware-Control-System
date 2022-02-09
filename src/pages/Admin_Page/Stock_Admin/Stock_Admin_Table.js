@@ -59,67 +59,10 @@ export default function STOCK_ADMIN_TABLE() {
     const navigate = useNavigate();
     let rows = display_data;
 
+    //global method
     useEffect(() => {
         refreshPage()
     }, []);
-
-    function handleEditOpen(item, amount) {
-        setItem(item);
-        setAmount(amount);
-        setEdit_open(true);
-    }
-
-    function handleEditClose() {
-        setEdit_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    function handleDescriptionOpen(des){
-        setDescription(des)
-        setDescription_open(true);
-    }
-    function handleDescriptionClose(){
-        setDescription_open(false);
-        setDescription('')
-    }
-
-    function handleRemoveOpen(item, amount, description) {
-        setItem(item);
-        setAmount(amount);
-        setDescription(description);
-        setRemove_open(true);
-    }
-
-    function handleRemoveClose() {
-        setRemove_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    function handleAddOpen() {
-        setAdd_open(true);
-    }
-
-    function handleAddClose() {
-        setAdd_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    const itemOnchange = (e) => {
-        setItem(e.target.value);
-    }
-    const amountOnchange = (e) => {
-        setAmount(e.target.value);
-    }
-    const descriptionOnchange = (e) => {
-        setDescription(e.target.value);
-    }
-
     function refreshPage() {
         fetch(url + '/stocks/adminGetAllItems', {
             method: 'GET',
@@ -151,10 +94,32 @@ export default function STOCK_ADMIN_TABLE() {
         })
     }
 
+    //onChange Method
+    const itemOnchange = (e) => {
+        setItem(e.target.value);
+    }
+    const amountOnchange = (e) => {
+        setAmount(e.target.value);
+    }
+    const descriptionOnchange = (e) => {
+        setDescription(e.target.value);
+    }
+
+    // edit item relevant methods
+    function handleEditOpen(item, amount) {
+        setItem(item);
+        setAmount(amount);
+        setEdit_open(true);
+    }
+    function handleEditClose() {
+        setEdit_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleEditConfirm = ()=>{
         const itemName = item;
         const post = {itemName, amount};
-        console.log(post);
         fetch (url + '/stocks/changeItemAmount',{
             method: 'POST',
             headers: {
@@ -178,10 +143,89 @@ export default function STOCK_ADMIN_TABLE() {
 
         handleEditClose();
     }
+    const edit_dialog = ()=>{
+        return(
+            <Dialog open={edit_open} onClose={handleEditClose} fullWidth>
+                <DialogTitle>Edit Item Amount</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        disabled
+                        variant="standard"
+                        defaultValue={item}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        type="number"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        onChange={amountOnchange}
+                        defaultValue={amount}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleEditClose}>Close</Button>
+                    <Button onClick={handleEditConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //decription dialog
+    function handleDescriptionOpen(des){
+        setDescription(des)
+        setDescription_open(true);
+    }
+    function handleDescriptionClose(){
+        setDescription_open(false);
+        setDescription('')
+    }
+    function description_dialog(){
+        return(
+            <Dialog open={description_open} onClose={handleDescriptionClose}
+                    fullWidth={fullWidth}
+                    maxWidth={maxWidth}>
+                <DialogTitle>Description</DialogTitle>
+                <DialogContent>
+                    {description}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDescriptionClose}>Close</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //Remove item relevant methods
+    function handleRemoveOpen(item, amount, description) {
+        setItem(item);
+        setAmount(amount);
+        setDescription(description);
+        setRemove_open(true);
+    }
+    function handleRemoveClose() {
+        setRemove_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleRemoveConfirm = () => {
         const itemName = item;
         const post = {itemName};
-        console.log(post);
         fetch (url + '/stocks/deleteItem',{
             method: 'POST',
             headers: {
@@ -204,11 +248,64 @@ export default function STOCK_ADMIN_TABLE() {
         })
         handleRemoveClose();
     }
+    const remove_dialog = ()=>{
+        return(
+            <Dialog open={remove_open} onClose={handleRemoveClose} fullWidth>
+                <DialogTitle>Remove Items</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure that you want to delete following item from stock?
+                    </DialogContentText>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        disabled
+                        variant="standard"
+                        defaultValue={item}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        disabled
+                        defaultValue={amount}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleRemoveClose}>Close</Button>
+                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //Add item relevant methods
+    function handleAddOpen() {
+        setAdd_open(true);
+    }
+    function handleAddClose() {
+        setAdd_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleAddConfirm = () => {
 
         const itemName = item;
         const post = {itemName, amount, description};
-        console.log(post);
         fetch (url + '/stocks/addItem',{
             method: 'POST',
             headers: {
@@ -230,6 +327,58 @@ export default function STOCK_ADMIN_TABLE() {
             refreshPage();
         })
         handleAddClose();
+    }
+    const add_dialog = ()=>{
+        return(
+            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
+                <DialogTitle>Add New Items</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        variant="standard"
+                        onChange={itemOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        onChange={amountOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="description"
+                        label="description"
+                        fullWidth
+                        variant="standard"
+                        value={description}
+                        onChange={descriptionOnchange}
+                        placeholder={"description of the item"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAddClose}>Close</Button>
+                    <Button onClick={handleAddConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
     }
 
     //filter relevant methods
@@ -275,21 +424,6 @@ export default function STOCK_ADMIN_TABLE() {
             </Dialog>
         )
     }
-    function description_dialog(){
-        return(
-            <Dialog open={description_open} onClose={handleDescriptionClose}
-                    fullWidth={fullWidth}
-                    maxWidth={maxWidth}>
-                <DialogTitle>Description</DialogTitle>
-                <DialogContent>
-                    {description}
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleDescriptionClose}>Close</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
     function filterData (keyword){
         setPage(0);
         if(keyword === ''){
@@ -321,6 +455,7 @@ export default function STOCK_ADMIN_TABLE() {
     const filter_keywordOnchange =(e)=>{
         setFilter_keyword(e.target.value);
     }
+
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length +1) : 0;
@@ -333,6 +468,7 @@ export default function STOCK_ADMIN_TABLE() {
         setPage(0);
     };
 
+    //table
     const table_title = 'All Items in Stock'
     const stock_table = ()=>{
         if(display_data === null){
@@ -421,142 +557,8 @@ export default function STOCK_ADMIN_TABLE() {
         )
     }
 
-    const edit_dialog = ()=>{
-        return(
-            <Dialog open={edit_open} onClose={handleEditClose} fullWidth>
-                <DialogTitle>Edit Item Amount</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        disabled
-                        variant="standard"
-                        defaultValue={item}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        type="number"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        onChange={amountOnchange}
-                        defaultValue={amount}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleEditClose}>Close</Button>
-                    <Button onClick={handleEditConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
-    const remove_dialog = ()=>{
-        return(
-            <Dialog open={remove_open} onClose={handleRemoveClose} fullWidth>
-                <DialogTitle>Remove Items</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Are you sure that you want to delete following item from stock?
-                    </DialogContentText>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        disabled
-                        variant="standard"
-                        defaultValue={item}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        disabled
-                        defaultValue={amount}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleRemoveClose}>Close</Button>
-                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
-    const add_dialog = ()=>{
-        return(
-            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
-                <DialogTitle>Add New Items</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        variant="standard"
-                        onChange={itemOnchange}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        onChange={amountOnchange}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="description"
-                        label="description"
-                        fullWidth
-                        variant="standard"
-                        value={description}
-                        onChange={descriptionOnchange}
-                        placeholder={"description of the item"}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAddConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
+
+
 
     return (
         <div>

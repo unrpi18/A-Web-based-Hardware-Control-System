@@ -82,7 +82,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -116,7 +115,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -173,7 +171,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     }
     const handleConfirm =() =>{
         const post = {email};
-        console.log(post);
         fetch(url + '/users/revokeAdmin', {
             method: 'POST',
             headers: {
@@ -183,8 +180,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if(resultCode === 200){
@@ -214,7 +209,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
     }
     function handleAdd(){
         const post = {email};
-        console.log(post);
         fetch(url + '/users/insertAdmin', {
             method: 'POST',
             headers: {
@@ -224,7 +218,6 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if(resultCode === 200){

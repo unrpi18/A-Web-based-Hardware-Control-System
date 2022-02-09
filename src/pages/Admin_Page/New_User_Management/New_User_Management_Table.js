@@ -64,7 +64,6 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -82,11 +81,12 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 }
             }
             else if(resultCode === 500){
-                window.sessionStorage.clear();
+                window.sessionStorage.setItem('token', responseJson.token)
+                setDisplay_data(no_data);
                 alert(errorMessage);
             }
             else {
-                window.sessionStorage.setItem('token', responseJson.token)
+                window.sessionStorage.clear();
                 alert(errorMessage);
                 navigate('/');
             }
@@ -184,7 +184,6 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     function handleAudit(command){
         const post = {email};
         const prefix_url = command === 'approve' ? '/users/confirmUserRegistration' : '/users/rejectUserRegistration'
-        console.log(post);
         fetch(url + prefix_url, {
             method: 'POST',
             headers: {
@@ -201,7 +200,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             else {
-                window.sessionStorage.setItem('token', responseJson.token)
+                window.sessionStorage.clear()
                 alert(errorMessage);
                 navigate('/');
             }
