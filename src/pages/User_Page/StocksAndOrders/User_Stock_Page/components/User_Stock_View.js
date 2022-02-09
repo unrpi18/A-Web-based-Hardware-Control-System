@@ -1,13 +1,14 @@
-import {DataGrid, GridColDef} from "@mui/x-data-grid";
-import React, {useContext, useEffect, useState} from "react";
+import {DataGrid} from "@mui/x-data-grid";
+import React, { useState} from "react";
 import Typography from "@mui/material/Typography";
-import {useNavigate} from "react-router";
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
-import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/storeDataPersistance";
 
 const USER_STOCK_VIEW = () => {
-    const {loginUser, setLoginUser} = useContext(UserContext);
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
 
     const stockViewApi = "/stocks/userGetAllItems"
     const {rows, setRows} = useFetchData('GET', loginUser, stockViewApi)

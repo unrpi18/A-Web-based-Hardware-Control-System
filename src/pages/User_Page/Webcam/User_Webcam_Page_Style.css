@@ -1,0 +1,15 @@
+.User_Webcam_Page_Style {
+    position: absolute;
+
+    top: 40%;
+    left: 40%;
+}
+
+.User_Webcam_Box_Size {
+    height: 30ch
+}
+
+.User_Webcam_View_Stream {
+    position: center;
+
+}

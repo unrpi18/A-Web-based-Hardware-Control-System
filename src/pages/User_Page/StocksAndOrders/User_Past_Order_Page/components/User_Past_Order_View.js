@@ -1,12 +1,15 @@
 import {Link} from "@material-ui/core";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useState} from "react";
 import Typography from "@mui/material/Typography";
 import {DataGrid} from "@mui/x-data-grid";
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
 import {useFetchData} from "../../../ReusedMethod/fetchData";
 
 const USER_PAST_ORDER_VIEW = () => {
-    const {loginUser, setLoginUser} = useContext(UserContext);
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
     const pastOrderApi = "/orders/getUserPastOrders";
     const {rows, setRows} = useFetchData('GET', loginUser, pastOrderApi);
 

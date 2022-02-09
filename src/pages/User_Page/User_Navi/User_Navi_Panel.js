@@ -10,12 +10,11 @@ import ListItemText from '@mui/material/ListItemText';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import EventIcon from '@mui/icons-material/Event';
 import InventoryIcon from '@mui/icons-material/Inventory';
-import GroupsIcon from '@mui/icons-material/Groups';
 import IconButton from '@mui/material/IconButton';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import {useNavigate} from "react-router";
 import '../../User_Page/User_Navi/User_Navi_Panel_Stytle.css'
-import {ExpandLess, ExpandMore, StarBorder} from "@mui/icons-material";
+import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import {Collapse} from "@material-ui/core";
 import {ListItemButton} from "@mui/material";
 import {useState} from "react";
@@ -111,7 +110,7 @@ const USER_NAVI_PANEL = () => {
 
 
                     <Divider light/>
-                    <ListItem button>
+                    <ListItem button onClick={() => navigate('/webcam_user')}>
                         <ListItemIcon>
                             <VideocamIcon/>
                         </ListItemIcon>

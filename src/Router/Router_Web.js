@@ -31,6 +31,7 @@ import USER_SUBMIT_PAGE from "../pages/User_Page/StocksAndOrders/User_Submit_Ord
 import USER_ACTIVE_ORDER from "../pages/User_Page/StocksAndOrders/User_Active_Order_Page/User_Active_Order";
 import USER_PAST_ORDER from "../pages/User_Page/StocksAndOrders/User_Past_Order_Page/User_Past_Order";
 import WEBCAM_ADMIN from "../pages/Admin_Page/Webcam_Admin/Webcam_Admin";
+import USER_WEBCAM_PAGE from "../pages/User_Page/Webcam/User_Webcam_Page";
 
 
 function Router_Web() {
@@ -61,6 +62,7 @@ function Router_Web() {
                 <Route path='submit_order' element={<USER_SUBMIT_PAGE/>}/>
                 <Route path='active_order' element={<USER_ACTIVE_ORDER/>}/>
                 <Route path='past_order' element={<USER_PAST_ORDER/>}/>
+                <Route path='webcam_user' element={<USER_WEBCAM_PAGE/>}/>
                 <Route path='admin_main_page' element={<ADMIN_MAIN_PAGE/>}/>
                 <Route path='appointment_admin' element={<APPOINTMENT_ADMIN/>}/>
                 <Route path='new_user_management' element={<New_User_Management/>}/>

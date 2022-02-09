@@ -6,7 +6,7 @@ import Stack from "@mui/material/Stack";
 import SendIcon from '@mui/icons-material/Send';
 import {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
-import {isBlank} from "../../../User_Page/ReusedMethod/checkInputFields";
+import {isBlank, validateEmail, validatePassword} from "../../../User_Page/ReusedMethod/checkInputFields";
 import sha256 from "crypto-js/sha256";
 import {baseUrl} from "../../../../contexts/RegisterContext";
 import {handleVerificationCode} from "../../../User_Page/ReusedMethod/handleVerificationCode";
@@ -41,7 +41,16 @@ const REGISTER_PAGE_INPUT_FIELD = () => {
                     return
                 }
             }
+            let emailCheck = validateEmail(email)
+            if (!emailCheck) {
+                alert("Please enter the correct email-format: xxx@yyy.zzz.");
+                return;
+            }
 
+            if (!validatePassword(password)) {
+                alert("Password must be 8 digits long. It must include a maximum of two numbers.")
+                return;
+            }
 
             const userPassword = sha256(password.toString()).toString();
 

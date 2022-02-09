@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -14,8 +14,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Dialog from "@mui/material/Dialog";
 import Typography from "@mui/material/Typography";
 import moment from "moment";
-import {url} from "../../../../Admin_Page/Navi_base"
-import {baseUrl, UserContext} from "../../../../../contexts/RegisterContext";
+import {baseUrl} from "../../../../../contexts/RegisterContext";
 
 const loading = [
     createData(0, 'loading', 'loading', 'loading', 'loading', 'loading', 'loading', 'loading'),
@@ -93,7 +92,11 @@ const APPOINTMENT_USER_VIEW = () => {
     const [date, setDate] = useState('')
     const [time_slot, setTimeSlot] = useState('')
     const [fetchedData, setFetchedData] = useState([]);
-    const {loginUser, setLoginUser} = useContext(UserContext)
+    const [loginUser, setLoginUser] = useState(() => {
+        const saved = localStorage.getItem("user")
+        const initialValue = JSON.parse(saved);
+        return initialValue || ''
+    })
 
 
     useEffect(() => {

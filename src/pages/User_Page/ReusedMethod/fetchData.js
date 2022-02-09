@@ -1,5 +1,5 @@
-import {useContext, useEffect, useState} from "react";
-import {baseUrl, UserContext} from "../../../contexts/RegisterContext";
+import {useEffect, useState} from "react";
+import {baseUrl} from "../../../contexts/RegisterContext";
 
 export const useFetchData = (type, loginUser, api) => {
 
@@ -23,6 +23,7 @@ export const useFetchData = (type, loginUser, api) => {
                 console.log(responseJson.data)
 
                 setRows(rows => ({...rows, data: responseJson.data}))
+
             } else {
                 alert(message);
 

@@ -6,8 +6,8 @@ import backpic from "../components/backpic.jpg"
 
 const USER_MAIN_PAGE_TEXT = () => {
     const {loginUser, setLoginUser} = useContext(UserContext);
+
     useRefreshControlGet(setLoginUser);
-    useRefreshControlSet(loginUser);
 
     return <form className='"Title_set_all"'>
 

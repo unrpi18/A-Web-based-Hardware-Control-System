@@ -2,14 +2,12 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import {useContext} from "react";
 import {UserContext} from "../../../../../contexts/RegisterContext";
-import {useRefreshControlGet, useRefreshControlSet} from "../../../ReusedMethod/storeDataPersistance";
+import {useRefreshControlGet} from "../../../ReusedMethod/storeDataPersistance";
 import * as React from "react";
 
 const USER_ACCOUNT_READ_ONLY_FIELDS = () => {
     const {loginUser, setLoginUser} = useContext(UserContext)
-
     useRefreshControlGet(setLoginUser);
-    useRefreshControlSet(loginUser);
 
     return (
         <Box
@@ -28,7 +26,7 @@ const USER_ACCOUNT_READ_ONLY_FIELDS = () => {
                     disabled
                     label='E-mail'
                     id="outlined-disabled"
-                    defaultValue={loginUser.email}
+                    value={loginUser.email}
 
                 />
             </div>
@@ -37,7 +35,8 @@ const USER_ACCOUNT_READ_ONLY_FIELDS = () => {
                     disabled
                     label='First name'
                     id="outlined-disabled"
-                    defaultValue={loginUser.firstName}
+                    value={loginUser.firstName}
+
 
                 />
             </div>
@@ -46,7 +45,7 @@ const USER_ACCOUNT_READ_ONLY_FIELDS = () => {
                     disabled
                     label='Last name'
                     id="outlined-disabled"
-                    defaultValue={loginUser.lastName}
+                    value={loginUser.lastName}
 
                 />
             </div>

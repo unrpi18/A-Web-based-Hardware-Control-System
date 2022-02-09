@@ -8,6 +8,7 @@ const MY_APPOINTMENT_PAGE = () => {
     return <div>
         <LOGO/>
         <MY_APPOINTMENT_VIEW/>
+
         <USER_NAVI_PANEL/>
         <USER_MAIN_PAGE_PROFILE/>
     </div>
