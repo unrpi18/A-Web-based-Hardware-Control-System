@@ -28,8 +28,6 @@ export default function FILE_UPLOADER (){
     const onFileUpload = async () => {
         const formData = new FormData()
         formData.append('File', selectedFile);
-        console.log(formData);
-        console.log(selectedFile);
         // Create an object of formData
 
         // Details of the uploaded file

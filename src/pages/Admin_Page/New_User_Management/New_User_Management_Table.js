@@ -11,13 +11,12 @@ import IconButton from '@mui/material/IconButton';
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog} from "@mui/material";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import {url} from "../Navi_base"
 import DialogActions from "@mui/material/DialogActions";
-import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import Stack from "@mui/material/Stack";
@@ -37,8 +36,6 @@ function createData(id, first_name, last_name, email) {
 
 
 export default function NEW_USER_MANAGEMENT_TABLE() {
-    const {loginUser, setLoginUser} = useContext(UserContext);
-    const [token, setToken] = useState((loginUser === null)? null : loginUser.token );
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [open, setOpen] = useState(false);
@@ -67,7 +64,6 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -85,11 +81,12 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 }
             }
             else if(resultCode === 500){
-                window.sessionStorage.clear();
+                window.sessionStorage.setItem('token', responseJson.token)
+                setDisplay_data(no_data);
                 alert(errorMessage);
             }
             else {
-                window.sessionStorage.setItem('token', responseJson.token)
+                window.sessionStorage.clear();
                 alert(errorMessage);
                 navigate('/');
             }
@@ -112,6 +109,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                     || fetched_data[i].last_name.toString().includes(keyword)
                     || fetched_data[i].email.toString().includes(keyword)){
                     filteredData[count] = fetched_data[i];
+                    filteredData[count].id = count;
                     count ++;
                 }
             }
@@ -186,7 +184,6 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
     function handleAudit(command){
         const post = {email};
         const prefix_url = command === 'approve' ? '/users/confirmUserRegistration' : '/users/rejectUserRegistration'
-        console.log(post);
         fetch(url + prefix_url, {
             method: 'POST',
             headers: {
@@ -203,7 +200,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             else {
-                window.sessionStorage.setItem('token', responseJson.token)
+                window.sessionStorage.clear()
                 alert(errorMessage);
                 navigate('/');
             }
@@ -312,7 +309,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                         </IconButton>
                         <TablePagination
                             rowsPerPageOptions={5}
-                            colSpan={3}
+                            colSpan={4}
                             count={rows.length}
                             rowsPerPage={rowsPerPage}
                             page={page}

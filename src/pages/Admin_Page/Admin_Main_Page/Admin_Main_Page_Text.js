@@ -7,9 +7,6 @@ const ADMIN_MAIN_PAGE_TEXT = () => {
             <Typography variant = "h2">
                 Welcome to TECO Lab Management System
             </Typography>
-            <Typography variant = "h4">
-                Please use the navigation panel to the left hand side
-            </Typography>
         </Stack>
 
     )

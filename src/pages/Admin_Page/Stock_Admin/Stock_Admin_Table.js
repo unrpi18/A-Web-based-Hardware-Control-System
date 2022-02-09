@@ -1,7 +1,3 @@
-
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -11,19 +7,14 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog, TextField} from "@mui/material";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import {UserContext} from "../../../contexts/RegisterContext";
+import DescriptionIcon from '@mui/icons-material/Description';
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -33,72 +24,13 @@ import AddIcon from '@mui/icons-material/Add';
 import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import tablePaginationActions from "../Component/Table_Control";
 const loading = [
     createData(0,'loading','loading','loading')]
 const no_data = [
     createData(0,'NA','NA','NA')]
 
 
-function tablePaginationActions(props){
-    const theme = useTheme;
-    const { count, page, rowsPerPage, onPageChange } = props;
-
-    const handleFirstPageButtonClick = (event) => {
-        onPageChange(event, 0);
-    };
-
-    const handleBackButtonClick = (event) => {
-        onPageChange(event, page - 1);
-    };
-
-    const handleNextButtonClick = (event) => {
-        onPageChange(event, page + 1);
-    };
-
-    const handleLastPageButtonClick = (event) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
-
-    return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
-    );
-}
-
-TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-};
 
 function createData(id, item, amount, description) {
     return {id, item, amount, description };
@@ -109,12 +41,14 @@ export default function STOCK_ADMIN_TABLE() {
 
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
+    const [fullWidth] = React.useState(true);
+    const [maxWidth] = React.useState('sm');
 
     const [edit_open, setEdit_open] = useState(false);
     const [add_open, setAdd_open] = useState(false)
     const [remove_open, setRemove_open] = useState(false);
     const [filter_open, setFilter_open] = useState(false);
-
+    const [description_open, setDescription_open] = useState(false);
     const [item, setItem] = useState('');
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
@@ -125,58 +59,10 @@ export default function STOCK_ADMIN_TABLE() {
     const navigate = useNavigate();
     let rows = display_data;
 
+    //global method
     useEffect(() => {
         refreshPage()
     }, []);
-
-    function handleEditOpen(item, amount) {
-        setItem(item);
-        setAmount(amount);
-        setEdit_open(true);
-    }
-
-    function handleEditClose() {
-        setEdit_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    function handleRemoveOpen(item, amount, description) {
-        setItem(item);
-        setAmount(amount);
-        setDescription(description);
-        setRemove_open(true);
-    }
-
-    function handleRemoveClose() {
-        setRemove_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    function handleAddOpen() {
-        setAdd_open(true);
-    }
-
-    function handleAddClose() {
-        setAdd_open(false);
-        setItem('');
-        setAmount('');
-        setDescription('');
-    }
-
-    const itemOnchange = (e) => {
-        setItem(e.target.value);
-    }
-    const amountOnchange = (e) => {
-        setAmount(e.target.value);
-    }
-    const descriptionOnchange = (e) => {
-        setDescription(e.target.value);
-    }
-
     function refreshPage() {
         fetch(url + '/stocks/adminGetAllItems', {
             method: 'GET',
@@ -208,10 +94,32 @@ export default function STOCK_ADMIN_TABLE() {
         })
     }
 
+    //onChange Method
+    const itemOnchange = (e) => {
+        setItem(e.target.value);
+    }
+    const amountOnchange = (e) => {
+        setAmount(e.target.value);
+    }
+    const descriptionOnchange = (e) => {
+        setDescription(e.target.value);
+    }
+
+    // edit item relevant methods
+    function handleEditOpen(item, amount) {
+        setItem(item);
+        setAmount(amount);
+        setEdit_open(true);
+    }
+    function handleEditClose() {
+        setEdit_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleEditConfirm = ()=>{
         const itemName = item;
         const post = {itemName, amount};
-        console.log(post);
         fetch (url + '/stocks/changeItemAmount',{
             method: 'POST',
             headers: {
@@ -235,10 +143,89 @@ export default function STOCK_ADMIN_TABLE() {
 
         handleEditClose();
     }
+    const edit_dialog = ()=>{
+        return(
+            <Dialog open={edit_open} onClose={handleEditClose} fullWidth>
+                <DialogTitle>Edit Item Amount</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        disabled
+                        variant="standard"
+                        defaultValue={item}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        type="number"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        onChange={amountOnchange}
+                        defaultValue={amount}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleEditClose}>Close</Button>
+                    <Button onClick={handleEditConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //decription dialog
+    function handleDescriptionOpen(des){
+        setDescription(des)
+        setDescription_open(true);
+    }
+    function handleDescriptionClose(){
+        setDescription_open(false);
+        setDescription('')
+    }
+    function description_dialog(){
+        return(
+            <Dialog open={description_open} onClose={handleDescriptionClose}
+                    fullWidth={fullWidth}
+                    maxWidth={maxWidth}>
+                <DialogTitle>Description</DialogTitle>
+                <DialogContent>
+                    {description}
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleDescriptionClose}>Close</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //Remove item relevant methods
+    function handleRemoveOpen(item, amount, description) {
+        setItem(item);
+        setAmount(amount);
+        setDescription(description);
+        setRemove_open(true);
+    }
+    function handleRemoveClose() {
+        setRemove_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleRemoveConfirm = () => {
         const itemName = item;
         const post = {itemName};
-        console.log(post);
         fetch (url + '/stocks/deleteItem',{
             method: 'POST',
             headers: {
@@ -261,12 +248,64 @@ export default function STOCK_ADMIN_TABLE() {
         })
         handleRemoveClose();
     }
+    const remove_dialog = ()=>{
+        return(
+            <Dialog open={remove_open} onClose={handleRemoveClose} fullWidth>
+                <DialogTitle>Remove Items</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                        Are you sure that you want to delete following item from stock?
+                    </DialogContentText>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        disabled
+                        variant="standard"
+                        defaultValue={item}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        disabled
+                        defaultValue={amount}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleRemoveClose}>Close</Button>
+                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
+
+    //Add item relevant methods
+    function handleAddOpen() {
+        setAdd_open(true);
+    }
+    function handleAddClose() {
+        setAdd_open(false);
+        setItem('');
+        setAmount('');
+        setDescription('');
+    }
     const handleAddConfirm = () => {
 
         const itemName = item;
-        const description = 'aaa';
         const post = {itemName, amount, description};
-        console.log(post);
         fetch (url + '/stocks/addItem',{
             method: 'POST',
             headers: {
@@ -288,6 +327,58 @@ export default function STOCK_ADMIN_TABLE() {
             refreshPage();
         })
         handleAddClose();
+    }
+    const add_dialog = ()=>{
+        return(
+            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
+                <DialogTitle>Add New Items</DialogTitle>
+                <DialogContent>
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="item"
+                        label="Item"
+                        fullWidth
+                        variant="standard"
+                        onChange={itemOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="number"
+                        label="Amount"
+                        fullWidth
+                        variant="standard"
+                        value={amount}
+                        onChange={amountOnchange}
+                    />
+                    <TextField
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        required
+                        margin="dense"
+                        id="description"
+                        label="description"
+                        fullWidth
+                        variant="standard"
+                        value={description}
+                        onChange={descriptionOnchange}
+                        placeholder={"description of the item"}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleAddClose}>Close</Button>
+                    <Button onClick={handleAddConfirm}>Confirm</Button>
+                </DialogActions>
+            </Dialog>
+        )
     }
 
     //filter relevant methods
@@ -348,6 +439,7 @@ export default function STOCK_ADMIN_TABLE() {
                     || fetched_data[i].description.toString().includes(keyword))
                 {
                     filteredData[count] = fetched_data[i];
+                    filteredData[count].id = count;
                     count ++;
                 }
             }
@@ -363,6 +455,7 @@ export default function STOCK_ADMIN_TABLE() {
     const filter_keywordOnchange =(e)=>{
         setFilter_keyword(e.target.value);
     }
+
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length +1) : 0;
@@ -375,6 +468,7 @@ export default function STOCK_ADMIN_TABLE() {
         setPage(0);
     };
 
+    //table
     const table_title = 'All Items in Stock'
     const stock_table = ()=>{
         if(display_data === null){
@@ -382,7 +476,7 @@ export default function STOCK_ADMIN_TABLE() {
         }
         return (
             <TableContainer component={Paper} sx ={{minWidth: '50vw', maxWidth: '50vw', minHeight: '60vh', maxHeight: '60vh'}} >
-                <Table sx={{minWidth: '50vw', maxWidth: '50vw', minHeight: '50vh', maxHeight: '50vh'}}
+                <Table sx={{minWidth: '50vw', maxWidth: '50vw', minHeight: '60vh', maxHeight: '60vh'}}
                        aria-label="custom pagination table">
                     <TableHead>
                         <TableRow>
@@ -405,7 +499,10 @@ export default function STOCK_ADMIN_TABLE() {
                                     {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: 300, height : 53}} align="center">
-                                    {row.description}
+                                    <IconButton aria-label="view"
+                                                onClick={() => handleDescriptionOpen(rows[row.id].description)}>
+                                        <DescriptionIcon/>
+                                    </IconButton>
                                 </TableCell>
                                 <TableCell style={{width: 40 ,height : 53 }} align="center">
                                     <Stack direction="row" justifyContent="space-evenly">
@@ -460,142 +557,8 @@ export default function STOCK_ADMIN_TABLE() {
         )
     }
 
-    const edit_dialog = ()=>{
-        return(
-            <Dialog open={edit_open} onClose={handleEditClose} fullWidth>
-                <DialogTitle>Edit Item Amount</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        disabled
-                        variant="standard"
-                        defaultValue={item}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        type="number"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        onChange={amountOnchange}
-                        defaultValue={amount}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleEditClose}>Close</Button>
-                    <Button onClick={handleEditConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
-    const remove_dialog = ()=>{
-        return(
-            <Dialog open={remove_open} onClose={handleRemoveClose} fullWidth>
-                <DialogTitle>Remove Items</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Are you sure that you want to delete following item from stock?
-                    </DialogContentText>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        disabled
-                        variant="standard"
-                        defaultValue={item}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        disabled
-                        defaultValue={amount}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleRemoveClose}>Close</Button>
-                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
-    const add_dialog = ()=>{
-        return(
-            <Dialog open={add_open} onClose={handleAddClose} fullWidth>
-                <DialogTitle>Add New Items</DialogTitle>
-                <DialogContent>
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="item"
-                        label="Item"
-                        fullWidth
-                        variant="standard"
-                        onChange={itemOnchange}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="number"
-                        label="Amount"
-                        fullWidth
-                        variant="standard"
-                        value={amount}
-                        onChange={amountOnchange}
-                    />
-                    <TextField
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        required
-                        margin="dense"
-                        id="description"
-                        label="description"
-                        fullWidth
-                        variant="standard"
-                        value={description}
-                        onChange={descriptionOnchange}
-                        placeholder={"www.conrad.de/example_item.html"}
-                    />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAddConfirm}>Confirm</Button>
-                </DialogActions>
-            </Dialog>
-        )
-    }
+
+
 
     return (
         <div>
@@ -609,6 +572,7 @@ export default function STOCK_ADMIN_TABLE() {
             {remove_dialog()}
             {edit_dialog()}
             {filterDialog()}
+            {description_dialog()}
         </div>
 
     );

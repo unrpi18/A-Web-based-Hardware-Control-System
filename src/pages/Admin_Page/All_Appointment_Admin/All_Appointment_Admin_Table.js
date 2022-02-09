@@ -11,11 +11,10 @@ import IconButton from '@mui/material/IconButton';
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
 import {Dialog} from "@mui/material";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
-import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import DialogContentText from "@mui/material/DialogContentText";
@@ -64,7 +63,6 @@ function createData(id, first_name, last_name, email,date,timeslot) {
 
 export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     //state var
-    const {loginUser, setLoginUser} = useContext(UserContext)
     const [page, setPage] = useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [delete_open, setDelete_open] = useState(false);
@@ -93,7 +91,6 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 'Authorization': window.sessionStorage.getItem("token")
             }
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -142,7 +139,6 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const handleConfirm =() =>{
         const slot = time_slot;
         const post = {date,slot};
-        console.log(post);
         fetch(url +'/appointments/adminDeleteAppointment', {
             method: 'POST',
             headers: {
@@ -241,6 +237,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                     || feteched_data[i].date.toString().includes(keyword)
                     || convertIDtoSlot(feteched_data[i].timeslot).toString().includes(keyword)) {
                     filteredData[count] = feteched_data[i];
+                    filteredData[count].id = count;
                     count ++;
                 }
             }
@@ -272,8 +269,8 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     let rows = display_data;
     function table(){
         return(
-            <TableContainer component={Paper}>
-                <Table sx={{ minHeight: '40vh', maxHeight : '40vh'}} aria-label="custom pagination table">
+            <TableContainer component={Paper} style={{height : "40vh", width : "50vw"}}>
+                <Table style={{height : "40vh", width : "50vw"}} aria-label="custom pagination table">
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">First Name</TableCell>
@@ -328,7 +325,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                             </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
-                                colSpan={3}
+                                colSpan={6}
                                 count={rows.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}

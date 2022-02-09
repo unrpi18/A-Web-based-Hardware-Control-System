@@ -1,6 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,20 +9,14 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import FirstPageIcon from '@mui/icons-material/FirstPage';
-import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import LastPageIcon from '@mui/icons-material/LastPage';
-import TablePaginationActions from "@mui/material/TablePagination/TablePaginationActions";
 import Button from "@mui/material/Button";
 import TableHead from "@mui/material/TableHead";
-import {Dialog, Link, TextField} from "@mui/material";
-import {useContext, useEffect, useState} from "react";
+import {Dialog, TextField} from "@mui/material";
+import {useEffect, useState} from "react";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogActions from "@mui/material/DialogActions";
-import {UserContext} from "../../../contexts/RegisterContext";
 import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 import FormControl from "@mui/material/FormControl";
@@ -33,74 +25,16 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import FlakyIcon from '@mui/icons-material/Flaky';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
-
+import tablePaginationActions from "../Component/Table_Control";
 import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
 import FilterListIcon from "@mui/icons-material/FilterList";
+import LinkIcon from "@mui/icons-material/Link";
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading', 'loading'),];
 const stocksLoading = [createItemsData(0,'loading','loading', 'loading')];
 const no_data = [createData(0,'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
 
-function tablePaginationActions(props){
-    const theme = useTheme;
-    const { count, page, rowsPerPage, onPageChange } = props;
 
-    const handleFirstPageButtonClick = (event) => {
-        onPageChange(event, 0);
-    };
-
-    const handleBackButtonClick = (event) => {
-        onPageChange(event, page - 1);
-    };
-
-    const handleNextButtonClick = (event) => {
-        onPageChange(event, page + 1);
-    };
-
-    const handleLastPageButtonClick = (event) => {
-        onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
-    };
-
-    return (
-        <Box sx={{ flexShrink: 0, ml: 2.5 }}>
-            <IconButton
-                onClick={handleFirstPageButtonClick}
-                disabled={page === 0}
-                aria-label="first page"
-            >
-                {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
-            </IconButton>
-            <IconButton
-                onClick={handleBackButtonClick}
-                disabled={page === 0}
-                aria-label="previous page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
-            </IconButton>
-            <IconButton
-                onClick={handleNextButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="next page"
-            >
-                {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
-            </IconButton>
-            <IconButton
-                onClick={handleLastPageButtonClick}
-                disabled={page >= Math.ceil(count / rowsPerPage) - 1}
-                aria-label="last page"
-            >
-                {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
-            </IconButton>
-        </Box>
-    );
-}
-
-TablePaginationActions.propTypes = {
-    count: PropTypes.number.isRequired,
-    onPageChange: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    rowsPerPage: PropTypes.number.isRequired,
-};
 
 function createData(id,order_id, item, amount, link, name, email, status) {
     return {id, order_id, item, amount, link, name, email, status};
@@ -131,7 +65,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
     let rows = display_data;
 
     useEffect(() => {
-        refreshPage();
+        refreshPage()
     }, [])
 
     function refreshPage() {
@@ -144,7 +78,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 'Authorization': window.sessionStorage.getItem('token')
             },
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             let data = responseJson.data;
@@ -233,7 +166,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         const orderId = order_id;
         const itemName = items_in_stock;
         const post = {orderId, itemName};
-        console.log(post);
         fetch(url + '/orders/inStock', {
             method: 'POST',
             headers: {
@@ -243,7 +175,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if (resultCode === 200 || resultCode === 500){
@@ -265,7 +196,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
         const url_postfix = result === "Approve" ? '/orders/confirmOrder' : '/orders/rejectOrder';
         const orderId = order_id;
         const post ={orderId};
-        console.log(post);
         fetch(url + url_postfix, {
             method: 'POST',
             headers: {
@@ -275,7 +205,6 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
             },
             body: JSON.stringify(post)
         }).then(response => response.json()).then(responseJson => {
-            console.log(responseJson);
             let resultCode = responseJson.resultCode;
             let errorMessage = responseJson.message;
             if (resultCode === 200 || resultCode === 500){
@@ -353,6 +282,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                     || fetched_data[i].status.toString().includes(keyword))
                 {
                     filteredData[count] = fetched_data[i];
+                    filteredData[count].id = count;
                     count ++;
                 }
             }
@@ -491,7 +421,10 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                     {row.amount}
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
-                                    <Link href={row.link}>Link</Link>
+                                    <IconButton
+                                        onClick={()=>window.open(row.link)}>
+                                        <LinkIcon/>
+                                    </IconButton>
                                 </TableCell>
                                 <TableCell style={{width: "5vw", height: 53}} align="center">
                                     {row.name}
@@ -532,7 +465,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                             </IconButton>
                             <TablePagination
                                 rowsPerPageOptions={5}
-                                colSpan={3}
+                                colSpan={8}
                                 count={rows.length}
                                 rowsPerPage={rowsPerPage}
                                 page={page}
