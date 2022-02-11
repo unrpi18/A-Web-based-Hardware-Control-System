@@ -179,7 +179,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleEditClose}>Close</Button>
-                    <Button onClick={handleEditConfirm}>Confirm</Button>
+                    <Button onClick={handleEditConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -286,7 +286,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleRemoveClose}>Close</Button>
-                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
+                    <Button onClick={handleRemoveConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -375,7 +375,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAddConfirm}>Confirm</Button>
+                    <Button onClick={handleAddConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )

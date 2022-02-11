@@ -172,7 +172,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleDelete_close}>Close</Button>
-                    <Button onClick={handleConfirm}>Confirm</Button>
+                    <Button onClick={handleConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )

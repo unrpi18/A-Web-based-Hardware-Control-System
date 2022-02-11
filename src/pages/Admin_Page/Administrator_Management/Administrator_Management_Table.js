@@ -164,7 +164,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handleConfirm}>Confirm</Button>
+                    <Button onClick={handleConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -254,7 +254,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAdd}>Confirm</Button>
+                    <Button onClick={handleAdd}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )

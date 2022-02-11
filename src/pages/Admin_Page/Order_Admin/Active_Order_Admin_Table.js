@@ -362,7 +362,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleInStockClose}> Close</Button>
-                    <Button onClick={()=>handleInStockSubmit()}>Confirm</Button>
+                    <Button onClick={()=>handleInStockSubmit()}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )

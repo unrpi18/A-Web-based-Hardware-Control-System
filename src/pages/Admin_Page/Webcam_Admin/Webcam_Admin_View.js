@@ -139,7 +139,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleResolutionClose}>Close</Button>
-                    <Button onClick={()=>handleConfirm('resolution')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('resolution')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -182,7 +182,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleDurationClose}>Close</Button>
-                    <Button onClick={()=>handleConfirm('duration')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('duration')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )

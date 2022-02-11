@@ -323,7 +323,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleBookClose}>Cancel</Button>
-                    <Button onClick={()=>handleConfirm('Book')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Book')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -372,7 +372,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCxlClose}>Cancel</Button>
-                    <Button onClick={()=>handleConfirm('Cancel')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Cancel')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -500,7 +500,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleTimeSlotClose}>Cancel</Button>
-                    <Button onClick={handleConfirmTSChange}>Confirm</Button>
+                    <Button onClick={handleConfirmTSChange}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
