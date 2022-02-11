@@ -107,7 +107,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 navigate('/')
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
     function allStockDataFetch(){
@@ -138,7 +138,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 alert(errorMessage);
                 navigate('/');
             }
-        })
+        }).catch(error =>{throw(error)})
     }
     const itemInStockOnchange =(e)=>{
         setItems_In_stock(e.target.value);
@@ -190,7 +190,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
 
         handleInStockClose();
@@ -220,7 +220,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         refreshPage();
         handleAuditClose();
     }

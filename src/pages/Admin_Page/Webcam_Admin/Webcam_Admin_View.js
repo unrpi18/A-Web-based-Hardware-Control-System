@@ -55,7 +55,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                     alert('invalid access, you are being logged out.')
                     navigate('/');
                 }
-            })
+            }).catch(error =>{throw(error)})
         }
     }
 
@@ -79,7 +79,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                     alert('invalid access, you are being logged out.')
                     navigate('/');
                 }
-            })
+            }).catch(error =>{throw(error)})
         }
     }
 
@@ -110,7 +110,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                     alert('invalid access, you are being logged out.')
                     navigate('/')
                 }
-            })
+            }).catch(error =>{throw(error)})
             fetchDuration();
             fetchResolution();
             handleResolutionClose();
@@ -197,7 +197,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             },
         }).then(response => response.json()).then(responseJson => {
             setIdentification(responseJson.resultCode === 200);
-        })
+        }).catch(error =>{throw(error)})
     }
     async function handleOpenStream() {
         fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
@@ -214,7 +214,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                 alert('invalid access, you are being logged out.')
                 navigate('/');
             }
-        }).then(()=>window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + resolution));
+        }).then(()=>window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + resolution)).catch(error =>{throw(error)});
     }
     return (
         <div>

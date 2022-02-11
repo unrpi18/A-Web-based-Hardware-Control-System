@@ -76,7 +76,7 @@ export default function PAST_ORDER_ADMIN_TABLE() {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
     //filter relevant methods

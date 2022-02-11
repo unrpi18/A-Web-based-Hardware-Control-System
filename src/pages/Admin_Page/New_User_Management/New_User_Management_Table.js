@@ -94,7 +94,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
     // methods and functions for filtering
@@ -208,7 +208,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
     }

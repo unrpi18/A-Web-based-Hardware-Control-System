@@ -121,7 +121,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
 
@@ -164,7 +164,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         handleDelete_close();
 
     }

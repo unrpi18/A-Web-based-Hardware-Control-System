@@ -48,7 +48,7 @@ export default function FILE_UPLOADER (){
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
     };
 
     // File content to be displayed after

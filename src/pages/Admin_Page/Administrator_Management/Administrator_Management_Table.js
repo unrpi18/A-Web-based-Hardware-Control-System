@@ -103,7 +103,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage);
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
     function refreshPage(){
         setDisplay_data(loading);
@@ -136,7 +136,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage)
             }
-        }).then(fetchUser)
+        }).then(fetchUser).catch(error =>{throw(error)})
 
     }
 
@@ -195,7 +195,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
 
@@ -233,7 +233,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleAddClose();
     }

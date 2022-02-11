@@ -163,7 +163,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
 
     }
     function fetchUser(){
@@ -196,7 +196,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 alert(errorMessage);
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
 
@@ -265,7 +265,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 refreshPage(start_date);
                 handleBookClose()
                 handleCxlClose();
-            })
+            }).catch(error =>{throw(error)})
         }
 
 
@@ -422,7 +422,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 }
                 refreshPage(start_date);
                 handleTimeSlotClose()
-            })
+            }).catch(error =>{throw(error)})
         }
     }
     function setTimeSlotDialog(){

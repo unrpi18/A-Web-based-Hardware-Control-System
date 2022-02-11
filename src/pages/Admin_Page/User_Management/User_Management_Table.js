@@ -100,7 +100,7 @@ export default function USER_MANAGEMENT_TABLE() {
                 alert(errorMessage);
                 navigate('/');
             }
-        })
+        }).catch(error =>{throw(error)})
     }
 
     function filterData (keyword){
@@ -176,7 +176,7 @@ export default function USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
 

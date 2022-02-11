@@ -17,7 +17,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import {useNavigate} from "react-router";
 import {ListItemButton} from "@mui/material";
 import {Collapse} from "@material-ui/core";
-import {ExpandLess, ExpandMore} from "@mui/icons-material";
+import {ExpandMore} from "@mui/icons-material";
 import {useState} from "react";
 export default function ADMIN_NAVI_PANEL() {
     const [state, setState] = useState({
@@ -64,9 +64,9 @@ export default function ADMIN_NAVI_PANEL() {
                         <InventoryIcon />
                     </ListItemIcon>
                     <ListItemText primary='Stocks & Orders' />
-                    {order_open ? <ExpandLess/> : <ExpandMore/>}
+                    {<ExpandMore/>}
                 </ListItem>
-                <Collapse in={order_open} timeout="auto" unmountOnExit>
+                <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
 
                         {[{
@@ -105,8 +105,9 @@ export default function ADMIN_NAVI_PANEL() {
                         <GroupsIcon />
                     </ListItemIcon>
                     <ListItemText primary = 'User Group' />
+                    <ExpandMore/>
                 </ListItem>
-                <Collapse in={user_open} timeout="auto" unmountOnExit>
+                <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
 
                         {[{

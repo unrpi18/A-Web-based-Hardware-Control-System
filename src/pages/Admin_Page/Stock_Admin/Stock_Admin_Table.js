@@ -94,7 +94,7 @@ export default function STOCK_ADMIN_TABLE() {
                 alert(errorMessage);
                 navigate('/');
             }
-        })
+        }).catch(error =>{throw(error)})
     }
 
     //onChange Method
@@ -142,7 +142,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleEditClose();
     }
@@ -248,7 +248,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         handleRemoveClose();
     }
     const remove_dialog = ()=>{
@@ -328,7 +328,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         handleAddClose();
     }
     const add_dialog = ()=>{
