@@ -9,7 +9,7 @@ import ADMIN_MAIN_PAGE from "../pages/Admin_Page/Admin_Main_Page/Admin_Main_Page
 import APPOINTMENT_ADMIN from "../pages/Admin_Page/Appointment_Admin/Appointment_Admin";
 import USER_APPOINTMENT_PAGE from "../pages/User_Page/Appointment/UserAppointmentPage/User_Appointment_Page";
 import USER_MAIN_PAGE from "../pages/User_Page/UserMainPage/User_Main_Page";
-import {AdminContext, UserContext} from "../contexts/RegisterContext";
+import {UserContext} from "../contexts/RegisterContext";
 import FORGET_PASSWORD_PAGE from "../pages/Mixed_Page/ForgetPasswordPage/Forget_Password_Page";
 import USER_ACCOUNT_PAGE from "../pages/User_Page/UserAccountPage/User_Account_Page";
 import New_User_Management from "../pages/Admin_Page/New_User_Management/New_User_Management";

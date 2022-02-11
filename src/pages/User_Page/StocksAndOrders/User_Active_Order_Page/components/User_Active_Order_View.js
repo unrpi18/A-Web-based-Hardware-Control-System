@@ -117,7 +117,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
                                 Cancel Information
                             </BootstrapDialogTitle>
                             <DialogContent>
-                                <Typography color='red'>
+                                <Typography color='gray'>
                                     Do you want to cancel the order {id} ?
                                 </Typography>
                             </DialogContent>
@@ -126,7 +126,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
                                     No,thanks
                                 </Button>
                                 <Button onClick={handleCancel}>
-                                    Confirm
+                                    YES
                                 </Button>
 
 

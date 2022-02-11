@@ -170,7 +170,7 @@ const USER_SUBMIT_PAGE_FORM = () => {
                     Information
                 </BootstrapDialogTitle>
                 <DialogContent>
-                    <Typography color='grey'>
+                    <Typography color='gray'>
                         You have successfully sent your order.
                       <br/>
                         Do you have any other order to submit?

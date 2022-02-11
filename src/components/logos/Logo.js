@@ -5,7 +5,6 @@ import '../logos/Logo.css'
 const LOGO = () => {
     return  <div>
 
-        <img src={Kit_logo} className="Kit_Logo" alt="kit_logo" />
         <img  src={logo} className="Teco_Logo"  alt="logo"/>
 
 

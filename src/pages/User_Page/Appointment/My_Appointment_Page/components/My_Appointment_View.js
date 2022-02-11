@@ -124,7 +124,7 @@ const MY_APPOINTMENT_VIEW = () => {
                                     Cancel Information
                                 </BootstrapDialogTitle>
                                 <DialogContent>
-                                    <Typography color='red'>
+                                    <Typography color='gray'>
                                         Do you really want to cancel your appointment during {slot} on {timeSlotDate}?
                                     </Typography>
                                 </DialogContent>
@@ -133,7 +133,7 @@ const MY_APPOINTMENT_VIEW = () => {
                                         No,thanks
                                     </Button>
                                     <Button onClick={handleCancel}>
-                                        Confirm
+                                        YES
                                     </Button>
                                 </DialogActions>
                             </Dialog>
