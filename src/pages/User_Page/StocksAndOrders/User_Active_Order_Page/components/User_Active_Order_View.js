@@ -149,7 +149,7 @@ const USER_ACTIVE_ORDER_VIEW = () => {
     return (
 
 
-        <div style={{height: 800, width: '80%'}} className='form_active_order_page_position'>
+        <div style={{height: 500, width: '80%'}} className='form_active_order_page_position'>
 
 
             <Typography variant="h4" display="block" align='center' sx={{

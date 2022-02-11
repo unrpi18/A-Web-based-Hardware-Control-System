@@ -94,7 +94,8 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
 
                         onChange={(e) => setData(prev => ({...prev, email: e.target.value}))}
                     />
-                    < Button className='verifyButton_forget_password_page' variant="contained" endIcon={<SendIcon/>}
+                    < Button className='verifyButton_forget_password_page' color='text'
+                             variant="contained" endIcon={<SendIcon/>}
                              onClick={() => handleVerificationCode(data.email, 'forget password')}>
                         Verify
                     </Button>
@@ -150,10 +151,8 @@ const FORGET_PASSWORD_PAGE_INPUT_FIELD = () => {
             </div>
 
             <ThemeProvider theme={theme}>
-                <Button className='resetButton_forget_password__page' sx={{
-                    backgroundColor: '#009682',
-                    color: 'black'
-                }}
+                <Button className='resetButton_forget_password__page' color='text'
+                        variant="contained"
                         onClick={handleReset}>
                     Reset
                 </Button>

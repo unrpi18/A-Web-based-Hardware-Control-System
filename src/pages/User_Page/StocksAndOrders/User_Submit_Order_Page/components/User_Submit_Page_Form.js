@@ -159,7 +159,10 @@ const USER_SUBMIT_PAGE_FORM = () => {
                 ))}
 
             </Stack>
-            <Button className='sendApplicationButton_submit_Order_page' variant='contained' color='success'
+            <Button className='sendApplicationButton_submit_Order_page' sx={{
+                backgroundColor:'#009682',
+                color:'black'
+            }}
                     onClick={() => handleSendApplication()}>
                 Send Application
             </Button>
