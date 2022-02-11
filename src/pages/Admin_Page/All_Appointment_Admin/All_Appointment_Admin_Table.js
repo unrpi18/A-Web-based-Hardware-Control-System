@@ -26,7 +26,10 @@ import {useNavigate} from "react-router";
 
 // default data for loading
 const no_data =[
-    createData(0, 'N/A','N/A','N/A','N/A',-999)
+    createData(0, '','','','',-999)
+]
+const loading =[
+    createData(0, 'loading','loading','loading','loading',-999)
 ]
 
 /**
@@ -42,7 +45,7 @@ function convertIDtoSlot(id){
         case 3 : return '14:00-16:00';
         case 4 : return '16:00-18:00';
         case 5 : return '18:00-20:00';
-        default : return 'N/A';
+        default : return '';
     }
 }
 
@@ -74,7 +77,7 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     const [time_slot, setTime_slot] = useState();
     const [display_data, setDisplay_data] = useState(no_data);
     const [filter_keyword, setFilter_keyword]= useState('');
-    const [feteched_data, setFetched_data] = useState(no_data);
+    const [fetched_data, setFetched_data] = useState(no_data);
     const navigate = useNavigate();
 
     // Global methods
@@ -83,6 +86,8 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
     }, [])
 
     function refreshPage(){
+        setFetched_data(loading);
+        setDisplay_data(loading)
         fetch(url + '/timeslots/getBookedTimeSlot', {
             method: 'GET',
             headers: {
@@ -230,13 +235,13 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
         else {
             let filteredData =[];
             let count = 0;
-            for(let i = 0; i <feteched_data.length; i++){
-                if(feteched_data[i].first_name.toString().includes(keyword)
-                    || feteched_data[i].last_name.toString().includes(keyword)
-                    || feteched_data[i].email.toString().includes(keyword)
-                    || feteched_data[i].date.toString().includes(keyword)
-                    || convertIDtoSlot(feteched_data[i].timeslot).toString().includes(keyword)) {
-                    filteredData[count] = feteched_data[i];
+            for(let i = 0; i <fetched_data.length; i++){
+                if(fetched_data[i].first_name.toString().includes(keyword)
+                    || fetched_data[i].last_name.toString().includes(keyword)
+                    || fetched_data[i].email.toString().includes(keyword)
+                    || fetched_data[i].date.toString().includes(keyword)
+                    || convertIDtoSlot(fetched_data[i].timeslot).toString().includes(keyword)) {
+                    filteredData[count] = fetched_data[i];
                     filteredData[count].id = count;
                     count ++;
                 }
@@ -303,11 +308,11 @@ export default function ALL_APPOINTMENT_ADMIN_TABLE() {
                                     {convertIDtoSlot(row.timeslot)}
                                 </TableCell>
                                 <TableCell style={{ width: 40 }} align="center">
-                                    <IconButton aria-label="view"
-
+                                    {display_data === no_data ? row.email :
+                                    (<IconButton aria-label="view"
                                                 onClick={()=>handleDelete_open(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].date, rows[row.id].timeslot)}>
                                         <DeleteIcon />
-                                    </IconButton>
+                                    </IconButton>)}
                                 </TableCell>
                             </TableRow>
                         ))}

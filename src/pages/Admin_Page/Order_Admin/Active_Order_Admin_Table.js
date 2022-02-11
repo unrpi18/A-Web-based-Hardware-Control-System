@@ -30,9 +30,10 @@ import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import LinkIcon from "@mui/icons-material/Link";
+
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading', 'loading'),];
 const stocksLoading = [createItemsData(0,'loading','loading', 'loading')];
-const no_data = [createData(0,'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A')]
+const no_data = [createData(0,'', '', '', '', '', '', '')]
 
 
 
@@ -69,6 +70,8 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
     }, [])
 
     function refreshPage() {
+        setDisplay_data(loading);
+        setFetched_data(loading);
         fetch(url + '/orders/getAllActiveOrders', {
             mode: 'cors',
             method: 'GET',
@@ -437,7 +440,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                     {row.status}
                                 </TableCell>
                                 <TableCell style={{width: "1vw", height: 53}} align="center">
-                                    {rows[row.id].status === "PENDING"
+                                    {(display_data === no_data) ? rows[row.id].status : (rows[row.id].status === "PENDING"
                                     ?<IconButton aria-label="view"
                                                 disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                 onClick={() => handleAuditOpen(rows[row.id].order_id)}>
@@ -447,7 +450,7 @@ export default function ACTIVE_ORDER_ADMIN_TABLE() {
                                                  disabled={rows[row.id].item === 'loading' || rows[row.id].item === 'N/A'}
                                                  onClick={() => handleInStockOpen(rows[row.id].order_id, rows[row.id].item, rows[row.id].amount)}>
                                     <MergeTypeIcon/>
-                                </IconButton>}
+                                </IconButton>)}
                                 </TableCell>
                             </TableRow>
                         ))}

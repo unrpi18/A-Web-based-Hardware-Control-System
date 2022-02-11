@@ -1,7 +1,7 @@
 
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-
+import {Fragment} from "react";
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -150,7 +150,7 @@ export default function ADMIN_NAVI_PANEL() {
     return (
         <div>
             {['left'].map((anchor) => (
-                <React.Fragment key={anchor}>
+                <Fragment key={anchor}>
                     <IconButton aria-label="view" size = "large" onClick={toggleDrawer(anchor, true)}>
                         <FormatListBulletedIcon />
                     </IconButton>
@@ -161,7 +161,7 @@ export default function ADMIN_NAVI_PANEL() {
                     >
                         {list(anchor)}
                     </Drawer>
-                </React.Fragment>
+                </Fragment>
             ))}
         </div>
     );

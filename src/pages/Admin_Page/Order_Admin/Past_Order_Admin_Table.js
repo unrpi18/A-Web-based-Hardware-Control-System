@@ -23,7 +23,7 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import FilterListIcon from "@mui/icons-material/FilterList";
 const loading= [createData(0,'loading','loading', 'loading', 'loading','loading', 'loading'),];
-const no_data= [createData(0,'N/A','N/A', 'N/A', 'N/A','N/A', 'N/A'),];
+const no_data= [createData(0,'','', '', '','', ''),];
 
 function createData(id,order_id, item, amount, link, name, email) {
     return {id, order_id, item, amount, link, name, email};

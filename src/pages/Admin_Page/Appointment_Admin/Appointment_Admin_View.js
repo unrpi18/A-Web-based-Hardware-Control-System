@@ -131,6 +131,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
         const startDate = start_date;
         const post = {startDate};
+        setFetchedData(loading);
         fetch(url + '/timeslots/timeSlotCalender', {
             method: 'POST',
             headers: {
