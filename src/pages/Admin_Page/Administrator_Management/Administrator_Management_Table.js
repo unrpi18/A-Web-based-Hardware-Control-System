@@ -26,7 +26,8 @@ import tablePaginationActions from "../Component/Table_Control";
 import {useNavigate} from "react-router";
 
 // default data by loading / no admins
-const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
+const no_data = [createData(0, '', '', '')];
+const loading = [createData(0, 'loading', 'loading', 'loading')]
 const user_no_data = [createUserData(0, 'N/A')]
 
 /**
@@ -102,10 +103,11 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage);
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
     function refreshPage(){
-        fetchUser();
+        setDisplay_data(loading);
+        setFetched_data(loading);
         fetch(url + '/users/getAllAdministrator', {
             method: 'GET',
             mode : 'cors',
@@ -134,8 +136,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 window.sessionStorage.setItem('token', responseJson.token);
                 alert(errorMessage)
             }
-
-        })
+        }).then(fetchUser).catch(error =>{throw(error)})
 
     }
 
@@ -164,7 +165,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Close</Button>
-                    <Button onClick={handleConfirm}>Confirm</Button>
+                    <Button onClick={handleConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -194,7 +195,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
 
@@ -232,7 +233,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 alert(errorMessage)
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleAddClose();
     }
@@ -254,7 +255,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAdd}>Confirm</Button>
+                    <Button onClick={handleAdd}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -394,11 +395,12 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                                     {row.email}
                                 </TableCell>
                                 <TableCell style={{ width: "1vw", height : 53 }} align="center">
-                                    <IconButton aria-label="view"
+                                    {display_data === no_data ? row.email:
+                                    (<IconButton aria-label="view"
                                                 disabled={rows[row.id].first_name === 'N/A' || rows[row.id].email === 'teco@teco.com'}
                                                 onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
                                         <PersonRemoveIcon />
-                                    </IconButton>
+                                    </IconButton>)}
                                 </TableCell>
                             </TableRow>
                         ))}

@@ -28,6 +28,7 @@ import FilterListIcon from "@mui/icons-material/FilterList";
 import {useNavigate} from "react-router";
 import tablePaginationActions from "../Component/Table_Control";
 
+const loading = [createData(0, 'loading', 'loading', 'loading', 'loading')]
 const no_data= [createData(0,'N/A', 'N/A', 'N/A', 'N/A')];
 
 
@@ -68,6 +69,8 @@ export default function USER_MANAGEMENT_TABLE() {
     }, [])
 
     function refreshPage(){
+        setDisplay_data(loading);
+        setFetched_data(loading);
         fetch(url +'/users/getAllUsers', {
             method: 'GET',
             mode : 'cors',
@@ -97,7 +100,7 @@ export default function USER_MANAGEMENT_TABLE() {
                 alert(errorMessage);
                 navigate('/');
             }
-        })
+        }).catch(error =>{throw(error)})
     }
 
     function filterData (keyword){
@@ -173,7 +176,7 @@ export default function USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
 
@@ -307,11 +310,12 @@ export default function USER_MANAGEMENT_TABLE() {
                                 {row.email}
                             </TableCell>
                             <TableCell style={{ width: "1vw", height : 53 }} align="center">
-                                <IconButton aria-label="view"
+                                {display_data === no_data ? row.email :
+                                (<IconButton aria-label="view"
                                             disabled={rows[0].last_name === 'N/A'}
                                             onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email, rows[row.id].access)}>
                                     <VisibilityIcon />
-                                </IconButton>
+                                </IconButton>)}
                             </TableCell>
                         </TableRow>
                     ))}

@@ -1,7 +1,7 @@
-import * as React from 'react';
+
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
-
+import {Fragment} from "react";
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
@@ -15,13 +15,25 @@ import IconButton from '@mui/material/IconButton';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import ArticleIcon from '@mui/icons-material/Article';
 import {useNavigate} from "react-router";
+import {ListItemButton} from "@mui/material";
+import {Collapse} from "@material-ui/core";
+import {ExpandMore} from "@mui/icons-material";
+import {useState} from "react";
 export default function ADMIN_NAVI_PANEL() {
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
         left: false,
         bottom: false,
         right: false,
     });
+    const [order_open, setOrder_open] = useState(false)
+    const handleOrderClick = () => {
+        setOrder_open(!order_open);
+    };
+    const [user_open, setUser_open] = useState(false)
+    const handleUserClick=()=>{
+        setUser_open(!user_open);
+    }
     const navigate = useNavigate();
     const toggleDrawer = (anchor, open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -47,24 +59,85 @@ export default function ADMIN_NAVI_PANEL() {
                     </ListItemIcon>
                     <ListItemText primary='Appointments' />
                 </ListItem>
-                <ListItem button onClick ={()=>navigate("/stock_and_order_admin_navi")}>
+                <ListItem button onClick ={handleOrderClick}>
                     <ListItemIcon>
                         <InventoryIcon />
                     </ListItemIcon>
                     <ListItemText primary='Stocks & Orders' />
+                    {<ExpandMore/>}
                 </ListItem>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+
+                        {[{
+                            "text": 'Stock',
+                            "url": '/stock_admin',
+                        },
+                            {
+                                "text": 'Active Orders',
+                                "url": '/active_order_admin',
+                            },
+                            {
+                                "text": 'Past Orders',
+                                "url": '/past_order_admin',
+                            },
+
+                        ].map((input) => (
+                            <ListItemButton sx={{pl: 4}} key={input.text} onClick={() => navigate(input.url)}>
+                                <ListItemText primary={input.text} primaryTypographyProps={{
+                                    fontWeight: 'medium', fontSize: 15
+                                }}/>
+                            </ListItemButton>
+                        ))
+
+                        }
+                    < /List>
+
+                </Collapse>
                 <ListItem button onClick ={()=>navigate("/webcam_admin")}>
                     <ListItemIcon>
                         <VideocamIcon />
                     </ListItemIcon>
                     <ListItemText primary='Webcam' />
                 </ListItem>
-                <ListItem button onClick={()=>navigate("/user_group_navi_page")}>
+                <ListItem button onClick={handleUserClick}>
                     <ListItemIcon>
                         <GroupsIcon />
                     </ListItemIcon>
                     <ListItemText primary = 'User Group' />
+                    <ExpandMore/>
                 </ListItem>
+                <Collapse in={true} timeout="auto" unmountOnExit>
+                    <List component="div" disablePadding>
+
+                        {[{
+                            "text": 'Registration Management',
+                            "url": '/new_user_management',
+                        },
+                            {
+                                "text": 'Users Management ',
+                                "url": '/user_management',
+                            },
+                            {
+                                "text": 'Admin Management',
+                                "url": '/admin_management',
+                            },
+
+                        ].map((input) => (
+                            <ListItemButton sx={{pl: 4}}
+                                            key={input.text}
+                                            onClick={() => navigate(input.url)}
+                                            disabled={input.text === 'Admin Management' && window.sessionStorage.getItem('email') !== 'teco@teco.com'}>
+                                <ListItemText primary={input.text} primaryTypographyProps={{
+                                    fontWeight: 'medium', fontSize: 15
+                                }}/>
+                            </ListItemButton>
+                        ))
+
+                        }
+                    < /List>
+
+                </Collapse>
                 <ListItem button onClick={()=>navigate("/t_and_c_update")}>
                     <ListItemIcon>
                         <ArticleIcon />
@@ -78,7 +151,7 @@ export default function ADMIN_NAVI_PANEL() {
     return (
         <div>
             {['left'].map((anchor) => (
-                <React.Fragment key={anchor}>
+                <Fragment key={anchor}>
                     <IconButton aria-label="view" size = "large" onClick={toggleDrawer(anchor, true)}>
                         <FormatListBulletedIcon />
                     </IconButton>
@@ -89,7 +162,7 @@ export default function ADMIN_NAVI_PANEL() {
                     >
                         {list(anchor)}
                     </Drawer>
-                </React.Fragment>
+                </Fragment>
             ))}
         </div>
     );

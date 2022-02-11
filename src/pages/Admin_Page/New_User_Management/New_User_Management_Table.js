@@ -25,7 +25,8 @@ import TextField from "@mui/material/TextField";
 import tablePaginationActions from "../Component/Table_Control";
 import {useNavigate} from "react-router";
 
-const no_data = [createData(0, 'N/A', 'N/A', 'N/A')];
+const no_data = [createData(0, '', '', '')];
+
 const loading= [createData(0,'loading', 'loading', 'loading')];
 
 
@@ -55,6 +56,8 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
         refreshPage();
     }, [])
     function refreshPage(){
+        setFetched_data(loading);
+        setDisplay_data(loading);
         fetch(url + '/users/getAllAccountToBeConfirmed', {
             mode : 'cors',
             method: 'GET',
@@ -91,7 +94,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
     // methods and functions for filtering
@@ -205,7 +208,7 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleClose();
     }
@@ -286,11 +289,11 @@ export default function NEW_USER_MANAGEMENT_TABLE() {
                                 {row.email}
                             </TableCell>
                             <TableCell style={{ width: "1vw" , height : 53}} align="center">
-                                <IconButton aria-label="view"
+                                {display_data === no_data ? row.email : <IconButton aria-label="view"
                                             disabled={rows[row.id].first_name === 'N/A' || rows[row.id].first_name === 'loading'}
-                                            onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
+                                            onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)} >
                                     <VisibilityIcon />
-                                </IconButton>
+                                </IconButton>}
                             </TableCell>
                         </TableRow>
                     ))}

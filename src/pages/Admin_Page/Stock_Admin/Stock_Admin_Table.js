@@ -25,10 +25,11 @@ import {url} from "../Navi_base"
 import {useNavigate} from "react-router";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import tablePaginationActions from "../Component/Table_Control";
+
 const loading = [
     createData(0,'loading','loading','loading')]
 const no_data = [
-    createData(0,'NA','NA','NA')]
+    createData(0,'','','')]
 
 
 
@@ -64,6 +65,8 @@ export default function STOCK_ADMIN_TABLE() {
         refreshPage()
     }, []);
     function refreshPage() {
+        setDisplay_data(loading);
+        setFetched_data(loading);
         fetch(url + '/stocks/adminGetAllItems', {
             method: 'GET',
             headers: {
@@ -91,7 +94,7 @@ export default function STOCK_ADMIN_TABLE() {
                 alert(errorMessage);
                 navigate('/');
             }
-        })
+        }).catch(error =>{throw(error)})
     }
 
     //onChange Method
@@ -139,7 +142,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
 
         handleEditClose();
     }
@@ -179,7 +182,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleEditClose}>Close</Button>
-                    <Button onClick={handleEditConfirm}>Confirm</Button>
+                    <Button onClick={handleEditConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -245,7 +248,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         handleRemoveClose();
     }
     const remove_dialog = ()=>{
@@ -286,7 +289,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleRemoveClose}>Close</Button>
-                    <Button onClick={handleRemoveConfirm}>Confirm</Button>
+                    <Button onClick={handleRemoveConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -325,7 +328,7 @@ export default function STOCK_ADMIN_TABLE() {
                 navigate('/');
             }
             refreshPage();
-        })
+        }).catch(error =>{throw(error)})
         handleAddClose();
     }
     const add_dialog = ()=>{
@@ -375,7 +378,7 @@ export default function STOCK_ADMIN_TABLE() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleAddClose}>Close</Button>
-                    <Button onClick={handleAddConfirm}>Confirm</Button>
+                    <Button onClick={handleAddConfirm}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -506,15 +509,16 @@ export default function STOCK_ADMIN_TABLE() {
                                 </TableCell>
                                 <TableCell style={{width: 40 ,height : 53 }} align="center">
                                     <Stack direction="row" justifyContent="space-evenly">
-
+                                        {display_data === no_data ? row.amount :
                                         <IconButton aria-label="view"
                                                     onClick={() => handleEditOpen(rows[row.id].item, rows[row.id].amount)}>
                                             <EditIcon/>
-                                        </IconButton>
-                                        <IconButton aria-label="view"
+                                        </IconButton>}
+                                        {display_data === no_data ? row.amount :
+                                            <IconButton aria-label="view"
                                                     onClick={() => handleRemoveOpen(rows[row.id].item, rows[row.id].amount)}>
                                             <DeleteIcon/>
-                                        </IconButton>
+                                        </IconButton>}
                                     </Stack>
                                 </TableCell>
                             </TableRow>

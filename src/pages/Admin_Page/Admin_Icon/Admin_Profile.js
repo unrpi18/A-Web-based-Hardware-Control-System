@@ -11,7 +11,7 @@ import {useNavigate} from "react-router";
 import {useState} from "react";
 import {Fragment} from "react";
 import Stack from "@mui/material/Stack";
-import LOGO from "../../../components/logos/Logo";
+import LOGO from "../../../components/logos/Logo"
 import { InputLabel} from "@mui/material";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
@@ -61,7 +61,7 @@ const Admin_Profile = () => {
                 alert(responseJson.message)
                 navigate('/')
             }
-        })
+        }).catch(error =>{throw(error)})
     }
 
     function forced_logout(){

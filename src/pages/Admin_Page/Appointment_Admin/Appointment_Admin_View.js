@@ -131,6 +131,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
 
         const startDate = start_date;
         const post = {startDate};
+        setFetchedData(loading);
         fetch(url + '/timeslots/timeSlotCalender', {
             method: 'POST',
             headers: {
@@ -162,7 +163,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 navigate('/');
             }
 
-        })
+        }).catch(error =>{throw(error)})
 
     }
     function fetchUser(){
@@ -195,7 +196,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 alert(errorMessage);
             }
 
-        })
+        }).catch(error =>{throw(error)})
     }
 
 
@@ -264,7 +265,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 refreshPage(start_date);
                 handleBookClose()
                 handleCxlClose();
-            })
+            }).catch(error =>{throw(error)})
         }
 
 
@@ -323,7 +324,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleBookClose}>Cancel</Button>
-                    <Button onClick={()=>handleConfirm('Book')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Book')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -372,7 +373,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleCxlClose}>Cancel</Button>
-                    <Button onClick={()=>handleConfirm('Cancel')}>Confirm</Button>
+                    <Button onClick={()=>handleConfirm('Cancel')}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
@@ -421,7 +422,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 }
                 refreshPage(start_date);
                 handleTimeSlotClose()
-            })
+            }).catch(error =>{throw(error)})
         }
     }
     function setTimeSlotDialog(){
@@ -500,7 +501,7 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleTimeSlotClose}>Cancel</Button>
-                    <Button onClick={handleConfirmTSChange}>Confirm</Button>
+                    <Button onClick={handleConfirmTSChange}>Yes</Button>
                 </DialogActions>
             </Dialog>
         )
