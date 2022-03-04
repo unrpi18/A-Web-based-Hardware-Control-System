@@ -41,7 +41,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             alert('invalid access, you are being logged out.')
             navigate('/')
         }else {
-            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
+            fetch('http://pseteam1.dmz.teco.edu:5000/get_resolution', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -64,7 +64,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             alert('invalid access, you are being logged out.')
             navigate('/')
         }else {
-            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_max_download_time', {
+            fetch('http://pseteam1.dmz.teco.edu:5000/get_max_download_time', {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
@@ -92,7 +92,7 @@ export default function WEBCAM_ADMIN_VIEW(){
             const max_download_time = parseInt(duration);
             const post = (command === 'resolution') ? {resolution} : {max_download_time};
             const ending = (command === 'resolution') ? 'change_resolution' : 'change_max_download_time';
-            fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + ending, {
+            fetch('http://pseteam1.dmz.teco.edu:5000/' + ending, {
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
@@ -200,7 +200,7 @@ export default function WEBCAM_ADMIN_VIEW(){
         }).catch(error =>{throw(error)})
     }
     async function handleOpenStream() {
-        fetch('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/get_resolution', {
+        fetch('http://pseteam1.dmz.teco.edu:5000/get_resolution', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -214,7 +214,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                 alert('invalid access, you are being logged out.')
                 navigate('/');
             }
-        }).then(()=>window.open('http://64a1-2a02-3038-40d-bbc8-5c83-3cef-eac0-855d.ngrok.io/' + resolution)).catch(error =>{throw(error)});
+        }).then(()=>window.open('http://pseteam1.dmz.teco.edu:5000/' + resolution)).catch(error =>{throw(error)});
     }
     return (
         <div>
