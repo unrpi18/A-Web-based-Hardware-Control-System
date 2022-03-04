@@ -19,7 +19,7 @@ const USER_WEBCAM_VIEW = () => {
     })
 
     useEffect(() => {
-        fetch('http://pseteam1.dmz.teco.edu:5000/get_resolution', {
+        fetch('http://pseteam1.dmz.teco.edu/webcam/get_resolution', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const USER_WEBCAM_VIEW = () => {
             let end_time = end_timeLocal.replaceAll(':', '_')
             const post = {start_time, end_time}
             console.log(post)
-            window.open('http://pseteam1.dmz.teco.edu:5000/download?start_time=' + start_time + '&end_time=' + end_time);
+            window.open('http://pseteam1.dmz.teco.edu/webcam/download?start_time=' + start_time + '&end_time=' + end_time);
         } else {
             alert("Please enter the correct start/end time")
         }
@@ -63,7 +63,7 @@ const USER_WEBCAM_VIEW = () => {
             <Stack direction="column" alignItems="center" spacing={4} className='User_Webcam_Page_Style'>
                 <Button variant="contained" startIcon={<LiveTvIcon/>}
                         className='User_Webcam_View_Stream'
-                        onClick={() => window.open('http://pseteam1.dmz.teco.edu:5000/' + resolution)}>
+                        onClick={() => window.open('http://pseteam1.dmz.teco.edu/webcam/' + resolution)}>
                     View Stream
                 </Button>
 
