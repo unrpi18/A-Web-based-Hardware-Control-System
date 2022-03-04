@@ -1,1 +1,1 @@
-export const url = " http://1bac-185-52-247-42.ngrok.io";
+export const url = "http://pseteam1.dmz.teco.edu/";

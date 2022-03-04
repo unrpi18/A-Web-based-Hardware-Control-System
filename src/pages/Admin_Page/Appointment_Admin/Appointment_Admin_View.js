@@ -38,7 +38,9 @@ function createUserData(id, entry){
     return {id, entry};
 }
 
-
+function dateCheck(date){
+    return moment(date).format("YYYY-MM-DD") === date
+}
 function convertIdToTs(id){
     switch (id){
         case 0: return "08:00-10:00";
@@ -128,7 +130,6 @@ const APPOINTMENT_ADMIN_VIEW = () => {
         refreshPage(current_view_start_date);
     }, [])
     function refreshPage(start_date){
-
         const startDate = start_date;
         const post = {startDate};
         setFetchedData(loading);
@@ -395,36 +396,40 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             alert("You may not modify appointment in the past!")
             handleBookClose();
             handleCxlClose();
-        }else {
-            const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
-            e.preventDefault();
-            const startDate = date;
-            const slot = time_slot.toString();
-            const endRepeatAfter = rpt_wks
-            const status = ts_status
-            const post = {startDate, slot, endRepeatAfter, status};
-            fetch(url + url_prefix, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'Authorization': window.sessionStorage.getItem('token')
-                },
-                body: JSON.stringify(post)
-            }).then(response => response.json()).then(responseJson => {
-                if (responseJson.resultCode === 200 || responseJson.resultCode === 500) {
-                    window.sessionStorage.setItem('token', responseJson.token);
-                    alert(responseJson.message);
-                } else {
-                    window.sessionStorage.clear();
-                    alert(responseJson.message);
-                    navigate('/');
-                }
-                refreshPage(start_date);
-                handleTimeSlotClose()
-            }).catch(error =>{throw(error)})
+        }else if(dateCheck(date) === false) {
+            alert("Illegal date input, please try again!")
+            handleBookClose();
+            handleCxlClose();
+        } else{
+                const url_prefix = ts_status === 'FREE' ? '/timeslots/setPeriodTimeSlotsFREE' : '/timeslots/setPeriodTimeSlotsNA'
+                e.preventDefault();
+                const startDate = date;
+                const slot = time_slot.toString();
+                const endRepeatAfter = rpt_wks
+                const status = ts_status
+                const post = {startDate, slot, endRepeatAfter, status};
+                fetch(url + url_prefix, {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                        'Authorization': window.sessionStorage.getItem('token')
+                    },
+                    body: JSON.stringify(post)
+                }).then(response => response.json()).then(responseJson => {
+                    if (responseJson.resultCode === 200 || responseJson.resultCode === 500) {
+                        window.sessionStorage.setItem('token', responseJson.token);
+                        alert(responseJson.message);
+                    } else {
+                        window.sessionStorage.clear();
+                        alert(responseJson.message);
+                        navigate('/');
+                    }
+                    refreshPage(start_date);
+                    handleTimeSlotClose()
+                }).catch(error =>{throw(error)})
+            }
         }
-    }
     function setTimeSlotDialog(){
         return(
             <Dialog open={ts_open} onClose={handleTimeSlotClose}>
