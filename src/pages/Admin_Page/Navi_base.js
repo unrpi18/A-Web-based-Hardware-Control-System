@@ -1,1 +1,1 @@
-export const url = "http://pseteam1.dmz.teco.edu/";
+export const url = "http://localhost:8086/";
