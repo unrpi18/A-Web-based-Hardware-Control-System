@@ -214,7 +214,8 @@ export default function WEBCAM_ADMIN_VIEW(){
                 alert('invalid access, you are being logged out.')
                 navigate('/');
             }
-        }).then(()=>window.open('http://pseteam1.dmz.teco.edu:5000/' + resolution)).catch(error =>{throw(error)});
+        }).then(()=>setResolution(responseJson.current_resolution)).
+        then(()=>window.open('http://pseteam1.dmz.teco.edu:5000/' + resolution)).catch(error =>{throw(error)});
     }
     return (
         <div>
