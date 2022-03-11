@@ -129,10 +129,7 @@ export default function WEBCAM_ADMIN_VIEW(){
                             value={resolution}
                             onChange={resolutionOnchange}
                         >
-                            <MenuItem disabled value={320}>320 x 240</MenuItem>
-                            <MenuItem disabled value={480}>480 x 320</MenuItem>
                             <MenuItem value={640}>640 x 480</MenuItem>
-                            <MenuItem disabled value={1280}>1280 x 720</MenuItem>
                             <MenuItem value={1920}>1920 x 1080</MenuItem>
                         </Select>
                     </FormControl>
@@ -207,14 +204,15 @@ export default function WEBCAM_ADMIN_VIEW(){
                 'Content-Type': 'application/json',
                 'Authorization': window.sessionStorage.getItem('token')
             }
-        }).then(response => response.json()).then(responseJson => {
-            if(responseJson.code === 200){
-                setResolution(responseJson.current_resolution);
-            } else{
+        }).then(response => response.json()).then(async responseJson => {
+            if (responseJson.code === 200) {
+                await setResolution(responseJson.current_resolution);
+                window.open('http://pseteam1.dmz.teco.edu/webcam/' + resolution)
+            } else {
                 alert('invalid access, you are being logged out.')
                 navigate('/');
             }
-        }).then(()=>window.open('http://pseteam1.dmz.teco.edu/webcam/' + resolution)).catch(error =>{throw(error)});
+        }).catch(error =>{throw(error)});
     }
     return (
         <div>

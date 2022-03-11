@@ -127,7 +127,7 @@ export default function ADMIN_NAVI_PANEL() {
                             <ListItemButton sx={{pl: 4}}
                                             key={input.text}
                                             onClick={() => navigate(input.url)}
-                                            disabled={input.text === 'Admin Management' && window.sessionStorage.getItem('email') !== 'teco@teco.com'}>
+                                            disabled={input.text === 'Admin Management' && window.sessionStorage.getItem('email') !== 'pseteamone@teco.edu'}>
                                 <ListItemText primary={input.text} primaryTypographyProps={{
                                     fontWeight: 'medium', fontSize: 15
                                 }}/>

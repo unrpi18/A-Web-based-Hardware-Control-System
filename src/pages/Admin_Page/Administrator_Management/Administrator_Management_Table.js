@@ -397,7 +397,7 @@ export default function ADMINISTRATOR_MANAGEMENT_TABLE() {
                                 <TableCell style={{ width: "1vw", height : 53 }} align="center">
                                     {display_data === no_data ? row.email:
                                     (<IconButton aria-label="view"
-                                                disabled={rows[row.id].first_name === 'N/A' || rows[row.id].email === 'teco@teco.com'}
+                                                disabled={rows[row.id].first_name === 'N/A' || rows[row.id].email === 'pseteamone@teco.edu'}
                                                 onClick={()=>handleOpen(rows[row.id].first_name, rows[row.id].last_name, rows[row.id].email)}>
                                         <PersonRemoveIcon />
                                     </IconButton>)}
