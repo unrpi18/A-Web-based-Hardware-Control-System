@@ -240,7 +240,8 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             alert("You may not modify appointment in the past!")
             handleBookClose();
             handleCxlClose();
-        }else{
+        }
+        else{
             const prefix_url = command === 'Book' ? "/appointments/adminAddAppointment" : "/appointments/adminDeleteAppointment";
             const slot = time_slot
             const post = command === 'Book' ? {email, date, slot} : {date, slot};
@@ -396,8 +397,8 @@ const APPOINTMENT_ADMIN_VIEW = () => {
             alert("You may not modify appointment in the past!")
             handleBookClose();
             handleCxlClose();
-        }else if(dateCheck(date) === false) {
-            alert("Illegal date input, please try again!")
+        }else if(dateCheck(date) === false || rpt_wks === '') {
+            alert("Illegal entry, please try again!")
             handleBookClose();
             handleCxlClose();
         } else{
@@ -460,11 +461,12 @@ const APPOINTMENT_ADMIN_VIEW = () => {
                         id="rpt"
                         label="Repeating"
                         type="number"
+                        min = "1"
                         fullWidth
                         variant="standard"
                         value ={rpt_wks}
                         onChange={rpt_wksOnchange}
-                        defaultValue={1}
+                        defaultValue={"1"}
                     />
                     <Box sx={{ mt : '2vh' ,minWidth: 120 }}>
                         <FormControl fullWidth>

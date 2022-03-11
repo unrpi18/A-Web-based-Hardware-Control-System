@@ -122,28 +122,31 @@ export default function STOCK_ADMIN_TABLE() {
     }
     const handleEditConfirm = ()=>{
         const itemName = item;
-        const post = {itemName, amount};
-        fetch (url + '/stocks/changeItemAmount',{
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': window.sessionStorage.getItem('token')
-            },
-            body: JSON.stringify(post)
-        }).then(response => response.json()).then(responseJson => {
-            if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
-                window.sessionStorage.setItem('token', responseJson.token);
-                alert(responseJson.message);
-            }
-            else{
-                window.sessionStorage.clear();
-                alert(responseJson.message);
-                navigate('/');
-            }
-            refreshPage();
-        }).catch(error =>{throw(error)})
-
+        if(amount === ''){
+            alert('Invalid entry, please try again!')
+        }else{
+            const post = {itemName, amount};
+            fetch (url + '/stocks/changeItemAmount',{
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': window.sessionStorage.getItem('token')
+                },
+                body: JSON.stringify(post)
+            }).then(response => response.json()).then(responseJson => {
+                if(responseJson.resultCode === 500 || responseJson.resultCode === 200){
+                    window.sessionStorage.setItem('token', responseJson.token);
+                    alert(responseJson.message);
+                }
+                else{
+                    window.sessionStorage.clear();
+                    alert(responseJson.message);
+                    navigate('/');
+                }
+                refreshPage();
+            }).catch(error =>{throw(error)})
+        }
         handleEditClose();
     }
     const edit_dialog = ()=>{
@@ -173,6 +176,7 @@ export default function STOCK_ADMIN_TABLE() {
                         id="number"
                         label="Amount"
                         type="number"
+                        min = "0"
                         fullWidth
                         variant="standard"
                         value={amount}
