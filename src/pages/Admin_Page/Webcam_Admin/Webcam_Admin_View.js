@@ -197,7 +197,7 @@ export default function WEBCAM_ADMIN_VIEW(){
         }).catch(error =>{throw(error)})
     }
     async function handleOpenStream() {
-        fetch('http://pseteam1.dmz.teco.edu/webcam/get_resolution', {
+        await fetch('http://pseteam1.dmz.teco.edu/webcam/get_resolution', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -207,12 +207,11 @@ export default function WEBCAM_ADMIN_VIEW(){
         }).then(response => response.json()).then(async responseJson => {
             if (responseJson.code === 200) {
                 await setResolution(responseJson.current_resolution);
-                window.open('http://pseteam1.dmz.teco.edu/webcam/' + resolution)
             } else {
                 alert('invalid access, you are being logged out.')
                 navigate('/');
             }
-        }).catch(error =>{throw(error)});
+        }).then(()=>window.open('http://pseteam1.dmz.teco.edu/webcam/' + resolution)).catch(error =>{throw(error)});
     }
     return (
         <div>
